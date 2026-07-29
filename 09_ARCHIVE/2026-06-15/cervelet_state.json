@@ -1,0 +1,32 @@
+{
+  "compteur_routines": {
+    "200#10:3500,1200": 3
+  },
+  "logs": [
+    {
+      "signal": "200#10:3500,1200",
+      "res": "200:20:2300 (Réflexe Cervelet)",
+      "ame": {
+        "anxiété": "Basse",
+        "humeur": "Créative",
+        "survie_critique": false,
+        "budget_restant": 99.85,
+        "ratio_succès": 1.0
+      },
+      "ts": 1781486800.8500633
+    },
+    {
+      "signal": "200#10:3500,1200",
+      "res": "200:20:2300 (Réflexe Cervelet)",
+      "ame": {
+        "anxiété": "Basse",
+        "humeur": "Créative",
+        "survie_critique": false,
+        "budget_restant": 99.8499,
+        "ratio_succès": 1.0
+      },
+      "ts": 1781486800.850499
+    }
+  ],
+  "ts": 1781486800.8505
+}

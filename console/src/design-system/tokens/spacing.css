@@ -1,0 +1,17 @@
+/* La Forge — spacing, radii, borders.
+   Borders: 0.5px solid by default, never thicker than 1px.
+   No single-side rounded corners: a one-side accent border => radius 0. */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  --radius-md: 8px;  /* buttons, badges, inputs */
+  --radius-lg: 12px; /* cards */
+  --radius-xl: 16px; /* wide containers */
+
+  --border-width: 0.5px;
+}

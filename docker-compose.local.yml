@@ -1,0 +1,46 @@
+# docker-compose.local.yml — Phase 1 : plateforme d'inférence en LOCAL, mono-tenant.
+#
+# Lancer :   docker compose -f docker-compose.local.yml up -d
+# Arrêter :  docker compose -f docker-compose.local.yml down
+#
+# Réutilise le compose PG+Redis existant (00_CORE/db) via `include` — on ne duplique
+# pas la définition des datastores. Ajoute uniquement le service `api` (façade /v1 +
+# dashboard server.py). 1 process pour le tenant local (décision verrouillée du plan) :
+# pas de multi-worker ici, le repli fichier de forge_store suffit.
+
+include:
+  - 00_CORE/db/docker-compose.yml
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    container_name: forge_api_local
+    env_file:
+      - .env
+      - path: .env.local
+        required: false
+    environment:
+      # Opt-in explicite d'insécurité mono-utilisateur (même politique que forge_tenant.py
+      # et FORGE_WEB_ALLOW_INSECURE) — jamais le défaut, toujours posé ici en clair.
+      FORGE_SINGLE_TENANT: "local"
+      WEB_PORT: "7777"
+      DATABASE_URL: "postgresql://forge:forge@postgres:5432/forge"
+      REDIS_URL: "redis://redis:6379"
+    ports:
+      - "7777:7777"
+    volumes:
+      # Bind-mount en dev : itération sans rebuild d'image (Phase 4 durcira avec une
+      # image figée pour Coolify).
+      - ./:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:7777/api/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10

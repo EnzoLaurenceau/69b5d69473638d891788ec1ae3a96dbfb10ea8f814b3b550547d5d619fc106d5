@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.local
+.vite/
+
+# build info incrémental tsc (généré)
+*.tsbuildinfo

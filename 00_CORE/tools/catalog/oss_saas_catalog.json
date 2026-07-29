@@ -1,0 +1,608 @@
+[
+  {
+    "name": "Cal.com",
+    "url": "https://github.com/calcom/cal.com",
+    "description": "Open-source scheduling and booking platform (MIT)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Plausible Analytics",
+    "url": "https://github.com/plausible/analytics",
+    "description": "Lightweight, privacy-friendly analytics (MIT)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Uptime Kuma",
+    "url": "https://github.com/louislam/uptime-kuma",
+    "description": "Self-hosted monitoring tool (MIT)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Ackee",
+    "url": "https://github.com/electerious/Ackee",
+    "description": "Self-hosted analytics tool (MIT)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Shlink",
+    "url": "https://github.com/shlinkio/shlink",
+    "description": "URL shortener with detailed stats (MIT)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Mealie",
+    "url": "https://github.com/hay-kot/mealie",
+    "description": "Recipe manager and meal planner (MIT)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Directus",
+    "url": "https://github.com/directus/directus",
+    "description": "Headless CMS for structured content (GPL-3.0)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Monica",
+    "url": "https://github.com/monicahq/monica",
+    "description": "Personal CRM for managing relationships (AGPL-3.0)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Outline",
+    "url": "https://github.com/outline/outline",
+    "description": "Modern team knowledge base (BSD-3-Clause)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Miniflux",
+    "url": "https://github.com/miniflux/v2",
+    "description": "Minimalist RSS reader (Apache-2.0)",
+    "category": "**MicroSaaS**"
+  },
+  {
+    "name": "Label Studio",
+    "url": "https://github.com/heartexlabs/label-studio",
+    "description": "Data labeling platform (Apache-2.0)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "Haystack",
+    "url": "https://github.com/deepset-ai/haystack",
+    "description": "NLP-powered search framework (Apache-2.0)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "Gradio",
+    "url": "https://github.com/gradio-app/gradio",
+    "description": "Interactive dashboards for ML models (Apache-2.0)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "Streamlit",
+    "url": "https://github.com/streamlit/streamlit",
+    "description": "Web apps for data and ML (Apache-2.0)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "FastChat",
+    "url": "https://github.com/lm-sys/FastChat",
+    "description": "Chatbot platform for conversational AI (Apache-2.0)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "MLFlow",
+    "url": "https://github.com/mlflow/mlflow",
+    "description": "ML lifecycle management platform (Apache-2.0)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "PyTorch Lightning",
+    "url": "https://github.com/Lightning-AI/lightning",
+    "description": "Lightweight ML framework (Apache-2.0)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "Hugging Face Transformers",
+    "url": "https://github.com/huggingface/transformers",
+    "description": "NLP model library (Apache-2.0)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "Deepchecks",
+    "url": "https://github.com/deepchecks/deepchecks",
+    "description": "Tool for testing ML models (Apache-2.0)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "LightGBM",
+    "url": "https://github.com/microsoft/LightGBM",
+    "description": "Gradient boosting framework (MIT)",
+    "category": "**AI & Machine Learning**"
+  },
+  {
+    "name": "Appsmith",
+    "url": "https://github.com/appsmithorg/appsmith",
+    "description": "Internal tool builder (Apache-2.0)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "PostHog",
+    "url": "https://github.com/PostHog/posthog",
+    "description": "Product analytics platform (MIT)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "Meilisearch",
+    "url": "https://github.com/meilisearch/meilisearch",
+    "description": "Search engine (MIT)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "Rancher",
+    "url": "https://github.com/rancher/rancher",
+    "description": "Kubernetes management tool (Apache-2.0)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "Drone",
+    "url": "https://github.com/harness/drone",
+    "description": "Continuous integration platform (Apache-2.0)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "Budibase",
+    "url": "https://github.com/Budibase/budibase",
+    "description": "Low-code platform for internal tools (MIT)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "N8N",
+    "url": "https://github.com/n8n-io/n8n",
+    "description": "Workflow automation platform (Apache-2.0)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "Redash",
+    "url": "https://github.com/getredash/redash",
+    "description": "Data visualization tool (BSD-2-Clause)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "Joplin",
+    "url": "https://github.com/laurent22/joplin",
+    "description": "Note-taking and task management app (MIT)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "Mattermost",
+    "url": "https://github.com/mattermost/mattermost-server",
+    "description": "Team communication tool (MIT)",
+    "category": "**Developer Tools**"
+  },
+  {
+    "name": "Saleor",
+    "url": "https://github.com/saleor/saleor",
+    "description": "Scalable e-commerce platform (BSD-3-Clause)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "Bagisto",
+    "url": "https://github.com/bagisto/bagisto",
+    "description": "Laravel-based e-commerce platform (MIT)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "Shopware",
+    "url": "https://github.com/shopware/platform",
+    "description": "Flexible e-commerce platform (MIT)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "Reaction Commerce",
+    "url": "https://github.com/reactioncommerce/reaction",
+    "description": "API-first commerce platform (GPL-3.0)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "Medusa",
+    "url": "https://github.com/medusajs/medusa",
+    "description": "Shopify alternative (MIT)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "Sylius",
+    "url": "https://github.com/Sylius/Sylius",
+    "description": "Tailored e-commerce apps (MIT)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "Vendure",
+    "url": "https://github.com/vendure-ecommerce/vendure",
+    "description": "Headless commerce framework (MIT)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "OpenCart",
+    "url": "https://github.com/opencart/opencart",
+    "description": "Online store builder (GPL-3.0)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "PrestaShop",
+    "url": "https://github.com/PrestaShop/PrestaShop",
+    "description": "Customizable e-commerce solution (AFL-3.0)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "Drupal Commerce",
+    "url": "https://github.com/drupalcommerce/commerce",
+    "description": "Flexible e-commerce module (GPL-2.0)",
+    "category": "**E-commerce**"
+  },
+  {
+    "name": "IPFS",
+    "url": "https://github.com/ipfs/ipfs",
+    "description": "Decentralized storage network (MIT)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "The Graph",
+    "url": "https://github.com/graphprotocol/graph-node",
+    "description": "Blockchain data indexing protocol (Apache-2.0)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "Radicle",
+    "url": "https://github.com/radicle-dev/radicle-upstream",
+    "description": "Peer-to-peer code collaboration (GPL-3.0)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "Gnosis Safe",
+    "url": "https://github.com/safe-global/safe-core-sdk",
+    "description": "Smart contract wallet platform (LGPL-3.0)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "Metamask Flask",
+    "url": "https://github.com/MetaMask/snaps-skunkworks",
+    "description": "Blockchain plugin framework (MIT)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "Chainlink",
+    "url": "https://github.com/smartcontractkit/chainlink",
+    "description": "Decentralized oracle network (MIT)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "OpenZeppelin",
+    "url": "https://github.com/OpenZeppelin/openzeppelin-contracts",
+    "description": "Library for smart contracts (MIT)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "Truffle Suite",
+    "url": "https://github.com/trufflesuite/truffle",
+    "description": "Ethereum development environment (MIT)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "Hardhat",
+    "url": "https://github.com/NomicFoundation/hardhat",
+    "description": "Smart contract testing and deployment (MIT)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "WalletConnect",
+    "url": "https://github.com/WalletConnect/walletconnect-monorepo",
+    "description": "Wallet connection protocol (Apache-2.0)",
+    "category": "**Web 3.0 & Decentralized SaaS**"
+  },
+  {
+    "name": "Mattermost",
+    "url": "https://github.com/mattermost/mattermost-server",
+    "description": "Open-source team communication platform (MIT)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "Jitsi Meet",
+    "url": "https://github.com/jitsi/jitsi-meet",
+    "description": "Secure video conferencing (Apache-2.0)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "Zulip",
+    "url": "https://github.com/zulip/zulip",
+    "description": "Team chat platform with threading (Apache-2.0)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "CryptPad",
+    "url": "https://github.com/xwiki-labs/cryptpad",
+    "description": "Encrypted collaboration tools (AGPL-3.0)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "Joplin",
+    "url": "https://github.com/laurent22/joplin",
+    "description": "Note-taking and to-do list app (MIT)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "OnlyOffice",
+    "url": "https://github.com/ONLYOFFICE/DocumentServer",
+    "description": "Office suite for documents (AGPL-3.0)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "Element",
+    "url": "https://github.com/vector-im/element-web",
+    "description": "Secure chat and collaboration on Matrix (Apache-2.0)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "Nextcloud",
+    "url": "https://github.com/nextcloud/server",
+    "description": "File sharing and collaboration platform (AGPL-3.0)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "Trusty Notes",
+    "url": "https://github.com/toolworks-dev/trusty-notes",
+    "description": "Lightweight and secure note-taking app (MIT)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "OpenProject",
+    "url": "https://github.com/opf/openproject",
+    "description": "Open-source project management software (GPL-3.0)",
+    "category": "**Productivity & Collaboration**"
+  },
+  {
+    "name": "Plausible Analytics",
+    "url": "https://github.com/plausible/analytics",
+    "description": "Lightweight, privacy-friendly analytics (MIT)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "Umami",
+    "url": "https://github.com/umami-software/umami",
+    "description": "Simple, privacy-focused web analytics (MIT)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "PostHog",
+    "url": "https://github.com/PostHog/posthog",
+    "description": "Product analytics platform (MIT)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "Ackee",
+    "url": "https://github.com/electerious/Ackee",
+    "description": "Privacy-friendly analytics (MIT)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "Fathom",
+    "url": "https://github.com/usefathom/fathom",
+    "description": "Privacy-first web analytics (MIT)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "Countly",
+    "url": "https://github.com/Countly/countly-server",
+    "description": "Product analytics and marketing (AGPL-3.0)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "Matomo",
+    "url": "https://github.com/matomo-org/matomo",
+    "description": "Open-source web analytics (GPL-3.0)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "Mautic",
+    "url": "https://github.com/mautic/mautic",
+    "description": "Marketing automation platform (GPL-3.0)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "Simple Analytics",
+    "url": "https://github.com/simpleanalytics/roadmap",
+    "description": "Privacy-focused analytics (MIT)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "Crater",
+    "url": "https://github.com/crater-invoice/crater",
+    "description": "Invoice management and tracking (MIT)",
+    "category": "**Marketing & Analytics**"
+  },
+  {
+    "name": "Strapi",
+    "url": "https://github.com/strapi/strapi",
+    "description": "Open-source headless CMS (MIT)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "Directus",
+    "url": "https://github.com/directus/directus",
+    "description": "Headless CMS for managing content (GPL-3.0)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "Hasura",
+    "url": "https://github.com/hasura/graphql-engine",
+    "description": "GraphQL API generation (Apache-2.0)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "Apiman",
+    "url": "https://github.com/apiman/apiman",
+    "description": "API management platform (Apache-2.0)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "Kong",
+    "url": "https://github.com/Kong/kong",
+    "description": "API gateway and service management (Apache-2.0)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "Tyk",
+    "url": "https://github.com/TykTechnologies/tyk",
+    "description": "API gateway and integration (MPL-2.0)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "PostgREST",
+    "url": "https://github.com/PostgREST/postgrest",
+    "description": "REST API for PostgreSQL (MIT)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "Hoppscotch",
+    "url": "https://github.com/hoppscotch/hoppscotch",
+    "description": "API testing platform (MIT)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "KrakenD",
+    "url": "https://github.com/krakendio/krakend-ce",
+    "description": "High-performance API gateway (Apache-2.0)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "OpenAPI Generator",
+    "url": "https://github.com/OpenAPITools/openapi-generator",
+    "description": "API client generator (Apache-2.0)",
+    "category": "**APIs & Integrations**"
+  },
+  {
+    "name": "Chatwoot",
+    "url": "https://github.com/chatwoot/chatwoot",
+    "description": "Customer support platform (MIT)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "Zammad",
+    "url": "https://github.com/zammad/zammad",
+    "description": "Web-based helpdesk (GPL-3.0)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "FreeScout",
+    "url": "https://github.com/freescout-helpdesk/freescout",
+    "description": "Lightweight helpdesk tool (AGPL-3.0)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "Faveo Helpdesk",
+    "url": "https://github.com/ladybirdweb/faveo-helpdesk",
+    "description": "Ticketing system (GPL-3.0)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "osTicket",
+    "url": "https://github.com/osTicket/osTicket",
+    "description": "Popular ticketing system (GPL-2.0)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "Hesk",
+    "url": "https://github.com/hesk/hesk",
+    "description": "Helpdesk software for small teams (GPL-3.0)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "Erxes",
+    "url": "https://github.com/erxes/erxes",
+    "description": "Customer experience management (GPL-3.0)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "Helpy",
+    "url": "https://github.com/helpyio/helpy",
+    "description": "Customer support and forums (MIT)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "UVdesk",
+    "url": "https://github.com/uvdesk/community-skeleton",
+    "description": "Multi-channel support platform (MIT)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "Yetiforce",
+    "url": "https://github.com/YetiForceCompany/YetiForceCRM",
+    "description": "CRM with helpdesk integration (MIT)",
+    "category": "**Customer Support**"
+  },
+  {
+    "name": "Metabase",
+    "url": "https://github.com/metabase/metabase",
+    "description": "Business intelligence platform (AGPL-3.0)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Superset",
+    "url": "https://github.com/apache/superset",
+    "description": "Data visualization platform (Apache-2.0)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Redash",
+    "url": "https://github.com/getredash/redash",
+    "description": "Open-source dashboards (BSD-2-Clause)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Grafana",
+    "url": "https://github.com/grafana/grafana",
+    "description": "Monitoring and visualization tool (AGPL-3.0)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Kibana",
+    "url": "https://github.com/elastic/kibana",
+    "description": "Elasticsearch visualization (Apache-2.0)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Dash",
+    "url": "https://github.com/plotly/dash",
+    "description": "Python web applications for data (MIT)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Lightdash",
+    "url": "https://github.com/lightdash/lightdash",
+    "description": "BI tool for dbt users (MIT)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Caravel",
+    "url": "https://github.com/airbnb/caravel",
+    "description": "Data exploration platform (Apache-2.0)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Airflow",
+    "url": "https://github.com/apache/airflow",
+    "description": "Workflow orchestration tool (Apache-2.0)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Chart.js",
+    "url": "https://github.com/chartjs/Chart.js",
+    "description": "JavaScript charting library (MIT)",
+    "category": "**Data & Visualization**"
+  },
+  {
+    "name": "Dify",
+    "url": "https://github.com/langgenius/dify",
+    "description": "Plateforme de dev d'apps LLM (chatbots, assistants, RAG, agents) prête prod. Produit des 'SaaS bot' / 'ai system' livrables.",
+    "category": "AI & Machine Learning"
+  }
+]

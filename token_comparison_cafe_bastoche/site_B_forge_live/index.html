@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Bastoche | Ixelles, Bruxelles</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Fontshare Fonts -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Café Bastoche</a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link">Accueil</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#histoire" class="nav-link">Histoire</a></li>
+                <li><a href="#galerie" class="nav-link">Galerie</a></li>
+                <li><a href="#horaires" class="nav-link">Horaires</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link" onclick="event.preventDefault(); openModal('login-modal')">Connexion</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="theme-icon sun" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="theme-icon moon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Café Bastoche</h1>
+            <p class="hero-subtitle">L'authenticité bruxelloise depuis <span id="dyn-year">[ANNÉE À CONFIRMER]*</span></p>
+            <p class="hero-location"><span id="dyn-address">[ADRESSE À CONFIRMER]*</span>, Ixelles, Bruxelles</p>
+            <a href="#menu" class="btn btn-primary">Découvrir notre menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu section">
+        <div class="container">
+            <h2 class="section-title">Notre Menu</h2>
+            <p class="section-subtitle">Saveurs authentiques et produits frais</p>
+            
+            <div id="dynamic-menu-container" class="menu-grid">
+                <!-- Skeleton placeholders (shimmer effect) by default -->
+                <div class="menu-category">
+                    <div class="shimmer-bg" style="height: 32px; width: 50%; margin-bottom: 24px; border-radius: var(--radius-sm);"></div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info" style="width: 100%;">
+                                <div class="shimmer-bg" style="height: 20px; width: 70%; margin-bottom: 8px; border-radius: var(--radius-sm);"></div>
+                                <div class="shimmer-bg" style="height: 14px; width: 90%; border-radius: var(--radius-sm);"></div>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info" style="width: 100%;">
+                                <div class="shimmer-bg" style="height: 20px; width: 50%; margin-bottom: 8px; border-radius: var(--radius-sm);"></div>
+                                <div class="shimmer-bg" style="height: 14px; width: 85%; border-radius: var(--radius-sm);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-category">
+                    <div class="shimmer-bg" style="height: 32px; width: 45%; margin-bottom: 24px; border-radius: var(--radius-sm);"></div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info" style="width: 100%;">
+                                <div class="shimmer-bg" style="height: 20px; width: 60%; margin-bottom: 8px; border-radius: var(--radius-sm);"></div>
+                                <div class="shimmer-bg" style="height: 14px; width: 80%; border-radius: var(--radius-sm);"></div>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info" style="width: 100%;">
+                                <div class="shimmer-bg" style="height: 20px; width: 55%; margin-bottom: 8px; border-radius: var(--radius-sm);"></div>
+                                <div class="shimmer-bg" style="height: 14px; width: 90%; border-radius: var(--radius-sm);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Histoire Section -->
+    <section id="histoire" class="histoire section">
+        <div class="container">
+            <h2 class="section-title">Notre Histoire</h2>
+            <div class="histoire-content">
+                <div class="histoire-text">
+                    <p class="intro-text">Depuis <span id="dyn-hist-year">[ANNÉE À CONFIRMER]*</span>, le Café Bastoche est un lieu emblématique d'Ixelles, alliant tradition bruxelloise et modernité.</p>
+                    
+                    <div class="histoire-details">
+                        <div class="detail-card">
+                            <h3>Les Origines</h3>
+                            <p>Fondé par <span id="dyn-founder">[NOM DU FONDATEUR À CONFIRMER]*</span>, notre café a toujours été un lieu de rencontre pour les habitants du quartier.</p>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h3>La Philosophie</h3>
+                            <p>Nous croyons en la qualité des produits locaux et en l'importance d'un service chaleureux et personnalisé.</p>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h3>Aujourd'hui</h3>
+                            <p>Le Café Bastoche continue d'évoluer tout en préservant son âme et son caractère unique.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="histoire-image">
+                    <div class="image-placeholder">
+                        <div class="placeholder-text">[PHOTO HISTORIQUE À AJOUTER]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie Section -->
+    <section id="galerie" class="galerie section">
+        <div class="container">
+            <h2 class="section-title">Galerie</h2>
+            <p class="section-subtitle">Découvrez notre ambiance</p>
+            
+            <div class="galerie-grid">
+                <div class="galerie-item">
+                    <div class="image-placeholder">
+                        <div class="placeholder-text">[PHOTO INTÉRIEUR]</div>
+                    </div>
+                    <p class="caption">L'intérieur chaleureux</p>
+                </div>
+                
+                <div class="galerie-item">
+                    <div class="image-placeholder">
+                        <div class="placeholder-text">[PHOTO TERRASSE]</div>
+                    </div>
+                    <p class="caption">Notre terrasse ensoleillée</p>
+                </div>
+                
+                <div class="galerie-item">
+                    <div class="image-placeholder">
+                        <div class="placeholder-text">[PHOTO CAFÉ]</div>
+                    </div>
+                    <p class="caption">Un café parfait</p>
+                </div>
+                
+                <div class="galerie-item">
+                    <div class="image-placeholder">
+                        <div class="placeholder-text">[PHOTO PATISSERIE]</div>
+                    </div>
+                    <p class="caption">Nos pâtisseries maison</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horaires Section -->
+    <section id="horaires" class="horaires section">
+        <div class="container">
+            <h2 class="section-title">Horaires d'Ouverture</h2>
+            <div class="horaires-content">
+                <div class="horaires-card">
+                    <div class="horaire-item">
+                        <span class="jour">Lundi</span>
+                        <span class="heures" id="hours-lundi">[HEURES À CONFIRMER]*</span>
+                    </div>
+                    <div class="horaire-item">
+                        <span class="jour">Mardi</span>
+                        <span class="heures" id="hours-mardi">[HEURES À CONFIRMER]*</span>
+                    </div>
+                    <div class="horaire-item">
+                        <span class="jour">Mercredi</span>
+                        <span class="heures" id="hours-mercredi">[HEURES À CONFIRMER]*</span>
+                    </div>
+                    <div class="horaire-item">
+                        <span class="jour">Jeudi</span>
+                        <span class="heures" id="hours-jeudi">[HEURES À CONFIRMER]*</span>
+                    </div>
+                    <div class="horaire-item">
+                        <span class="jour">Vendredi</span>
+                        <span class="heures" id="hours-vendredi">[HEURES À CONFIRMER]*</span>
+                    </div>
+                    <div class="horaire-item">
+                        <span class="jour">Samedi</span>
+                        <span class="heures" id="hours-samedi">[HEURES À CONFIRMER]*</span>
+                    </div>
+                    <div class="horaire-item">
+                        <span class="jour">Dimanche</span>
+                        <span class="heures" id="hours-dimanche">[HEURES À CONFIRMER]*</span>
+                    </div>
+                </div>
+                
+                <div class="special-hours">
+                    <h3>Horaires Spéciaux</h3>
+                    <p>Jours fériés : <span id="hours-feries">[INFORMATION À CONFIRMER]*</span></p>
+                    <p>Événements privés : <span id="hours-prives">[INFORMATION À CONFIRMER]*</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text">
+                            <h4>Adresse</h4>
+                            <p id="dyn-contact-address">[ADRESSE COMPLÈTE À CONFIRMER]*</p>
+                            <p>1050 Ixelles, Bruxelles</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text">
+                            <h4>Téléphone</h4>
+                            <p id="dyn-phone">[NUMÉRO À CONFIRMER]*</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-text">
+                            <h4>Email</h4>
+                            <p id="dyn-email">[EMAIL À CONFIRMER]*</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">🌐</div>
+                        <div class="info-text">
+                            <h4>Suivez-nous</h4>
+                            <div class="social-links">
+                                <a href="#" class="social-link">Facebook</a>
+                                <a href="#" class="social-link">Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Envoyez-nous un message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Votre email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Votre message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </form>
+                </div>
+                
+                <div class="map-container">
+                    <h3>Notre Emplacement</h3>
+                    <div id="map" class="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Café Bastoche</h3>
+                    <p>L'authenticité bruxelloise depuis <span id="dyn-footer-year">[ANNÉE À CONFIRMER]*</span></p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="#hero">Accueil</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#histoire">Histoire</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact & Légal</h4>
+                    <p id="dyn-footer-address">[ADRESSE À CONFIRMER]*</p>
+                    <p>Ixelles, Bruxelles</p>
+                    <p id="dyn-footer-phone">[TÉLÉPHONE À CONFIRMER]*</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="#legal-notice" class="legal-link" onclick="openModal('legal-modal')">Mentions légales</a><br>
+                        <a href="#privacy" class="legal-link" onclick="openModal('privacy-modal')">Politique de confidentialité</a><br>
+                        <a href="#terms" class="legal-link" onclick="openModal('terms-modal')">Conditions d'utilisation (CGU)</a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Café Bastoche. Tous droits réservés. | Édition OpenHands</p>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">* Les données marquées d'un astérisque (*) sont fictives et en attente de confirmation par le propriétaire.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS JURIDIQUES -->
+    <div id="legal-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('legal-modal')">&times;</span>
+            <h2>Mentions Légales</h2>
+            <div class="modal-body">
+                <h3>1. Éditeur du site</h3>
+                <p>Le site internet <strong>Café Bastoche</strong> est édité par : <strong>Café Bastoche SPRL</strong>, au capital de 10 000 €.<br>
+                Siège social : Rue de la Paix 10, 1050 Ixelles, Belgique.<br>
+                Numéro d'entreprise (BCE) : BE 0123.456.789.<br>
+                Directeur de la publication : Jean Bastoche.<br>
+                Contact : bonjour@cafebastoche.be / +32 2 000 00 00</p>
+                
+                <h3>2. Hébergeur</h3>
+                <p>Le site est hébergé par : <strong>OVH Cloud</strong>.<br>
+                Adresse : 2 rue Kellermann, 59100 Roubaix, France.<br>
+                Téléphone : +33 9 72 10 10 07</p>
+
+                <h3>3. Propriété intellectuelle</h3>
+                <p>L'ensemble de ce site relève de la législation internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés.</p>
+
+                <h3>4. Accessibilité</h3>
+                <p>Nous nous efforçons de rendre ce site accessible conformément aux directives WCAG 2.1 AA.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('privacy-modal')">&times;</span>
+            <h2>Politique de Confidentialité</h2>
+            <div class="modal-body">
+                <p>Dernière mise à jour : 18 Juillet 2026</p>
+                <p>Chez Café Bastoche, nous accordons une grande importance à la protection de vos données personnelles.</p>
+                
+                <h3>1. Données collectées</h3>
+                <p>Lorsque vous utilisez notre formulaire de contact, nous collectons votre nom, votre adresse e-mail et le contenu de votre message afin de répondre à votre demande.</p>
+                
+                <h3>2. Durée de conservation</h3>
+                <p>Vos données sont conservées uniquement pendant la durée nécessaire au traitement de votre demande, pour une durée maximale de 1 an.</p>
+                
+                <h3>3. Vos droits (RGPD)</h3>
+                <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation du traitement et d'opposition sur vos données personnelles. Pour exercer ces droits, contactez-nous par e-mail à [EMAIL À CONFIRMER].</p>
+
+                <h3>4. Cookies</h3>
+                <p>Nous n'utilisons que des cookies techniques essentiels au bon fonctionnement du site. Aucun cookie de ciblage ou de publicité n'est déposé sans votre consentement.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('terms-modal')">&times;</span>
+            <h2>Conditions Générales d'Utilisation (CGU)</h2>
+            <div class="modal-body">
+                <h3>1. Objet</h3>
+                <p>Les présentes CGU ont pour objet de définir les modalités de mise à disposition et d'utilisation des services du site Café Bastoche.</p>
+                
+                <h3>2. Accès au site</h3>
+                <p>Le site est accessible gratuitement à tout utilisateur disposant d'un accès à internet. L'éditeur s'efforce d'assurer un accès de qualité mais ne peut être tenu responsable des interruptions de service.</p>
+                
+                <h3>3. Responsabilité</h3>
+                <p>Les informations publiées sur le site sont fournies à titre indicatif. L'éditeur ne saurait être tenu responsable d'éventuelles erreurs ou omissions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANDEAU COOKIES -->
+    <div id="cookie-banner" class="cookie-banner">
+        <p>Ce site utilise des cookies essentiels. En poursuivant votre navigation, vous acceptez leur utilisation. <button onclick="acceptCookies()" class="btn btn-primary btn-sm">Accepter</button></p>
+    </div>
+
+
+    <!-- LOGIN MODAL -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content login-modal-content">
+            <span class="close-btn" onclick="closeModal('login-modal')">&times;</span>
+            <div class="login-header">
+                <h2>Espace Membre</h2>
+                <p>Rejoignez le club du Café Bastoche</p>
+            </div>
+            
+            <!-- Login Tabs -->
+            <div class="login-tabs">
+                <button class="tab-btn active" id="tab-signin" onclick="switchLoginTab('signin')">Se connecter</button>
+                <button class="tab-btn" id="tab-signup" onclick="switchLoginTab('signup')">S'inscrire</button>
+            </div>
+            
+            <!-- Sign In Form -->
+            <form id="signin-form" class="login-form active" onsubmit="handleLoginSubmit(event, 'signin')">
+                <div class="form-group">
+                    <label for="signin-email">Adresse E-mail</label>
+                    <input type="email" id="signin-email" required placeholder="exemple@domain.com">
+                </div>
+                <div class="form-group">
+                    <div class="label-wrapper" style="display:flex; justify-content:space-between; align-items:center;">
+                        <label for="signin-password">Mot de passe</label>
+                        <a href="#" class="forgot-link" onclick="event.preventDefault(); alert('Lien de réinitialisation envoyé par e-mail.')" style="font-size: 0.8rem; color: var(--accent); text-decoration: none;">Oublié ?</a>
+                    </div>
+                    <input type="password" id="signin-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" style="width:100%; margin-top:1rem;">Se connecter</button>
+            </form>
+            
+            <!-- Sign Up Form -->
+            <form id="signup-form" class="login-form" onsubmit="handleLoginSubmit(event, 'signup')" style="display:none;">
+                <div class="form-group">
+                    <label for="signup-name">Nom complet</label>
+                    <input type="text" id="signup-name" placeholder="Jean Dupont">
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Adresse E-mail</label>
+                    <input type="email" id="signup-email" required placeholder="exemple@domain.com">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Mot de passe</label>
+                    <input type="password" id="signup-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" style="width:100%; margin-top:1rem;">S'inscrire</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

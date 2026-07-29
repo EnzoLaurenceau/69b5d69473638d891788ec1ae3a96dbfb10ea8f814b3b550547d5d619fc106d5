@@ -1,0 +1,27 @@
+{
+  "whitelist": [
+    "arxiv.org",
+    "github.com",
+    "scholar.google.com",
+    "huggingface.co",
+    "paperswithcode.com",
+    "news.ycombinator.com",
+    "reddit.com/r/MachineLearning",
+    "reddit.com/r/LocalLLaMA"
+  ],
+  "blacklist": [
+    "twitter.com",
+    "x.com",
+    "facebook.com"
+  ],
+  "date_filter": ">=2023-01-01",
+  "quality_min": 3,
+  "_meta": {
+    "prefix": "AGE",
+    "domain": "frg",
+    "type": "agent",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:41.844924",
+    "original_name": "sources.json"
+  }
+}

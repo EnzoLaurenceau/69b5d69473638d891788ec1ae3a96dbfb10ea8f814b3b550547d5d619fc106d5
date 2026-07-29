@@ -1,0 +1,19 @@
+{
+  "task_id": "T003_d2bd18",
+  "name": "Dashboard Next.js",
+  "status": "done",
+  "files": [
+    "dashboard/app/page.tsx",
+    "dashboard/app/layout.tsx",
+    "dashboard/app/leads/page.tsx",
+    "dashboard/app/campaigns/page.tsx",
+    "dashboard/app/content/page.tsx",
+    "dashboard/app/analytics/page.tsx",
+    "dashboard/app/conversion/page.tsx",
+    "dashboard/next.config.js",
+    "dashboard/package.json",
+    "dashboard/Dockerfile"
+  ],
+  "note": "6 pages (home+leads+campaigns+content+analytics+conversion) built, client components fetch /api proxied via next.config rewrites. Home nav fixed (added conversion). Full e2e render needs docker compose stack (T004).",
+  "completed_at": "2026-06-16T05:36:00.034080"
+}

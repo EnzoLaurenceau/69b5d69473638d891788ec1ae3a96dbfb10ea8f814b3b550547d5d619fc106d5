@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Ombre — Gravité Dynamique</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 100vh; font-family: 'Segoe UI', system-ui, sans-serif; overflow: hidden; user-select: none;
+  }
+  #gameCanvas { border: 2px solid #333; border-radius: 4px; box-shadow: 0 0 40px rgba(100,50,255,0.15); }
+  #hud { color: #777; font-size: 12px; margin-bottom: 8px; text-align: center; letter-spacing: 0.5px; }
+  #hud kbd { background: #1a1a24; border: 1px solid #333; border-radius: 3px; padding: 1px 6px; font-size: 11px; color: #999; }
+  #gravity-indicator { position: fixed; top: 20px; right: 30px; color: #8a6fff; font-size: 13px; font-weight: 600; text-align: center; opacity: 0.85; }
+  #gravity-indicator .arrow { font-size: 30px; display: block; }
+  #death-counter { position: fixed; top: 20px; left: 30px; color: #ff5555; font-size: 12px; opacity: 0.65; }
+  #zone-label { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); color: #555; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+  #win-overlay { display:none; position:fixed; top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,0.88); z-index:100; align-items:center; justify-content:center; flex-direction:column; backdrop-filter:blur(4px); }
+  #win-overlay.show { display:flex; }
+  #win-overlay h1 { color:#ffe066; font-size:44px; text-shadow:0 0 30px rgba(255,224,102,0.5); margin-bottom:8px; }
+  #win-overlay p { color:#999; font-size:16px; margin-bottom:28px; }
+  #win-overlay button { background:linear-gradient(135deg,#8a6fff,#6f4fff); color:#fff; border:none; padding:12px 40px; font-size:15px; border-radius:8px; cursor:pointer; box-shadow:0 4px 20px rgba(138,111,255,0.3); }
+  #win-overlay button:hover { transform:translateY(-2px); box-shadow:0 6px 25px rgba(138,111,255,0.5); }
+</style>
+</head>
+<body>
+<div id="hud"><kbd>←</kbd> <kbd>→</kbd> ou <kbd>↑</kbd> <kbd>↓</kbd> Déplacer │ <kbd>Espace</kbd> Sauter │ <kbd>R</kbd> Redémarrer</div>
+<div id="gravity-indicator">GRAVITÉ<span class="arrow" id="grav-arrow">⬇</span><span id="grav-label">Bas</span></div>
+<div id="death-counter">💀 Morts : <span id="deaths">0</span></div>
+<div id="zone-label">Zone 1 — Le Départ</div>
+<canvas id="gameCanvas" width="960" height="640"></canvas>
+<div id="win-overlay"><h1>✨ Niveau Terminé !</h1><p id="win-stats"></p><button onclick="restartLevel()">Rejouer</button></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  L'OMBRE — Plateforme 2D à gravité dynamique
+//
+//  Gravité change quand le joueur touche un mur en mouvement
+//  OU quand il presse vers une surface adjacente.
+// ═══════════════════════════════════════════════════════════════
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+const TILE = 32;
+const COLS = W/TILE, ROWS = H/TILE;
+
+const GRAV = {
+  down:  { gx:0,  gy:1,  name:'Bas',    arrow:'⬇', rot:0 },
+  up:    { gx:0,  gy:-1, name:'Haut',   arrow:'⬆', rot:Math.PI },
+  left:  { gx:-1, gy:0,  name:'Gauche', arrow:'⬅', rot:Math.PI/2 },
+  right: { gx:1,  gy:0,  name:'Droite', arrow:'➡', rot:-Math.PI/2 },
+};
+
+let player, gravity, deaths, particles, portalT, won, deathTimer;
+let flipCooldown;
+
+// ─────────── NIVEAU ───────────
+let level = [];
+
+function buildLevel() {
+  level = [];
+  for (let r=0;r<ROWS;r++) { level[r]=[]; for(let c=0;c<COLS;c++) level[r][c]=(r===0||r===ROWS-1||c===0||c===COLS-1)?1:0; }
+  const put=(r,c,v=1)=>{if(r>=0&&r<ROWS&&c>=0&&c<COLS)level[r][c]=v;};
+  const hline=(r,c1,c2,v=1)=>{for(let c=c1;c<=c2;c++)put(r,c,v);};
+  const vline=(r1,r2,c,v=1)=>{for(let r=r1;r<=r2;r++)put(r,c,v);};
+
+  // ─── ZONE 1 : SOL (gravité ↓) ───
+  hline(18, 1, 12);
+  put(17, 4, 3); put(17, 5, 3);
+  hline(18, 6, 7, 3);
+  hline(15, 8, 11);
+  hline(13, 6, 9);
+  hline(11, 8, 11);
+
+  // ─── ZONE 2 : MUR DROIT (flip #1 : bas→droite) ───
+  vline(2, 18, 13);
+  vline(2, 18, 14);
+  put(16,12); put(14,12); put(12,12); put(10,12); put(8,12); put(6,12); put(4,12);
+  put(15,12,5); put(11,12,5); put(7,12,5); put(3,12,5);
+
+  // ─── ZONE 3 : COULOIR HAUT (flip #2 : droite→haut) ───
+  hline(2, 15, 22);
+  hline(2, 24, 27);
+  put(2,18,2); put(2,20,2); put(2,25,2);
+  put(4,16); put(4,22);
+
+  // ─── ZONE 4 : MUR GAUCHE (flip #3 : haut→gauche) ───
+  hline(4,25,27); hline(7,25,27); hline(10,25,27); hline(13,25,27); hline(16,25,27);
+  put(5,27,4); put(8,27,4); put(11,27,4); put(14,27,4);
+
+  // ─── ZONE 5 : ARRIVÉE ───
+  hline(18, 16, 26);
+  hline(18, 14, 15);
+  put(17,18,5); put(17,24,4); put(17,21,3);
+  put(17,20,9);
+  hline(15,18,20); put(12,22);
+}
+
+function initPlayer() {
+  player = { x:2*TILE+4, y:16*TILE, w:22, h:22, vx:0, vy:0, grounded:false, jumpBuf:0, coyote:0, squash:1, trail:[], _sl:false };
+  gravity = GRAV.down;
+  particles=[]; portalT=0; won=false; deathTimer=0; flipCooldown=0;
+  updateGravUI();
+  document.getElementById('win-overlay').classList.remove('show');
+}
+
+function restartLevel() { buildLevel(); initPlayer(); }
+
+const keys = {};
+window.addEventListener('keydown', e => {
+  if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space','KeyR','KeyA','KeyD','KeyW','KeyS'].includes(e.code)) e.preventDefault();
+  keys[e.code]=true; if(e.code==='KeyR') restartLevel();
+});
+window.addEventListener('keyup', e => { keys[e.code]=false; });
+
+// ─────────── PHYSIQUE ───────────
+const SPEED=3.0, JUMP=7.8, GRAV_A=0.40, MAX_V=9.5, FRIC_G=0.78, FRIC_A=0.90, JBUF=8, COYOTE=7;
+
+function isSolid(r,c){ return r<0||r>=ROWS||c<0||c>=COLS ? true : level[r][c]===1; }
+
+function spikeHitbox(r,c){
+  if(r<0||r>=ROWS||c<0||c>=COLS) return null;
+  const t=level[r][c]; if(t<2||t>5) return null;
+  const x=c*TILE,y=r*TILE,m=5;
+  switch(t){case 2:return{x:x+m,y,w:TILE-2*m,h:TILE-m};case 3:return{x:x+m,y:y+m,w:TILE-2*m,h:TILE-m};case 4:return{x,y:y+m,w:TILE-m,h:TILE-2*m};case 5:return{x:x+m,y:y+m,w:TILE-m,h:TILE-2*m};}
+}
+function overlap(a,b){ return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y; }
+
+// ─── Collision avec un axe à la fois ───
+// FIX: Iterative resolution — after each push, recalculate tile range and re-check.
+// This prevents the stale-iteration bug where a push on tile A moves the player
+// into tile B, but the loop had already passed tile B.
+//
+// Also: when velocity is zero on the collision axis, use minimum penetration depth
+// to determine push direction, instead of always pushing rightward.
+
+function resolveX() {
+  const p = player;
+  // Clamp to level bounds first
+  p.x = Math.max(TILE, Math.min(p.x, (COLS - 1) * TILE - p.w));
+
+  for (let safety = 0; safety < 8; safety++) {
+    const cL = Math.floor(p.x / TILE);
+    const cR = Math.floor((p.x + p.w - 0.001) / TILE);
+    const rT = Math.floor(p.y / TILE);
+    const rB = Math.floor((p.y + p.h - 0.001) / TILE);
+
+    let pushed = false;
+    for (let r = rT; r <= rB && !pushed; r++) {
+      for (let c = cL; c <= cR && !pushed; c++) {
+        if (!isSolid(r, c)) continue;
+        pushed = true;
+
+        if (p.vx > 0) {
+          // Moving right → push left of the solid tile
+          p.x = c * TILE - p.w;
+          // Grounded against a right-side surface if gravity pulls right
+          if (gravity.gx > 0) { p.grounded = true; p.squash = 1.12; }
+        } else if (p.vx < 0) {
+          // Moving left → push right of the solid tile
+          p.x = (c + 1) * TILE;
+          // Grounded against a left-side surface if gravity pulls left
+          if (gravity.gx < 0) { p.grounded = true; p.squash = 1.12; }
+        } else {
+          // vx === 0: use minimum penetration depth
+          const penRight = p.x + p.w - c * TILE;     // how far into tile from the left
+          const penLeft  = (c + 1) * TILE - p.x;     // how far into tile from the right
+          if (penRight <= penLeft) {
+            p.x = c * TILE - p.w;
+            if (gravity.gx > 0) { p.grounded = true; p.squash = 1.12; }
+          } else {
+            p.x = (c + 1) * TILE;
+            if (gravity.gx < 0) { p.grounded = true; p.squash = 1.12; }
+          }
+        }
+        p.vx = 0;
+        // Recalculate bounds and re-check (break inner loops, continue outer while)
+      }
+    }
+    if (!pushed) break; // No more overlaps
+  }
+
+  // Final bounds clamp
+  p.x = Math.max(TILE, Math.min(p.x, (COLS - 1) * TILE - p.w));
+}
+
+function resolveY() {
+  const p = player;
+  // Clamp to level bounds first
+  p.y = Math.max(TILE, Math.min(p.y, (ROWS - 1) * TILE - p.h));
+
+  for (let safety = 0; safety < 8; safety++) {
+    const cL = Math.floor(p.x / TILE);
+    const cR = Math.floor((p.x + p.w - 0.001) / TILE);
+    const rT = Math.floor(p.y / TILE);
+    const rB = Math.floor((p.y + p.h - 0.001) / TILE);
+
+    let pushed = false;
+    for (let r = rT; r <= rB && !pushed; r++) {
+      for (let c = cL; c <= cR && !pushed; c++) {
+        if (!isSolid(r, c)) continue;
+        pushed = true;
+
+        if (p.vy > 0) {
+          // Moving down → push above the solid tile (land on it)
+          p.y = r * TILE - p.h;
+          // Grounded if gravity pulls down
+          if (gravity.gy > 0) { p.grounded = true; p.squash = 1.12; }
+        } else if (p.vy < 0) {
+          // Moving up → push below the solid tile
+          p.y = (r + 1) * TILE;
+          // Grounded if gravity pulls up
+          if (gravity.gy < 0) { p.grounded = true; p.squash = 1.12; }
+        } else {
+          // vy === 0: use minimum penetration depth
+          const penDown = p.y + p.h - r * TILE;      // how far into tile from above
+          const penUp   = (r + 1) * TILE - p.y;      // how far into tile from below
+          if (penDown <= penUp) {
+            p.y = r * TILE - p.h;
+            if (gravity.gy > 0) { p.grounded = true; p.squash = 1.12; }
+          } else {
+            p.y = (r + 1) * TILE;
+            if (gravity.gy < 0) { p.grounded = true; p.squash = 1.12; }
+          }
+        }
+        p.vy = 0;
+        // Recalculate bounds and re-check
+      }
+    }
+    if (!pushed) break; // No more overlaps
+  }
+
+  // Final bounds clamp
+  p.y = Math.max(TILE, Math.min(p.y, (ROWS - 1) * TILE - p.h));
+}
+
+// ─────────── FLIP GRAVITÉ ───────────
+
+function doFlip(newG) {
+  if(gravity===newG || flipCooldown>0) return;
+  gravity = newG;
+  player.vx *= 0.15;
+  player.vy *= 0.15;
+  player.squash = 1.5;
+  flipCooldown = 30;
+  const c={down:'#8a6fff',up:'#ff6faa',left:'#6fff8a',right:'#6fdfff'};
+  for(const k in GRAV) if(GRAV[k]===newG) burst(player.x+player.w/2,player.y+player.h/2,c[k],28);
+  updateGravUI();
+}
+
+function updateGravUI() {
+  document.getElementById('grav-arrow').textContent=gravity.arrow;
+  document.getElementById('grav-label').textContent=gravity.name;
+}
+
+// ─── Détection flip : collision contre surface en mouvement ───
+// FIX: Only check velocity flips on the axis perpendicular to current gravity.
+// This prevents spurious flips when the player collides on the non-gravity axis.
+function checkVelocityFlip(oldVx, oldVy) {
+  const p=player;
+  const isVG = (gravity.gy !== 0);
+
+  if (isVG) {
+    // Vertical gravity (down/up): velocity flips happen on horizontal axis
+    // Player moving right fast and hit a wall → gravity becomes right
+    if(oldVx>1.5 && Math.abs(p.vx)<0.1) { doFlip(GRAV.right); return true; }
+    // Player moving left fast and hit a wall → gravity becomes left
+    if(oldVx<-1.5 && Math.abs(p.vx)<0.1) { doFlip(GRAV.left); return true; }
+  } else {
+    // Horizontal gravity (right/left): velocity flips happen on vertical axis
+    // Player moving up fast and hit ceiling → gravity becomes up
+    if(oldVy<-1.5 && Math.abs(p.vy)<0.1) { doFlip(GRAV.up); return true; }
+    // Player moving down fast and hit floor → gravity becomes down
+    if(oldVy>1.5 && Math.abs(p.vy)<0.1) { doFlip(GRAV.down); return true; }
+  }
+  return false;
+}
+
+// ─── Détection flip : presser vers une surface proche ───
+let _lastFlipToggleKey = null;
+
+function checkPressFlip() {
+  if(flipCooldown>0) return;
+  const p=player;
+  if(!p.grounded) return;
+
+  let dir=null;
+  if(keys['ArrowRight']||keys['KeyD']) dir='right';
+  else if(keys['ArrowLeft']||keys['KeyA']) dir='left';
+  else if(keys['ArrowUp']||keys['KeyW']) dir='up';
+  else if(keys['ArrowDown']||keys['KeyS']) dir='down';
+  if(!dir || dir===_lastFlipToggleKey) return;
+
+  let target=null;
+  const buf=4;
+  if(dir==='right') {
+    const c=Math.floor((p.x+p.w+buf)/TILE);
+    for(let r=Math.floor(p.y/TILE);r<=Math.floor((p.y+p.h-1)/TILE);r++) if(isSolid(r,c)){target=GRAV.right;break;}
+  } else if(dir==='left') {
+    const c=Math.floor((p.x-buf)/TILE);
+    for(let r=Math.floor(p.y/TILE);r<=Math.floor((p.y+p.h-1)/TILE);r++) if(isSolid(r,c)){target=GRAV.left;break;}
+  } else if(dir==='up') {
+    const r=Math.floor((p.y-buf)/TILE);
+    for(let c=Math.floor(p.x/TILE);c<=Math.floor((p.x+p.w-1)/TILE);c++) if(isSolid(r,c)){target=GRAV.up;break;}
+  } else if(dir==='down') {
+    const r=Math.floor((p.y+p.h+buf)/TILE);
+    for(let c=Math.floor(p.x/TILE);c<=Math.floor((p.x+p.w-1)/TILE);c++) if(isSolid(r,c)){target=GRAV.down;break;}
+  }
+
+  if(target && target!==gravity) {
+    doFlip(target);
+    _lastFlipToggleKey = dir;
+  }
+}
+
+// Reset consumed key on release
+window.addEventListener('keyup', e => {
+  keys[e.code]=false;
+  if((e.code==='ArrowRight'||e.code==='KeyD') && _lastFlipToggleKey==='right') _lastFlipToggleKey=null;
+  if((e.code==='ArrowLeft'||e.code==='KeyA') && _lastFlipToggleKey==='left') _lastFlipToggleKey=null;
+  if((e.code==='ArrowUp'||e.code==='KeyW') && _lastFlipToggleKey==='up') _lastFlipToggleKey=null;
+  if((e.code==='ArrowDown'||e.code==='KeyS') && _lastFlipToggleKey==='down') _lastFlipToggleKey=null;
+});
+
+// ─────────── UPDATE ───────────
+
+function update() {
+  if(won) return;
+  if(deathTimer>0) { deathTimer--; if(deathTimer===0){buildLevel();initPlayer();} return; }
+
+  const p=player, g=gravity;
+  const isVG = (g.gy!==0);
+
+  if(flipCooldown>0) flipCooldown--;
+
+  // ── Input mouvement ──
+  let input=0;
+  if(isVG) {
+    if(keys['ArrowLeft']||keys['KeyA']) input-=1;
+    if(keys['ArrowRight']||keys['KeyD']) input+=1;
+    p.vx += input*SPEED*0.45;
+    p.vx *= p.grounded?FRIC_G:FRIC_A;
+  } else {
+    if(keys['ArrowUp']||keys['KeyW']) input-=1;
+    if(keys['ArrowDown']||keys['KeyS']) input+=1;
+    if(keys['ArrowRight']) input=(g===GRAV.left)?-1:1;
+    if(keys['ArrowLeft']) input=(g===GRAV.left)?1:-1;
+    if(keys['ArrowLeft']&&keys['ArrowRight']) input=0;
+    if((keys['ArrowUp']||keys['KeyW'])&&(keys['ArrowDown']||keys['KeyS'])&&!keys['ArrowLeft']&&!keys['ArrowRight']) input=0;
+    p.vy += input*SPEED*0.45;
+    p.vy *= p.grounded?FRIC_G:FRIC_A;
+  }
+
+  // ── Gravité ──
+  if(isVG) { p.vy+=g.gy*GRAV_A; p.vy=Math.max(-MAX_V,Math.min(MAX_V,p.vy)); }
+  else     { p.vx+=g.gx*GRAV_A; p.vx=Math.max(-MAX_V,Math.min(MAX_V,p.vx)); }
+
+  // ── Coyote + Jump buffer ──
+  if(p.grounded) p.coyote=COYOTE; else p.coyote=Math.max(0,p.coyote-1);
+  if(keys['Space']&&!p._sl){p.jumpBuf=JBUF;p._sl=true;}
+  if(!keys['Space']) p._sl=false;
+  if(p.jumpBuf>0) p.jumpBuf--;
+
+  // ── Saut ──
+  if(p.jumpBuf>0&&p.coyote>0) {
+    if(isVG) p.vy=-g.gy*JUMP; else p.vx=-g.gx*JUMP;
+    p.jumpBuf=0;p.coyote=0;p.squash=0.6;
+    burst(p.x+p.w/2,p.y+p.h/2,'#8a6fff',8);
+  }
+
+  // ── Collision ──
+  p.grounded = false;
+  const oldVx=p.vx, oldVy=p.vy;
+
+  p.x += p.vx;
+  resolveX();
+
+  p.y += p.vy;
+  resolveY();
+
+  // ── Velocity flip (le joueur a percuté une surface) ──
+  checkVelocityFlip(oldVx, oldVy);
+
+  // ── Press flip (le joueur presse vers une surface adjacente) ──
+  checkPressFlip();
+
+  // ── Mort / Victoire ──
+  if(checkSpikeDeath()){doDie();return;}
+  if(checkPortal()){doWin();return;}
+
+  // ── Animations ──
+  p.squash+=(1-p.squash)*0.18;
+  p.trail.unshift({x:p.x+p.w/2,y:p.y+p.h/2,a:0.35});
+  if(p.trail.length>10) p.trail.pop();
+  for(const t of p.trail) t.a*=0.85;
+  for(let i=particles.length-1;i>=0;i--){const pt=particles[i];pt.x+=pt.vx;pt.y+=pt.vy;pt.vx*=0.95;pt.vy*=0.95;pt.life--;if(pt.life<=0)particles.splice(i,1);}
+  portalT+=0.06;
+  updateZoneLabel();
+  document.getElementById('deaths').textContent=deaths||0;
+}
+
+function checkSpikeDeath(){
+  const p=player,m=4;const ph={x:p.x+m,y:p.y+m,w:p.w-2*m,h:p.h-2*m};
+  const cL=Math.floor(p.x/TILE),cR=Math.floor((p.x+p.w-0.01)/TILE),rT=Math.floor(p.y/TILE),rB=Math.floor((p.y+p.h-0.01)/TILE);
+  for(let r=rT;r<=rB;r++) for(let c=cL;c<=cR;c++){const sh=spikeHitbox(r,c);if(sh&&overlap(ph,sh))return true;}
+  return false;
+}
+function checkPortal(){
+  const p=player;const cL=Math.floor(p.x/TILE),cR=Math.floor((p.x+p.w-0.01)/TILE),rT=Math.floor(p.y/TILE),rB=Math.floor((p.y+p.h-0.01)/TILE);
+  for(let r=rT;r<=rB;r++) for(let c=cL;c<=cR;c++) if(r>=0&&r<ROWS&&c>=0&&c<COLS&&level[r][c]===9)return true;
+  return false;
+}
+function doDie(){deaths=(deaths||0)+1;burst(player.x+player.w/2,player.y+player.h/2,'#ff3366',30);burst(player.x+player.w/2,player.y+player.h/2,'#8a6fff',12);deathTimer=24;}
+function doWin(){won=true;burst(player.x+player.w/2,player.y+player.h/2,'#ffe066',50);document.getElementById('win-stats').textContent=`Morts : ${deaths||0}`;setTimeout(()=>document.getElementById('win-overlay').classList.add('show'),300);}
+function burst(x,y,color,n){for(let i=0;i<n;i++)particles.push({x,y,vx:(Math.random()-.5)*5,vy:(Math.random()-.5)*5,life:25+Math.random()*25,max:50,sz:1.5+Math.random()*3,color});}
+function updateZoneLabel(){
+  const el=document.getElementById('zone-label');
+  if(gravity===GRAV.down&&player.x<13*TILE) el.textContent='Zone 1 — Le Départ';
+  else if(gravity===GRAV.right) el.textContent='Zone 2 — Le Mur ★';
+  else if(gravity===GRAV.up) el.textContent='Zone 3 — Le Plafond ★';
+  else if(gravity===GRAV.left) el.textContent='Zone 4 — La Chute ★';
+  else if(gravity===GRAV.down&&player.x>=13*TILE) el.textContent="Zone 5 — L'Arrivée";
+}
+
+// ═══════════════════════════════════════════════
+//  RENDU
+// ═══════════════════════════════════════════════
+
+function draw(){
+  ctx.fillStyle='#0d0d16';ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(255,255,255,0.015)';ctx.lineWidth=0.5;
+  for(let x=0;x<=W;x+=TILE){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<=H;y+=TILE){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++){
+    const t=level[r][c],x=c*TILE,y=r*TILE;
+    if(t===1)drawBlock(x,y,r,c);else if(t>=2&&t<=5)drawSpike(x,y,t);else if(t===9)drawPortal(x,y);
+  }
+  for(const t of player.trail){ctx.fillStyle=`rgba(138,111,255,${t.a*0.25})`;ctx.beginPath();ctx.arc(t.x,t.y,player.w*0.35,0,Math.PI*2);ctx.fill();}
+  drawPlayer();
+  for(const pt of particles){ctx.globalAlpha=pt.life/pt.max;ctx.fillStyle=pt.color;ctx.beginPath();ctx.arc(pt.x,pt.y,pt.sz*(pt.life/pt.max),0,Math.PI*2);ctx.fill();}
+  ctx.globalAlpha=1;
+}
+function drawBlock(x,y,r,c){
+  ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fillRect(x+2,y+2,TILE,TILE);
+  const v=((r+c)%3)*5;const g=ctx.createLinearGradient(x,y,x,y+TILE);
+  g.addColorStop(0,`rgb(${68+v},${68+v},${82+v})`);g.addColorStop(1,`rgb(${48+v},${48+v},${66+v})`);
+  ctx.fillStyle=g;ctx.fillRect(x,y,TILE,TILE);
+  ctx.fillStyle='rgba(255,255,255,0.07)';ctx.fillRect(x,y,TILE,2);
+  ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;ctx.strokeRect(x+.5,y+.5,TILE-1,TILE-1);
+}
+function drawSpike(x,y,dir){
+  const cx=x+TILE/2,cy=y+TILE/2,s=TILE*0.42;
+  ctx.save();ctx.shadowColor='#9b30ff';ctx.shadowBlur=10;ctx.fillStyle='#9b30ff';ctx.strokeStyle='#c070ff';ctx.lineWidth=1.5;
+  ctx.beginPath();
+  switch(dir){case 2:ctx.moveTo(cx-s,y+4);ctx.lineTo(cx+s,y+4);ctx.lineTo(cx,y+TILE-2);break;case 3:ctx.moveTo(cx-s,y+TILE-4);ctx.lineTo(cx+s,y+TILE-4);ctx.lineTo(cx,y+2);break;case 4:ctx.moveTo(x+TILE-4,cy-s);ctx.lineTo(x+TILE-4,cy+s);ctx.lineTo(x+2,cy);break;case 5:ctx.moveTo(x+4,cy-s);ctx.lineTo(x+4,cy+s);ctx.lineTo(x+TILE-2,cy);break;}
+  ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();
+}
+function drawPortal(x,y){
+  const cx=x+TILE/2,cy=y+TILE/2,r=TILE*0.42,p=Math.sin(portalT)*0.12+1;
+  const grd=ctx.createRadialGradient(cx,cy,0,cx,cy,r*2.8*p);grd.addColorStop(0,'rgba(255,224,102,0.35)');grd.addColorStop(0.5,'rgba(255,200,50,0.1)');grd.addColorStop(1,'rgba(255,200,50,0)');
+  ctx.fillStyle=grd;ctx.fillRect(x-TILE,y-TILE,TILE*3,TILE*3);
+  ctx.strokeStyle=`rgba(255,224,102,${0.35+Math.sin(portalT*2)*0.15})`;ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(cx,cy,r*1.4*p,portalT,portalT+Math.PI*1.3);ctx.stroke();
+  ctx.beginPath();ctx.arc(cx,cy,r*1.4*p,portalT+Math.PI,portalT+Math.PI*2.3);ctx.stroke();
+  ctx.save();ctx.shadowColor='#ffe066';ctx.shadowBlur=22;ctx.fillStyle='#ffe066';ctx.beginPath();ctx.arc(cx,cy,r*p,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.restore();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(cx,cy,r*0.35*p,0,Math.PI*2);ctx.fill();
+  if(Math.random()<0.25)burst(cx+(Math.random()-.5)*TILE,cy+(Math.random()-.5)*TILE,'#ffe066',1);
+}
+function drawPlayer(){
+  const p=player,cx=p.x+p.w/2,cy=p.y+p.h/2;
+  ctx.save();ctx.translate(cx,cy);ctx.rotate(gravity.rot);const sq=p.squash;ctx.scale(2-sq,sq);
+  ctx.fillStyle='rgba(0,0,0,0.4)';ctx.fillRect(-p.w/2+2,-p.h/2+2,p.w,p.h);
+  ctx.fillStyle='#111';ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+  ctx.fillStyle='rgba(255,255,255,0.06)';ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h*0.3);
+  let lookX=0;if(keys['ArrowLeft']||keys['KeyA'])lookX=-1.5;if(keys['ArrowRight']||keys['KeyD'])lookX=1.5;
+  ctx.save();ctx.shadowColor='#8a6fff';ctx.shadowBlur=6;ctx.fillStyle='#8a6fff';
+  ctx.beginPath();ctx.arc(-5+lookX,-2,3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(5+lookX,-2,3,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.restore();
+  ctx.fillStyle='#ddd';ctx.beginPath();ctx.arc(-5+lookX+.5,-2.5,1.1,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(5+lookX+.5,-2.5,1.1,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+  ctx.save();ctx.strokeStyle='rgba(138,111,255,0.12)';ctx.shadowColor='rgba(138,111,255,0.25)';ctx.shadowBlur=12;ctx.lineWidth=1;ctx.strokeRect(p.x-1,p.y-1,p.w+2,p.h+2);ctx.restore();
+}
+
+function loop(){update();draw();requestAnimationFrame(loop);}
+deaths=0;buildLevel();initPlayer();loop();
+</script>
+</body>
+</html>

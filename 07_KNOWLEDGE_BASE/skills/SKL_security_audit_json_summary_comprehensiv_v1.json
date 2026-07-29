@@ -1,0 +1,42 @@
+{
+  "id": "SKL_security_audit_json_summary_comprehensiv_v1",
+  "name": "Json_Summary_Comprehensive",
+  "prompt": "```json\n{\n  \"summary\": \"Comprehensive security audit of the Forge system using the Herald framework\",\n  \"asset_inventory\": [\n    {\n      \"id\": \"market-1-024225\",\n      \"agent\": \"market\",\n      \"cycle\": 1,\n      \"content\": \"MARKET AGENT — Cycle 1\"\n    },\n    {\n      \"id\": \"Fallback_Expert-1-181338\",\n      \"agent\": \"Fallback_Expert\",\n      \"cycle\": 1,\n      \"content\": \"Test de validation post-ablation\"\n    },\n    {\n      \"id\": \"Fallback_Expert-1-183138\",\n      \"agent\": \"Fallback_Expert\",\n      \"",
+  "trigger_keywords": [
+    "agent",
+    "market",
+    "cycle",
+    "content",
+    "json",
+    "summary",
+    "comprehensive",
+    "security",
+    "audit",
+    "forge"
+  ],
+  "performance": {
+    "avg_score": 8.0,
+    "uses": 0,
+    "last_used": "2026-05-30"
+  },
+  "mirofish_approval": {
+    "consensus": 8.450980392156863,
+    "approved_at": "2026-05-30",
+    "fallback_used": false
+  },
+  "source_finding_id": "F-SECURITY_AUDIT_EXPERT-001-001",
+  "source_agent": "Security_Audit_Expert",
+  "tier": "HAIKU",
+  "task_type": "security_audit_expert",
+  "status": "active",
+  "created_at": "2026-05-30",
+  "naming_version": "v1",
+  "_meta": {
+    "prefix": "SKI",
+    "domain": "gen",
+    "type": "skill",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:40.733350",
+    "original_name": "SKL_security_audit_json_summary_comprehensiv_v1.json"
+  }
+}

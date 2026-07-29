@@ -1,0 +1,16 @@
+{
+  "graphify_query_max_tokens": 700,
+  "graphify_mode": "wiki",
+  "synthesis_format": "insight_list",
+  "max_insights_per_cycle": 15,
+  "caveman_output_max": 200,
+  "always_flag_contradictions": true,
+  "_meta": {
+    "prefix": "AGE",
+    "domain": "frg",
+    "type": "agent",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:41.844176",
+    "original_name": "config.json"
+  }
+}

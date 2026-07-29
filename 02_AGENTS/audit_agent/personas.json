@@ -1,0 +1,34 @@
+{
+  "agent": "audit_agent",
+  "jury_size": 3,
+  "personas": [
+    {
+      "id": "security_tester",
+      "role": "Cherche les failles exploitables",
+      "weight": 1.4,
+      "challenge": "Ce fix ferme-t-il la vulnérabilité à 100% ?"
+    },
+    {
+      "id": "qa_engineer",
+      "role": "Teste les régressions",
+      "weight": 1.3,
+      "challenge": "Ce fix n'a-t-il rien cassé d'autre ?"
+    },
+    {
+      "id": "user_proxy",
+      "role": "Représente l'expérience utilisateur",
+      "weight": 1.1,
+      "challenge": "L'utilisateur peut-il encore accomplir sa tâche ?"
+    }
+  ],
+  "consensus_min": 1.0,
+  "override": "3/3 OUI OBLIGATOIRE — aucune exception",
+  "_meta": {
+    "prefix": "AGE",
+    "domain": "frg",
+    "type": "agent",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:41.841692",
+    "original_name": "personas.json"
+  }
+}

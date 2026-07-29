@@ -1,0 +1,7 @@
+Platform,Type,Win Rate,Trades,Rejected,Gross PnL,Fees,Slippage,Net PnL,Profit Factor,Max DD,Spread,Commission
+OANDA,forex_standard,63.6%,11,0,$-1.05,$0.68,$0.11,$-1.84,0.68,6.0%,1.2 pips,0.0000%
+FXCM,forex_standard,63.6%,11,0,$-1.10,$0.90,$0.14,$-2.14,0.66,6.0%,1.4 pips,0.0000%
+XM Standard,forex_standard,63.6%,11,0,$-1.15,$1.35,$0.17,$-2.68,0.65,6.0%,1.7 pips,0.0000%
+Pepperstone ECN,forex_ecn,63.6%,11,0,$-2.04,$1.25,$0.08,$-3.36,0.44,6.7%,0.15 pips,0.0700%
+IC Markets ECN,forex_ecn,40.0%,5,0,$-3.06,$0.59,$0.02,$-3.68,0.08,6.6%,0.1 pips,0.0700%
+gTrade (Base),dex_v3,45.5%,11,0,$-3.97,$3.14,$0.98,$-8.09,0.15,9.0%,0.5 pips,0.0800%

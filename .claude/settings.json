@@ -1,0 +1,7 @@
+{
+  "env": {
+    "PYTHONUTF8": "1",
+    "PYTHONIOENCODING": "utf-8",
+    "FORGE_ROOT": "C:/Users/Jack/Documents/LaForge"
+  }
+}

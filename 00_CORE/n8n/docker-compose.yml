@@ -1,0 +1,44 @@
+# n8n community self-hosted — plateforme unique workflows/agents/automations Forge.
+# Lancer : docker compose -f 00_CORE/n8n/docker-compose.yml up -d
+# UI     : http://localhost:5678  (créer le owner au 1er lancement,
+#          puis Settings → n8n API → créer une clé → N8N_API_KEY dans .env racine)
+#
+# Le gateway Forge (forge_gateway.py, port 7788) tourne sur l'HÔTE :
+# depuis les nodes n8n, l'appeler via http://host.docker.internal:7788
+#
+# Persistance workflows/credentials : volume n8n_data (SQLite interne n8n).
+# Les workflows sont AUSSI versionnés en git via n8n_bridge.export_dir()
+# → 00_CORE/n8n/workflows/*.json (source de vérité éditable + diffable).
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: forge_n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - GENERIC_TIMEZONE=Europe/Brussels
+      - TZ=Europe/Brussels
+      # Observabilité : conserver l'historique d'exécutions (pull par n8n_bridge)
+      - EXECUTIONS_DATA_SAVE_ON_SUCCESS=all
+      - EXECUTIONS_DATA_SAVE_ON_ERROR=all
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=336        # 14 jours
+      - N8N_DIAGNOSTICS_ENABLED=false      # pas de télémétrie sortante
+      - N8N_PERSONALIZATION_ENABLED=false
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:5678/healthz || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  n8n_data:

@@ -1,0 +1,38 @@
+{
+  "id": "SKL_forge_manage_optiforge_modifications_a_v1",
+  "name": "OptiForge_modifications_analysis_and_next_steps",
+  "prompt": "# Compétence Rétroactive : OptiForge modifications analysis and next steps\n\n## Rôle\nTu es un expert en General.\n\n## Méthodologie Validée\nPour accomplir cette tâche avec succès, applique l'approche éprouvée :\n- Analyse le contexte complet avant d'agir\n- Applique les patterns qui ont fonctionné historiquement\n- Valide le résultat avec des critères mesurables\n\n\n## Critères de Succès\n- Score minimum : 7.5/10\n- Approche méthodique documentée\n- Résultat reproductible\n\n## Source\n- Historique: token_log\n- Fichier: retro_20260616_035436_f278ee.json\n",
+  "trigger_keywords": [
+    "optiforge",
+    "modifications",
+    "analysis",
+    "next",
+    "steps"
+  ],
+  "performance": {
+    "avg_score": 7.5,
+    "uses": 0,
+    "last_used": "2026-07-17"
+  },
+  "mirofish_approval": {
+    "consensus": 7.5,
+    "approved_at": "2026-07-17",
+    "fallback_used": false
+  },
+  "source_finding_id": "RETRO-token_log",
+  "source_agent": "retro_log_parser",
+  "tier": "HAIKU",
+  "task_type": "general",
+  "status": "active",
+  "created_at": "2026-07-17",
+  "retro_source": "retro_20260616_035436_f278ee.json",
+  "naming_version": "v1",
+  "_meta": {
+    "prefix": "SKI",
+    "domain": "gen",
+    "type": "skill",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:40.728827",
+    "original_name": "SKL_forge_manage_optiforge_modifications_a_v1.json"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "session_id": "2026-06-16_tg-bot-workflow",
+  "date": "2026-06-16",
+  "task": "TG Bot Workflow MVP",
+  "files_created": 50,
+  "total_chars": 81883,
+  "total_lines": 1687,
+  "measured_tokens": {
+    "system_prompt": 11500,
+    "user_messages": 50,
+    "tool_outputs": {
+      "session_search": 2000,
+      "skills_list": 3000,
+      "skill_view_large": 8000,
+      "skill_view_small": 500,
+      "terminal_batch_8": 1000,
+      "cronjob_list": 1200,
+      "search_files_x3": 150,
+      "terminal_find": 500,
+      "read_file_large_pdf": 18000,
+      "terminal_file": 100,
+      "read_file_medium": 2000,
+      "terminal_pip_x2": 300,
+      "terminal_pytest_x3": 10500,
+      "patch_x9": 500,
+      "execute_code_x3": 1800,
+      "terminal_dispatch_x2": 1000,
+      "read_file_small": 300
+    },
+    "total_tool_outputs": 52950,
+    "output_file_tokens": 20470,
+    "output_text_tokens": 2200,
+    "grand_total": 85070
+  },
+  "calibration": {
+    "chars_per_token": 4,
+    "system_prompt_overhead": 11500,
+    "safety_margin": 5000,
+    "usable_per_session": 48500,
+    "sessions_needed_for_this_task": 2,
+    "phases": [
+      {"name": "recherche_lecture", "tokens": 29150, "type": "input", "sessions": 1},
+      {"name": "generation_code", "tokens": 22670, "type": "output", "sessions": 1},
+      {"name": "debug_tests", "tokens": 11500, "type": "mixed", "sessions": 0},
+      {"name": "dispatch_bilan", "tokens": 3300, "type": "mixed", "sessions": 0}
+    ],
+    "note": "phases 3+4 fit into phase 2's session (total 47,470 < 48,500 usable)"
+  }
+}

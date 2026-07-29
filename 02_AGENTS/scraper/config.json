@@ -1,0 +1,39 @@
+{
+  "version": "1.2",
+  "scraper_stack": "scrapling_first + crawl4ai_fallback",
+  "crawl4ai": {
+    "install": "pip install crawl4ai && crawl4ai-setup",
+    "api_key_required": false,
+    "repo": "https://github.com/unclecode/crawl4ai",
+    "path_mapping": {
+      "scrape_url": "scrapling_connector.scrape(url) — cascade automatique",
+      "js_heavy": "scrape(url, stealthy=True) → crawl4ai si Scrapling échoue",
+      "batch": "scrape_many(urls) — séquentiel par URL",
+      "no_fallback": "scrape(url, allow_crawl4ai_fallback=False)"
+    },
+    "default_flow": [
+      "1. Scrapling static — HTTP rapide",
+      "2. Scrapling stealthy — navigateur furtif (Cloudflare/JS)",
+      "3. crawl4ai — playwright complet, zéro API key"
+    ]
+  },
+  "strategy": {
+    "layer_1": "scrapling static — discovery keywords / pages simples",
+    "layer_2": "scrapling stealthy — pages produits AliExpress/TikTok (JS)",
+    "layer_3": "crawl4ai — pages nécessitant playwright complet",
+    "layer_4": "erreur explicite si tout échoue (log + skip)"
+  },
+  "batch_min_sources": 4,
+  "batch_max_sources": 12,
+  "output_format": "graphify_index_only",
+  "never_raw_in_context": true,
+  "caveman_output_max": 200,
+  "_meta": {
+    "prefix": "AGE",
+    "domain": "frg",
+    "type": "agent",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:41.844539",
+    "original_name": "config.json"
+  }
+}

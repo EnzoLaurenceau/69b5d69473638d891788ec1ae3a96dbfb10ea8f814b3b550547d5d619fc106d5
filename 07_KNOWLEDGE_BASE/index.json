@@ -1,0 +1,203 @@
+{
+  "datasets": [
+    {
+      "id": "claude_mythos_25k",
+      "name": "Claude Mythos Distilled 25k",
+      "source": "WithinUsAI/claude_mythos_distilled_25k",
+      "rows": 25000,
+      "columns": [
+        "messages",
+        "category",
+        "id",
+        "source",
+        "timestamp"
+      ],
+      "path": "C:\\Users\\Enzo\\Documents\\MODELS\\.claude\\07_KNOWLEDGE_BASE\\datasets\\claude_mythos_25k",
+      "formats": [
+        "raw",
+        "chatml",
+        "sharegpt",
+        "alpaca"
+      ],
+      "purpose": "fine-tuning",
+      "status": "ready"
+    },
+    {
+      "id": "metacognition_bench",
+      "name": "ginigen-ai/Metacognition-Bench",
+      "source": "ginigen-ai/Metacognition-Bench",
+      "rows": 300,
+      "columns": [
+        "task_id",
+        "domain",
+        "grade",
+        "ticos_type",
+        "difficulty",
+        "prompt",
+        "expected_behavior",
+        "hidden_trap",
+        "ticos_required"
+      ],
+      "chatml_count": 0,
+      "path": "C:\\Users\\Enzo\\Documents\\MODELS\\.claude\\07_KNOWLEDGE_BASE\\datasets\\metacognition_bench",
+      "formats": [
+        "raw",
+        "chatml",
+        "sharegpt",
+        "alpaca"
+      ],
+      "purpose": "fine-tuning",
+      "status": "ready"
+    },
+    {
+      "id": "vibe_coding_instruct",
+      "name": "CodeDevX/Vibe-Coding-Instruct",
+      "source": "CodeDevX/Vibe-Coding-Instruct",
+      "rows": 1100000,
+      "columns": [
+        "instruction",
+        "input",
+        "output",
+        "prompt"
+      ],
+      "chatml_count": 1100000,
+      "path": "C:\\Users\\Enzo\\Documents\\MODELS\\.claude\\07_KNOWLEDGE_BASE\\datasets\\vibe_coding_instruct",
+      "formats": [
+        "raw",
+        "chatml",
+        "sharegpt",
+        "alpaca"
+      ],
+      "purpose": "fine-tuning",
+      "status": "ready"
+    },
+    {
+      "id": "marketing_conversations",
+      "name": "MuratcanKoylan/marketing-conversations",
+      "source": "MuratcanKoylan/marketing-conversations",
+      "rows": 2001,
+      "columns": [
+        "messages",
+        "categories",
+        "scenario_id",
+        "metadata",
+        "source"
+      ],
+      "chatml_count": 2001,
+      "path": "C:\\Users\\Enzo\\Documents\\MODELS\\.claude\\07_KNOWLEDGE_BASE\\datasets\\marketing_conversations",
+      "formats": [
+        "raw",
+        "chatml",
+        "sharegpt",
+        "alpaca"
+      ],
+      "purpose": "fine-tuning",
+      "status": "ready"
+    },
+    {
+      "id": "vectorstore_general_health",
+      "name": "meetara-lab/vectorstore-general_health",
+      "source": "meetara-lab/vectorstore-general_health",
+      "rows": 6902,
+      "columns": [
+        "id",
+        "embedding",
+        "document",
+        "metadata"
+      ],
+      "chatml_count": 6861,
+      "path": "C:\\Users\\Enzo\\Documents\\MODELS\\.claude\\07_KNOWLEDGE_BASE\\datasets\\vectorstore_general_health",
+      "formats": [
+        "raw",
+        "chatml",
+        "sharegpt",
+        "alpaca"
+      ],
+      "purpose": "fine-tuning",
+      "status": "ready"
+    },
+    {
+      "id": "devops_cloud_instruction_dataset",
+      "name": "bernabepuente/devops-cloud-instruction-dataset",
+      "source": "bernabepuente/devops-cloud-instruction-dataset",
+      "rows": 112,
+      "columns": [
+        "instruction",
+        "input",
+        "output",
+        "thought"
+      ],
+      "chatml_count": 110,
+      "path": "C:\\Users\\Enzo\\Documents\\MODELS\\.claude\\07_KNOWLEDGE_BASE\\datasets\\devops_cloud_instruction_dataset",
+      "formats": [
+        "raw",
+        "chatml",
+        "sharegpt",
+        "alpaca"
+      ],
+      "purpose": "fine-tuning",
+      "status": "ready"
+    },
+    {
+      "id": "lex_glue_ledgar",
+      "name": "LexGLUE/LEDGAR Legal Clauses",
+      "source": "lex_glue/ledgar",
+      "rows": 60000,
+      "chatml_count": 60000,
+      "path": "07_KNOWLEDGE_BASE\\datasets\\lex_glue_ledgar",
+      "formats": [
+        "raw",
+        "chatml",
+        "sharegpt",
+        "alpaca"
+      ],
+      "purpose": "fine-tuning",
+      "status": "ready"
+    },
+    {
+      "id": "malicious_website_features_2.4m",
+      "name": "FredZhang7/malicious-website-features-2.4M",
+      "source": "FredZhang7/malicious-website-features-2.4M",
+      "rows": 2787159,
+      "columns": [
+        "url",
+        "redirects",
+        "not_indexed_by_google",
+        "issuer",
+        "certificate_age",
+        "email_submission",
+        "request_url_percentage",
+        "url_anchor_percentage",
+        "meta_percentage",
+        "script_percentage",
+        "link_percentage",
+        "mouseover_changes",
+        "right_click_disabled",
+        "popup_window_has_text_field",
+        "use_iframe",
+        "has_suspicious_port",
+        "external_favicons",
+        "TTL",
+        "ip_address_count",
+        "TXT_record",
+        "check_sfh",
+        "count_domain_occurrences",
+        "domain_registration_length",
+        "abnormal_url",
+        "age_of_domain",
+        "is_malicious",
+        "page_rank_decimal"
+      ],
+      "chatml_count": 25000,
+      "path": "C:\\Users\\Enzo\\Documents\\MODELS\\.claude\\07_KNOWLEDGE_BASE\\datasets\\malicious_website_features_2.4m",
+      "formats": [
+        "raw",
+        "chatml",
+        "sharegpt",
+        "alpaca"
+      ],
+      "purpose": "fine-tuning",
+      "status": "ready"
+    }
+  ]
+}

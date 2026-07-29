@@ -1,0 +1,42 @@
+{
+  "id": "SKL_general_audit_cadre_mon_rle_v1",
+  "name": "Cadre_Mon_R�le",
+  "prompt": "Dans le cadre de mon r�le d'auditeur de s�curit�, j'ai examin� les informations fournies concernant la \"forge avec herald\". L'objectif de cet audit est d'identifier les vuln�rabilit�s potentielles et les risques en mati�re de s�curit�, en se basant sur le contexte disponible et les donn�es provenant des agents.\n\n---\n\n## Rapport d'Audit de S�curit� de la Forge \"Herald\"\n\n**Date de l'audit :** 2026-05-30\n**Auditeur :** Agent SECURITYAUDITOR\n**Outils d'audit :** Analyse contextuelle des logs et des ",
+  "trigger_keywords": [
+    "audit",
+    "s�curit�",
+    "auditeur",
+    "forge",
+    "herald",
+    "cadre",
+    "mon",
+    "r�le",
+    "examin�",
+    "informations"
+  ],
+  "performance": {
+    "avg_score": 8.0,
+    "uses": 0,
+    "last_used": "2026-05-30"
+  },
+  "mirofish_approval": {
+    "consensus": 7.519607843137256,
+    "approved_at": "2026-05-30",
+    "fallback_used": false
+  },
+  "source_finding_id": "F-SECURITEEXPERT-001-001",
+  "source_agent": "SecuriteExpert",
+  "tier": "HAIKU",
+  "task_type": "securiteexpert",
+  "status": "active",
+  "created_at": "2026-05-30",
+  "naming_version": "v1",
+  "_meta": {
+    "prefix": "SKI",
+    "domain": "gen",
+    "type": "skill",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:40.729550",
+    "original_name": "SKL_general_audit_cadre_mon_rle_v1.json"
+  }
+}

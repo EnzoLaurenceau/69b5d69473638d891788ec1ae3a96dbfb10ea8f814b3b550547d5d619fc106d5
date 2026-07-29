@@ -1,0 +1,42 @@
+{
+  "id": "SKL_security_audit_rapport_audit_scurit_v1",
+  "name": "Rapport_Audit_S�curit�",
+  "prompt": "**Rapport d'audit de s�curit� de la forge avec Herald**\n\n**Introduction**\n\nL'objectif de cet audit est de v�rifier la s�curit� de la forge et de identifier les potentielles vuln�rabilit�s. Nous avons utilis� l'agent `SECURITY_AUDIT_EXPERT` pour effectuer cette t�che.\n\n**M�thodologie**\n\nNous avons analys� les informations fournies par les agents `FALLBACK_EXPERT`, `SECURITYAUDITOR`, `SECURITEEXPERT` et `SECURITY_AUDIT_EXPERT`. Nous avons �galement examin� les sorties de ces agents pour identifier",
+  "trigger_keywords": [
+    "nous",
+    "avons",
+    "audit",
+    "s�curit�",
+    "forge",
+    "identifier",
+    "agents",
+    "rapport",
+    "avec",
+    "herald"
+  ],
+  "performance": {
+    "avg_score": 8.0,
+    "uses": 0,
+    "last_used": "2026-05-30"
+  },
+  "mirofish_approval": {
+    "consensus": 8.529411764705882,
+    "approved_at": "2026-05-30",
+    "fallback_used": false
+  },
+  "source_finding_id": "F-FALLBACK_EXPERT-001-001",
+  "source_agent": "Fallback_Expert",
+  "tier": "HAIKU",
+  "task_type": "fallback_expert",
+  "status": "active",
+  "created_at": "2026-05-30",
+  "naming_version": "v1",
+  "_meta": {
+    "prefix": "SKI",
+    "domain": "gen",
+    "type": "skill",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:40.733725",
+    "original_name": "SKL_security_audit_rapport_audit_scurit_v1.json"
+  }
+}

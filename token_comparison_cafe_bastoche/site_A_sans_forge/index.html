@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café Bastoche — Ixelles, Bruxelles</title>
+  <meta name="description" content="Café Bastoche à Ixelles : torréfaction maison, brunch et pâtisseries dans une ambiance de quartier." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__brand">
+      <span class="nav__logo">☕</span> Café Bastoche
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#menu">Menu</a>
+      <a href="#about">À propos</a>
+      <a href="#gallery">Galerie</a>
+      <a href="#hours">Horaires</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">🌙</button>
+      <button class="nav__burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__glow"></div>
+      <div class="hero__inner reveal">
+        <p class="hero__eyebrow">Ixelles · Bruxelles</p>
+        <h1 class="hero__title">Le café de quartier<br /><em>qui a du caractère.</em></h1>
+        <p class="hero__sub">Torréfaction maison, brunch généreux et pâtisseries du jour.
+          Poussez la porte du Bastoche.</p>
+        <div class="hero__cta">
+          <a href="#menu" class="btn btn--primary">Voir le menu</a>
+          <a href="#contact" class="btn btn--ghost">Nous trouver</a>
+        </div>
+      </div>
+      <div class="hero__scroll">défilez</div>
+    </section>
+
+    <!-- MENU -->
+    <section class="section" id="menu">
+      <div class="section__head reveal">
+        <h2>La carte</h2>
+        <p>Sélection du moment — la carte complète change au fil des saisons.</p>
+      </div>
+      <div class="menu-grid">
+        <article class="card reveal">
+          <div class="card__tag">Cafés</div>
+          <ul class="card__list">
+            <li><span>Espresso maison</span><b data-placeholder>2,80 €</b></li>
+            <li><span>Flat white</span><b data-placeholder>3,80 €</b></li>
+            <li><span>Filtre du jour</span><b data-placeholder>3,20 €</b></li>
+            <li><span>Chocolat chaud</span><b data-placeholder>4,00 €</b></li>
+          </ul>
+        </article>
+        <article class="card reveal">
+          <div class="card__tag">Brunch</div>
+          <ul class="card__list">
+            <li><span>Œufs Bénédicte</span><b data-placeholder>13,50 €</b></li>
+            <li><span>Avocado toast</span><b data-placeholder>11,00 €</b></li>
+            <li><span>Granola maison</span><b data-placeholder>8,50 €</b></li>
+            <li><span>Pancakes</span><b data-placeholder>10,00 €</b></li>
+          </ul>
+        </article>
+        <article class="card reveal">
+          <div class="card__tag">Pâtisseries</div>
+          <ul class="card__list">
+            <li><span>Cookie du jour</span><b data-placeholder>3,00 €</b></li>
+            <li><span>Cheesecake</span><b data-placeholder>5,50 €</b></li>
+            <li><span>Cinnamon roll</span><b data-placeholder>4,50 €</b></li>
+            <li><span>Tarte de saison</span><b data-placeholder>5,00 €</b></li>
+          </ul>
+        </article>
+      </div>
+      <p class="note">Prix indicatifs — à confirmer par l'établissement.</p>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section section--split" id="about">
+      <div class="split__media reveal">
+        <div class="split__photo"></div>
+      </div>
+      <div class="split__text reveal">
+        <h2>Une maison, un quartier</h2>
+        <p>Le Café Bastoche est né à Ixelles avec une idée simple : servir un bon café,
+          fait avec soin, dans un lieu où l'on se sent chez soi. On torréfie en petites
+          quantités, on cuisine frais, et on prend le temps.</p>
+        <p>Que vous veniez travailler, retrouver des amis ou juste faire une pause,
+          la porte est ouverte.</p>
+        <div class="stats">
+          <div><b data-placeholder>2018</b><span>ouverture</span></div>
+          <div><b>100 %</b><span>fait maison</span></div>
+          <div><b data-placeholder>4,7★</b><span>avis quartier</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" id="gallery">
+      <div class="section__head reveal">
+        <h2>L'ambiance</h2>
+        <p>Un aperçu du lieu et de l'assiette.</p>
+      </div>
+      <div class="gallery">
+        <div class="gallery__item reveal" style="--h:16rem"></div>
+        <div class="gallery__item reveal" style="--h:12rem"></div>
+        <div class="gallery__item reveal" style="--h:14rem"></div>
+        <div class="gallery__item reveal" style="--h:12rem"></div>
+        <div class="gallery__item reveal" style="--h:16rem"></div>
+        <div class="gallery__item reveal" style="--h:14rem"></div>
+      </div>
+    </section>
+
+    <!-- HOURS -->
+    <section class="section section--hours" id="hours">
+      <div class="section__head reveal">
+        <h2>Horaires</h2>
+        <p>Horaires indicatifs — à confirmer.</p>
+      </div>
+      <ul class="hours" data-placeholder>
+        <li><span>Lundi</span><b>Fermé</b></li>
+        <li><span>Mardi – Vendredi</span><b>08:00 – 18:00</b></li>
+        <li><span>Samedi</span><b>09:00 – 18:00</b></li>
+        <li><span>Dimanche</span><b>09:00 – 16:00</b></li>
+      </ul>
+    </section>
+
+    <!-- CONTACT + MAP -->
+    <section class="section section--split" id="contact">
+      <div class="split__text reveal">
+        <h2>Nous trouver</h2>
+        <p class="contact__line"><b>Adresse</b><br />
+          <span data-placeholder>Rue de la Paix, Ixelles, 1050 Bruxelles</span>
+          <em>(à confirmer)</em></p>
+        <p class="contact__line"><b>Téléphone</b><br />
+          <span data-placeholder>+32 2 000 00 00</span></p>
+        <p class="contact__line"><b>Email</b><br />
+          <span data-placeholder>bonjour@cafebastoche.be</span></p>
+        <div class="contact__social">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+        </div>
+      </div>
+      <div class="split__media reveal">
+        <div id="map" class="map"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand">☕ Café Bastoche</div>
+    <p>Ixelles, Bruxelles — © <span id="year"></span> Café Bastoche. Site démo.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

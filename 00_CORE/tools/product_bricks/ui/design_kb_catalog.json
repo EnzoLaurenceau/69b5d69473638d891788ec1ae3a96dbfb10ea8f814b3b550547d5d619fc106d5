@@ -1,0 +1,211 @@
+[
+  {
+    "id": "shadcn",
+    "name": "shadcn/ui",
+    "url": "https://ui.shadcn.com",
+    "style": [
+      "minimal",
+      "clean",
+      "professional"
+    ],
+    "type": [
+      "SaaS",
+      "dashboard",
+      "app"
+    ],
+    "tech": [
+      "React",
+      "Tailwind",
+      "Radix"
+    ],
+    "access": "copy-paste (npx shadcn@latest add)",
+    "license": "MIT",
+    "caller": "tools/product_bricks/ui/shadcn_caller.py",
+    "note": "Composants sans dépendance forcée — copy-paste dans le projet."
+  },
+  {
+    "id": "21st_dev",
+    "name": "21st.dev",
+    "url": "https://21st.dev",
+    "style": [
+      "modern",
+      "bold",
+      "animated"
+    ],
+    "type": [
+      "SaaS",
+      "landing",
+      "marketing"
+    ],
+    "tech": [
+      "React",
+      "Tailwind"
+    ],
+    "access": "Magic MCP + catalogue web",
+    "license": "varies per component",
+    "note": "Génération de composants via MCP — idéal landing/hero sections."
+  },
+  {
+    "id": "componentry",
+    "name": "componentry.fun",
+    "url": "https://componentry.fun",
+    "style": [
+      "playful",
+      "creative",
+      "expressive"
+    ],
+    "type": [
+      "landing",
+      "portfolio",
+      "blog"
+    ],
+    "tech": [
+      "React",
+      "vanilla"
+    ],
+    "access": "web browse + copy",
+    "license": "open (vérifier par composant)",
+    "note": "Composants expressifs pour marques créatives — vérifier licence au build."
+  },
+  {
+    "id": "themefisher",
+    "name": "Themefisher React Templates",
+    "url": "https://themefisher.com/react-themes",
+    "style": [
+      "professional",
+      "clean",
+      "corporate"
+    ],
+    "type": [
+      "landing",
+      "agency",
+      "startup",
+      "ecom"
+    ],
+    "tech": [
+      "React",
+      "Next.js"
+    ],
+    "access": "download (free/premium)",
+    "license": "MIT (free) / commercial (premium) — vérifier avant revente",
+    "note": "Templates complets React/Next — adapter à la marque, ne pas livrer tel quel."
+  },
+  {
+    "id": "tailwind_ui",
+    "name": "Tailwind UI",
+    "url": "https://tailwindui.com",
+    "style": [
+      "clean",
+      "professional",
+      "minimal"
+    ],
+    "type": [
+      "SaaS",
+      "marketing",
+      "ecom",
+      "app"
+    ],
+    "tech": [
+      "React",
+      "Vue",
+      "HTML",
+      "Tailwind"
+    ],
+    "access": "licence one-time (payante)",
+    "license": "Tailwind UI license (commercial, multi-projet)",
+    "note": "Référence qualité — vérifier licence multi-projet avant usage."
+  },
+  {
+    "id": "daisyui",
+    "name": "DaisyUI",
+    "url": "https://daisyui.com",
+    "style": [
+      "playful",
+      "colorful",
+      "themeable"
+    ],
+    "type": [
+      "app",
+      "dashboard",
+      "blog",
+      "ecom"
+    ],
+    "tech": [
+      "Tailwind",
+      "React",
+      "Svelte",
+      "Vue"
+    ],
+    "access": "npm install daisyui",
+    "license": "MIT",
+    "note": "30+ thèmes — idéal quand la marque a une palette forte à respecter."
+  },
+  {
+    "id": "refero",
+    "name": "Refero (150K real app screens)",
+    "url": "https://refero.design",
+    "style": [
+      "research",
+      "reference",
+      "real-world"
+    ],
+    "type": [
+      "any"
+    ],
+    "tech": [
+      "any"
+    ],
+    "access": "Refero MCP + skill (~/.claude/skills/refero)",
+    "license": "reference only",
+    "note": "BASE de recherche design — interroger AVANT de choisir les composants. 150K écrans réels."
+  },
+  {
+    "id": "footer_design",
+    "name": "Footer.design",
+    "url": "https://footer.design",
+    "style": [
+      "professional",
+      "clean",
+      "trust"
+    ],
+    "type": [
+      "SaaS",
+      "landing",
+      "agency",
+      "ecom",
+      "fintech"
+    ],
+    "tech": [
+      "HTML",
+      "CSS",
+      "React"
+    ],
+    "access": "forge_agents/design_assets.py — get_footer_pattern() / generate_footer_html(brand)",
+    "license": "patterns de référence — HTML/CSS généré custom",
+    "note": "1000+ footers curés. generate_footer_html(pattern, brand) injecte un footer AU NOM de la marque."
+  },
+  {
+    "id": "svgdoodles",
+    "name": "SVG Doodles",
+    "url": "https://svgdoodles.com",
+    "style": [
+      "organic",
+      "playful",
+      "premium",
+      "hand-drawn"
+    ],
+    "type": [
+      "landing",
+      "onboarding",
+      "empty-state",
+      "portfolio"
+    ],
+    "tech": [
+      "SVG",
+      "inline"
+    ],
+    "access": "forge_agents/design_assets.py — inject_doodle(name, color)",
+    "license": "free (usage commercial OK)",
+    "note": "200+ SVG hand-drawn colorisables à la teinte de marque. Aspect organique/premium."
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "created": "2026-05-28",
+  "budget": {
+    "scraping_pct": 0.40,
+    "research_pct": 0.20,
+    "critic_pct":   0.10,
+    "jury_pct":     0.15,
+    "algo_pct":     0.15
+  },
+  "cycle": {
+    "max_decompositions": 3,
+    "caveman_max_tokens_out": 150,
+    "caveman_max_tokens_in": 200,
+    "status_line_to_user": true,
+    "history_pruning_cycles": 2,
+    "use_prompt_caching": true,
+    "routing": {
+      "L1_tier": "MEDIUM",
+      "L2_tier_default": "LOW",
+      "L3_tier": "LOW",
+      "fallback_on_fail": true,
+      "max_tokens_l1": 800,
+      "max_tokens_l2": 300,
+      "max_tokens_l3": 50
+    }
+  },
+  "thresholds": {
+    "finding_kill_below": 5.0,
+    "jury_consensus_min": 0.65,
+    "quality_regression_tolerance": 0.05,
+    "level_up_quality_gain": 0.10,
+    "min_cycles_before_levelup": 3
+  }
+}

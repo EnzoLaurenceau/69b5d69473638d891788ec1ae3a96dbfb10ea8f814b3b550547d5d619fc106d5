@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧠 Second Brain — La Forge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e0e0e0; }
+    .jetbrains { font-family: 'JetBrains Mono', monospace; }
+    .glass { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
+    .glow-purple { box-shadow: 0 0 20px rgba(168,85,247,0.15); }
+    .glow-blue { box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+    .folder-toggle { cursor: pointer; user-select: none; }
+    .folder-toggle:hover { color: #a855f7; }
+    .file-link { cursor: pointer; transition: all 0.15s; }
+    .file-link:hover { color: #22c55e; transform: translateX(4px); }
+    .file-link.active { color: #22c55e; background: rgba(34,197,94,0.1); border-radius: 4px; }
+    .markdown-body h1 { font-size: 1.5rem; font-weight: 700; margin: 1rem 0 0.5rem; color: #a855f7; }
+    .markdown-body h2 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; color: #60a5fa; }
+    .markdown-body h3 { font-size: 1.1rem; font-weight: 600; margin: 0.75rem 0 0.5rem; color: #34d399; }
+    .markdown-body p { margin: 0.5rem 0; line-height: 1.6; }
+    .markdown-body ul, .markdown-body ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+    .markdown-body li { margin: 0.25rem 0; }
+    .markdown-body code { background: rgba(255,255,255,0.1); padding: 0.15rem 0.4rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+    .markdown-body pre { background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 0.75rem 0; }
+    .markdown-body pre code { background: none; padding: 0; }
+    .markdown-body table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; }
+    .markdown-body th, .markdown-body td { border: 1px solid rgba(255,255,255,0.1); padding: 0.5rem; text-align: left; }
+    .markdown-body th { background: rgba(255,255,255,0.05); font-weight: 600; }
+    .markdown-body blockquote { border-left: 3px solid #a855f7; padding-left: 1rem; margin: 0.75rem 0; color: #9ca3af; font-style: italic; }
+    .markdown-body a { color: #60a5fa; text-decoration: underline; }
+    .markdown-body hr { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 1rem 0; }
+    .markdown-body strong { color: #f3f4f6; }
+    .search-highlight { background: rgba(234,179,8,0.3); border-radius: 2px; }
+    #search-results { max-height: 300px; overflow-y: auto; }
+    .tag { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 600; }
+    .tag-forge { background: rgba(168,85,247,0.2); color: #a855f7; }
+    .tag-agent { background: rgba(59,130,246,0.2); color: #60a5fa; }
+    .tag-personal { background: rgba(34,197,94,0.2); color: #34d399; }
+    .tag-daily { background: rgba(234,179,8,0.2); color: #eab308; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Header -->
+  <header class="glass border-b border-white/10 px-6 py-3 flex items-center justify-between sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+      <span class="text-2xl">🧠</span>
+      <div>
+        <h1 class="text-lg font-bold jetbrains">Second Brain</h1>
+        <p class="text-[10px] text-gray-500">La Forge — Knowledge Base</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <!-- Search -->
+      <div class="relative">
+        <input type="text" id="search-input" placeholder="Rechercher..." 
+          class="bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-sm w-64 focus:outline-none focus:border-purple-500/50 jetbrains"
+          onkeyup="handleSearch(event)">
+        <div id="search-results" class="absolute top-full left-0 right-0 mt-1 glass rounded-lg hidden z-50"></div>
+      </div>
+      <!-- Stats -->
+      <div class="text-[11px] text-gray-500 jetbrains" id="vault-stats">Loading...</div>
+      <!-- Back to Dashboard -->
+      <a href="/" class="text-xs text-gray-500 hover:text-white jetbrains">← Dashboard</a>
+    </div>
+  </header>
+
+  <div class="flex h-[calc(100vh-57px)]">
+    <!-- Sidebar — File Tree -->
+    <aside class="w-72 glass border-r border-white/10 overflow-y-auto p-3 flex-shrink-0">
+      <div class="text-[10px] text-gray-500 uppercase font-bold tracking-wider jetbrains mb-3">📂 Fichiers</div>
+      
+      <!-- Quick Links -->
+      <div class="mb-4 space-y-1">
+        <div class="text-[10px] text-purple-400 uppercase font-bold tracking-wider jetbrains mb-1">🔗 Accès Rapide</div>
+        <div class="file-link text-[11px] pl-2 py-1" onclick="loadFile('index.md')">🏠 Index Principal</div>
+        <div class="file-link text-[11px] pl-2 py-1" onclick="loadFile('forge/index.md')">⚙️ Forge</div>
+        <div class="file-link text-[11px] pl-2 py-1" onclick="loadFile('agents/index.md')">🤖 Agents</div>
+        <div class="file-link text-[11px] pl-2 py-1" onclick="loadFile('code-graph/index.md')">🕸️ Code Graph</div>
+        <div class="file-link text-[11px] pl-2 py-1" onclick="loadFile('personal/index.md')">👤 Personnel</div>
+        <div class="file-link text-[11px] pl-2 py-1" onclick="loadFile('personal/deepseek-notes.md')">💬 DeepSeek Notes</div>
+      </div>
+
+      <!-- File Tree -->
+      <div id="file-tree" class="text-[11px] text-gray-300 font-mono">Loading...</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-6">
+      <!-- Welcome / File Content -->
+      <div id="content-area">
+        <div class="text-center py-20">
+          <div class="text-6xl mb-4">🧠</div>
+          <h2 class="text-2xl font-bold jetbrains mb-2">Second Brain</h2>
+          <p class="text-gray-500 max-w-md mx-auto">
+            Sélectionnez un fichier dans la barre latérale ou utilisez la recherche.
+            Tout le savoir de la Forge + votre espace personnel.
+          </p>
+          <div class="mt-6 flex justify-center gap-3">
+            <span class="tag tag-forge">#forge</span>
+            <span class="tag tag-agent">#agent</span>
+            <span class="tag tag-personal">#personal</span>
+            <span class="tag tag-daily">#daily</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Sidebar — Agent Tracker -->
+    <aside class="w-80 glass border-l border-white/10 overflow-y-auto p-3 flex-shrink-0">
+      <div class="text-[10px] text-gray-500 uppercase font-bold tracking-wider jetbrains mb-3">🤖 Agent Tracker</div>
+      
+      <!-- Current Task -->
+      <div class="mb-4">
+        <div class="text-[10px] text-purple-400 uppercase font-bold tracking-wider jetbrains mb-1">📋 Tâche en Cours</div>
+        <div id="current-task" class="text-[11px] text-gray-400">Aucune tâche active</div>
+      </div>
+
+      <!-- Agent Performance -->
+      <div class="mb-4">
+        <div class="text-[10px] text-blue-400 uppercase font-bold tracking-wider jetbrains mb-1">📊 Performance</div>
+        <div id="agent-performance" class="space-y-2">Loading...</div>
+      </div>
+
+      <!-- Prompt Adjustments -->
+      <div class="mb-4">
+        <div class="text-[10px] text-orange-400 uppercase font-bold tracking-wider jetbrains mb-1">🔧 Ajustements</div>
+        <div id="prompt-adjustments" class="text-[11px] text-gray-400">Loading...</div>
+      </div>
+
+      <!-- GitNexus Status -->
+      <div class="mb-4">
+        <div class="text-[10px] text-green-400 uppercase font-bold tracking-wider jetbrains mb-1">🕸️ GitNexus</div>
+        <div id="gitnexus-status" class="text-[11px] text-gray-400">Loading...</div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const API_BASE = `${location.protocol}//${location.host}`;
+    const TOKEN = localStorage.getItem('forge_token') || '';
+    
+    let allFiles = [];
+    let currentFile = null;
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      loadFileTree();
+      loadAgentTracker();
+      loadGitNexusStatus();
+      
+      // Auto-refresh every 30s
+      setInterval(loadAgentTracker, 30000);
+    });
+
+    // ── File Tree ─────────────────────────────────────────────────────────────
+    async function loadFileTree() {
+      const el = document.getElementById('file-tree');
+      const statsEl = document.getElementById('vault-stats');
+      try {
+        const r = await fetch(`${API_BASE}/api/vault/files`, { headers: {'X-Forge-Token': TOKEN} });
+        if (!r.ok) { el.innerHTML = '<span class="text-red-400">Error</span>'; return; }
+        const d = await r.json();
+        statsEl.textContent = `${d.count || 0} fichiers`;
+        allFiles = d.files || [];
+        
+        const tree = d.tree || {};
+        if (Object.keys(tree).length === 0) {
+          el.innerHTML = '<span class="text-gray-600 italic">Vault vide</span>';
+          return;
+        }
+        el.innerHTML = renderTree(tree, '');
+      } catch (e) {
+        el.innerHTML = `<span class="text-red-400">Error: ${e.message}</span>`;
+      }
+    }
+
+    function renderTree(tree, prefix) {
+      let html = '';
+      for (const [key, val] of Object.entries(tree)) {
+        const fullPath = prefix ? `${prefix}/${key}` : key;
+        if (val === null) {
+          const icon = getFileIcon(key);
+          html += `<div class="file-link text-[11px] pl-2 py-0.5 ${currentFile === fullPath ? 'active' : ''}" 
+                       onclick="loadFile('${fullPath}')" data-path="${fullPath}">${icon} ${key}</div>`;
+        } else {
+          const icon = getFolderIcon(key);
+          html += `<div class="folder-toggle text-[11px] py-0.5" onclick="this.nextElementSibling?.classList.toggle('hidden')">${icon} ${key}/</div>`;
+          html += `<div class="ml-3 hidden">`;
+          html += renderTree(val, fullPath);
+          html += '</div>';
+        }
+      }
+      return html;
+    }
+
+    function getFileIcon(name) {
+      if (name.includes('index')) return '📋';
+      if (name.includes('nmp') || name.includes('protocol')) return '📡';
+      if (name.includes('agent') || name.includes('tracker')) return '🤖';
+      if (name.includes('cervelet') || name.includes('brain')) return '🧠';
+      if (name.includes('langgraph') || name.includes('graph')) return '🔄';
+      if (name.includes('deepseek') || name.includes('chat')) return '💬';
+      if (name.includes('template')) return '📝';
+      if (name.includes('daily')) return '📅';
+      return '📄';
+    }
+
+    function getFolderIcon(name) {
+      if (name === 'forge') return '⚙️';
+      if (name === 'agents') return '🤖';
+      if (name === 'code-graph') return '🕸️';
+      if (name === 'personal') return '👤';
+      if (name === 'daily') return '📅';
+      if (name === 'templates') return '📝';
+      return '📁';
+    }
+
+    // ── Load File ─────────────────────────────────────────────────────────────
+    async function loadFile(path) {
+      const contentArea = document.getElementById('content-area');
+      currentFile = path;
+      
+      // Update active state in tree
+      document.querySelectorAll('.file-link').forEach(el => {
+        el.classList.toggle('active', el.dataset.path === path);
+      });
+
+      try {
+        const r = await fetch(`${API_BASE}/api/vault/file/${encodeURIComponent(path)}`, { headers: {'X-Forge-Token': TOKEN} });
+        if (!r.ok) { contentArea.innerHTML = '<div class="text-red-400 p-6">Fichier non trouvé</div>'; return; }
+        const d = await r.json();
+        
+        contentArea.innerHTML = `
+          <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-xs text-gray-500 jetbrains">${path}</span>
+              <button onclick="navigator.clipboard.writeText(window.location.origin + '/api/vault/file/${encodeURIComponent(path)}')" 
+                class="text-xs text-gray-500 hover:text-white jetbrains">📋 Copier lien</button>
+            </div>
+            <div class="markdown-body">${renderMarkdown(d.content || '')}</div>
+          </div>
+        `;
+      } catch (e) {
+        contentArea.innerHTML = `<div class="text-red-400 p-6">Error: ${e.message}</div>`;
+      }
+    }
+
+    // ── Markdown Renderer (simple) ────────────────────────────────────────────
+    // Resolves a path relative to the current file's directory
+    function resolvePath(currentPath, targetPath) {
+      if (!targetPath.startsWith('.') && !targetPath.includes('/..')) {
+        return targetPath;
+      }
+      const parts = currentPath.split('/');
+      parts.pop(); // Remove current filename
+      const targetParts = targetPath.split('/');
+      for (const part of targetParts) {
+        if (part === '.' || part === '') {
+          continue;
+        } else if (part === '..') {
+          parts.pop();
+        } else {
+          parts.push(part);
+        }
+      }
+      return parts.join('/');
+    }
+
+    // ── Markdown Renderer (simple) ────────────────────────────────────────────
+    function renderMarkdown(md) {
+      let html = md
+        // Headers
+        .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+        .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+        .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+        // Bold & Italic
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        // Code blocks
+        .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>')
+        // Inline code
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        // Links
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, href) => {
+          if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:') || href.startsWith('#')) {
+            return `<a href="${href}" target="_blank">${label}</a>`;
+          }
+          let cleanPath = href.endsWith('.md') ? href.slice(0, -3) : href;
+          let resolvedPath = currentFile ? resolvePath(currentFile, cleanPath) : cleanPath;
+          resolvedPath = resolvedPath + '.md';
+          return `<a href="#" onclick="loadFile('${resolvedPath}'); return false;">${label}</a>`;
+        })
+        // Wiki links
+        .replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+          let path = p1;
+          let label = p1;
+          if (p1.includes('|')) {
+            const parts = p1.split('|');
+            path = parts[0];
+            label = parts[1];
+          }
+          let cleanPath = path.endsWith('.md') ? path.slice(0, -3) : path;
+          let resolvedPath = currentFile ? resolvePath(currentFile, cleanPath) : cleanPath;
+          resolvedPath = resolvedPath + '.md';
+          return `<a href="#" onclick="loadFile('${resolvedPath}'); return false;">${label}</a>`;
+        })
+        // Blockquotes
+        .replace(/^> (.*$)/gm, '<blockquote>$1</blockquote>')
+        // Horizontal rules
+        .replace(/^---$/gm, '<hr>')
+        // Unordered lists
+        .replace(/^- (.*$)/gm, '<li>$1</li>')
+        // Checkboxes
+        .replace(/<li>\[ \] (.*?)<\/li>/g, '<li><input type="checkbox" disabled> $1</li>')
+        .replace(/<li>\[x\] (.*?)<\/li>/g, '<li><input type="checkbox" checked disabled> $1</li>')
+        // Paragraphs
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/\n/g, '<br>');
+      
+      // Wrap in paragraph
+      html = '<p>' + html + '</p>';
+      // Clean up empty paragraphs
+      html = html.replace(/<p><\/p>/g, '');
+      // Wrap lists
+      html = html.replace(/(<li>.*?<\/li>)+/g, '<ul>$&</ul>');
+      
+      return html;
+    }
+
+    // ── Search ────────────────────────────────────────────────────────────────
+    async function handleSearch(event) {
+      const query = event.target.value.trim();
+      const resultsEl = document.getElementById('search-results');
+      
+      if (query.length < 2) {
+        resultsEl.classList.add('hidden');
+        return;
+      }
+
+      try {
+        const r = await fetch(`${API_BASE}/api/vault/files`, { headers: {'X-Forge-Token': TOKEN} });
+        if (!r.ok) return;
+        const d = await r.json();
+        const files = d.files || [];
+        
+        const matches = files.filter(f => f.toLowerCase().includes(query.toLowerCase()));
+        
+        if (matches.length === 0) {
+          resultsEl.innerHTML = '<div class="p-3 text-xs text-gray-500">Aucun résultat</div>';
+        } else {
+          resultsEl.innerHTML = matches.slice(0, 10).map(f => 
+            `<div class="file-link p-2 text-xs" onclick="loadFile('${f}'); document.getElementById('search-results').classList.add('hidden');">${f}</div>`
+          ).join('');
+        }
+        resultsEl.classList.remove('hidden');
+      } catch (e) {
+        console.error('Search error:', e);
+      }
+    }
+
+    // Close search on click outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#search-input') && !e.target.closest('#search-results')) {
+        document.getElementById('search-results').classList.add('hidden');
+      }
+    });
+
+    // ── Agent Tracker ─────────────────────────────────────────────────────────
+    async function loadAgentTracker() {
+      const currentTaskEl = document.getElementById('current-task');
+      const performanceEl = document.getElementById('agent-performance');
+      const adjustmentsEl = document.getElementById('prompt-adjustments');
+      
+      try {
+        // Load current task
+        const taskR = await fetch(`${API_BASE}/api/agent-tracker/current`, { headers: {'X-Forge-Token': TOKEN} });
+        if (taskR.ok) {
+          const task = await taskR.json();
+          if (task.task_name) {
+            currentTaskEl.innerHTML = `
+              <div class="glass rounded p-2">
+                <div class="text-[11px] font-bold text-purple-300">${task.task_name}</div>
+                <div class="text-[10px] text-gray-500">Agents: ${(task.agents_involved || []).join(', ')}</div>
+                <div class="text-[10px] text-gray-500">Invocations: ${(task.invocations || []).length}</div>
+              </div>
+            `;
+          } else {
+            currentTaskEl.innerHTML = '<div class="text-[11px] text-gray-600 italic">Aucune tâche active</div>';
+          }
+        }
+
+        // Load performance
+        const perfR = await fetch(`${API_BASE}/api/agent-tracker/performance`, { headers: {'X-Forge-Token': TOKEN} });
+        if (perfR.ok) {
+          const perf = await perfR.json();
+          // avg_score/trend no longer exist (removed — they were an
+          // ungrounded formula + hardcoded "stable"). avg_hallucination_findings
+          // is the real replacement: null means no session for this agent has
+          // ledger coverage yet, not "0 findings verified".
+          performanceEl.innerHTML = Object.entries(perf.agents || {}).map(([agent, stats]) => {
+            const hfc = stats.avg_hallucination_findings;
+            const hfcLabel = hfc == null ? '—' : `${hfc} avg`;
+            const hfcColor = hfc == null ? 'text-gray-500' : hfc === 0 ? 'text-green-400' : hfc < 1 ? 'text-yellow-400' : 'text-red-400';
+            return `
+              <div class="glass rounded p-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-[11px] font-bold text-blue-300">${agent}</span>
+                  <span class="text-[10px] ${hfcColor}">${hfcLabel} halluc.</span>
+                </div>
+                <div class="text-[10px] text-gray-500">${stats.count} invocations • ${stats.sessions_checked || 0} checked</div>
+              </div>
+            `;
+          }).join('') || '<div class="text-[11px] text-gray-600 italic">Pas encore de données</div>';
+        }
+
+        // Load adjustments
+        const adjR = await fetch(`${API_BASE}/api/agent-tracker/adjustments`, { headers: {'X-Forge-Token': TOKEN} });
+        if (adjR.ok) {
+          const adj = await adjR.json();
+          const agents = adj.agents || {};
+          const withAdjustments = Object.entries(agents).filter(([_, data]) => (data.current_prompts || []).length > 0);
+          
+          if (withAdjustments.length > 0) {
+            adjustmentsEl.innerHTML = withAdjustments.map(([agent, data]) => `
+              <div class="glass rounded p-2 mb-2">
+                <div class="text-[11px] font-bold text-orange-300">${agent}</div>
+                <ul class="text-[10px] text-gray-400 list-disc pl-3 mt-1">
+                  ${(data.current_prompts || []).slice(0, 3).map(p => `<li>${p.substring(0, 60)}...</li>`).join('')}
+                </ul>
+              </div>
+            `).join('');
+          } else {
+            adjustmentsEl.innerHTML = '<div class="text-[11px] text-gray-600 italic">Aucun ajustement</div>';
+          }
+        }
+      } catch (e) {
+        console.error('Agent tracker error:', e);
+      }
+    }
+
+    // ── GitNexus Status ───────────────────────────────────────────────────────
+    async function loadGitNexusStatus() {
+      const el = document.getElementById('gitnexus-status');
+      try {
+        const r = await fetch(`${API_BASE}/api/status`, { headers: {'X-Forge-Token': TOKEN} });
+        if (r.ok) {
+          const d = await r.json();
+          el.innerHTML = `
+            <div class="glass rounded p-2">
+              <div class="text-[11px] text-green-300">✓ Connecté</div>
+              <div class="text-[10px] text-gray-500">Symboles indexés</div>
+            </div>
+          `;
+        }
+      } catch (e) {
+        el.innerHTML = '<div class="text-[11px] text-gray-600 italic">Non disponible</div>';
+      }
+    }
+  </script>
+</body>
+</html>

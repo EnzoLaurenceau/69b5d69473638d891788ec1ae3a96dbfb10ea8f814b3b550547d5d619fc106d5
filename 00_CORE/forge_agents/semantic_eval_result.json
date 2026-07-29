@@ -1,0 +1,292 @@
+{
+  "corpus_size": 30,
+  "escalation_rate": 0.0,
+  "mimo_only": {
+    "scored": 30,
+    "correct": 28,
+    "accuracy": 0.9333
+  },
+  "hybrid": {
+    "scored": 30,
+    "correct": 28,
+    "accuracy_lowerbound_pending": 0.9333,
+    "accuracy_on_scored": 0.9333,
+    "wilson_lb_on_scored": 0.7868
+  },
+  "billed_tokens_mimo": 62000,
+  "session_applied": false,
+  "pending_session_count": 0,
+  "rows": [
+    {
+      "name": "sem_00",
+      "claim": "The company is based in Berlin.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "unsupported",
+      "mimo_confidence": 0.95,
+      "escalate": false,
+      "mimo_correct": false
+    },
+    {
+      "name": "sem_01",
+      "claim": "There are 120 employees.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_02",
+      "claim": "The service reads settings from environment variables.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_03",
+      "claim": "The endpoint returns a JSON array.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_04",
+      "claim": "Support is reachable by email.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_05",
+      "claim": "The migration completed without errors.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_06",
+      "claim": "The build artifact is a Docker image.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_07",
+      "claim": "The invoice total is 6800 EUR.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_08",
+      "claim": "The API requires an auth token.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "unsupported",
+      "mimo_confidence": 0.9,
+      "escalate": false,
+      "mimo_correct": false
+    },
+    {
+      "name": "sem_09",
+      "claim": "The report covers the month of June.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_10",
+      "claim": "Two of the tests failed.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_11",
+      "claim": "The feature is behind a flag.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 0.95,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_12",
+      "claim": "The dataset has missing values.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_13",
+      "claim": "Deployment targets the staging environment.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_14",
+      "claim": "The password policy requires 12 characters.",
+      "gold_is_hallucination": false,
+      "mimo_verdict": "supported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_15",
+      "claim": "The CEO is Jane Doe.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "unsupported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_16",
+      "claim": "The config lives at /etc/app/secret.yaml.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "unsupported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_17",
+      "claim": "Results are sorted by relevance.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "unsupported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_18",
+      "claim": "Support is available 24/7 by phone.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "contradicted",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_19",
+      "claim": "The image is based on Alpine Linux.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "unsupported",
+      "mimo_confidence": 0.9,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_20",
+      "claim": "The oldest invoice is 90 days overdue.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "contradicted",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_21",
+      "claim": "Tokens expire after 24 hours.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "unsupported",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_22",
+      "claim": "The outage was caused by a DNS misconfiguration.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "unsupported",
+      "mimo_confidence": 0.95,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_23",
+      "claim": "The company was founded in 2020.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "contradicted",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_24",
+      "claim": "All tests passed.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "contradicted",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_25",
+      "claim": "There is a phone line for support.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "contradicted",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_26",
+      "claim": "The feature is enabled by default.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "contradicted",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_27",
+      "claim": "Deployment targets production.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "contradicted",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_28",
+      "claim": "Minimum password length is 8 characters.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "contradicted",
+      "mimo_confidence": 1.0,
+      "escalate": false,
+      "mimo_correct": true
+    },
+    {
+      "name": "sem_29",
+      "claim": "The email column has missing values.",
+      "gold_is_hallucination": true,
+      "mimo_verdict": "contradicted",
+      "mimo_confidence": 0.95,
+      "escalate": false,
+      "mimo_correct": true
+    }
+  ],
+  "escalations": []
+}

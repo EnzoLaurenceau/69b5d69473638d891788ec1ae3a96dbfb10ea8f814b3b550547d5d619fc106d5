@@ -1,0 +1,34 @@
+{
+  "version": "5f97800",
+  "timestamp": "2026-07-28T17:19:30Z",
+  "images": {
+    "api": "forge-api:5f97800",
+    "console": "forge-console:5f97800",
+    "prometheus": "prom/prometheus:latest"
+  },
+  "compose_file": "docker-compose.prod.yml",
+  "services": {
+    "api": {
+      "port": 7777,
+      "healthcheck": "/api/health",
+      "env_required": ["POSTGRES_PASSWORD", "WEB_SECRET", "FORGE_ADMIN_TOKEN", "FORGE_CORS_ORIGINS"]
+    },
+    "console": {
+      "port": 8080,
+      "healthcheck": "/",
+      "proxy": "/v1 → api:7777"
+    },
+    "postgres": {
+      "image": "pgvector/pgvector:pg16",
+      "volume": "forge_pgdata"
+    },
+    "redis": {
+      "image": "redis:7-alpine",
+      "volume": "forge_redisdata"
+    },
+    "prometheus": {
+      "volume": "forge_promdata"
+    }
+  },
+  "rollback": "docker compose -f docker-compose.prod.yml down && docker compose -f docker-compose.prod.yml up -d"
+}

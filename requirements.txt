@@ -1,0 +1,84 @@
+# ╔══════════════════════════════════════════════════╗
+# ║   Super Agent Forge — Python Dependencies        ║
+# ║   Install: pip install -r requirements.txt       ║
+# ╚══════════════════════════════════════════════════╝
+#
+# VERSIONS ÉPINGLÉES (W6-02). Les bornes `>=` d'avant ne décrivaient pas ce qui
+# tourne : deux installations à un mois d'écart obtenaient deux Forges différentes,
+# et un bug de version était irreproductible. `==` fige ce qui est réellement
+# vérifié par la CI. Monter une dépendance devient alors un commit, avec ses tests.
+#
+# Régénérer après une montée de version :
+#   pip install -U <paquet> && python 00_CORE/tools/security_audit.py
+#
+# Retirés faute d'usage réel (aucun import dans le dépôt, vérifié) :
+#   tree-sitter-languages, diff-match-patch
+
+# ─── LangGraph & LangChain ──────────────────────────
+langgraph==1.2.2
+langgraph-checkpoint-sqlite==3.1.0          # secours (warm standby)
+langgraph-checkpoint-postgres==3.1.0        # primaire (optiforge PG+Redis)
+langchain-core==1.5.1
+langchain-anthropic==1.4.6
+langsmith==0.8.18                           # observabilité LLM (smith.langchain.com)
+
+# ─── Store unifié PG+Redis (optiforge — forge_db.py) ─
+redis==8.0.0
+psycopg[binary]==3.2.13
+pgvector==0.4.2
+
+# ─── Graphe de connaissances (graph_db.py, world_kg.py) ─
+# MANQUAIT : `graph_db.py` importe kuzu en production et `/graph` avale l'échec
+# en `except` — là où le paquet n'était pas installé à la main, la neural map de
+# la console se rendait VIDE sans le moindre message. Version vérifiée contre le
+# vrai moteur (mode `rel_table` multi-couples).
+kuzu==0.11.3
+
+# ─── Anthropic SDK (direct) ─────────────────────────
+anthropic==0.105.0
+
+# ─── Google AI Studio (Imagen) ──────────────────────
+google-generativeai==0.8.6
+
+# ─── HTTP & Web scraping ────────────────────────────
+requests==2.33.0
+httpx==0.28.1
+
+# ─── Scrapling (remplace Firecrawl pour le scraping de masse) ──
+# Installer avec les fetchers (Fetcher + StealthyFetcher) :
+#   pip install "scrapling[fetchers]" --break-system-packages
+#   scrapling install   # télécharge les navigateurs furtifs si besoin
+scrapling==0.4.11
+
+# ─── Data & Utils ───────────────────────────────────
+python-dotenv==1.2.2
+pydantic==2.13.4
+rich==15.0.0        # pretty console output
+
+# ─── crawl4ai (fallback scraping local — remplace Firecrawl) ────────────────
+# pip install crawl4ai && crawl4ai-setup   (installe playwright)
+crawl4ai==0.8.9
+
+# ─── Nexus VFS (remplace openviking + graphify_checkpointer + semantic_cache JSON) ─
+nexus-ai-fs==0.9.26     # https://github.com/nexi-lab/nexus
+turbovec==0.8.0         # index 4-bit quantisé local (zéro GPU)
+numpy==2.2.6            # requis par turbovec_brain
+
+# ─── FREE LLM providers (pour forge_llm TIER 0) ─────────
+openai==2.38.0          # client OpenAI-compat (RTK proxy + VPS Ollama)
+
+# ─── Dashboard (forge_dashboard.html + dashboard_server.py) ────────────────
+fastapi==0.136.3
+uvicorn[standard]==0.48.0
+
+# ─── Semantic Edit Engine ───────────────────────────
+# tree-sitter est OPTIONNEL : `symbol_resolver` le détecte et dégrade sans lui.
+tree-sitter==0.25.2
+
+# ─── forge_trading (orchestrator, smc_engine, jury, rag, data_feed) ────────
+pandas==3.0.5
+
+# ─── Note sur les providers gratuits ────────────────────
+# Gemini 2.5 Flash : https://ai.google.dev — clé dans .env
+# Groq (Llama 4)   : https://console.groq.com — clé dans .env
+# Cerebras         : https://cloud.cerebras.ai — clé dans .env

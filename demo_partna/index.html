@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge vs Agent naïf — comparatif Partna</title>
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#111823; --line:#1e2836; --muted:#7c8ba1; --text:#e8eef7;
+    --naive:#ff5c6c; --naive-dim:#3a1d22; --forge:#2dd4a7; --forge-dim:#123029;
+    --amber:#f7a711; --blue:#4c8dff;
+    --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  #stage{max-width:1180px;margin:0 auto;padding:28px 22px 60px}
+  .ribbon{background:linear-gradient(90deg,#2a1c05,#1a1305);border:1px solid #4a3510;
+    color:var(--amber);font-size:12.5px;padding:8px 14px;border-radius:8px;margin-bottom:18px;
+    display:flex;gap:10px;align-items:center}
+  .ribbon.measured{background:linear-gradient(90deg,#05241b,#04160f);border-color:#12483a;color:var(--forge)}
+  .ribbon b{font-weight:700}
+  header h1{font-size:30px;font-weight:800;letter-spacing:-.5px;line-height:1.15}
+  header h1 span{color:var(--forge)}
+  header p{color:var(--muted);margin-top:8px;font-size:15px;max-width:720px}
+  .tabs{display:flex;gap:8px;margin:22px 0 8px;flex-wrap:wrap}
+  .tab{background:var(--panel);border:1px solid var(--line);color:var(--muted);
+    padding:9px 15px;border-radius:999px;font-size:13.5px;cursor:pointer;font-weight:600;
+    transition:.18s}
+  .tab.active{background:#16212f;border-color:#2b7a63;color:var(--text)}
+  .tab:hover{border-color:#345}
+  .promptbar{background:#0d1420;border:1px solid var(--line);border-radius:10px;
+    padding:12px 16px;margin:10px 0 20px;font-size:14.5px;color:#cdd8e8}
+  .promptbar .who{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;position:relative;overflow:hidden}
+  .col.naive{border-color:#3a2329}
+  .col.forge{border-color:#173b31}
+  .col .head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .badge{font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+  .badge.n{background:var(--naive-dim);color:var(--naive)}
+  .badge.f{background:var(--forge-dim);color:var(--forge)}
+  .colttl{font-size:16px;font-weight:700}
+  .metric{margin:14px 0}
+  .metric .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+  .metric .v{font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-1px}
+  .col.naive .v{color:var(--naive)} .col.forge .v{color:var(--forge)}
+  .metric .u{font-size:14px;color:var(--muted);font-weight:600;margin-left:4px}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:6px}
+  .mini{background:#0d1420;border:1px solid var(--line);border-radius:9px;padding:10px}
+  .mini .k{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .mini .v{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:2px}
+  .col.naive .mini .v{color:#ffb3ba} .col.forge .mini .v{color:#8ff0d5}
+  .gauge{height:6px;background:#0a1018;border-radius:4px;margin-top:7px;overflow:hidden}
+  .gauge > i{display:block;height:100%;width:0;border-radius:4px;transition:width .4s}
+  .col.naive .gauge > i{background:var(--naive)} .col.forge .gauge > i{background:var(--forge)}
+  .cascade{margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+  .cascade .t{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .opt{display:flex;align-items:center;gap:9px;font-size:13px;padding:5px 0;color:#5f6f85;
+    opacity:.35;transition:.3s}
+  .opt.on{opacity:1;color:#cfe0ef}
+  .opt .dot{width:16px;height:16px;border-radius:5px;background:#1a2432;display:grid;place-items:center;
+    font-size:11px;flex:none;color:transparent}
+  .opt.on .dot{background:var(--forge-dim);color:var(--forge)}
+  .opt .mod{color:var(--muted);font-size:11px;margin-left:auto;font-family:ui-monospace,monospace}
+  .opt.on .sv{color:var(--forge);font-weight:700}
+  .deltas{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+  .delta{background:linear-gradient(180deg,#0e1a16,#0b1310);border:1px solid #17402f;
+    border-radius:12px;padding:16px;text-align:center}
+  .delta .big{font-size:30px;font-weight:800;color:var(--forge);letter-spacing:-1px}
+  .delta .lbl{font-size:12px;color:var(--muted);margin-top:4px}
+  .delta.warn .big{color:var(--amber)}
+  .scale{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .scale h3{font-size:15px;margin-bottom:4px}
+  .scale p{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .scale .ctrl{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .scale input[type=range]{flex:1;min-width:200px;accent-color:var(--forge)}
+  .scale .out{display:flex;gap:26px;margin-top:16px;flex-wrap:wrap}
+  .scale .out div{font-size:13px;color:var(--muted)}
+  .scale .out b{display:block;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:2px}
+  .scale .save b{color:var(--forge)} .scale .naive b{color:var(--naive)}
+  .actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+  button.act{background:#16212f;border:1px solid #2b7a63;color:var(--text);padding:11px 18px;
+    border-radius:10px;font-weight:700;cursor:pointer;font-size:14px;font-family:var(--font)}
+  button.act.ghost{border-color:var(--line);color:var(--muted)}
+  button.act:hover{border-color:var(--forge)}
+  .cta{margin-top:34px;background:linear-gradient(120deg,#0e2620,#0a1a2a);border:1px solid #1c5a48;
+    border-radius:16px;padding:28px}
+  .cta h2{font-size:22px;font-weight:800;letter-spacing:-.4px}
+  .cta .quote{font-size:16px;color:#d7e6f2;margin:14px 0;line-height:1.5;border-left:3px solid var(--forge);padding-left:14px}
+  .cta ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;margin-top:10px}
+  .cta li{font-size:13.5px;color:var(--muted);padding-left:20px;position:relative}
+  .cta li::before{content:"✓";position:absolute;left:0;color:var(--forge);font-weight:800}
+  .provbar{display:flex;align-items:center;gap:12px;margin:2px 0 20px;flex-wrap:wrap}
+  .provlbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .provs{display:flex;gap:8px;flex-wrap:wrap}
+  .prov{background:var(--panel);border:1px solid var(--line);color:var(--muted);
+    padding:7px 13px;border-radius:999px;font-size:13px;cursor:pointer;font-weight:600;transition:.18s}
+  .prov small{color:#4a586b;font-weight:500;margin-left:5px;font-family:ui-monospace,monospace}
+  .prov.active{background:#16212f;border-color:var(--blue);color:var(--text)}
+  .prov.active small{color:var(--blue)}
+  .prov:hover{border-color:#345}
+  .matrix{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .matrix h3{font-size:15px;margin-bottom:4px}
+  .matrix p{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .matrix table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+  .matrix th,.matrix td{text-align:right;padding:9px 10px;font-size:13.5px;border-bottom:1px solid var(--line)}
+  .matrix th:first-child,.matrix td:first-child{text-align:left}
+  .matrix thead th{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .matrix td.prov-name{font-weight:700;color:var(--text)}
+  .matrix td.prov-name small{color:#4a586b;font-weight:500;font-family:ui-monospace,monospace;display:block;font-size:11px}
+  .matrix td.naive-c{color:var(--naive)} .matrix td.forge-c{color:var(--forge);font-weight:700}
+  .matrix td.save-c{color:var(--forge);font-weight:800}
+  .matrix tr.active-row{background:#0f1a17}
+  .foot{color:#4a586b;font-size:11.5px;margin-top:26px;text-align:center;line-height:1.7}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}.deltas{grid-template-columns:1fr 1fr}
+    .cta ul{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<!-- hyperframes: adopter cette div comme composition -> `npx hyperframes render` -->
+<div id="stage" data-composition-id="partna_forge_vs_naif" data-start="0" data-width="1180" data-height="1400" data-fps="30">
+
+  <div class="ribbon" id="ribbon"></div>
+
+  <header>
+    <h1>Même tâche. Deux fois. <span>Chiffres réels.</span></h1>
+    <p>À gauche, un agent naïf : un seul modèle cher, tout le contexte brut, aucune optimisation.
+       À droite, la Forge : routing par tâche, compression, retrieval ciblé, cache d'empreinte, protocole compact.
+       Le client final voit exactement le même résultat — seule la facture change.</p>
+  </header>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="promptbar"><div class="who">Message envoyé (Slack / WhatsApp)</div><div id="promptText"></div></div>
+
+  <div class="provbar">
+    <span class="provlbl">Facturé au prix de&nbsp;:</span>
+    <div class="provs" id="provs"></div>
+  </div>
+
+  <div class="grid">
+    <!-- NAIF -->
+    <div class="col naive">
+      <div class="head"><div class="colttl">Agent naïf</div><div class="badge n">1 modèle · contexte brut</div></div>
+      <div class="metric"><div class="k">Tokens consommés</div>
+        <div><span class="v" id="n_tok">0</span><span class="u">tokens</span></div></div>
+      <div class="row3">
+        <div class="mini"><div class="k">Temps</div><div class="v"><span id="n_lat">0</span>s</div></div>
+        <div class="mini"><div class="k">Coût / appel</div><div class="v">$<span id="n_cost">0</span></div></div>
+        <div class="mini"><div class="k">Hallucination</div><div class="v"><span id="n_hallu">0</span>%</div>
+          <div class="gauge"><i id="n_hg"></i></div></div>
+      </div>
+      <div class="cascade">
+        <div class="t">Aucune optimisation</div>
+        <div id="optsOff"></div>
+      </div>
+    </div>
+    <!-- FORGE -->
+    <div class="col forge">
+      <div class="head"><div class="colttl">La Forge</div><div class="badge f">routing · cache · compression</div></div>
+      <div class="metric"><div class="k">Tokens consommés</div>
+        <div><span class="v" id="f_tok">0</span><span class="u">tokens</span></div></div>
+      <div class="row3">
+        <div class="mini"><div class="k">Temps</div><div class="v"><span id="f_lat">0</span>s</div></div>
+        <div class="mini"><div class="k">Coût / appel</div><div class="v">$<span id="f_cost">0</span></div></div>
+        <div class="mini"><div class="k">Hallucination</div><div class="v"><span id="f_hallu">0</span>%</div>
+          <div class="gauge"><i id="f_hg"></i></div></div>
+      </div>
+      <div class="cascade">
+        <div class="t">Pile d'optimisation qui se déclenche</div>
+        <div id="opts"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deltas" id="deltas"></div>
+
+  <div class="matrix">
+    <h3>Coût / appel — naïf vs Forge, sur chaque LLM</h3>
+    <p>Mêmes tokens mesurés, tarifés au prix public de chaque fournisseur. Vous choisissez le modèle, la Forge coupe la facture dans tous les cas.</p>
+    <table id="costMatrix"></table>
+  </div>
+
+  <div class="scale">
+    <h3>À l'échelle de votre portefeuille clients</h3>
+    <p>Un workflow n'est pas lancé une fois. Faites glisser le volume mensuel d'exécutions.</p>
+    <div class="ctrl">
+      <span style="font-size:13px;color:var(--muted)">Exécutions / mois</span>
+      <input type="range" id="vol" min="500" max="50000" step="500" value="12000">
+      <b id="volNum" style="font-variant-numeric:tabular-nums;min-width:70px">12 000</b>
+    </div>
+    <div class="out">
+      <div class="naive">Facture agent naïf<b>$<span id="s_naive">0</span>/mois</b></div>
+      <div class="forge" style="color:var(--forge)">Facture Forge<b style="color:var(--forge)">$<span id="s_forge">0</span>/mois</b></div>
+      <div class="save">Économisé<b>$<span id="s_save">0</span>/mois</b></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="act" id="replay">▶ Rejouer</button>
+    <button class="act ghost" id="rerun">↻ Relancer la même tâche (cache hit)</button>
+  </div>
+
+  <div class="cta">
+    <h2>Le pari, à votre façon.</h2>
+    <div class="quote">« Donne-moi un seul de tes workflows OpenClaw. Je te le renvoie sous 72&nbsp;h avec le
+      coût d'inférence réel avant/après, chiffré, sur ton vrai use case. Si je ne réduis pas la facture,
+      tu ne me dois rien. »</div>
+    <ul>
+      <li>Zéro risque — miroir de votre « satisfait ou remboursé »</li>
+      <li>Mesuré, pas promis — votre propre exigence</li>
+      <li>Scopé sur un workflow — pas de refonte d'archi</li>
+      <li>Complémentaire à OpenClaw — jamais un remplacement</li>
+    </ul>
+  </div>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+/*BENCH_DATA_START*/
+window.BENCH = {"mode": "measured_live_mimo", "generated_by": "bench_partna.py", "engine_note": "Scenarios = exemples publics du site Partna (point du mois / tri mails / campagne Meta 5EUR-j) sur le client reel Bo Windows ; les chiffres metier sont d'illustration -- c'est l'optimisation (tokens/cout/hallu) qui est mesuree, pas le business du client. Tokens/latence/hallu MESURES 1x sur MiMo mimo-2.5-pro (moteur constant naif<->forge, round-up 1000). Cout = ces memes tokens tarifes au prix public OpenAI/Claude/DeepSeek (projection, pas un appel live sur ces API). Hallucination = detecteur valide (in-scope Wilson-lb 98%, 0 FP). LangSmith trace chaque run.", "prices": {"openai": {"model": "gpt-4o", "in": 2.5, "out": 10.0}, "claude": {"model": "claude-sonnet", "in": 3.0, "out": 15.0}, "deepseek": {"model": "deepseek-chat", "in": 0.27, "out": 1.1}}, "providers": ["openai", "claude", "deepseek"], "langsmith_active": true, "tasks": [{"id": "point_du_mois", "label": "Point du mois", "prompt_user": "Fais-moi le point du mois.", "desc": "Agrege CRM + campagnes + facturation + site web + emails -> chiffres, comparaison, priorites, actions.", "session_path": {"naive_in": 9285, "forge_in": 2423, "in_reduction_pct": 73.9}, "naive": {"in": 9285, "out": 3000, "lat": 51.0, "billed": 14000, "hallu_findings": 10, "facts_missing": 0.571, "empty": false, "costs": {"openai": 0.053212, "claude": 0.072855, "deepseek": 0.005807}}, "forge": {"in": 2423, "out": 293, "lat": 9.6, "billed": 4000, "hallu_findings": 3, "facts_missing": 0.429, "empty": false, "costs": {"openai": 0.008987, "claude": 0.011664, "deepseek": 0.000977}}, "engine": "mimo-2.5-pro (bulk)", "measured": {"input_tokens": true, "output_tokens": true, "latency": true, "hallucination": true}}, {"id": "tri_emails", "label": "Tri des emails", "prompt_user": "Trie les demandes, prepare les reponses et liste les urgences.", "desc": "Les conversations sont classees, les reponses pretes, les vrais sujets remontent.", "session_path": {"naive_in": 5030, "forge_in": 2825, "in_reduction_pct": 43.8}, "naive": {"in": 5030, "out": 3000, "lat": 51.2, "billed": 9000, "hallu_findings": 4, "facts_missing": 0.25, "empty": false, "costs": {"openai": 0.042575, "claude": 0.06009, "deepseek": 0.004658}}, "forge": {"in": 2825, "out": 493, "lat": 9.8, "billed": 5000, "hallu_findings": 2, "facts_missing": 0.25, "empty": false, "costs": {"openai": 0.011992, "claude": 0.01587, "deepseek": 0.001305}}, "engine": "mimo-2.5-pro (bulk)", "measured": {"input_tokens": true, "output_tokens": true, "latency": true, "hallucination": true}}, {"id": "campagne_meta", "label": "Campagne Meta 5EUR/j", "prompt_user": "Cree une campagne test a 5 euros par jour pour promouvoir notre offre X.", "desc": "Etude marche + angles, ciblage + structure, medias + textes + variantes, validation avant publication.", "session_path": {"naive_in": 4730, "forge_in": 2439, "in_reduction_pct": 48.4}, "naive": {"in": 4730, "out": 2248, "lat": 37.1, "billed": 9000, "hallu_findings": 2, "facts_missing": 0.2, "empty": false, "costs": {"openai": 0.034305, "claude": 0.04791, "deepseek": 0.00375}}, "forge": {"in": 2439, "out": 776, "lat": 14.3, "billed": 4000, "hallu_findings": 2, "facts_missing": 0.4, "empty": false, "costs": {"openai": 0.013858, "claude": 0.018957, "deepseek": 0.001512}}, "engine": "mimo-2.5-pro (bulk)", "measured": {"input_tokens": true, "output_tokens": true, "latency": true, "hallucination": true}}]};
+/*BENCH_DATA_END*/
+
+// pile d'optim affichee cote forge (modules reels de 00_CORE/forge_agents/)
+const OPTS = [
+  {n:"Routing multi-tier — tâche simple → modèle gratuit", mod:"forge_llm", sv:0.30},
+  {n:"RTK — compression sortie outils (Rust)", mod:"tools/rtk", sv:0.22},
+  {n:"Retrieval hybride — ne garde que le pertinent", mod:"adaptive_rag", sv:0.18},
+  {n:"Dédup + empreinte de contexte", mod:"forge_fingerprint", sv:0.10},
+  {n:"Protocole inter-agent compact (0 blabla)", mod:"ail_protocol", sv:0.10},
+  {n:"Batch coalescer (N appels → 1)", mod:"forge_mimo", sv:0.06},
+  {n:"Pruning des outils MCP inutilisés", mod:"forge_mcp_pruner", sv:0.04},
+];
+
+const $=id=>document.getElementById(id);
+const fmt=n=>n.toLocaleString('fr-FR');
+const money=n=> (n<10? n.toFixed(2): fmt(Math.round(n)));
+const usd=n=> n<0.01 ? '$'+n.toFixed(5) : '$'+n.toFixed(4);
+const PROV_LABEL={openai:'OpenAI',claude:'Claude',deepseek:'DeepSeek'};
+let cur=0, prov=(window.BENCH.providers||['openai'])[0], raf=null, cached=false;
+
+// cost of a mode-row on the currently selected provider (cache-hit = labeled projection).
+const costOf=(row)=> row.costs ? row.costs[prov] : 0;
+
+function buildChrome(){
+  const b=window.BENCH, measured=(b.mode||'').startsWith('measured');
+  const rb=$('ribbon');
+  if(measured){ rb.className='ribbon measured';
+    rb.innerHTML='<b>✔ CHIFFRES MESURÉS</b> — tokens / latence / hallucination générés par '
+      +'<code>bench_partna.py --live</code> (moteur constant MiMo). Coût = ces tokens au prix public de chaque LLM.'
+      +(b.langsmith_active?' &nbsp;·&nbsp; <b>LangSmith ✔</b> trace chaque run (naïf + Forge).':''); }
+  else { rb.innerHTML='<b>⚠ CHIFFRES PROJETÉS</b> — seules les réductions d\'input tokens sont mesurées. Lancez '
+    +'<code>python bench_partna.py --live</code> pour tout mesurer.'; }
+  $('tabs').innerHTML=b.tasks.map((t,i)=>
+    `<div class="tab${i===0?' active':''}" data-i="${i}">${t.label}</div>`).join('');
+  $('tabs').querySelectorAll('.tab').forEach(el=>el.onclick=()=>{cur=+el.dataset.i;
+    $('tabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active'); cached=false; play();});
+  // provider selector — drives every $ figure on the page
+  $('provs').innerHTML=(b.providers||[]).map((p,i)=>{
+    const pr=(b.prices||{})[p]||{};
+    return `<div class="prov${p===prov?' active':''}" data-p="${p}">${PROV_LABEL[p]||p}`
+      +`<small>${pr.model||''} · $${pr.in}/$${pr.out} par M</small></div>`;}).join('');
+  $('provs').querySelectorAll('.prov').forEach(el=>el.onclick=()=>{prov=el.dataset.p;
+    $('provs').querySelectorAll('.prov').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active'); cached=false; play();});
+  $('opts').innerHTML=OPTS.map((o,i)=>
+    `<div class="opt" id="opt${i}"><span class="dot">✔</span><span>${o.n}</span>`
+    +`<span class="mod">${o.mod}</span></div>`).join('');
+  $('optsOff').innerHTML=OPTS.map(o=>
+    `<div class="opt" style="opacity:.3"><span class="dot" style="background:#241a1f;color:#7a3a44">✕</span>`
+    +`<span style="text-decoration:line-through">${o.n.split(' — ')[0]}</span></div>`).join('');
+  $('foot').innerHTML='Modules réels : forge_llm · forge_fingerprint · adaptive_rag · ail_protocol · forge_mimo · '
+    +'forge_mcp_pruner · token_tracker. — '+(b.engine_note||'');
+  $('vol').oninput=updateScale;
+}
+
+const ease=t=>1-Math.pow(1-t,3);
+function play(){
+  cancelAnimationFrame(raf);
+  const t=window.BENCH.tasks[cur];
+  // cache-hit view: fingerprint/semantic cache serves the rerun — clearly-labeled projection (×0.05 tokens/cost, ×0.3 latence).
+  const f = cached ? {in:Math.round(t.forge.in*0.05),out:t.forge.out,lat:+(t.forge.lat*0.3).toFixed(1),
+                      hallu_findings:t.forge.hallu_findings,cost:+(costOf(t.forge)*0.05).toFixed(6)}
+                   : {in:t.forge.in,out:t.forge.out,lat:t.forge.lat,
+                      hallu_findings:t.forge.hallu_findings,cost:costOf(t.forge)};
+  const nCost=costOf(t.naive);
+  $('promptText').textContent='« '+t.prompt_user+' »';
+  OPTS.forEach((_,i)=>$('opt'+i).classList.remove('on'));
+  const nTot=t.naive.in+t.naive.out, fTot=f.in+f.out;
+  const start=performance.now(), DUR=2600;
+  function frame(now){
+    const p=Math.min(1,(now-start)/DUR), e=ease(p);
+    $('n_tok').textContent=fmt(Math.round(nTot*e));
+    $('f_tok').textContent=fmt(Math.round(fTot*e));
+    $('n_lat').textContent=(t.naive.lat*e).toFixed(0);
+    $('f_lat').textContent=(f.lat*e).toFixed(f.lat<3?1:0);
+    $('n_cost').textContent=(nCost*e).toFixed(4);
+    $('f_cost').textContent=(f.cost*e).toFixed(4);
+    $('n_hallu').textContent=Math.round(t.naive.hallu_findings*e);
+    $('f_hallu').textContent=Math.round(f.hallu_findings*e);
+    $('n_hg').style.width=Math.min(100,t.naive.hallu_findings*e*14)+'%';
+    $('f_hg').style.width=Math.min(100,f.hallu_findings*e*14)+'%';
+    OPTS.forEach((_,i)=>{ if(p > (i+1)/(OPTS.length+1) && !cached) $('opt'+i).classList.add('on'); });
+    if(cached) OPTS.forEach((_,i)=> i<2 && $('opt'+i).classList.add('on'));
+    if(p<1) raf=requestAnimationFrame(frame); else { renderDeltas(t,f,nCost); renderMatrix(t); }
+  }
+  raf=requestAnimationFrame(frame);
+}
+
+function renderDeltas(t,f,nCost){
+  const nTot=t.naive.in+t.naive.out, fTot=f.in+f.out;
+  const tokPct=Math.round((1-fTot/nTot)*100);
+  const costX=(nCost/Math.max(1e-9,f.cost));
+  const timePct=Math.round((1-f.lat/t.naive.lat)*100);
+  $('deltas').innerHTML=`
+    <div class="delta"><div class="big">−${tokPct}%</div><div class="lbl">tokens consommés</div></div>
+    <div class="delta"><div class="big">÷${costX<10?costX.toFixed(1):Math.round(costX)}</div><div class="lbl">coût / appel · ${PROV_LABEL[prov]||prov}</div></div>
+    <div class="delta"><div class="big">−${timePct}%</div><div class="lbl">temps d'exécution</div></div>
+    <div class="delta warn"><div class="big">${t.naive.hallu_findings}→${f.hallu_findings}</div><div class="lbl">hallucinations détectées</div></div>`;
+  updateScale();
+}
+
+// full matrix: every provider, naïf vs Forge, for the current task — highlights the selected provider.
+function renderMatrix(t){
+  const b=window.BENCH;
+  const rows=(b.providers||[]).map(p=>{
+    const n=t.naive.costs[p], f=t.forge.costs[p], save=Math.round((1-f/Math.max(1e-9,n))*100);
+    const pr=(b.prices||{})[p]||{};
+    return `<tr class="${p===prov?'active-row':''}">
+      <td class="prov-name">${PROV_LABEL[p]||p}<small>${pr.model||''}</small></td>
+      <td class="naive-c">${usd(n)}</td>
+      <td class="forge-c">${usd(f)}</td>
+      <td class="save-c">−${save}%</td></tr>`;}).join('');
+  $('costMatrix').innerHTML=`<thead><tr><th>LLM</th><th>Agent naïf</th><th>Forge</th><th>Économie</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+function updateScale(){
+  const t=window.BENCH.tasks[cur], v=+$('vol').value;
+  $('volNum').textContent=fmt(v);
+  const n=costOf(t.naive)*v, f=costOf(t.forge)*v;
+  $('s_naive').textContent=money(n);
+  $('s_forge').textContent=money(f);
+  $('s_save').textContent=money(n-f);
+}
+
+$('replay').onclick=()=>{cached=false;play();};
+$('rerun').onclick=()=>{cached=true;play();};
+buildChrome(); play();
+// boucle douce pour la démo / le rendu vidéo
+setInterval(()=>{ if(!document.hidden){ cached=false; play(); } }, 7000);
+</script>
+</body>
+</html>

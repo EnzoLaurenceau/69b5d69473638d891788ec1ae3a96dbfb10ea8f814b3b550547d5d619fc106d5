@@ -1,0 +1,194 @@
+{
+  "seed": 20260721,
+  "gate": 0.97,
+  "corpus_size": 205,
+  "in_scope": {
+    "n": 184,
+    "correct": 184,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy_wilson_lb": 0.9795,
+    "tp": 81,
+    "tn": 103,
+    "fp": 0,
+    "fn": 0
+  },
+  "out_of_scope": {
+    "n": 21,
+    "correct": 5,
+    "accuracy": 0.2381,
+    "precision": 1.0,
+    "recall": 0.2,
+    "f1": 0.3333,
+    "accuracy_wilson_lb": 0.1063,
+    "tp": 4,
+    "tn": 1,
+    "fp": 0,
+    "fn": 16
+  },
+  "overall": {
+    "n": 205,
+    "correct": 189,
+    "accuracy": 0.922,
+    "precision": 1.0,
+    "recall": 0.8416,
+    "f1": 0.914,
+    "accuracy_wilson_lb": 0.877,
+    "tp": 85,
+    "tn": 104,
+    "fp": 0,
+    "fn": 16
+  },
+  "per_category": {
+    "error_masking": {
+      "n": 50,
+      "correct": 50,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy_wilson_lb": 0.9286,
+      "tp": 24,
+      "tn": 26,
+      "fp": 0,
+      "fn": 0
+    },
+    "negation": {
+      "n": 50,
+      "correct": 50,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy_wilson_lb": 0.9286,
+      "tp": 25,
+      "tn": 25,
+      "fp": 0,
+      "fn": 0
+    },
+    "numeric": {
+      "n": 62,
+      "correct": 62,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy_wilson_lb": 0.9417,
+      "tp": 32,
+      "tn": 30,
+      "fp": 0,
+      "fn": 0
+    },
+    "numeric_edge": {
+      "n": 22,
+      "correct": 22,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy_wilson_lb": 0.8513,
+      "tp": 0,
+      "tn": 22,
+      "fp": 0,
+      "fn": 0
+    },
+    "semantic": {
+      "n": 21,
+      "correct": 5,
+      "accuracy": 0.2381,
+      "precision": 1.0,
+      "recall": 0.2,
+      "f1": 0.3333,
+      "accuracy_wilson_lb": 0.1063,
+      "tp": 4,
+      "tn": 1,
+      "fp": 0,
+      "fn": 16
+    }
+  },
+  "mislabels": [
+    [
+      "FN",
+      "semantic_fab_0",
+      "The CEO of the company is Jane Doe."
+    ],
+    [
+      "FN",
+      "semantic_fab_1",
+      "The config lives at /etc/app/secret.yaml."
+    ],
+    [
+      "FN",
+      "semantic_fab_2",
+      "The outage was caused by a DNS misconfiguration."
+    ],
+    [
+      "FN",
+      "semantic_fab_3",
+      "The API returns results sorted by relevance."
+    ],
+    [
+      "FN",
+      "semantic_fab_5",
+      "The CEO of the company is Jane Doe."
+    ],
+    [
+      "FN",
+      "semantic_fab_6",
+      "The config lives at /etc/app/secret.yaml."
+    ],
+    [
+      "FN",
+      "semantic_fab_7",
+      "The outage was caused by a DNS misconfiguration."
+    ],
+    [
+      "FN",
+      "semantic_fab_8",
+      "The API returns results sorted by relevance."
+    ],
+    [
+      "FN",
+      "semantic_fab_10",
+      "The CEO of the company is Jane Doe."
+    ],
+    [
+      "FN",
+      "semantic_fab_11",
+      "The config lives at /etc/app/secret.yaml."
+    ],
+    [
+      "FN",
+      "semantic_fab_12",
+      "The outage was caused by a DNS misconfiguration."
+    ],
+    [
+      "FN",
+      "semantic_fab_13",
+      "The API returns results sorted by relevance."
+    ],
+    [
+      "FN",
+      "semantic_fab_15",
+      "The CEO of the company is Jane Doe."
+    ],
+    [
+      "FN",
+      "semantic_fab_16",
+      "The config lives at /etc/app/secret.yaml."
+    ],
+    [
+      "FN",
+      "semantic_fab_17",
+      "The outage was caused by a DNS misconfiguration."
+    ],
+    [
+      "FN",
+      "semantic_fab_18",
+      "The API returns results sorted by relevance."
+    ]
+  ],
+  "reliable_in_scope": true
+}

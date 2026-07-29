@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "skill": {
+    "id": "KB-SKILL-xxx",
+    "name": "string",
+    "prompt": "string",
+    "trigger_keywords": [
+      "list of strings"
+    ],
+    "performance": {
+      "avg_score": "float 0-10",
+      "uses": "int",
+      "last_used": "YYYY-MM-DD"
+    },
+    "mirofish_approval": {
+      "consensus": "float 0-1",
+      "approved_at": "YYYY-MM-DD",
+      "fallback_used": "bool"
+    },
+    "source_finding_id": "F-AGENT-xxx",
+    "tier": "FREE|HAIKU|SONNET",
+    "task_type": "string",
+    "status": "active|archived|draft"
+  }
+}

@@ -1,0 +1,474 @@
+{
+  "timestamp": "2026-07-29T04:19:05.424691",
+  "langsmith": {
+    "env_vars": {
+      "LANGSMITH_TRACING": "MISSING",
+      "LANGSMITH_API_KEY": "MISSING",
+      "LANGSMITH_ENDPOINT": "MISSING",
+      "LANGSMITH_PROJECT": "MISSING",
+      "XIAOMI_API_KEY": "MISSING"
+    },
+    "packages": {},
+    "connection": "OK",
+    "traces": [
+      {
+        "name": "StrOutputParser",
+        "type": "parser",
+        "status": "success"
+      },
+      {
+        "name": "ChatOpenAI",
+        "type": "llm",
+        "status": "success"
+      },
+      {
+        "name": "ChatPromptTemplate",
+        "type": "prompt",
+        "status": "success"
+      },
+      {
+        "name": "format_docs",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "SimpleKeywordRetriever",
+        "type": "retriever",
+        "status": "success"
+      },
+      {
+        "name": "RunnableLambda",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "RunnableSequence",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "RunnableParallel<context,question>",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "RunnableSequence",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "chatbot_conversation",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "StrOutputParser",
+        "type": "parser",
+        "status": "success"
+      },
+      {
+        "name": "ChatOpenAI",
+        "type": "llm",
+        "status": "success"
+      },
+      {
+        "name": "ChatPromptTemplate",
+        "type": "prompt",
+        "status": "success"
+      },
+      {
+        "name": "RunnableLambda",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "format_docs",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "SimpleKeywordRetriever",
+        "type": "retriever",
+        "status": "success"
+      },
+      {
+        "name": "RunnableSequence",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "RunnableParallel<context,question>",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "RunnableSequence",
+        "type": "chain",
+        "status": "success"
+      },
+      {
+        "name": "chatbot_conversation",
+        "type": "chain",
+        "status": "success"
+      }
+    ],
+    "datasets": [
+      {
+        "name": "La Forge - Qualité commerciale",
+        "description": "Exemples de questions/réponses commerciales pour La Forge"
+      }
+    ],
+    "trace_count": 20,
+    "dataset_count": 1
+  },
+  "rpg_kanban": {
+    "total": 49,
+    "done": 18,
+    "pending": 31,
+    "progress_pct": 36.7,
+    "by_epic": {
+      "E1": {
+        "done": 6,
+        "pending": 1,
+        "doing": 0,
+        "total": 7
+      },
+      "E10": {
+        "done": 0,
+        "pending": 3,
+        "doing": 0,
+        "total": 3
+      },
+      "E11": {
+        "done": 0,
+        "pending": 1,
+        "doing": 0,
+        "total": 1
+      },
+      "E2": {
+        "done": 6,
+        "pending": 0,
+        "doing": 0,
+        "total": 6
+      },
+      "E3": {
+        "done": 3,
+        "pending": 4,
+        "doing": 0,
+        "total": 7
+      },
+      "E4": {
+        "done": 1,
+        "pending": 4,
+        "doing": 0,
+        "total": 5
+      },
+      "E5": {
+        "done": 0,
+        "pending": 5,
+        "doing": 0,
+        "total": 5
+      },
+      "E6": {
+        "done": 2,
+        "pending": 2,
+        "doing": 0,
+        "total": 4
+      },
+      "E7": {
+        "done": 0,
+        "pending": 5,
+        "doing": 0,
+        "total": 5
+      },
+      "E8": {
+        "done": 0,
+        "pending": 3,
+        "doing": 0,
+        "total": 3
+      },
+      "E9": {
+        "done": 0,
+        "pending": 3,
+        "doing": 0,
+        "total": 3
+      }
+    },
+    "executable_now": [
+      {
+        "id": "E6-04",
+        "epic": "E6",
+        "name": "Alerte de dérive budget (seuil par sprint, coupe-circuit)",
+        "complexity": "S",
+        "effort_days": 1.0,
+        "depends_on": [
+          "E6-01"
+        ]
+      },
+      {
+        "id": "E1-07",
+        "epic": "E1",
+        "name": "Reprise projet multi-sessions : `resume_project()` qui rehydrate backlog + WIP +",
+        "complexity": "M",
+        "effort_days": 2.0,
+        "depends_on": [
+          "E1-01"
+        ]
+      },
+      {
+        "id": "E7-03",
+        "epic": "E7",
+        "name": "objets & loot tables",
+        "complexity": "M",
+        "effort_days": 2.0,
+        "depends_on": [
+          "E2-01"
+        ]
+      },
+      {
+        "id": "E9-02",
+        "epic": "E9",
+        "name": "gate `CONTRADICTS` bloquant sur le KG",
+        "complexity": "M",
+        "effort_days": 2.0,
+        "depends_on": [
+          "E2-01"
+        ]
+      },
+      {
+        "id": "E9-03",
+        "epic": "E9",
+        "name": "réutilisation de `neuro_symbolic_guard.py` + `hallucination_judge.py` sur le dom",
+        "complexity": "M",
+        "effort_days": 2.0,
+        "depends_on": [
+          "E2-01"
+        ]
+      },
+      {
+        "id": "E4-03",
+        "epic": "E4",
+        "name": "Pipeline SFX (banque catégorisée, variations, layering)",
+        "complexity": "M",
+        "effort_days": 3.0,
+        "depends_on": [
+          "E4-01"
+        ]
+      },
+      {
+        "id": "E6-03",
+        "epic": "E6",
+        "name": "Dashboard console : coût par epic, taux d'échec par agent, artefacts les plus ch",
+        "complexity": "M",
+        "effort_days": 3.0,
+        "depends_on": [
+          "E6-01",
+          "E1-06"
+        ]
+      },
+      {
+        "id": "E7-04",
+        "epic": "E7",
+        "name": "arbres de dialogues typés",
+        "complexity": "M",
+        "effort_days": 3.0,
+        "depends_on": [
+          "E2-01"
+        ]
+      },
+      {
+        "id": "E7-05",
+        "epic": "E7",
+        "name": "PNJ (fiche complète liée au KG)",
+        "complexity": "M",
+        "effort_days": 3.0,
+        "depends_on": [
+          "E2-01"
+        ]
+      },
+      {
+        "id": "E4-02",
+        "epic": "E4",
+        "name": "Pipeline musique `description → génération → validation → bouclage sans couture ",
+        "complexity": "H",
+        "effort_days": 4.0,
+        "depends_on": [
+          "E4-01"
+        ]
+      },
+      {
+        "id": "E5-01",
+        "epic": "E5",
+        "name": "Runner build moteur headless (Unity batchmode ou Godot `--headless`) + parsing d",
+        "complexity": "H",
+        "effort_days": 4.0,
+        "depends_on": []
+      },
+      {
+        "id": "E7-01",
+        "epic": "E7",
+        "name": "générateur de quêtes (grammaire + contraintes KG)",
+        "complexity": "M",
+        "effort_days": 4.0,
+        "depends_on": [
+          "E2-01"
+        ]
+      },
+      {
+        "id": "E7-02",
+        "epic": "E7",
+        "name": "villages/donjons",
+        "complexity": "M",
+        "effort_days": 4.0,
+        "depends_on": [
+          "E2-01"
+        ]
+      },
+      {
+        "id": "E9-01",
+        "epic": "E9",
+        "name": "agent cohérence narrative (lore, chronologie, relations, continuité)",
+        "complexity": "M",
+        "effort_days": 4.0,
+        "depends_on": [
+          "E2-01"
+        ]
+      },
+      {
+        "id": "E3-04",
+        "epic": "E3",
+        "name": "Pipeline `concept → gate validation → sprite/texture → 3D → rig → anim → export ",
+        "complexity": "H",
+        "effort_days": 5.0,
+        "depends_on": [
+          "E3-01",
+          "E3-03"
+        ]
+      },
+      {
+        "id": "E11-01",
+        "epic": "E11",
+        "name": "SHIP — bandes-annonces, Steam, succès, patch notes, i18n, doublage",
+        "complexity": "M",
+        "effort_days": 12.0,
+        "depends_on": []
+      }
+    ],
+    "blocked": [
+      {
+        "id": "E10-01",
+        "blocked_by": [
+          "E8-01"
+        ]
+      },
+      {
+        "id": "E10-02",
+        "blocked_by": [
+          "E8-01"
+        ]
+      },
+      {
+        "id": "E10-03",
+        "blocked_by": [
+          "E8-01"
+        ]
+      },
+      {
+        "id": "E3-05",
+        "blocked_by": [
+          "E3-04"
+        ]
+      },
+      {
+        "id": "E3-06",
+        "blocked_by": [
+          "E3-04"
+        ]
+      },
+      {
+        "id": "E3-07",
+        "blocked_by": [
+          "E3-04"
+        ]
+      },
+      {
+        "id": "E4-04",
+        "blocked_by": [
+          "E4-02"
+        ]
+      },
+      {
+        "id": "E4-05",
+        "blocked_by": [
+          "E4-02"
+        ]
+      },
+      {
+        "id": "E5-02",
+        "blocked_by": [
+          "E5-01"
+        ]
+      },
+      {
+        "id": "E5-03",
+        "blocked_by": [
+          "E5-01"
+        ]
+      },
+      {
+        "id": "E5-04",
+        "blocked_by": [
+          "E5-01",
+          "E8-01"
+        ]
+      },
+      {
+        "id": "E5-05",
+        "blocked_by": [
+          "E5-01"
+        ]
+      },
+      {
+        "id": "E8-01",
+        "blocked_by": [
+          "E7-01"
+        ]
+      },
+      {
+        "id": "E8-02",
+        "blocked_by": [
+          "E7-01"
+        ]
+      },
+      {
+        "id": "E8-03",
+        "blocked_by": [
+          "E7-01"
+        ]
+      }
+    ],
+    "total_remaining_effort_days": 58.0,
+    "recommended_order": [
+      "E6-04",
+      "E1-07",
+      "E7-03",
+      "E9-02",
+      "E9-03",
+      "E4-03",
+      "E6-03",
+      "E7-04",
+      "E7-05",
+      "E4-02",
+      "E5-01",
+      "E7-01",
+      "E7-02",
+      "E9-01",
+      "E3-04",
+      "E11-01"
+    ]
+  },
+  "forge_kanban_summary": {
+    "total": 24,
+    "done": 24
+  }
+}

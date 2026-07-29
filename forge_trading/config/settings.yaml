@@ -1,0 +1,83 @@
+# Configuration du système de trading Forge
+# Tous les paramètres centralisés ici
+
+# Capital et gestion du risque
+initial_capital: 50.0
+max_risk_per_trade: 0.02  # 2% du capital par trade
+max_daily_loss: 0.10      # 10% max perte quotidienne
+max_drawdown: 0.20        # 20% max drawdown total
+
+# Objectifs de performance
+min_win_rate: 0.51        # 51% minimum (seuil rentabilité)
+target_win_rate: 0.70     # 70% objectif initial
+min_profit_factor: 1.5    # Ratio gains/pertes minimum
+
+# Paramètres de stratégie
+default_strategy: micro_arb
+max_concurrent_trades: 3
+trade_cooldown_seconds: 60
+
+# Backtesting
+backtest_years: 10
+backtest_data_source: yfinance  # ou csv, api
+backtest_initial_capital: 50.0
+
+# Forex
+forex_pairs:
+  - EURUSD
+  - GBPUSD
+  - USDJPY
+  - AUDUSD
+  - USDCAD
+forex_leverage: 500
+forex_max_spread_pips: 2.0
+
+# Crypto
+crypto_pairs:
+  - WETH/USDC
+  - WBTC/USDC
+  - WETH/USDbC
+crypto_chains:
+  - base
+  - arbitrum
+crypto_max_gas_gwei: 50.0
+
+# Smart Contracts
+flash_loan_provider: aave_v3  # ou dydx
+min_profit_after_fees_bps: 5  # 0.05% minimum
+
+# Réflexion et apprentissage (Forge Integration)
+reflection_enabled: true
+reflection_after_each_trade: true
+lesson_generation_threshold: 10  # Générer leçon après 10 trades similaires
+pattern_detection_enabled: true
+
+# RPC Configuration
+base_rpc: https://mainnet.base.org
+arbitrum_rpc: https://arb1.arbitrum.io/rpc
+flashbots_rpc: https://rpc.flashbots.net
+
+# Logs
+log_level: INFO
+log_to_file: true
+log_to_console: true
+
+# WebSocket Configuration
+websocket:
+  forex_provider: oanda
+  crypto_chain: base
+  update_interval_ms: 100
+  reconnect_delay_seconds: 5
+
+# Stratégie Micro Arbitrage
+micro_arb:
+  gap_threshold: 0.002      # 0.2% de gap minimum
+  lookback_period: 20       # 20 périodes pour la moyenne
+  exit_at_mean: true        # Sortir à la moyenne
+  stop_loss_atr_mult: 2.0   # Stop loss = 2x ATR
+  take_profit_atr_mult: 3.0 # Take profit = 3x ATR
+  min_volume_percentile: 30 # Volume minimum (30ème percentile)
+  rsi_oversold: 30          # RSI survendu
+  rsi_overbought: 70        # RSI suracheté
+  require_confirmation: true
+  max_spread: 0.005         # Spread maximum 0.5%

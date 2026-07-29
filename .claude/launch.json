@@ -1,0 +1,53 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["C:\\Users\\Enzo\\Documents\\DASHBOARD\\backend\\dashboard_server.py"],
+      "port": 7420
+    },
+    {
+      "name": "le-taj",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "mvp_output/le-taj"],
+      "port": 8765
+    },
+    {
+      "name": "plasma-wars",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "mvp_output/plasma-wars"],
+      "port": 8123
+    },
+    {
+      "name": "forge-web-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "7778", "--directory", "09_WEB/static"],
+      "port": 7778
+    },
+    {
+      "name": "console",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "console", "run", "dev"],
+      "port": 5273
+    },
+    {
+      "name": "site_A",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8791", "--directory", "token_comparison_cafe_bastoche/site_A_sans_forge"],
+      "port": 8791
+    },
+    {
+      "name": "site_B",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8792", "--directory", "token_comparison_cafe_bastoche/site_B_avec_forge"],
+      "port": 8792
+    },
+    {
+      "name": "site_B_forge_live",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8793", "--directory", "token_comparison_cafe_bastoche/site_B_forge_live"],
+      "port": 8793
+    }
+  ]
+}

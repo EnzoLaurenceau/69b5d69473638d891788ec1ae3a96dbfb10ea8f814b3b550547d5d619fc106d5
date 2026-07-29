@@ -1,0 +1,38 @@
+Analyse ces 4 issues GitHub. Pour chacune :
+1. Catégorie (bug/feature/doc/perf)
+2. Priorité (critical/high/medium/low)
+3. Diagnostic court (1 ligne)
+4. Solution proposée (1 ligne)
+
+Format JSON de sortie.
+
+---
+ISSUE #1:
+Title: "Avatar image not loading on dark mode"
+Body: "On dark mode, user avatars show as blank. Works on light mode."
+Assignee: @frontend-team
+
+ISSUE #2:
+Title: "Webhook timeouts with 10k+ subscribers"
+Body: "Webhook delivery fails when list > 10k. Hypothesis: batch processing too slow."
+Assignee: @backend-team
+
+ISSUE #3:
+Title: "Add TypeScript support to CLI"
+Body: "Users request TS support for custom scripts"
+Assignee: unassigned
+
+ISSUE #4:
+Title: "Docs out of sync with v2.0 API"
+Body: "Examples in tutorial still use v1.x endpoints"
+Assignee: @docs-team
+
+---
+Réponds en JSON structuré avec ces champs par issue:
+{
+  "issue_id": 1,
+  "category": "...",
+  "priority": "...",
+  "diagnosis": "...",
+  "solution": "..."
+}

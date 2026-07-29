@@ -1,0 +1,15 @@
+# docker/prometheus.yml — scrape des métriques d'ops de la Forge (Phase 4, observabilité).
+# `/metrics` n'expose que des gauges agrégées (cache, tokens économisés, CPU/RAM) — aucune
+# donnée tenant. Prometheus joint l'API sur le RÉSEAU INTERNE du compose (jamais l'ingress).
+
+global:
+  scrape_interval: 30s
+  evaluation_interval: 30s
+
+scrape_configs:
+  - job_name: forge-api
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["api:7777"]
+        labels:
+          service: forge-api

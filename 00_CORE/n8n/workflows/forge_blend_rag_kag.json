@@ -1,0 +1,216 @@
+{
+  "name": "Forge — Blend RAG+KAG+Agentic",
+  "nodes": [
+    {
+      "id": "webhook_in",
+      "name": "Webhook (question)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "path": "forge-blend",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "webhookId": "6c5471f5-1b73-4c27-98af-b9a0d3459363"
+    },
+    {
+      "id": "blend",
+      "name": "Blend RAG+KAG (gateway)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7788/blend",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ query: $json.body.query, use_llm: true, use_judge: true }) }}"
+      }
+    },
+    {
+      "id": "if_conflicts",
+      "name": "IF conflits RAG↔KAG",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "loose"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "leftValue": "={{ $json.audit.contradicted }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "answer",
+      "name": "Réponse LLM (contexte groundé)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7788/llm",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ prompt: 'Réponds à la question en te basant STRICTEMENT sur le contexte fourni. Signale explicitement toute incertitude.\\n\\nQUESTION: ' + $('Webhook (question)').item.json.body.query + '\\n\\nCONTEXTE:\\n' + $('Blend RAG+KAG (gateway)').item.json.context, tier: 'SONNET', workflow: 'n8n:blend_rag_kag', agent: 'answer' }) }}"
+      }
+    },
+    {
+      "id": "flag_conflicts",
+      "name": "Marquer conflits (audit)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        660,
+        -120
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c1",
+              "name": "conflict_note",
+              "type": "string",
+              "value": "={{ '⚠️ ' + $json.audit.contradicted + ' fait(s) KAG contredit(s) par l\\'évidence RAG — voir audit.' }}"
+            }
+          ]
+        },
+        "includeOtherFields": true
+      }
+    },
+    {
+      "id": "feedback",
+      "name": "Feedback graphe (agentique)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7788/feedback",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ query: $('Webhook (question)').item.json.body.query, answer: $json.text }) }}"
+      }
+    },
+    {
+      "id": "respond",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1100,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ answer: $('Réponse LLM (contexte groundé)').item.json.text, conflicts: $('Blend RAG+KAG (gateway)').item.json.conflicts, audit: $('Blend RAG+KAG (gateway)').item.json.audit }) }}"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook (question)": {
+      "main": [
+        [
+          {
+            "node": "Blend RAG+KAG (gateway)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Blend RAG+KAG (gateway)": {
+      "main": [
+        [
+          {
+            "node": "IF conflits RAG↔KAG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF conflits RAG↔KAG": {
+      "main": [
+        [
+          {
+            "node": "Marquer conflits (audit)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Réponse LLM (contexte groundé)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marquer conflits (audit)": {
+      "main": [
+        [
+          {
+            "node": "Réponse LLM (contexte groundé)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Réponse LLM (contexte groundé)": {
+      "main": [
+        [
+          {
+            "node": "Feedback graphe (agentique)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Feedback graphe (agentique)": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

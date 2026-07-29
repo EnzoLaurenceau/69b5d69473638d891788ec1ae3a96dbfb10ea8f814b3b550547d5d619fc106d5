@@ -1,0 +1,23 @@
+# Garde l'image API légère et reproductible : on n'y copie ni l'état runtime, ni les
+# dépendances de build front, ni les sous-modules volumineux non nécessaires au serveur.
+.git
+.gitnexus
+**/__pycache__
+**/*.pyc
+.env
+.env.*
+05_STATE/
+08_LOGS/
+console/node_modules
+console/dist
+node_modules
+07_KNOWLEDGE_BASE
+09_ARCHIVE
+cvelistV5-main
+vault
+nexus
+AsyncHerald
+00_CORE/rtk/target
+*.log
+*.tsbuildinfo
+.pytest_cache

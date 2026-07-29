@@ -1,0 +1,78 @@
+/* La Forge — colour tokens.
+   Rule: colour always carries meaning (status/brand), never decoration.
+   No gradients, no glow/neon. Surfaces are always flat. */
+:root {
+  /* ── brand accent (coral) ── */
+  --forge-coral-50:  #FAECE7;
+  --forge-coral-400: #D85A30; /* signature: logo, primary CTA, brand accents */
+  --forge-coral-900: #4A1B0C; /* text on light coral */
+
+  /* ── success / active (teal) ── */
+  --forge-teal-50:  #E1F5EE;
+  --forge-teal-400: #1D9E75;
+  --forge-teal-900: #04342C;
+
+  /* ── attention / budget (amber) ── */
+  --forge-amber-50:  #FAEEDA;
+  --forge-amber-400: #EF9F27;
+  --forge-amber-900: #412402;
+
+  /* ── information / LLM tier (blue) ── */
+  --forge-blue-50:  #E6F1FB;
+  --forge-blue-400: #378ADD;
+  --forge-blue-900: #042C53;
+
+  /* ── neutral / structure (gray) ── */
+  --forge-gray-50:  #F1EFE8;
+  --forge-gray-400: #888780;
+  --forge-gray-900: #2C2C2A;
+
+  /* ── surfaces ── */
+  --forge-bg-dark:       #16140F; /* default app background */
+  --forge-surface-dark:  #201D17; /* cards in dark mode */
+  --forge-bg-light:      #FFFFFF;
+  --forge-surface-light: #F7F6F3;
+
+  /* semantic error (distinct from coral brand accent) */
+  --forge-red-50:  #FBE9E7;
+  --forge-red-400: #D4483B;
+  --forge-red-900: #4A130D;
+
+  /* ── semantic aliases · dark-first (default) ── */
+  --bg:            var(--forge-bg-dark);
+  --surface:       var(--forge-surface-dark);
+  --surface-2:     #262218;
+  --border:        rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.14);
+
+  --text-primary:   #F1EFE8;
+  --text-secondary: #A8A69C;
+  --text-muted:     #6E6C64;
+  --text-on-accent: #FFFFFF;
+
+  --accent:       var(--forge-coral-400);
+  --accent-hover: #C24E28; /* coral-400 darkened ~10% for hover */
+
+  --status-active:  var(--forge-teal-400);
+  --status-idle:    var(--forge-gray-400);
+  --status-warn:    var(--forge-amber-400);
+  --status-info:    var(--forge-blue-400);
+  --status-error:   var(--forge-red-400);
+
+  --link:       var(--forge-blue-400);
+  --link-hover: #5AA0E6;
+}
+
+/* ── light theme scope (office use) ── */
+[data-theme="light"] {
+  --bg:            var(--forge-bg-light);
+  --surface:       var(--forge-surface-light);
+  --surface-2:     #EEECE6;
+  --border:        rgba(0,0,0,0.10);
+  --border-strong: rgba(0,0,0,0.16);
+
+  --text-primary:   #2C2C2A;
+  --text-secondary: #5C5B54;
+  --text-muted:     #888780;
+  --text-on-accent: #FFFFFF;
+}

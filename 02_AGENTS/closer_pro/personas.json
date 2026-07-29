@@ -1,0 +1,34 @@
+{
+  "agent": "closer_pro",
+  "jury_size": 3,
+  "personas": [
+    {
+      "id": "psychologue_vente",
+      "role": "Expert comportement achat",
+      "weight": 1.3,
+      "challenge": "Ce script déclenche confiance ou résistance ?"
+    },
+    {
+      "id": "avocat_diable",
+      "role": "Prospect sceptique",
+      "weight": 1.1,
+      "challenge": "Quelle objection non-dite ce script ignore-t-il ?"
+    },
+    {
+      "id": "top_closer",
+      "role": "Closer 10 ans high-ticket",
+      "weight": 1.2,
+      "challenge": "Je signerais avec ce pitch ?"
+    }
+  ],
+  "consensus_min": 0.65,
+  "kill_below": 7.0,
+  "_meta": {
+    "prefix": "AGE",
+    "domain": "frg",
+    "type": "agent",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:41.842247",
+    "original_name": "personas.json"
+  }
+}

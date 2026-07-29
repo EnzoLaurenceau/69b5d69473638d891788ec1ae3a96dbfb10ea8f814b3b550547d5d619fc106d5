@@ -1,0 +1,402 @@
+[
+  {
+    "id": "devildev",
+    "name": "devildev",
+    "owner": "lak7",
+    "url": "https://github.com/lak7/devildev",
+    "description": "Blueprint engine before execution validation",
+    "category": "architecture_patterns",
+    "status": "done",
+    "skill": "saas-scaffold"
+  },
+  {
+    "id": "pxpipe",
+    "name": "pxpipe",
+    "owner": "teamchong",
+    "url": "https://github.com/teamchong/pxpipe",
+    "description": "High performance token cutter / pre-processing pipeline",
+    "category": "performance",
+    "status": "done",
+    "skill": "prompt-engineering"
+  },
+  {
+    "id": "Scrapling",
+    "name": "Scrapling",
+    "owner": "D4Vinci",
+    "url": "https://github.com/D4Vinci/Scrapling",
+    "description": "Undetectable fast web scraping engine",
+    "category": "scraping",
+    "status": "done",
+    "skill": "web-scraping-toolkit"
+  },
+  {
+    "id": "Decepticon",
+    "name": "Decepticon",
+    "owner": "PurpleAILAB",
+    "url": "https://github.com/PurpleAILAB/Decepticon",
+    "description": "Agentic cybersecurity / pentesting framework",
+    "category": "security",
+    "status": "done",
+    "skill": "pentest-toolkit"
+  },
+  {
+    "id": "GitNexus",
+    "name": "GitNexus",
+    "owner": "abhigyanpatwari",
+    "url": "https://github.com/abhigyanpatwari/GitNexus",
+    "description": "Codebase indexing and call graph analysis",
+    "category": "code_intelligence",
+    "status": "done",
+    "skill": "rag-patterns"
+  },
+  {
+    "id": "agent-skills",
+    "name": "agent-skills",
+    "owner": "addyosmani",
+    "url": "https://github.com/addyosmani/agent-skills",
+    "description": "Reusable skills and tools registry for LLMs",
+    "category": "architecture_patterns",
+    "status": "done",
+    "skill": "sdlc-governance"
+  },
+  {
+    "id": "mcpify",
+    "name": "mcpify",
+    "owner": "camel-ai",
+    "url": "https://github.com/camel-ai/mcpify",
+    "description": "Automated Model Context Protocol generation",
+    "category": "mcp_integrations",
+    "status": "done",
+    "skill": "agent-orchestration"
+  },
+  {
+    "id": "SecLists",
+    "name": "SecLists",
+    "owner": "danielmiessler",
+    "url": "https://github.com/danielmiessler/SecLists",
+    "description": "Security wordlists, patterns, and payloads",
+    "category": "security",
+    "status": "done",
+    "skill": "pentest-toolkit"
+  },
+  {
+    "id": "fuzzdb",
+    "name": "fuzzdb",
+    "owner": "fuzzdb-project",
+    "url": "https://github.com/fuzzdb-project/fuzzdb",
+    "description": "Fuzzing patterns and post-exploitation databases",
+    "category": "security",
+    "status": "done",
+    "skill": "pentest-toolkit"
+  },
+  {
+    "id": "PayloadsAllTheThings",
+    "name": "PayloadsAllTheThings",
+    "owner": "swisskyrepo",
+    "url": "https://github.com/swisskyrepo/PayloadsAllTheThings",
+    "description": "Exploitation payloads, cheatsheets and methodologies",
+    "category": "security",
+    "status": "done",
+    "skill": "pentest-toolkit"
+  },
+  {
+    "id": "browser-use",
+    "name": "browser-use",
+    "owner": "browser-use",
+    "url": "https://github.com/browser-use/browser-use",
+    "description": "Autonomous browser agent for web interactions",
+    "category": "scraping",
+    "status": "done",
+    "skill": "web-scraping-toolkit"
+  },
+  {
+    "id": "cal",
+    "name": "cal",
+    "owner": "calcom",
+    "url": "https://github.com/calcom/cal",
+    "description": "Scheduling infrastructure for teams",
+    "category": "scaffold",
+    "status": "done",
+    "skill": "saas-scaffold"
+  },
+  {
+    "id": "lmcache",
+    "name": "lmcache",
+    "owner": "lmcache",
+    "url": "https://github.com/lmcache/lmcache",
+    "description": "Persistent KV cache sharing for LLMs",
+    "category": "performance",
+    "status": "done",
+    "skill": "rag-patterns"
+  },
+  {
+    "id": "awesome-NeRF-and-3DGS-SLAM",
+    "name": "awesome-NeRF-and-3DGS-SLAM",
+    "owner": "3D-Vision-World",
+    "url": "https://github.com/3D-Vision-World/awesome-NeRF-and-3DGS-SLAM",
+    "description": "Awesome SLAM algorithms list",
+    "category": "data_visualization",
+    "status": "done",
+    "skill": "infographic-builder"
+  },
+  {
+    "id": "rules",
+    "name": "rules",
+    "owner": "Yara-Rules",
+    "url": "https://github.com/Yara-Rules/rules",
+    "description": "Yara rules database for malware detection",
+    "category": "security",
+    "status": "done",
+    "skill": "pentest-toolkit"
+  },
+  {
+    "id": "fluentui",
+    "name": "fluentui",
+    "owner": "microsoft",
+    "url": "https://github.com/microsoft/fluentui",
+    "description": "Microsoft design system",
+    "category": "design",
+    "status": "done",
+    "skill": "design-systems-reference"
+  },
+  {
+    "id": "carbon",
+    "name": "carbon",
+    "owner": "carbon-design-system",
+    "url": "https://github.com/carbon-design-system/carbon",
+    "description": "IBM design system components",
+    "category": "design",
+    "status": "done",
+    "skill": "design-systems-reference"
+  },
+  {
+    "id": "material-web",
+    "name": "material-web",
+    "owner": "material-components",
+    "url": "https://github.com/material-components/material-web",
+    "description": "Google material design components",
+    "category": "design",
+    "status": "done",
+    "skill": "design-systems-reference"
+  },
+  {
+    "id": "shadcn-ui",
+    "name": "ui",
+    "owner": "shadcn-ui",
+    "url": "https://github.com/shadcn-ui/ui",
+    "description": "Re-usable components built with Radix UI",
+    "category": "design",
+    "status": "done",
+    "skill": "design-systems-reference"
+  },
+  {
+    "id": "themes",
+    "name": "themes",
+    "owner": "radix-ui",
+    "url": "https://github.com/radix-ui/themes",
+    "description": "Radix UI theme design system",
+    "category": "design",
+    "status": "done",
+    "skill": "design-systems-reference"
+  },
+  {
+    "id": "Awesome-RAG",
+    "name": "Awesome-RAG",
+    "owner": "Danielskry",
+    "url": "https://github.com/Danielskry/Awesome-RAG",
+    "description": "Awesome Retrieval-Augmented Generation list",
+    "category": "architecture_patterns",
+    "status": "done",
+    "skill": "rag-patterns"
+  },
+  {
+    "id": "rag-anything",
+    "name": "rag-anything",
+    "owner": "hkuds",
+    "url": "https://github.com/hkuds/rag-anything",
+    "description": "Multi-format retrieval augmented generation",
+    "category": "architecture_patterns",
+    "status": "done",
+    "skill": "rag-patterns"
+  },
+  {
+    "id": "MoneyScope",
+    "name": "MoneyScope",
+    "owner": "obheda12",
+    "url": "https://github.com/obheda12/MoneyScope",
+    "description": "SaaS Billing and analytics engine",
+    "category": "scaffold",
+    "status": "done",
+    "skill": "saas-scaffold"
+  },
+  {
+    "id": "cashclaw",
+    "name": "cashclaw",
+    "owner": "ertugrulakben",
+    "url": "https://github.com/ertugrulakben/cashclaw",
+    "description": "Lead generation / scraping pipeline",
+    "category": "scraping",
+    "status": "done",
+    "skill": "web-scraping-toolkit"
+  },
+  {
+    "id": "ponytail",
+    "name": "ponytail",
+    "owner": "DietrichGebert",
+    "url": "https://github.com/DietrichGebert/ponytail",
+    "description": "Real-time state and token monitoring engine",
+    "category": "performance",
+    "status": "done",
+    "skill": "prompt-engineering"
+  },
+  {
+    "id": "awesome-llm-apps",
+    "name": "awesome-llm-apps",
+    "owner": "Shubhamsaboo",
+    "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+    "description": "Awesome AI/LLM applications scaffolding",
+    "category": "scaffold",
+    "status": "done",
+    "skill": "saas-scaffold"
+  },
+  {
+    "id": "gemini-cli",
+    "name": "gemini-cli",
+    "owner": "google-gemini",
+    "url": "https://github.com/google-gemini/gemini-cli",
+    "description": "Command line interface for Gemini API",
+    "category": "mcp_integrations",
+    "status": "done",
+    "skill": "prompt-engineering"
+  },
+  {
+    "id": "analytics",
+    "name": "analytics",
+    "owner": "plausible",
+    "url": "https://github.com/plausible/analytics",
+    "description": "Simple, open-source web analytics",
+    "category": "performance",
+    "status": "done",
+    "skill": "saas-scaffold"
+  },
+  {
+    "id": "Hob0Rules",
+    "name": "Hob0Rules",
+    "owner": "praetorian-inc",
+    "url": "https://github.com/praetorian-inc/Hob0Rules",
+    "description": "Hashcat password cracking rules",
+    "category": "security",
+    "status": "done",
+    "skill": "pentest-toolkit"
+  },
+  {
+    "id": "brand-css",
+    "name": "brand",
+    "owner": "primer",
+    "url": "https://github.com/primer/brand",
+    "description": "GitHub design system brand guidelines",
+    "category": "design",
+    "status": "done",
+    "skill": "design-systems-reference"
+  },
+  {
+    "id": "fontaine",
+    "name": "fontaine",
+    "owner": "unjs",
+    "url": "https://github.com/unjs/fontaine",
+    "description": "Automatic font fallback sizing generator",
+    "category": "design",
+    "status": "done",
+    "skill": "color-typography-guide"
+  },
+  {
+    "id": "govuk-frontend",
+    "name": "govuk-frontend",
+    "owner": "alphagov",
+    "url": "https://github.com/alphagov/govuk-frontend",
+    "description": "UK Government frontend components",
+    "category": "design",
+    "status": "done",
+    "skill": "design-systems-reference"
+  },
+  {
+    "id": "awesome-public-datasets",
+    "name": "awesome-public-datasets",
+    "owner": "awesomedata",
+    "url": "https://github.com/awesomedata/awesome-public-datasets",
+    "description": "Topic-centric public data sources list",
+    "category": "architecture_patterns",
+    "status": "done",
+    "skill": "public-apis"
+  },
+  {
+    "id": "android-reports-and-resources",
+    "name": "android-reports-and-resources",
+    "owner": "b3nac",
+    "url": "https://github.com/b3nac/android-reports-and-resources",
+    "description": "Android security reporting and templates",
+    "category": "security",
+    "status": "done",
+    "skill": "pentest-toolkit"
+  },
+  {
+    "id": "no-mistakes",
+    "name": "no-mistakes",
+    "owner": "kunchenguid",
+    "url": "https://github.com/kunchenguid/no-mistakes",
+    "description": "Code verification and sanity checks",
+    "category": "architecture_patterns",
+    "status": "done",
+    "skill": "sdlc-governance"
+  },
+  {
+    "id": "nebius-partner-cookbook",
+    "name": "nebius-partner-cookbook",
+    "owner": "nebius",
+    "url": "https://github.com/nebius/nebius-partner-cookbook",
+    "description": "Nebius cloud deployment recipes",
+    "category": "scaffold",
+    "status": "done",
+    "skill": "saas-scaffold"
+  },
+  {
+    "id": "prompt-master",
+    "name": "prompt-master",
+    "owner": "nidhinjs",
+    "url": "https://github.com/nidhinjs/prompt-master",
+    "description": "Prompt optimization and engineering framework",
+    "category": "architecture_patterns",
+    "status": "done",
+    "skill": "prompt-engineering"
+  },
+  {
+    "id": "public-apis",
+    "name": "public-apis",
+    "owner": "public-apis",
+    "url": "https://github.com/public-apis/public-apis",
+    "description": "A collective list of free APIs for use in software development",
+    "category": "architecture_patterns",
+    "status": "done",
+    "skill": "public-apis"
+  },
+  {
+    "id": "seraui",
+    "name": "seraui",
+    "owner": "seraui",
+    "url": "https://github.com/seraui/seraui",
+    "description": "Sleek and premium dark mode React UI toolkit",
+    "category": "design",
+    "status": "done",
+    "skill": "design-systems-reference"
+  },
+  {
+    "id": "uswds",
+    "name": "uswds",
+    "owner": "uswds",
+    "url": "https://github.com/uswds/uswds",
+    "description": "United States Web Design System components",
+    "category": "design",
+    "status": "done",
+    "skill": "design-systems-reference"
+  }
+]

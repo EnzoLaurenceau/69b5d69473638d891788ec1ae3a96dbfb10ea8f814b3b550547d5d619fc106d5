@@ -1,0 +1,5 @@
+/* La Forge webfonts — Inter (UI) + JetBrains Mono (code/logs/ids).
+   Both are the fonts named in the brand spec and are open-source.
+   Served from Google Fonts CDN; swap the @import for local @font-face
+   if you need offline binaries. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');

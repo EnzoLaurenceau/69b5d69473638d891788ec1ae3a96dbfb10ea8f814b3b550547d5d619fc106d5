@@ -1,0 +1,42 @@
+{
+  "id": "SKL_security_audit_effectuer_audit_scurit_v1",
+  "name": "Effectuer_Audit_S�curit�",
+  "prompt": "Pour effectuer un audit de s�curit� de la Forge avec Herald et corriger les vuln�rabilit�s trouv�es sans impacter le fonctionnement de la Forge, voici les �tapes � suivre :\n\n### �tape 1 : Initialiser l'audit\n```python\nimport herald\n\n# Charger la topologie et la configuration compl�tes du syst�me via Herald\nherald.load_system()\n```\n\n### �tape 2 : Analyse statique\n```python\n# Ex�cuter l'analyse de code et v�rifier les d�pendances pour d�tecter les biblioth�ques non s�curis�es, les secrets cod�s en",
+  "trigger_keywords": [
+    "herald",
+    "audit",
+    "forge",
+    "�tape",
+    "python",
+    "analyse",
+    "effectuer",
+    "s�curit�",
+    "avec",
+    "corriger"
+  ],
+  "performance": {
+    "avg_score": 8.0,
+    "uses": 0,
+    "last_used": "2026-05-30"
+  },
+  "mirofish_approval": {
+    "consensus": 8.333333333333334,
+    "approved_at": "2026-05-30",
+    "fallback_used": false
+  },
+  "source_finding_id": "F-SENIOR_SECURITY_AUDITOR-001-001",
+  "source_agent": "Senior_Security_Auditor",
+  "tier": "HAIKU",
+  "task_type": "senior_security_auditor",
+  "status": "active",
+  "created_at": "2026-05-30",
+  "naming_version": "v1",
+  "_meta": {
+    "prefix": "SKI",
+    "domain": "gen",
+    "type": "skill",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:40.732223",
+    "original_name": "SKL_security_audit_effectuer_audit_scurit_v1.json"
+  }
+}

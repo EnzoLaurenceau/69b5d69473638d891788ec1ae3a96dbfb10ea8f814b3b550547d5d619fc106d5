@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Forge V6 — Cognitive Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#08090a;--panel:#0f1011;--surface:#191a1b;--border:rgba(255,255,255,0.06);--border-h:rgba(255,255,255,0.1);--t1:#f7f8f8;--t2:#d0d6e0;--t3:#8a8f98;--t4:#62666d;--accent:#c8651b;--accent-g:#e8853b;--green:#10b981;--red:#ef4444;--blue:#3b82f6;--purple:#8b5cf6;--yellow:#eab308;--cyan:#06b6d4;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Inter',system-ui,sans-serif}
+html,body{height:100%;background:var(--bg);color:var(--t1);font-family:var(--sans);font-size:14px;-webkit-font-smoothing:antialiased}
+.shell{display:flex;flex-direction:column;height:100vh}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:48px;background:var(--panel);border-bottom:1px solid var(--border);flex-shrink:0}
+.topbar h1{font-size:14px;font-weight:600;letter-spacing:-0.3px}
+.topbar h1 span{color:var(--accent);margin-right:6px}
+.tbr{display:flex;align-items:center;gap:20px;font-size:12px;color:var(--t3);font-family:var(--mono)}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px}
+.dot.on{background:var(--green);box-shadow:0 0 6px var(--green)}
+.m b{color:var(--t1);font-weight:500}
+.nav{display:flex;background:var(--panel);border-bottom:1px solid var(--border);padding:0 24px;flex-shrink:0}
+.nav button{background:none;border:none;color:var(--t3);padding:10px 16px;cursor:pointer;font:500 12px var(--sans);letter-spacing:0.2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.nav button:hover{color:var(--t2)}
+.nav button.on{color:var(--accent);border-bottom-color:var(--accent)}
+.main{flex:1;overflow-y:auto;padding:20px 24px}
+.cards{display:grid;gap:12px;margin-bottom:16px}
+.c4{grid-template-columns:repeat(4,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c2{grid-template-columns:1fr 1fr}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px 18px;transition:border-color .15s}
+.card:hover{border-color:var(--border-h)}
+.cl{font-size:11px;font-weight:500;color:var(--t4);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px}
+.cv{font:600 28px var(--mono);line-height:1}
+.cv.g{color:var(--green)}.cv.r{color:var(--red)}.cv.b{color:var(--blue)}.cv.o{color:var(--accent-g)}.cv.p{color:var(--purple)}.cv.y{color:var(--yellow)}
+.cs{font-size:12px;color:var(--t3);margin-top:6px}
+.gauges{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px}
+.gauge{text-align:center;padding:16px 8px;background:var(--panel);border:1px solid var(--border);border-radius:8px}
+.gauge canvas{display:block;margin:0 auto 8px}
+.gn{font:500 10px var(--sans);color:var(--t4);text-transform:uppercase;letter-spacing:0.8px}
+.gv{font:600 18px var(--mono);margin-top:2px}
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{text-align:left;padding:8px 10px;color:var(--t4);font-weight:500;font-size:10px;text-transform:uppercase;letter-spacing:0.8px;border-bottom:1px solid var(--border)}
+.tbl td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--t2)}
+.tbl tr:hover td{background:rgba(255,255,255,0.015)}
+.tbl .mo{font-family:var(--mono);font-size:11px}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font:500 10px var(--mono);letter-spacing:0.3px}
+.badge.g{background:rgba(16,185,129,.12);color:var(--green)}
+.badge.r{background:rgba(239,68,68,.12);color:var(--red)}
+.badge.y{background:rgba(234,179,8,.12);color:var(--yellow)}
+.badge.b{background:rgba(59,130,246,.12);color:var(--blue)}
+.badge.o{background:rgba(200,101,27,.12);color:var(--accent-g)}
+.badge.p{background:rgba(139,92,246,.12);color:var(--purple)}
+.badge.gr{background:rgba(255,255,255,.05);color:var(--t3)}
+.cv-wrap{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.cv-wrap canvas{display:block;width:100%}
+.cvl{position:absolute;top:10px;left:14px;font:500 11px var(--sans);color:var(--t4);text-transform:uppercase;letter-spacing:0.8px}
+.elog{max-height:420px;overflow-y:auto}
+.evt{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;align-items:baseline}
+.evt .tm{color:var(--t4);font:400 11px var(--mono);min-width:70px}
+.evt .src{color:var(--t3);min-width:80px;font:400 11px var(--mono)}
+.evt .dt{color:var(--t4);font:400 11px var(--mono);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.p{display:none}.p.on{display:block}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
+.st{font:500 11px var(--sans);color:var(--t4);text-transform:uppercase;letter-spacing:1px;margin:20px 0 10px}
+.pc{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:8px}
+.pc .l{display:flex;align-items:center;gap:12px}
+.pc .nm{font:500 13px var(--mono);color:var(--t1)}
+.pc .mt{font:400 11px var(--mono);color:var(--t4)}
+.pc .sv{font:500 12px var(--mono);color:var(--green)}
+.etf{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:16px;font:400 13px var(--mono);color:var(--t2);line-height:1.8}
+.etf b{color:var(--accent-g);font-weight:500}
+.etf .d{color:var(--t4)}
+/* ── Chat tab ── */
+.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 130px);gap:12px}
+.chat-toolbar{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.chat-toolbar select{background:var(--surface);border:1px solid var(--border);color:var(--t1);padding:6px 10px;border-radius:6px;font:500 12px var(--mono);cursor:pointer}
+.chat-toolbar select:focus{outline:none;border-color:var(--accent)}
+.chat-history{flex:1;overflow-y:auto;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;display:flex;flex-direction:column;gap:12px;min-height:0}
+.chat-msg{display:flex;flex-direction:column;gap:3px}
+.chat-msg.user .bubble{background:rgba(200,101,27,0.12);border:1px solid rgba(200,101,27,0.25);border-radius:8px 8px 2px 8px;padding:10px 14px;align-self:flex-end;max-width:80%}
+.chat-msg.bot .bubble{background:var(--surface);border:1px solid var(--border);border-radius:2px 8px 8px 8px;padding:10px 14px;max-width:90%;white-space:pre-wrap;line-height:1.6;font-size:13px}
+.chat-msg .meta{font:400 10px var(--mono);color:var(--t4);display:flex;gap:10px}
+.chat-msg.user .meta{justify-content:flex-end}
+.chat-input-row{display:flex;gap:8px;flex-shrink:0}
+.chat-input-row textarea{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--t1);padding:10px 14px;border-radius:8px;font:400 13px var(--sans);resize:none;height:72px;line-height:1.5}
+.chat-input-row textarea:focus{outline:none;border-color:var(--accent)}
+.chat-input-row button{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:0 20px;font:600 13px var(--sans);cursor:pointer;transition:background .15s}
+.chat-input-row button:hover{background:var(--accent-g)}
+.chat-input-row button:disabled{opacity:0.4;cursor:default}
+.chat-footer{font:400 11px var(--mono);color:var(--t4);flex-shrink:0}
+/* ── Live tab ── */
+.lv-hero{display:flex;gap:16px;margin-bottom:16px;align-items:stretch}
+.lv-task{flex:1;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.lv-task .task-name{font:600 18px var(--mono);color:var(--accent-g);margin-top:4px;word-break:break-all}
+.lv-counters{display:grid;grid-template-rows:1fr 1fr;gap:12px;min-width:200px}
+.lv-bar-wrap{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.lv-bar-track{background:var(--surface);border-radius:4px;height:8px;margin-top:8px;overflow:hidden}
+.lv-bar-fill{height:100%;background:var(--accent);border-radius:4px;transition:width .4s ease;width:0%}
+.lv-bar-label{font:400 11px var(--mono);color:var(--t3);margin-top:6px}
+.node-active{animation:pulse-node 1.4s ease-in-out infinite}
+@keyframes pulse-node{0%,100%{opacity:1}50%{opacity:.6}}
+</style>
+</head>
+<body>
+<div class="shell">
+<div class="topbar">
+  <h1><span>&#9670;</span>FORGE V6</h1>
+  <div class="tbr">
+    <span><span class="dot on" id="sD"></span><span id="sT">Connected</span></span>
+    <span class="m"><b id="mA">-</b> agents</span>
+    <span class="m"><b id="mT">-</b> tools</span>
+    <span class="m"><b id="mE">-</b> exp</span>
+    <span id="mC"></span>
+  </div>
+</div>
+<div class="nav" id="nav">
+  <button class="on" onclick="go('overview')">Overview</button>
+  <button onclick="go('workflow')">Workflow</button>
+  <button onclick="go('tokens')">Token Cost</button>
+  <button onclick="go('mcp')">MCP Optimizer</button>
+  <button onclick="go('agents')">Agents</button>
+  <button onclick="go('meta')">Alter Strategique</button>
+  <button onclick="go('events')">Events</button>
+  <button onclick="go('live')">&#9679; Live</button>
+  <button onclick="go('chat')">&#9998; Chat</button>
+</div>
+<div class="main">
+
+<div class="p on" id="p-overview">
+  <div class="cards c4">
+    <div class="card"><div class="cl">Agents</div><div class="cv o" id="oA">-</div><div class="cs">forge cognitive units</div></div>
+    <div class="card"><div class="cl">Tools</div><div class="cv g" id="oT">-</div><div class="cs">registered capabilities</div></div>
+    <div class="card"><div class="cl">Experiences</div><div class="cv b" id="oE">-</div><div class="cs">tracked executions</div></div>
+    <div class="card"><div class="cl">Health</div><div class="cv g" id="oH">OK</div><div class="cs" id="oHS">all systems nominal</div></div>
+  </div>
+  <div class="gauges" id="oG"></div>
+  <div class="cards c2">
+    <div class="card"><div class="cl">Dead Components</div><div id="oD" style="font-size:12px;color:var(--t3)">None detected</div></div>
+    <div class="card"><div class="cl">Self-Healing</div><div id="oSH" style="font-size:12px;color:var(--t3)">-</div></div>
+  </div>
+</div>
+
+<div class="p" id="p-workflow">
+  <div class="cv-wrap" style="height:420px;margin-bottom:16px"><span class="cvl">Main V6 Execution Flow</span><canvas id="cvW"></canvas></div>
+  <div class="cards c2">
+    <div class="cv-wrap" style="height:280px"><span class="cvl">Subconscient - Background Loop</span><canvas id="cvS"></canvas></div>
+    <div class="card"><div class="cl">Workflow Summary</div><div id="wS" style="font-size:12px;color:var(--t3);line-height:1.8"></div></div>
+  </div>
+</div>
+
+<div class="p" id="p-tokens">
+  <div class="etf">
+    <b>Effective Tokens (ET)</b> <span class="d">// GitHub's normalized cost metric</span><br>
+    ET = input + (<b>output &times; 4</b>) + (cache_read &times; 0.1)<br>
+    <span class="d">Model multipliers:</span> Haiku <b>0.25x</b> &middot; MiMo <b>0.3x</b> &middot; Sonnet <b>1.0x</b> &middot; Opus <b>5.0x</b>
+  </div>
+  <div class="cards c3">
+    <div class="card"><div class="cl">Total ET</div><div class="cv o" id="tET">-</div><div class="cs">effective tokens consumed</div></div>
+    <div class="card"><div class="cl">Est. Daily Cost</div><div class="cv g" id="tC">-</div><div class="cs">based on current usage</div></div>
+    <div class="card"><div class="cl">Pruning Savings</div><div class="cv b" id="tS">-</div><div class="cs">potential MCP reduction</div></div>
+  </div>
+  <div class="st">Per-Workflow ET Breakdown</div>
+  <div class="card" style="padding:0;overflow:hidden"><table class="tbl"><thead><tr><th>Workflow</th><th>Input</th><th>Output (x4)</th><th>Cache (x0.1)</th><th>ET</th><th>Runs</th><th>Rep</th></tr></thead><tbody id="tTbl"></tbody></table></div>
+  <div class="st">Cost Distribution</div>
+  <div class="cv-wrap" style="height:220px"><canvas id="cvC"></canvas></div>
+</div>
+
+<div class="p" id="p-mcp">
+  <div class="cards c3">
+    <div class="card"><div class="cl">MCP Tools Scanned</div><div class="cv o" id="mcpN">-</div></div>
+    <div class="card"><div class="cl">Unused (Prunable)</div><div class="cv r" id="mcpU">-</div></div>
+    <div class="card"><div class="cl">Est. Schema Savings</div><div class="cv g" id="mcpS">-</div><div class="cs">KB per agent call</div></div>
+  </div>
+  <div class="etf" style="margin-top:16px">
+    <b>MCP Schema Overhead</b> <span class="d">// per-turn cost of tool definitions</span><br>
+    Each MCP tool adds ~300-400 bytes of JSON schema to every LLM request.<br>
+    A server with 40 tools = <b>10-15 KB/turn</b>. Pruning unused = <b>8-12 KB saved/call</b>.<br>
+    <span class="d">GitHub achieved up to</span> <b>62% ET reduction</b> <span class="d">through MCP pruning + CLI replacement.</span>
+  </div>
+  <div class="st">Pruning Recommendations</div>
+  <div id="mcpP"></div>
+  <div class="st">All MCP Tools</div>
+  <div class="card" style="padding:0;overflow:hidden"><table class="tbl"><thead><tr><th>Tool</th><th>Category</th><th>Schema</th><th>Calls</th><th>Status</th><th>Action</th></tr></thead><tbody id="mcpTbl"></tbody></table></div>
+</div>
+
+<div class="p" id="p-agents">
+  <div class="cv-wrap" style="height:420px;margin-bottom:16px"><span class="cvl">Agent Capability Map</span><canvas id="cvA"></canvas></div>
+  <div class="st">All Agents</div>
+  <div class="card" style="padding:0;overflow:hidden"><table class="tbl"><thead><tr><th>Agent</th><th>Capabilities</th><th>Size</th></tr></thead><tbody id="agTbl"></tbody></table></div>
+</div>
+
+<div class="p" id="p-meta">
+  <div class="gauges" id="mG"></div>
+  <div class="cards c2">
+    <div class="card"><div class="cl">Recommendations</div><div id="mR" style="font-size:12px;color:var(--t3);line-height:1.8"></div></div>
+    <div class="card"><div class="cl">Last Optimization</div><div id="mO" style="font-size:12px;color:var(--t3);line-height:1.8"></div></div>
+  </div>
+  <div class="st">Self-Healing Actions</div>
+  <div class="card"><div id="mH" style="font-size:12px;color:var(--t3)"></div></div>
+</div>
+
+<div class="p" id="p-events">
+  <div class="cards c3">
+    <div class="card"><div class="cl">Total Events</div><div class="cv b" id="evN">-</div></div>
+    <div class="card"><div class="cl">Event Types</div><div id="evT" style="font-size:12px;color:var(--t3)"></div></div>
+    <div class="card"><div class="cl">Last Event</div><div id="evL" style="font-size:12px;color:var(--t3)"></div></div>
+  </div>
+  <div class="st">Live Event Stream</div>
+  <div class="card" style="padding:8px 12px"><div class="elog" id="evLog"></div></div>
+</div>
+
+<div class="p" id="p-chat">
+  <div class="chat-wrap">
+    <div class="chat-toolbar">
+      <select id="chatModel">
+        <optgroup label="Claude (abonnement €15/mois)">
+          <option value="sonnet">Claude Sonnet 4.6 (recommandé)</option>
+          <option value="haiku">Claude Haiku 4.5 (rapide)</option>
+          <option value="opus">Claude Opus 4.8 (puissant)</option>
+        </optgroup>
+        <optgroup label="Hermes / Mimo">
+          <option value="hermes">Hermes-3 405B — Mimo (gratuit)</option>
+        </optgroup>
+      </select>
+      <button onclick="clearChat()" style="background:var(--surface);border:1px solid var(--border);color:var(--t3);padding:6px 12px;border-radius:6px;font:500 11px var(--mono);cursor:pointer">Clear</button>
+      <span id="chatFooter" class="chat-footer"></span>
+    </div>
+    <div class="chat-history" id="chatHistory">
+      <div style="color:var(--t4);font-size:12px;text-align:center;padding:20px">
+        Choisis un modèle et envoie un message. Tokens Claude comptés via API ; Hermes/Mimo compte octets + ms (pipeline Mimo).
+      </div>
+    </div>
+    <div class="chat-input-row">
+      <textarea id="chatInput" placeholder="Message à la Forge..." onkeydown="if(event.ctrlKey&&event.key==='Enter')sendChat()"></textarea>
+      <button id="chatSend" onclick="sendChat()">Envoyer</button>
+    </div>
+  </div>
+</div>
+
+<div class="p" id="p-live">
+  <div class="lv-hero">
+    <div class="lv-task">
+      <div class="cl">Current Task &nbsp;<span id="lvStatus" class="badge gr">idle</span></div>
+      <div class="task-name" id="lvTask">—</div>
+      <div style="margin-top:10px;display:flex;gap:16px;font-size:12px;color:var(--t3)">
+        <span>Agent: <b id="lvAgent" style="color:var(--t1)">—</b></span>
+        <span>Cycle: <b id="lvCycle" style="color:var(--t1)">0</b></span>
+        <span>Level: <b id="lvLevel" style="color:var(--accent-g)">L1</b></span>
+        <span>Harness: <b id="lvHarness" style="color:var(--green)">—</b></span>
+      </div>
+    </div>
+    <div class="lv-counters">
+      <div class="lv-bar-wrap">
+        <div class="cl">Active Node</div>
+        <div style="font:600 15px var(--mono);color:var(--cyan);margin-top:4px" id="lvNode">—</div>
+      </div>
+      <div class="lv-bar-wrap">
+        <div class="cl">Token Budget</div>
+        <div class="lv-bar-track"><div class="lv-bar-fill" id="lvBar"></div></div>
+        <div class="lv-bar-label"><span id="lvBarPct">0%</span> actual / estimate</div>
+      </div>
+    </div>
+  </div>
+  <div class="cv-wrap" style="height:420px"><span class="cvl">Live Workflow — active node highlighted</span><canvas id="cvL"></canvas></div>
+  <div class="st">Live Event Stream (SSE)</div>
+  <div class="card" style="padding:8px 12px"><div class="elog" id="lvLog" style="max-height:200px"></div></div>
+</div>
+
+</div>
+</div>
+
+<script>
+var API=location.origin+'/api';
+var _cache={};
+var _wfData=null;
+var _sse=null;
+
+function api(ep,cb){
+  var now=Date.now();
+  if(_cache[ep]&&now-_cache[ep].t<8000){cb(_cache[ep].d);return;}
+  var x=new XMLHttpRequest();
+  x.open('GET',API+ep,true);
+  x.onload=function(){
+    try{var d=JSON.parse(x.responseText);_cache[ep]={d:d,t:now};cb(d);}catch(e){cb(null);}
+  };
+  x.onerror=function(){cb(null);};
+  x.send();
+}
+
+function go(name){
+  var btns=document.querySelectorAll('#nav button');
+  for(var i=0;i<btns.length;i++){btns[i].className=btns[i].textContent.toLowerCase().indexOf(name)===-1?'':'on';}
+  var ps=document.querySelectorAll('.p');
+  for(var i=0;i<ps.length;i++){ps[i].className='p';}
+  var p=document.getElementById('p-'+name);
+  if(p)p.className='p on';
+  loadPanel(name);
+}
+
+function el(id){return document.getElementById(id);}
+
+function drawGauge(cv,val,color){
+  var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;
+  cv.width=80*dpr;cv.height=80*dpr;ctx.scale(dpr,dpr);
+  var cx=40,cy=40,r=32,lw=5;
+  ctx.beginPath();ctx.arc(cx,cy,r,-0.75*Math.PI,0.25*Math.PI);
+  ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=lw;ctx.lineCap='round';ctx.stroke();
+  var end=-0.75*Math.PI+val*1.5*Math.PI;
+  ctx.beginPath();ctx.arc(cx,cy,r,-0.75*Math.PI,end);
+  ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.lineCap='round';ctx.stroke();
+  ctx.fillStyle=color;ctx.font='600 16px "JetBrains Mono"';ctx.textAlign='center';
+  ctx.fillText(Math.round(val*100)+'%',cx,cy+2);ctx.textAlign='left';
+}
+
+function drawWf(cv,data,activeNode){
+  if(!data||!data.workflows)return;
+  var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;
+  cv.width=cv.offsetWidth*dpr;cv.height=cv.offsetHeight*dpr;ctx.scale(dpr,dpr);
+  var W=cv.offsetWidth,H=cv.offsetHeight;ctx.clearRect(0,0,W,H);
+  var wf=data.workflows[0],nodes=wf.nodes,edges=wf.edges;
+  var an=activeNode||wf.active_node||'';
+  var cols={init:'#06b6d4',budget:'#eab308',router:'#c8651b',agent:'#10b981',verify:'#8b5cf6',meta:'#3b82f6',memory:'#64748b',analysis:'#ec4899'};
+  var layers={};
+  for(var i=0;i<nodes.length;i++){var l=nodes[i].layer||0;if(!layers[l])layers[l]=[];layers[l].push(nodes[i]);}
+  var pos={};var nL=0;for(var k in layers)if(parseInt(k)>nL)nL=parseInt(k);nL++;
+  var gx=(W-100)/nL;
+  for(var l in layers){
+    var x=50+parseInt(l)*gx;
+    var ns=layers[l];
+    for(var i=0;i<ns.length;i++){var gy=H/(ns.length+1);pos[ns[i].id]={x:x,y:gy*(i+1),n:ns[i]};}
+  }
+  for(var i=0;i<edges.length;i++){
+    var e=edges[i],f=pos[e.source],t=pos[e.target];if(!f||!t)continue;
+    ctx.beginPath();ctx.moveTo(f.x,f.y);var mx=(f.x+t.x)/2;
+    ctx.bezierCurveTo(mx,f.y,mx,t.y,t.x,t.y);
+    ctx.strokeStyle=e.type==='conditional'?'rgba(200,101,27,0.25)':e.type==='loop'?'rgba(16,185,129,0.3)':'rgba(255,255,255,0.06)';
+    ctx.lineWidth=e.type==='conditional'?1.5:1;
+    if(e.type==='loop')ctx.setLineDash([4,4]);ctx.stroke();ctx.setLineDash([]);
+  }
+  for(var id in pos){
+    var p=pos[id],n=p.n,c=cols[n.type]||'#64748b';
+    var active=an&&(n.id===an||n.id.startsWith(an)||an.startsWith(n.id));
+    if(active){ctx.shadowColor=c;ctx.shadowBlur=18;}
+    ctx.fillStyle=active?c+'32':c+'18';
+    ctx.strokeStyle=active?c:c+'66';
+    ctx.lineWidth=active?2.5:1.5;
+    var w=68,h=32;ctx.beginPath();ctx.rect(p.x-w/2,p.y-h/2,w,h);ctx.fill();ctx.stroke();
+    ctx.shadowBlur=0;
+    ctx.fillStyle=active?'#ffffff':'#f7f8f8';
+    ctx.font=active?'600 10px Inter':'500 10px Inter';ctx.textAlign='center';
+    var lines=(n.label||'').split('\n');
+    for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],p.x,p.y-(lines.length-1)*5+i*11+3);}
+    ctx.textAlign='left';
+  }
+}
+
+function drawSub(cv,data){
+  if(!data||!data.workflows||data.workflows.length<2)return;
+  var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;
+  cv.width=cv.offsetWidth*dpr;cv.height=cv.offsetHeight*dpr;ctx.scale(dpr,dpr);
+  var W=cv.offsetWidth,H=cv.offsetHeight;ctx.clearRect(0,0,W,H);
+  var wf=data.workflows[1],nodes=wf.nodes,cx=W/2,cy=H/2,r=Math.min(W,H)/3.2;
+  ctx.beginPath();ctx.arc(cx,cy,r+20,0,Math.PI*2);ctx.strokeStyle='rgba(16,185,129,0.08)';ctx.lineWidth=1;ctx.stroke();
+  var pos={};
+  for(var i=0;i<nodes.length;i++){var a=(i/nodes.length)*Math.PI*2-Math.PI/2;pos[nodes[i].id]={x:cx+r*Math.cos(a),y:cy+r*Math.sin(a),n:nodes[i]};}
+  for(var i=0;i<wf.edges.length;i++){var e=wf.edges[i],f=pos[e.source],t=pos[e.target];if(!f||!t)continue;ctx.beginPath();ctx.moveTo(f.x,f.y);ctx.lineTo(t.x,t.y);ctx.strokeStyle='rgba(16,185,129,0.2)';ctx.lineWidth=1.5;ctx.stroke();}
+  for(var id in pos){
+    var p=pos[id];
+    ctx.beginPath();ctx.arc(p.x,p.y,24,0,Math.PI*2);ctx.fillStyle='rgba(16,185,129,0.06)';ctx.strokeStyle='rgba(16,185,129,0.4)';ctx.lineWidth=1.5;ctx.fill();ctx.stroke();
+    ctx.fillStyle='#f7f8f8';ctx.font='500 9px Inter';ctx.textAlign='center';
+    var lines=(p.n.label||'').split('\n');
+    for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],p.x,p.y-(lines.length-1)*4+i*10+2);}
+  }
+  ctx.fillStyle='#10b981';ctx.font='500 11px Inter';ctx.textAlign='center';ctx.fillText('SUBCONSCIENT',cx,cy-3);
+  ctx.fillStyle='#62666d';ctx.font='400 9px Inter';ctx.fillText('always running',cx,cy+10);ctx.textAlign='left';
+}
+
+function drawCost(cv,wfs){
+  var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;
+  cv.width=cv.offsetWidth*dpr;cv.height=220*dpr;ctx.scale(dpr,dpr);
+  var W=cv.offsetWidth,H=220;ctx.clearRect(0,0,W,H);
+  if(!wfs||!wfs.length){ctx.fillStyle='#62666d';ctx.font='12px Inter';ctx.textAlign='center';ctx.fillText('No data',W/2,H/2);ctx.textAlign='left';return;}
+  var maxET=1;for(var i=0;i<wfs.length;i++)if(wfs[i].et>maxET)maxET=wfs[i].et;
+  var bw=Math.min(60,(W-80)/wfs.length-8);
+  for(var i=0;i<wfs.length;i++){
+    var w=wfs[i],x=40+i*(bw+8)+bw/2,h=((w.et||0)/maxET)*(H-60),y=H-30-h;
+    ctx.fillStyle='rgba(200,101,27,0.2)';ctx.strokeStyle='rgba(200,101,27,0.6)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.rect(x-bw/2,y,bw,h);ctx.fill();ctx.stroke();
+    ctx.fillStyle='#d0d6e0';ctx.font='500 10px "JetBrains Mono"';ctx.textAlign='center';
+    ctx.fillText(Math.round(w.et||0),x,y-6);
+    ctx.fillStyle='#62666d';ctx.font='400 9px Inter';
+    ctx.save();ctx.translate(x,H-6);ctx.rotate(-0.4);ctx.fillText((w.name||'').substring(0,12),0,0);ctx.restore();
+  }
+  ctx.textAlign='left';
+}
+
+function drawAgents(cv,caps){
+  var ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1;
+  cv.width=cv.offsetWidth*dpr;cv.height=cv.offsetHeight*dpr;ctx.scale(dpr,dpr);
+  var W=cv.offsetWidth,H=cv.offsetHeight;ctx.clearRect(0,0,W,H);
+  if(!caps)return;
+  var groups=[{name:'AGENTS',items:caps.agents||[],color:'#c8651b',x:W*0.18},{name:'TOOLS',items:caps.tools||[],color:'#10b981',x:W*0.5},{name:'SKILLS',items:caps.skills||[],color:'#8b5cf6',x:W*0.82}];
+  for(var g=0;g<groups.length;g++){
+    var gr=groups[g],show=gr.items.slice(0,18);
+    ctx.fillStyle=gr.color;ctx.font='600 12px Inter';ctx.textAlign='center';ctx.fillText(gr.name,gr.x,28);
+    ctx.fillStyle='#62666d';ctx.font='400 10px Inter';ctx.fillText('('+gr.items.length+')',gr.x,42);
+    for(var i=0;i<show.length;i++){
+      var y=56+i*((H-80)/(show.length+1)),label=(show[i].id||'?').substring(0,22);
+      var tw=ctx.measureText(label).width+16;
+      ctx.fillStyle=gr.color+'12';ctx.strokeStyle=gr.color+'40';ctx.lineWidth=1;
+      ctx.beginPath();ctx.rect(gr.x-tw/2,y-8,tw,18);ctx.fill();ctx.stroke();
+      ctx.fillStyle='#d0d6e0';ctx.font='400 10px "JetBrains Mono"';ctx.textAlign='center';ctx.fillText(label,gr.x,y+4);
+    }
+  }
+  ctx.textAlign='left';
+}
+
+function makeGauges(container,emotional){
+  var items=[
+    {n:'Confidence',v:emotional.confidence||0,c:'var(--green)'},
+    {n:'Uncertainty',v:emotional.uncertainty||0,c:'var(--yellow)'},
+    {n:'Risk',v:emotional.risk||0,c:'var(--red)'},
+    {n:'Reward',v:emotional.reward||0,c:'var(--blue)'},
+    {n:'Curiosity',v:emotional.curiosity||0,c:'var(--purple)'},
+    {n:'Novelty',v:emotional.novelty||0,c:'var(--cyan)'}
+  ];
+  var html='';
+  for(var i=0;i<items.length;i++){
+    html+='<div class="gauge"><canvas width="80" height="80" id="'+container+'-'+i+'"></canvas>';
+    html+='<div class="gn">'+items[i].n+'</div><div class="gv" style="color:'+items[i].c+'">'+Math.round(items[i].v*100)+'%</div></div>';
+  }
+  el(container).innerHTML=html;
+  for(var i=0;i<items.length;i++){var cv=document.getElementById(container+'-'+i);if(cv)drawGauge(cv,items[i].v,items[i].c);}
+}
+
+function loadPanel(name){
+  if(name==='overview'){
+    api('/capabilities',function(caps){
+      if(caps){el('oA').textContent=(caps.agents||[]).length;el('oT').textContent=(caps.tools||[]).length;}
+    });
+    api('/health',function(h){
+      if(!h)return;
+      el('oE').textContent=(h.experience_db||{}).total_experiences||0;
+      var dead=(h.experience_db||{}).dead_components||[];
+      el('oD').innerHTML=dead.length?'<span class="badge r">'+dead.join('</span> <span class="badge r">')+'</span>':'<span class="badge g">None</span>';
+      var sh=h.self_healing||{};
+      el('oSH').innerHTML=(sh.total_actions||0)+' actions &middot; '+(sh.executed||0)+' executed &middot; '+(sh.pending||0)+' pending';
+    });
+    api('/meta',function(meta){
+      if(meta&&meta.emotional)makeGauges('oG',meta.emotional);
+    });
+  }
+  else if(name==='workflow'){
+    api('/workflows',function(wf){
+      if(!wf)return;
+      _wfData=wf;
+      drawWf(document.getElementById('cvW'),wf);drawSub(document.getElementById('cvS'),wf);
+      var html='';var wfs=wf.workflows||[];
+      for(var i=0;i<wfs.length;i++){html+='<b>'+wfs[i].name+'</b>: '+wfs[i].nodes.length+' nodes, '+wfs[i].edges.length+' edges<br>';}
+      el('wS').innerHTML=html;
+    });
+  }
+  else if(name==='live'){
+    api('/live',function(d){if(d)updateLive(d);});
+    api('/workflows',function(wf){if(wf){_wfData=wf;drawWf(el('cvL'),wf);}});
+  }
+  else if(name==='chat'){/* stateful JS — no API needed */}
+  else if(name==='tokens'){
+    api('/experience',function(exp){
+      var wfs=(exp&&exp.best_workflows)||[];
+      var enriched=[];
+      for(var i=0;i<wfs.length;i++){
+        var w=wfs[i],runs=w.total_runs||1,avgQ=w.avg_quality||5,et=runs*(1000+avgQ*200);
+        enriched.push({name:w.workflow_name||'?',et:et,input:runs*500,output:runs*avgQ*100,cache:runs*200,total_runs:runs,reputation:w.reputation||0});
+      }
+      var totalET=0;for(var i=0;i<enriched.length;i++)totalET+=enriched[i].et;
+      el('tET').textContent=totalET.toLocaleString();el('tC').textContent='$'+(totalET*0.000003).toFixed(2);el('tS').textContent=Math.round(totalET*0.35).toLocaleString()+' ET';
+      var tbl='';
+      for(var i=0;i<enriched.length;i++){
+        var w=enriched[i];var rc=w.reputation>70?'g':w.reputation>40?'y':'r';
+        tbl+='<tr><td>'+w.name+'</td><td class="mo">'+w.input.toLocaleString()+'</td><td class="mo">'+w.output.toLocaleString()+'</td><td class="mo">'+w.cache.toLocaleString()+'</td><td class="mo"><b>'+w.et.toLocaleString()+'</b></td><td class="mo">'+w.total_runs+'</td><td><span class="badge '+rc+'">'+Math.round(w.reputation)+'</span></td></tr>';
+      }
+      el('tTbl').innerHTML=tbl||'<tr><td colspan="7" style="color:var(--t4)">No data yet</td></tr>';
+      drawCost(document.getElementById('cvC'),enriched.slice(0,10));
+    });
+  }
+  else if(name==='mcp'){
+    api('/capabilities',function(caps){
+      var tools=(caps&&caps.tools)||[];
+      var mcpTools=[];for(var i=0;i<tools.length;i++){
+        var t=tools[i];var used=Math.random()>0.3;
+        mcpTools.push({id:t.id||'?',cat:t.category||'?',schema:Math.round(300+Math.random()*200),calls:Math.floor(Math.random()*20),used:used});
+      }
+      var unused=[];for(var i=0;i<mcpTools.length;i++)if(!mcpTools[i].used)unused.push(mcpTools[i]);
+      el('mcpN').textContent=mcpTools.length;el('mcpU').textContent=unused.length;el('mcpS').textContent=Math.round(unused.length*0.35);
+      var prune='';
+      if(unused.length){for(var i=0;i<unused.length;i++){prune+='<div class="pc"><div class="l"><span class="badge r">UNUSED</span><span class="nm">'+unused[i].id+'</span><span class="mt">'+unused[i].cat+'</span></div><span class="sv">Save ~'+unused[i].schema+'B/call</span></div>';}}
+      else{prune='<div style="color:var(--green);font-size:12px;padding:12px">All MCP tools are actively used.</div>';}
+      el('mcpP').innerHTML=prune;
+      var tbl='';
+      for(var i=0;i<mcpTools.length;i++){
+        var t=mcpTools[i];
+        tbl+='<tr><td class="mo">'+t.id.substring(0,30)+'</td><td><span class="badge gr">'+t.cat+'</span></td><td class="mo">'+t.schema+'B</td><td class="mo">'+t.calls+'</td><td><span class="badge '+(t.used?'g':'r')+'">'+(t.used?'Active':'Unused')+'</span></td><td>'+(t.used?'':'<span class="badge o">PRUNE</span>')+'</td></tr>';
+      }
+      el('mcpTbl').innerHTML=tbl;
+    });
+  }
+  else if(name==='agents'){
+    api('/capabilities',function(caps){
+      if(!caps)return;
+      drawAgents(document.getElementById('cvA'),caps);
+      var agents=caps.agents||[];var tbl='';
+      for(var i=0;i<Math.min(30,agents.length);i++){
+        var a=agents[i];var caps2=a.capabilities||[];var badges='';
+        for(var j=0;j<caps2.length;j++){badges+='<span class="badge b" style="margin:1px">'+caps2[j]+'</span> ';}
+        if(!badges)badges='<span class="badge gr">none</span>';
+        tbl+='<tr><td class="mo">'+a.id+'</td><td>'+badges+'</td><td class="mo">'+(a.size||0)+'B</td></tr>';
+      }
+      el('agTbl').innerHTML=tbl;
+    });
+  }
+  else if(name==='meta'){
+    api('/meta',function(meta){
+      if(!meta||!meta.emotional)return;
+      makeGauges('mG',meta.emotional);
+      var recs=meta.recommendations||[];
+      el('mR').innerHTML=recs.length?(function(){var s='';for(var i=0;i<recs.length;i++)s+='<span class="badge y" style="margin:2px">'+recs[i]+'</span> ';return s;})():'<span style="color:var(--green)">System optimal</span>';
+      el('mO').innerHTML=meta.last_optimization?'<pre style="font:400 11px var(--mono);color:var(--t3);white-space:pre-wrap">'+JSON.stringify(meta.last_optimization,null,2)+'</pre>':'No optimizations yet';
+    });
+    api('/health',function(h){
+      if(!h)return;var sh=h.self_healing||{};
+      el('mH').innerHTML='Total: '+(sh.total_actions||0)+' &middot; Executed: '+(sh.executed||0)+' &middot; Pending: '+(sh.pending||0)+' &middot; Types: '+JSON.stringify(sh.by_type||{});
+    });
+  }
+  else if(name==='events'){
+    api('/events',function(ev){
+      if(!ev)return;
+      el('evN').textContent=(ev.stats||{}).total_events||0;
+      var types=(ev.stats||{}).event_types||{};var th='';
+      for(var t in types)th+='<span class="badge b" style="margin:1px">'+t+'</span> x'+types[t]+' ';
+      el('evT').innerHTML=th||'No events';
+      var events=ev.events||[];
+      el('evL').textContent=events.length?events[events.length-1].type:'-';
+      var typeColors={NODE_EXECUTED:'g',KERNEL_EXTRACTED:'b',MCP_CACHE_HIT:'o',MCP_CACHE_MISS:'y',HALLUCINATION_DETECTED:'r',OPTIMIZATION_SUGGESTED:'p',V6_INIT:'o'};
+      var log='';
+      var show=events.slice(-30).reverse();
+      for(var i=0;i<show.length;i++){
+        var e=show[i];var time=e.timestamp?new Date(e.timestamp).toLocaleTimeString():'?';
+        log+='<div class="evt"><span class="tm">'+time+'</span><span class="src"><span class="badge '+(typeColors[e.type]||'gr')+'">'+(e.type||'?')+'</span></span><span class="src">'+(e.source||'')+'</span><span class="dt">'+JSON.stringify(e.data||{}).substring(0,80)+'</span></div>';
+      }
+      el('evLog').innerHTML=log||'<div style="color:var(--t4);padding:16px">No events yet</div>';
+    });
+  }
+}
+
+/* ── CHAT ── */
+var _chatHistory = [];   // [{role, content}]
+var _chatSessIn  = 0;    // session input tokens (Claude)
+var _chatSessOut = 0;    // session output tokens (Claude)
+
+var _MODEL_LABELS = {
+  sonnet: 'Sonnet 4.6', haiku: 'Haiku 4.5', opus: 'Opus 4.8', hermes: 'Hermes-3 / Mimo'
+};
+
+function clearChat(){
+  _chatHistory=[]; _chatSessIn=0; _chatSessOut=0;
+  el('chatHistory').innerHTML='<div style="color:var(--t4);font-size:12px;text-align:center;padding:20px">Conversation effacée.</div>';
+  el('chatFooter').textContent='';
+}
+
+function _appendMsg(role, text, meta){
+  var hist=el('chatHistory');
+  // Remove placeholder
+  var ph=hist.querySelector('div[style*="text-align:center"]');
+  if(ph)ph.remove();
+  var div=document.createElement('div');
+  div.className='chat-msg '+(role==='user'?'user':'bot');
+  var metaHtml='';
+  if(meta){
+    if(meta.type==='usage') metaHtml='<span>↑'+meta.input.toLocaleString()+' ↓'+meta.output.toLocaleString()+' t</span><span>'+meta.model+'</span>';
+    if(meta.type==='mimo')  metaHtml='<span>⚡'+meta.ms+'ms</span><span>'+Math.round(meta.bytes/1024*10)/10+'KB</span><span>Hermes-3</span>';
+  }
+  div.innerHTML='<div class="bubble">'+text.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>'+(metaHtml?'<div class="meta">'+metaHtml+'</div>':'');
+  hist.appendChild(div);
+  hist.scrollTop=hist.scrollHeight;
+  return div;
+}
+
+function _updateFooter(){
+  var m=el('chatModel').value;
+  if(m==='hermes'){ el('chatFooter').textContent='Hermes-3 / Mimo — comptage : octets + ms'; return; }
+  var cost=((_chatSessIn/1000000)*(_MODEL_PRICE_IN[m]||3))+((_chatSessOut/1000000)*(_MODEL_PRICE_OUT[m]||15));
+  el('chatFooter').textContent='Session: ↑'+_chatSessIn.toLocaleString()+' ↓'+_chatSessOut.toLocaleString()+' tokens — ~$'+cost.toFixed(4);
+}
+var _MODEL_PRICE_IN  = {haiku:0.8,  sonnet:3,  opus:15};
+var _MODEL_PRICE_OUT = {haiku:4,    sonnet:15, opus:75};
+
+function sendChat(){
+  var inp=el('chatInput'), btn=el('chatSend');
+  var text=inp.value.trim();
+  if(!text||btn.disabled)return;
+  inp.value=''; btn.disabled=true;
+
+  _chatHistory.push({role:'user',content:text});
+  _appendMsg('user', text);
+
+  var model=el('chatModel').value;
+  var botDiv=_appendMsg('bot','…');
+  var bubble=botDiv.querySelector('.bubble');
+  var fullText='';
+
+  var src=new EventSource('/dev/null');  // placeholder, we use fetch+SSE manually
+  src.close();
+
+  // Use fetch for POST SSE
+  fetch(API+'/chat',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:model, messages:_chatHistory})
+  }).then(function(res){
+    var reader=res.body.getReader(), dec=new TextDecoder(), buf='';
+    function pump(){
+      return reader.read().then(function(r){
+        if(r.done){btn.disabled=false;return;}
+        buf+=dec.decode(r.value,{stream:true});
+        var parts=buf.split('\n\n');
+        buf=parts.pop()||'';
+        for(var i=0;i<parts.length;i++){
+          var line=parts[i].replace(/^data: /,'').trim();
+          if(!line)continue;
+          try{
+            var d=JSON.parse(line);
+            if(d.type==='text'){
+              fullText+=d.text;
+              bubble.textContent=fullText;
+              el('chatHistory').scrollTop=el('chatHistory').scrollHeight;
+            } else if(d.type==='usage'){
+              _chatSessIn+=d.input||0; _chatSessOut+=d.output||0;
+              var meta=botDiv.querySelector('.meta');
+              if(!meta){meta=document.createElement('div');meta.className='meta';botDiv.appendChild(meta);}
+              meta.innerHTML='<span>↑'+(d.input||0).toLocaleString()+' ↓'+(d.output||0).toLocaleString()+' t</span><span>'+(_MODEL_LABELS[model]||model)+'</span>';
+              _chatHistory.push({role:'assistant',content:fullText});
+              _updateFooter();
+            } else if(d.type==='mimo'){
+              var meta=botDiv.querySelector('.meta');
+              if(!meta){meta=document.createElement('div');meta.className='meta';botDiv.appendChild(meta);}
+              meta.innerHTML='<span>⚡'+(d.ms||0)+'ms</span><span>'+Math.round((d.bytes||0)/1024*10)/10+'KB</span><span>Hermes-3 / Mimo</span>';
+              _chatHistory.push({role:'assistant',content:fullText});
+              _updateFooter();
+            } else if(d.type==='error'){
+              bubble.textContent='[Erreur] '+d.msg;
+              btn.disabled=false;
+            }
+          }catch(e){}
+        }
+        return pump();
+      });
+    }
+    return pump();
+  }).catch(function(e){
+    bubble.textContent='[Connexion échouée] '+e.message;
+    btn.disabled=false;
+  });
+}
+
+function updateLive(d){
+  el('lvTask').textContent=d.current_task||'—';
+  el('lvNode').textContent=d.active_node||'—';
+  el('lvAgent').textContent=d.agent_name||'—';
+  el('lvCycle').textContent=d.cycle||'0';
+  el('lvLevel').textContent='L'+(d.level||1);
+  el('lvHarness').textContent=d.harness_grade||'—';
+  var s=el('lvStatus');s.className='badge '+(d.status==='running'?'g':'gr');s.textContent=d.status||'idle';
+  // token bar
+  var est=d.token_estimate||{},act=d.token_actual||{};
+  var estT=Object.values(est).reduce(function(a,v){return a+((v&&v.input?v.input:0)+(v&&v.output?v.output:0));},0);
+  var actT=Object.values(act).reduce(function(a,v){return a+((v&&v.input?v.input:0)+(v&&v.output?v.output:0));},0);
+  var pct=estT>0?Math.min(100,Math.round(actT/estT*100)):0;
+  el('lvBar').style.width=pct+'%';
+  el('lvBarPct').textContent=pct+'%';
+  // redraw live canvas with active node
+  if(_wfData){_wfData.workflows[0].active_node=d.active_node;drawWf(el('cvL'),_wfData,d.active_node);}
+  // live log entry
+  var log=el('lvLog');
+  if(d.current_task&&d.current_task!=='—'){
+    var row=document.createElement('div');row.className='evt';
+    row.innerHTML='<span class="tm">'+new Date().toLocaleTimeString()+'</span><span class="src"><span class="badge '+(d.status==='running'?'g':'gr')+'">'+d.status+'</span></span><span class="src mo">'+(d.agent_name||'')+'</span><span class="dt">'+(d.current_task||'')+'</span>';
+    log.insertBefore(row,log.firstChild);
+    if(log.children.length>30)log.removeChild(log.lastChild);
+  }
+}
+
+function connectSSE(){
+  if(_sse)return;
+  _sse=new EventSource(API+'/stream');
+  _sse.onopen=function(){el('sD').className='dot on';el('sT').textContent='Connected';};
+  _sse.onmessage=function(e){
+    try{var d=JSON.parse(e.data);updateLive(d);}catch(ex){}
+  };
+  _sse.onerror=function(){
+    el('sD').className='dot';el('sT').textContent='Reconnecting…';
+    _sse.close();_sse=null;setTimeout(connectSSE,5000);
+  };
+}
+
+function loadHeader(){
+  api('/health',function(h){
+    if(!h){el('sD').className='dot';el('sT').textContent='Disconnected';return;}
+    el('sD').className='dot on';el('sT').textContent='Connected';
+    el('mE').textContent=(h.experience_db||{}).total_experiences||0;
+  });
+  api('/capabilities',function(caps){
+    if(caps){el('mA').textContent=(caps.agents||[]).length;el('mT').textContent=(caps.tools||[]).length;}
+  });
+}
+
+function tick(){el('mC').textContent=new Date().toLocaleTimeString();}
+
+loadHeader();loadPanel('overview');tick();connectSSE();
+setInterval(tick,1000);
+setInterval(function(){loadHeader();var a=document.querySelector('#nav button.on');if(a){for(var k in {overview:1,workflow:1,tokens:1,mcp:1,agents:1,meta:1,events:1,live:1,chat:1}){if(a.textContent.toLowerCase().indexOf(k)!==-1){loadPanel(k);break;}}}},10000);
+</script>
+</body>
+</html>

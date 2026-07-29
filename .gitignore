@@ -1,0 +1,86 @@
+# ── Secrets — NE JAMAIS COMMIT ──────────────────────────────
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*_secret*
+nopeek.json
+
+# ── Sessions Claude / auto-géré ─────────────────────────────
+projects/
+
+# ── Environnements virtuels ─────────────────────────────────
+venv/
+.venv/
+env/
+*-env/
+skills/*/*-env/
+skills/**/*-env/
+
+# ── Caches Python ───────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# ── Node ────────────────────────────────────────────────────
+node_modules/
+*.tgz
+
+# ── GitNexus (index régénérable) ────────────────────────────
+.gitnexus/
+
+# ── Caches outils Forge (régénérables) ──────────────────────
+00_CORE/tools/cache/
+04_GRAPHIFY/cache/
+**/*.sha256
+
+# ── DB locales / gros snapshots (régénérables) ──────────────
+*.sqlite
+*.sqlite3
+*.db
+04_GRAPHIFY/forge_checkpoints.db
+04_GRAPHIFY/forge_checkpoints.db-*
+05_STATE/cleanup_snapshot.json
+
+# ── Gros corpus de données / non-code (ralentit git + GitNexus) ─
+cvelistV5-main/
+LaForge.zip
+*.zip
+nexus/
+.nexus/
+nul
+tmp_*.py
+
+# ── Datasets / finetune volumineux — générés, hors git ──────
+07_KNOWLEDGE_BASE/datasets/
+07_KNOWLEDGE_BASE/finetune_ready/
+
+# ── État runtime — régénéré à chaque run, JAMAIS versionné ──
+# (c'est ce qui faisait 80 fichiers "modified" à chaque git status)
+05_STATE/
+08_LOGS/
+*.log
+*.jsonl
+mvp_output/
+
+# ── Médias lourds (121 Mo de vidéos ici) ────────────────────
+tg-bot-workflow/Video/
+*.mp4
+*.mov
+*.webm
+
+# ── OS / IDE ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# ── Kùzu databases (binaires, 69MB+) ─────────────────────
+04_GRAPHIFY/kuzu_graph
+04_GRAPHIFY/kuzu_graph.wal
+04_GRAPHIFY/kuzu_world
+04_GRAPHIFY/kuzu_world.wal

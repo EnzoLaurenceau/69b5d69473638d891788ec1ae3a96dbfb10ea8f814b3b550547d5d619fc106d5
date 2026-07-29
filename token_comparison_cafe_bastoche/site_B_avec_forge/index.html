@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café Bastoche · Ixelles — torréfaction & comptoir</title>
+  <meta name="description" content="Café Bastoche, Ixelles : torréfaction artisanale, comptoir du matin au soir, brunch et pâtisserie maison." />
+  <!-- RESCUE : Claude suivant le blueprint Forge (le run autonome n'a pas émis de fichiers). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Torréfaction maison</span><span>·</span><span>Brunch tous les jours</span><span>·</span>
+      <span>Pâtisserie du fournil</span><span>·</span><span>Ixelles, Bruxelles</span><span>·</span>
+      <span>Torréfaction maison</span><span>·</span><span>Brunch tous les jours</span><span>·</span>
+      <span>Pâtisserie du fournil</span><span>·</span><span>Ixelles, Bruxelles</span><span>·</span>
+    </div>
+  </div>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand">Bastoche<sup>°</sup></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#carte">Carte</a>
+      <a href="#story">Maison</a>
+      <a href="#lieu">Le lieu</a>
+      <a href="#infos">Infos</a>
+    </nav>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Thème">◐</button>
+      <a href="#infos" class="btn btn--sm">Réserver</a>
+      <button class="burger" id="burger" aria-label="Menu">≡</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__col hero__col--text">
+        <p class="kicker">Est. <span data-placeholder>2018</span> · Ixelles</p>
+        <h1>Un vrai<br /><span class="ink">café</span> de<br />quartier.</h1>
+        <p class="lead">On torréfie en petit, on cuisine frais, on prend le temps.
+          Le comptoir vous attend du matin au soir.</p>
+        <div class="hero__cta">
+          <a href="#carte" class="btn">Découvrir la carte</a>
+          <a href="#lieu" class="btn btn--line">Venir nous voir →</a>
+        </div>
+        <div class="hero__meta">
+          <span data-placeholder>Ouvert · 08:00 – 18:00</span>
+          <span>·</span>
+          <span data-placeholder>Ixelles 1050</span>
+        </div>
+      </div>
+      <div class="hero__col hero__col--art">
+        <div class="cup"><div class="cup__steam"></div><div class="cup__body">☕</div></div>
+      </div>
+    </section>
+
+    <!-- CARTE -->
+    <section class="block" id="carte">
+      <header class="block__head">
+        <h2>La carte</h2>
+        <p>Rotation saisonnière — voici le cœur permanent.</p>
+      </header>
+      <div class="menu">
+        <div class="menu__col">
+          <h3>Comptoir</h3>
+          <div class="line"><span>Espresso</span><i></i><b data-placeholder>2,80</b></div>
+          <div class="line"><span>Cappuccino</span><i></i><b data-placeholder>3,50</b></div>
+          <div class="line"><span>Flat white</span><i></i><b data-placeholder>3,80</b></div>
+          <div class="line"><span>Filtre V60</span><i></i><b data-placeholder>4,20</b></div>
+          <div class="line"><span>Chai latte</span><i></i><b data-placeholder>4,00</b></div>
+        </div>
+        <div class="menu__col">
+          <h3>Cuisine</h3>
+          <div class="line"><span>Œufs Bénédicte</span><i></i><b data-placeholder>13,50</b></div>
+          <div class="line"><span>Avo toast</span><i></i><b data-placeholder>11,00</b></div>
+          <div class="line"><span>Bowl granola</span><i></i><b data-placeholder>8,50</b></div>
+          <div class="line"><span>Croque Bastoche</span><i></i><b data-placeholder>12,00</b></div>
+          <div class="line"><span>Soupe du jour</span><i></i><b data-placeholder>7,50</b></div>
+        </div>
+        <div class="menu__col">
+          <h3>Fournil</h3>
+          <div class="line"><span>Cookie</span><i></i><b data-placeholder>3,00</b></div>
+          <div class="line"><span>Cinnamon roll</span><i></i><b data-placeholder>4,50</b></div>
+          <div class="line"><span>Cheesecake</span><i></i><b data-placeholder>5,50</b></div>
+          <div class="line"><span>Banana bread</span><i></i><b data-placeholder>4,00</b></div>
+          <div class="line"><span>Tarte du jour</span><i></i><b data-placeholder>5,00</b></div>
+        </div>
+      </div>
+      <p class="fineprint">Prix indicatifs, à confirmer par la maison.</p>
+    </section>
+
+    <!-- STORY -->
+    <section class="block block--story" id="story">
+      <div class="story__num">01</div>
+      <div class="story__text">
+        <h2>La maison Bastoche</h2>
+        <p>Né à Ixelles d'une envie simple : un café honnête, servi avec soin, dans un
+          lieu où l'on revient. On sélectionne des grains de saison, on les torréfie
+          nous-mêmes, et on cuisine tout sur place.</p>
+        <p>Ici on bosse, on papote, on traîne un dimanche. La porte est ouverte.</p>
+        <ul class="pills">
+          <li>Torréfaction maison</li><li>Circuit court</li>
+          <li>Fait sur place</li><li>Sans blabla</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="quote">
+      <blockquote>« Le genre d'endroit où le barista connaît ta commande avant toi. »</blockquote>
+      <cite data-placeholder>— avis Google, à sourcer</cite>
+    </section>
+
+    <!-- LIEU + MAP -->
+    <section class="block block--split" id="lieu">
+      <div class="split__text">
+        <header class="block__head">
+          <h2>Le lieu</h2>
+          <p>Au cœur d'Ixelles. Emplacement à confirmer par l'établissement.</p>
+        </header>
+        <ul class="facts">
+          <li><b>Adresse</b><span data-placeholder>Rue de la Paix, 1050 Ixelles</span></li>
+          <li><b>Quartier</b><span>Ixelles — Bruxelles</span></li>
+          <li><b>Accès</b><span data-placeholder>Tram / bus à proximité</span></li>
+        </ul>
+      </div>
+      <div id="map" class="map"></div>
+    </section>
+
+    <!-- INFOS / HOURS -->
+    <section class="block block--infos" id="infos">
+      <div class="infos__hours">
+        <h3>Horaires</h3>
+        <ul class="hours" data-placeholder>
+          <li><span>Lun</span><b>Fermé</b></li>
+          <li><span>Mar – Ven</span><b>08:00 – 18:00</b></li>
+          <li><span>Sam</span><b>09:00 – 18:00</b></li>
+          <li><span>Dim</span><b>09:00 – 16:00</b></li>
+        </ul>
+        <p class="fineprint">Horaires à confirmer.</p>
+      </div>
+      <div class="infos__contact">
+        <h3>Contact</h3>
+        <p><b>Tél.</b> <span data-placeholder>+32 2 000 00 00</span></p>
+        <p><b>Email</b> <span data-placeholder>bonjour@cafebastoche.be</span></p>
+        <div class="socials">
+          <a href="#">Instagram</a><a href="#">Facebook</a>
+        </div>
+        <form class="news" id="news" novalidate>
+          <label for="email">La newsletter du comptoir</label>
+          <div class="news__row">
+            <input type="email" id="email" placeholder="votre@email.be" required />
+            <button type="submit">OK</button>
+          </div>
+          <p class="news__msg" id="newsMsg" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__big">Bastoche°</div>
+    <p>Ixelles, Bruxelles · © <span id="year"></span> Café Bastoche · site démo</p>
+    <p class="footer__legal">
+      <a href="#legal-notice" onclick="openModal('legal-modal')">Mentions légales</a> ·
+      <a href="#privacy" onclick="openModal('privacy-modal')">Confidentialité</a> ·
+      <a href="#terms" onclick="openModal('terms-modal')">CGU</a>
+    </p>
+  </footer>
+
+  <!-- MODALS JURIDIQUES -->
+  <div id="legal-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('legal-modal')">&times;</span>
+      <h2>Mentions Légales</h2>
+      <div class="modal-body">
+        <h3>1. Éditeur</h3>
+        <p>Éditeur : <strong>Café Bastoche SPRL</strong>, au capital de 10 000 €.<br>
+        Adresse : Rue de la Paix 10, 1050 Ixelles, Belgique.<br>
+        BCE : BE 0123.456.789.<br>
+        Directeur publication : Jean Bastoche.<br>
+        Contact : bonjour@cafebastoche.be</p>
+        
+        <h3>2. Hébergement</h3>
+        <p>Hébergeur : <strong>OVH Cloud</strong>.<br>
+        Adresse : 2 rue Kellermann, 59100 Roubaix, France</p>
+
+        <h3>3. Accessibilité</h3>
+        <p>Ce site s'efforce de respecter les critères WCAG 2.1 AA pour l'accessibilité.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="privacy-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('privacy-modal')">&times;</span>
+      <h2>Politique de Confidentialité</h2>
+      <div class="modal-body">
+        <p>Dernière mise à jour : 18 Juillet 2026</p>
+        <h3>1. Données collectées</h3>
+        <p>Nous collectons votre adresse e-mail via le formulaire de newsletter pour vous envoyer nos actualités.</p>
+        <h3>2. Conservation & Droits</h3>
+        <p>Vos données sont conservées jusqu'à désinscription. Vous disposez d'un droit d'accès, modification ou suppression en nous envoyant un e-mail à [EMAIL À CONFIRMER].</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="terms-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('terms-modal')">&times;</span>
+      <h2>Conditions Générales d'Utilisation</h2>
+      <div class="modal-body">
+        <h3>1. Objet</h3>
+        <p>Définir les conditions d'accès et d'usage du site.</p>
+        <h3>2. Propriété</h3>
+        <p>Le contenu du site est protégé par les droits de propriété intellectuelle.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANDEAU COOKIES -->
+  <div id="cookie-banner" class="cookie-banner">
+    <p>Ce site utilise des cookies essentiels. <button onclick="acceptCookies()" style="padding: 0.25rem 0.75rem; cursor: pointer; border: 1px solid var(--border); background: var(--bg-secondary); border-radius: 4px;">OK</button></p>
+  </div>
+
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

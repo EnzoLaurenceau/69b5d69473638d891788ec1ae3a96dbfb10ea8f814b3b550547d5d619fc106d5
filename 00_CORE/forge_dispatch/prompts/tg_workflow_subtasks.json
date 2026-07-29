@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Backend API + Models",
+    "description": "Créer FastAPI backend: models SQLAlchemy (Lead, Campaign, Content, Conversation, AnalyticsEvent), schemas Pydantic, routes CRUD pour /api/leads, /api/campaigns, /api/content, /api/analytics, /api/telegram/webhook. Config avec pydantic-settings. Database async avec asyncpg. Lazy-init pour les clients OpenAI/Qdrant (pas d'erreur sans API key). Le champ 'metadata' du model Lead doit s'appeler 'extra_data' (SQLAlchemy reserve 'metadata').",
+    "files": ["backend/app/main.py", "backend/app/core/config.py", "backend/app/core/database.py", "backend/app/models/models.py", "backend/app/api/schemas.py", "backend/app/api/leads.py", "backend/app/api/campaigns.py", "backend/app/api/content.py", "backend/app/api/analytics.py", "backend/app/api/telegram_webhook.py"],
+    "depends_on": []
+  },
+  {
+    "name": "Lead Scoring + Telegram Bot + RAG",
+    "description": "Créer les agents IA: lead_scoring.py (LLM gpt-4o-mini pour scorer 0-100, update lead status si >= threshold), telegram_bot.py (closing agent gpt-4o avec RAG, webhook handler, send_telegram helper), rag_service.py (Qdrant + OpenAI embeddings, lazy-init clients, ensure_collection, store_memory, retrieve_scripts). Worker stub pour background tasks.",
+    "files": ["backend/app/agents/lead_scoring.py", "backend/app/agents/telegram_bot.py", "backend/app/agents/worker.py", "backend/app/services/rag_service.py"],
+    "depends_on": ["T001"]
+  },
+  {
+    "name": "Dashboard Next.js",
+    "description": "Créer dashboard Next.js: page.tsx (home), leads/page.tsx (table + filtres status/platform/score + score badges colorés), campaigns/page.tsx (CRUD + form new campaign), content/page.tsx (grid cards + filtres type + form), analytics/page.tsx (KPI cards + top campaigns table), conversion/page.tsx (funnel visuel + metrics). Next.config.js avec rewrites vers backend:8000.",
+    "files": ["dashboard/app/page.tsx", "dashboard/app/layout.tsx", "dashboard/app/leads/page.tsx", "dashboard/app/campaigns/page.tsx", "dashboard/app/content/page.tsx", "dashboard/app/analytics/page.tsx", "dashboard/app/conversion/page.tsx", "dashboard/next.config.js", "dashboard/package.json", "dashboard/Dockerfile"],
+    "depends_on": []
+  },
+  {
+    "name": "Docker + DB + Seed + Tests + Alembic",
+    "description": "Créer: docker-compose.yml (5 services: backend, postgres, qdrant, frontend, worker), db/init.sql (5 tables + indexes + triggers updated_at), backend/Dockerfile, backend/requirements.txt, .env template, backend/alembic/ (env.py, script.py.mako, alembic.ini), seed.py (3 campaigns, 10 leads, 7 content items demo data), tests/test_all.py (10 tests: models, schemas, prompts, config — tous doivent passer sans API key).",
+    "files": ["docker-compose.yml", ".env", "db/init.sql", "backend/Dockerfile", "backend/requirements.txt", "backend/alembic.ini", "backend/alembic/env.py", "backend/alembic/script.py.mako", "backend/app/scripts/seed.py", "backend/tests/test_all.py"],
+    "depends_on": ["T001", "T002"]
+  }
+]

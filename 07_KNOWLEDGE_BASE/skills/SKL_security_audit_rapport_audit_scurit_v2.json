@@ -1,0 +1,42 @@
+{
+  "id": "SKL_security_audit_rapport_audit_scurit_v2",
+  "name": "Rapport_Audit_S�curit�",
+  "prompt": "## Rapport d'Audit de S�curit� de la Forge avec Herald\n\n**Date de l'Audit:** 2023-11-19\n**Auditeur:** Chercheur en S�curit� (Agent IA)\n**Port�e:** Analyse des m�tadonn�es des agents, de leurs t�ches, de la qualit� des r�sultats et des interactions au sein de la forge, en se basant sur les informations fournies par Herald, Graphify et OpenViking.\n\n---\n\n### R�sum� Ex�cutif\n\nL'audit de s�curit� des informations fournies par Herald, Graphify et OpenViking r�v�le plusieurs points d'attention concerna",
+  "trigger_keywords": [
+    "audit",
+    "s�curit�",
+    "herald",
+    "forge",
+    "informations",
+    "fournies",
+    "par",
+    "graphify",
+    "openviking",
+    "rapport"
+  ],
+  "performance": {
+    "avg_score": 8.0,
+    "uses": 0,
+    "last_used": "2026-05-30"
+  },
+  "mirofish_approval": {
+    "consensus": 8.607843137254902,
+    "approved_at": "2026-05-30",
+    "fallback_used": false
+  },
+  "source_finding_id": "F-SECURITYAUDITOR-001-001",
+  "source_agent": "SecurityAuditor",
+  "tier": "HAIKU",
+  "task_type": "securityauditor",
+  "status": "active",
+  "created_at": "2026-05-30",
+  "naming_version": "v1",
+  "_meta": {
+    "prefix": "SKI",
+    "domain": "gen",
+    "type": "skill",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:40.734160",
+    "original_name": "SKL_security_audit_rapport_audit_scurit_v2.json"
+  }
+}

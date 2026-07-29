@@ -1,0 +1,42 @@
+# requirements-docker.txt — dependencies for the Docker API image.
+# Stripped from requirements.txt: packages not imported by the API server.
+# nexus-ai-fs 0.9.26 requires Python >=3.12; turbovec, tree-sitter, crawl4ai,
+# scrapling, google-generativeai are not used by server.py / inference_api.py.
+
+# ─── LangGraph & LangChain ──────────────────────────
+langgraph==1.2.2
+langgraph-checkpoint-sqlite==3.1.0
+langgraph-checkpoint-postgres==3.1.0
+langchain-core==1.5.1
+langchain-anthropic==1.4.6
+langsmith==0.8.18
+
+# ─── Store unifié PG+Redis ──────────────────────────
+redis==8.0.0
+psycopg[binary]==3.2.13
+pgvector==0.4.2
+
+# ─── Graphe de connaissances ────────────────────────
+kuzu==0.11.3
+
+# ─── Anthropic SDK ──────────────────────────────────
+anthropic==0.105.0
+
+# ─── HTTP & Web ─────────────────────────────────────
+requests==2.33.0
+httpx==0.28.1
+
+# ─── Data & Utils ───────────────────────────────────
+python-dotenv==1.2.2
+pydantic==2.13.4
+rich==15.0.0
+
+# ─── LLM (OpenAI-compat) ───────────────────────────
+openai==2.38.0
+
+# ─── Dashboard / API ────────────────────────────────
+fastapi==0.136.3
+uvicorn[standard]==0.48.0
+
+# ─── Trading ────────────────────────────────────────
+pandas==3.0.5

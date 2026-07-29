@@ -1,0 +1,161 @@
+{
+  "name": "Forge — Rapport observabilité horaire",
+  "nodes": [
+    {
+      "id": "cron",
+      "name": "Toutes les heures",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "summary",
+      "name": "Metrics summary (gateway)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "http://host.docker.internal:7788/metrics/summary"
+      }
+    },
+    {
+      "id": "alerts",
+      "name": "Détection anomalies",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const groups = $input.first().json.groups || [];\nconst alerts = [];\nfor (const g of groups) {\n  if (g.error_rate > 0.2) alerts.push(`ERREURS ${g.workflow}/${g.agent}: ${(g.error_rate*100).toFixed(0)}%`);\n  if (g.latency_p95_ms > 30000) alerts.push(`LATENCE ${g.workflow}/${g.agent}: p95=${g.latency_p95_ms}ms`);\n  if (g.hallucination_avg !== null && g.hallucination_avg < 0.7) alerts.push(`HALLUCINATION ${g.workflow}/${g.agent}: avg=${g.hallucination_avg}`);\n  if (g.hallu_contradicted > 0) alerts.push(`CONFLITS KAG ${g.workflow}/${g.agent}: ${g.hallu_contradicted} contredits`);\n}\nreturn [{ json: { alerts, groups_count: groups.length, has_alerts: alerts.length > 0 } }];"
+      }
+    },
+    {
+      "id": "if_alerts",
+      "name": "IF alertes",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        660,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "loose"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "leftValue": "={{ $json.has_alerts }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "noop",
+      "name": "RAS",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        880,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "notify",
+      "name": "Notifier (à brancher: mail/Telegram)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        880,
+        -100
+      ],
+      "parameters": {},
+      "notes": "Remplacer par un node Gmail/Telegram/Discord selon canal souhaité. Payload: {{ $json.alerts }}"
+    }
+  ],
+  "connections": {
+    "Toutes les heures": {
+      "main": [
+        [
+          {
+            "node": "Metrics summary (gateway)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Metrics summary (gateway)": {
+      "main": [
+        [
+          {
+            "node": "Détection anomalies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Détection anomalies": {
+      "main": [
+        [
+          {
+            "node": "IF alertes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF alertes": {
+      "main": [
+        [
+          {
+            "node": "Notifier (à brancher: mail/Telegram)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "RAS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

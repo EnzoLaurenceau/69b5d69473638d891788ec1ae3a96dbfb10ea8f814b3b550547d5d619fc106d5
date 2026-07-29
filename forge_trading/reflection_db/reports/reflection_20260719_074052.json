@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-07-19T07:40:52.924022",
+  "strategy": "micro_arb",
+  "analysis_summary": {
+    "total_trades": 10,
+    "win_rate": 1.0,
+    "trend": "declining"
+  },
+  "patterns_found": 4,
+  "lessons_generated": 3,
+  "key_insights": [
+    "Pattern gagnant: Paire dominante: EURUSD (10 trades)",
+    "Pattern gagnant: Direction favorisée: SELL (8 vs 2)",
+    "Tendance en déclin: WR 100.0% → 100.0%"
+  ],
+  "recommendations": [
+    "Continuer à exploiter ce pattern: Paire dominante: EURUSD (10 trades)",
+    "Continuer à exploiter ce pattern: Direction favorisée: SELL (8 vs 2)",
+    "Optimiser les paramètres ou changer de stratégie"
+  ],
+  "optimal_conditions": {}
+}

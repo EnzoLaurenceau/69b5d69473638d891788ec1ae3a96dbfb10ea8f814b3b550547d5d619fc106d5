@@ -1,0 +1,309 @@
+{
+  "_meta": {
+    "niche": "IA pour Créateurs & Entrepreneurs",
+    "score": 9.2,
+    "date": "2026-05-28",
+    "agent": "HUNTER_AGENT",
+    "jury_verdict": "APPROVED",
+    "target": "18-35 ans, créateurs de contenu, entrepreneurs solo, freelances"
+  },
+  "brand": {
+    "name": "PromptFlow",
+    "tagline": "L'IA qui travaille à ta place",
+    "positioning": "Outils IA pratiques pour créateurs ambitieux — pas de bullshit, que des résultats",
+    "tone": "Direct, moderne, empowerment — comme un ami qui a 2 ans d'avance sur toi en IA"
+  },
+  "collections": [
+    {
+      "handle": "prompt-packs",
+      "title": "⚡ Prompt Packs",
+      "description": "Des centaines de prompts testés et optimisés pour ChatGPT, Claude et Gemini. Gagne 10h par semaine.",
+      "sort": 1
+    },
+    {
+      "handle": "notion-templates",
+      "title": "🗂️ Templates Notion IA",
+      "description": "Tes systèmes de travail boostés par l'IA — prêts à l'emploi en 2 minutes.",
+      "sort": 2
+    },
+    {
+      "handle": "ebooks-ia",
+      "title": "📚 Guides IA",
+      "description": "Maîtrise l'IA en 2026 : guides pratiques écrits par des créateurs qui font déjà +10k€/mois avec l'IA.",
+      "sort": 3
+    },
+    {
+      "handle": "bundles",
+      "title": "🔥 Bundles — Meilleure Valeur",
+      "description": "Packs complets pour démarrer vite. Économise jusqu'à 60% vs achat séparé.",
+      "sort": 4
+    }
+  ],
+  "products": [
+    {
+      "id": "P01",
+      "collection": "prompt-packs",
+      "title": "500 Prompts ChatGPT pour Créateurs de Contenu",
+      "price": 27,
+      "compare_at": null,
+      "type": "Digital Download",
+      "tags": [
+        "chatgpt",
+        "prompts",
+        "contenu",
+        "tiktok",
+        "instagram",
+        "créateur"
+      ],
+      "description_short": "500 prompts organisés par plateforme (TikTok, Instagram, YouTube, LinkedIn) pour ne plus jamais avoir le syndrome de la page blanche.",
+      "description_seo": "Arrête de perdre 3h par semaine à chercher quoi poster. Avec ces 500 prompts ChatGPT spécialement conçus pour les créateurs de contenu, génère tes idées, tes scripts, tes captions et tes hashtags en 30 secondes. Organisés par plateforme : TikTok, Instagram Reels, YouTube Shorts, LinkedIn. Inclut des prompts pour les hooks viraux, le storytelling et l'engagement.",
+      "tiktok_hook": "POV : tu génères 30 idées de contenu en 30 secondes avec ce prompt ChatGPT 👀",
+      "deliverable": "PDF + Notion database",
+      "usp": "Testé sur 50+ créateurs avec +200% d'engagement moyen"
+    },
+    {
+      "id": "P02",
+      "collection": "prompt-packs",
+      "title": "Pack Prompts Business — Entrepreneur Solo",
+      "price": 37,
+      "compare_at": null,
+      "type": "Digital Download",
+      "tags": [
+        "business",
+        "entrepreneur",
+        "freelance",
+        "prompts",
+        "productivité"
+      ],
+      "description_short": "200 prompts pour gérer ton business solo : emails clients, offres commerciales, relances, devis, posts LinkedIn qui convertissent.",
+      "description_seo": "Le kit de survie de l'entrepreneur solo en 2026. 200 prompts structurés pour écrire tes emails professionnels, rédiger tes offres commerciales, automatiser tes relances, créer tes devis et dominer LinkedIn. Stop au syndrome de la page blanche — commence à facturer plus.",
+      "tiktok_hook": "Ce prompt m'a fait gagner 2000€ ce mois-ci — je t'explique",
+      "deliverable": "PDF + fichier Notion",
+      "usp": "Utilisé par 300+ freelances en France"
+    },
+    {
+      "id": "P03",
+      "collection": "prompt-packs",
+      "title": "Mega Pack — 1000 Prompts IA Multi-Usages",
+      "price": 47,
+      "compare_at": 97,
+      "type": "Digital Download",
+      "tags": [
+        "mega",
+        "prompts",
+        "chatgpt",
+        "claude",
+        "gemini",
+        "business",
+        "créateur"
+      ],
+      "description_short": "1000 prompts premium pour ChatGPT, Claude et Gemini. La bibliothèque ultime : contenu, business, code, design, marketing, copywriting.",
+      "description_seo": "La bibliothèque IA la plus complète du marché francophone. 1000 prompts classés en 12 catégories pour ChatGPT, Claude et Gemini. Contenu viral, business solo, code sans savoir coder, marketing digital, copywriting qui vend, design briefs, emails, négociation... Tout ce dont tu as besoin pour travailler 2x moins et gagner 2x plus.",
+      "tiktok_hook": "J'ai mis 6 mois à les tester. Ces 1000 prompts changent tout.",
+      "deliverable": "PDF + Notion database + fichier Excel",
+      "usp": "Compatibles ChatGPT 4, Claude 3.5, Gemini 2.0"
+    },
+    {
+      "id": "P04",
+      "collection": "notion-templates",
+      "title": "Notion OS pour Créateur IA — Système Complet",
+      "price": 37,
+      "compare_at": null,
+      "type": "Digital Download",
+      "tags": [
+        "notion",
+        "système",
+        "créateur",
+        "organisation",
+        "productivité",
+        "IA"
+      ],
+      "description_short": "Un système Notion tout-en-un boosté par l'IA : calendrier contenu, pipeline clients, suivi revenus, ideas vault, et automatisations IA intégrées.",
+      "description_seo": "Le cerveau externe du créateur moderne. Ce template Notion tout-en-un inclut : calendrier éditorial avec IA intégré, pipeline de clients et projets, tracker de revenus, ideas vault (capturez vos idées n'importe où), bibliothèque de prompts personnelle, et un tableau de bord pour piloter votre activité. Connecte Notion à ChatGPT et automatise tout.",
+      "tiktok_hook": "Mon système Notion qui gère mon business créateur pendant que je dors",
+      "deliverable": "Template Notion (duplication en 1 clic) + guide vidéo 15min",
+      "usp": "Économise 5h/semaine — configuré en 10 minutes"
+    },
+    {
+      "id": "P05",
+      "collection": "notion-templates",
+      "title": "Template Notion — Machine à Contenu IA",
+      "price": 27,
+      "compare_at": null,
+      "type": "Digital Download",
+      "tags": [
+        "notion",
+        "contenu",
+        "tiktok",
+        "instagram",
+        "youtube",
+        "machine"
+      ],
+      "description_short": "Le système pour produire 30 posts/semaine en 2h. Planification, scripts, repurposing automatique sur toutes les plateformes.",
+      "description_seo": "Transforme 1 idée en 10 contenus différents. Ce template Notion te permet de planifier, scripter et recycler ton contenu sur TikTok, Instagram, YouTube, LinkedIn et Twitter en moins de 2h par semaine. Inclut des workflows IA intégrés avec ChatGPT pour générer scripts, captions et hashtags automatiquement.",
+      "tiktok_hook": "Comment je poste sur 5 réseaux sociaux en seulement 2h par semaine",
+      "deliverable": "Template Notion + SOP vidéo",
+      "usp": "Système utilisé par les créateurs à 100k+ abonnés"
+    },
+    {
+      "id": "P06",
+      "collection": "notion-templates",
+      "title": "Dashboard Freelance IA — Gère Tes Clients avec l'IA",
+      "price": 29,
+      "compare_at": null,
+      "type": "Digital Download",
+      "tags": [
+        "freelance",
+        "clients",
+        "notion",
+        "IA",
+        "facturation",
+        "CRM"
+      ],
+      "description_short": "CRM simple pour freelances : gestion clients, projets, factures, relances automatiques et suivi de tes revenus mensuel.",
+      "description_seo": "Le CRM des freelances qui n'ont pas le temps de gérer un CRM. Dashboard Notion avec IA intégrée pour gérer tes clients, suivre tes projets, générer tes devis et factures, automatiser tes relances et analyser tes revenus. Compatible avec ChatGPT pour rédiger emails et propositions commerciales en 30 secondes.",
+      "tiktok_hook": "J'ai 8 clients actifs et je passe 30min/semaine à l'admin — voilà comment",
+      "deliverable": "Template Notion + templates emails + guide",
+      "usp": "0 outil payant nécessaire — Notion gratuit suffit"
+    },
+    {
+      "id": "P07",
+      "collection": "ebooks-ia",
+      "title": "Guide : Gagne 1000€ avec l'IA en 30 Jours",
+      "price": 17,
+      "compare_at": null,
+      "type": "Digital Download",
+      "tags": [
+        "ebook",
+        "revenus",
+        "IA",
+        "side-hustle",
+        "argent",
+        "freelance"
+      ],
+      "description_short": "Le guide concret pour monétiser l'IA rapidement : 8 méthodes testées, étapes détaillées, sans expérience technique.",
+      "description_seo": "Pas de bullshit. Ce guide recense 8 méthodes éprouvées pour générer tes premiers 1000€ avec l'IA en 30 jours, même si tu pars de zéro. Services IA (rédaction, résumés, traduction), création et vente de prompts, automatisation pour PME, création de contenu en série... Chaque méthode inclut les étapes détaillées, les plateformes à utiliser et les tarifs à pratiquer.",
+      "tiktok_hook": "J'ai gagné 1200€ ce mois-ci grâce à l'IA — sans coder, sans diplôme",
+      "deliverable": "PDF 60 pages + bonus : liste des clients potentiels",
+      "usp": "Méthodes applicables dès aujourd'hui — résultats en 72h"
+    },
+    {
+      "id": "P08",
+      "collection": "ebooks-ia",
+      "title": "Maîtrise ChatGPT en 7 Jours — Guide Avancé",
+      "price": 19,
+      "compare_at": null,
+      "type": "Digital Download",
+      "tags": [
+        "chatgpt",
+        "guide",
+        "avancé",
+        "technique",
+        "prompt engineering"
+      ],
+      "description_short": "De débutant à expert ChatGPT en 7 jours. Techniques avancées de prompting, personas, chaînes de prompts, et cas d'usage business.",
+      "description_seo": "La vraie maîtrise de ChatGPT en 7 jours. Ce guide avancé couvre tout ce que les tutoriels YouTube ne t'enseignent jamais : création de personas IA, chaînes de prompts complexes, techniques de few-shot et chain-of-thought, gestion des hallucinations, automatisation avec API, et 50 cas d'usage business concrets. Du level débutant à expert.",
+      "tiktok_hook": "90% des gens utilisent ChatGPT mal — voilà comment les pros le font",
+      "deliverable": "PDF 80 pages + 50 templates de prompts inclus",
+      "usp": "Techniques utilisées par des consultants IA à 5000€/jour"
+    },
+    {
+      "id": "P09",
+      "collection": "ebooks-ia",
+      "title": "L'IA pour les Nuls Ambitieux — De Zéro à Productif",
+      "price": 14,
+      "compare_at": null,
+      "type": "Digital Download",
+      "tags": [
+        "débutant",
+        "IA",
+        "guide",
+        "productivité",
+        "ChatGPT",
+        "Midjourney"
+      ],
+      "description_short": "Le guide parfait pour ceux qui veulent commencer avec l'IA sans se perdre : ChatGPT, Claude, Midjourney, Notion IA — tout en un.",
+      "description_seo": "Tu entends parler d'IA partout mais tu ne sais pas par où commencer ? Ce guide zéro-jargon t'emmène de 'je ne sais pas ce qu'est un prompt' à 'j'utilise l'IA pour travailler 2x plus vite' en 3 jours. Couvre ChatGPT, Claude, Midjourney pour les images, Notion IA, et comment tout connecter dans une routine quotidienne productive.",
+      "tiktok_hook": "Si tu commence avec l'IA en 2026, commence par là — pas ailleurs",
+      "deliverable": "PDF 45 pages + checklist quotidienne IA",
+      "usp": "Lu et recommandé par 1000+ débutants"
+    },
+    {
+      "id": "P10",
+      "collection": "ebooks-ia",
+      "title": "Script IA pour TikTok & Reels — Viralité Garantie",
+      "price": 22,
+      "compare_at": null,
+      "type": "Digital Download",
+      "tags": [
+        "tiktok",
+        "reels",
+        "script",
+        "viral",
+        "IA",
+        "contenu"
+      ],
+      "description_short": "Formules de scripts prouvés pour créer des vidéos virales sur TikTok et Reels avec l'IA. 15 templates de hooks + structures narratives.",
+      "description_seo": "Le guide de scripting IA pour créateurs qui veulent des millions de vues. Découvre les 15 structures de hooks qui captent l'attention en 2 secondes, les formules narratives qui maintiennent le watchtime, et comment utiliser ChatGPT pour générer 10 scripts viraux en 20 minutes. Analysé sur 500+ vidéos ayant dépassé 1M de vues.",
+      "tiktok_hook": "Les 3 formules de hooks qui font 90% des vidéos virales — analyse de 500 vidéos",
+      "deliverable": "PDF + 15 templates scripts + 200 hooks pré-écrits",
+      "usp": "Basé sur l'analyse de 500 vidéos à 1M+ vues"
+    },
+    {
+      "id": "P11",
+      "collection": "bundles",
+      "title": "🔥 BUNDLE CRÉATEUR — Prompts + Notion + Guide",
+      "price": 67,
+      "compare_at": 110,
+      "type": "Digital Download",
+      "tags": [
+        "bundle",
+        "créateur",
+        "prompts",
+        "notion",
+        "guide",
+        "bestseller"
+      ],
+      "description_short": "Le pack complet pour créateurs : 500 Prompts Créateurs + Notion Machine à Contenu + Guide IA TikTok & Reels. Économise 40€.",
+      "description_seo": "Tout ce qu'il faut pour devenir un créateur IA-powered en 2026. Ce bundle réunit : 500 Prompts pour Créateurs, le Template Notion Machine à Contenu, et le Guide Scripts IA TikTok & Reels. 3 produits pour le prix de 2 — économise 40€ et commence à créer comme un pro immédiatement. Normalement vendu 110€.",
+      "tiktok_hook": "Ce pack a transformé ma façon de créer — avant/après brutal",
+      "deliverable": "Accès immédiat aux 3 produits inclus",
+      "usp": "Bundle bestseller — plus de 500 créateurs équipés"
+    },
+    {
+      "id": "P12",
+      "collection": "bundles",
+      "title": "🚀 BUNDLE ENTREPRENEUR IA — Pack Complet Business",
+      "price": 97,
+      "compare_at": 160,
+      "type": "Digital Download",
+      "tags": [
+        "bundle",
+        "entrepreneur",
+        "business",
+        "complet",
+        "bestseller"
+      ],
+      "description_short": "Le kit complet entrepreneur solo : Mega Pack 1000 Prompts + Notion OS Créateur + Pack Business + Guide 1000€/mois IA. Économise 63€.",
+      "description_seo": "Le pack ultime pour l'entrepreneur solo qui veut scaler avec l'IA. Inclut : Mega Pack 1000 Prompts IA, Notion OS Créateur complet, Pack Prompts Business, et le Guide Gagne 1000€ avec l'IA. Tout ce dont tu as besoin pour automatiser, créer et vendre avec l'IA dès cette semaine. Normalement 160€ — économise 63€ aujourd'hui.",
+      "tiktok_hook": "Mon setup IA complet à moins de 100€ — voilà exactement ce qu'il y a dedans",
+      "deliverable": "Accès immédiat aux 5 produits inclus",
+      "usp": "Le pack le plus complet du marché francophone IA"
+    }
+  ],
+  "pricing_strategy": {
+    "entry": "14-17€ (lead magnets — ebooks débutant)",
+    "core": "22-47€ (produits principaux — prompts, templates)",
+    "premium": "67-97€ (bundles — meilleure marge)",
+    "aov_target": "42€",
+    "upsell_flow": "Ebook 14€ → Pack Prompts 27€ → Bundle 67€"
+  },
+  "discount_planned": {
+    "code": "BIENVENUE20",
+    "percent": 20,
+    "target": "Nouveaux visiteurs — popup à 30 secondes",
+    "expiry_days": 3
+  },
+  "id": "FND_unknown_product_lineup_ia_creator",
+  "naming_version": "v1"
+}

@@ -1,0 +1,45 @@
+# Super Agent Forge — Stack mémoire unifiée (optiforge)
+# Lancer : docker compose -f 00_CORE/db/docker-compose.yml up -d
+# Arrêter : docker compose -f 00_CORE/db/docker-compose.yml down
+#
+# Primaire de la Forge : PostgreSQL(pgvector) + Redis.
+# Les URLs par défaut correspondent à .env (DATABASE_URL / REDIS_URL).
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: forge_postgres
+    environment:
+      POSTGRES_USER: forge
+      POSTGRES_PASSWORD: forge
+      POSTGRES_DB: forge
+    ports:
+      # Port hôte 5433 (5432 souvent pris par un PostgreSQL natif) → DATABASE_URL
+      - "5433:5432"
+    volumes:
+      - forge_pgdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U forge -d forge"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: forge_redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      # Port hôte 6380 (6379 souvent pris par d'autres projets) → REDIS_URL
+      - "6380:6379"
+    volumes:
+      - forge_redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  forge_pgdata:
+  forge_redisdata:

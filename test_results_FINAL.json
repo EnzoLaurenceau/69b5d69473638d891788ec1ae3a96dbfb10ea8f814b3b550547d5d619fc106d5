@@ -1,0 +1,11 @@
+{
+  "haiku": {
+    "status": "FAILED",
+    "error": "\"Could not resolve authentication method. Expected one of api_key, auth_token, or credentials to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  "forge": {
+    "status": "NOT_AVAILABLE",
+    "error": "forge_agents not available",
+    "note": "Set up GROQ_API_KEY, OPENROUTER_API_KEY, or Anthropic fallback"
+  }
+}

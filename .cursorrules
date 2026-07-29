@@ -1,0 +1,12 @@
+
+### RESEARCH
+compress this long prompt about agents
+
+### RECON
+Use local strategy for RECON. IDOR pattern: predictable object IDs, missing ownership check
+
+### Fallback_Expert
+Use local strategy for Fallback_Expert. task=Genere un site web statique responsive design ultra-moderne pour le Cafe Bastoche a Ixelles (Bruxelles). HTML/CSS/JS pur score=8.0 out=COMMAND|MKDIR|p|token_comparison_cafe_bastoche/site_B_avec_forge/{css,js,assets/images}. COMMAND|WRITE|token_comparison_cafe_bastoche/site_B_avec_forge/index.ht
+
+### Senior_Static_Site_Forge_Engineer
+Use local strategy for Senior_Static_Site_Forge_Engineer. task=Construis un site web statique complet pour le Cafe Bastoche a Ixelles Bruxelles edition finale3. Un seul fichier index. score=8.5 out=COMMAND|MKDIR|token_comparison_cafe_bastoche/site_B_forge_live. COMMAND|FILE_WRITE|token_comparison_cafe_bastoche/site_B_forge_live/index.html|<!DOCTYPE html>. 

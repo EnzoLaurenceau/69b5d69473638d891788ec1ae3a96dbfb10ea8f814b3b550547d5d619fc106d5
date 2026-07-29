@@ -1,0 +1,48 @@
+{
+  "id": "SKL_security_audit_fais_un_audit_securité_de_v2",
+  "name": "fais_un_audit_securité_de_la_forge_avec_herald_a",
+  "prompt": "# Compétence Rétroactive : fais un audit securité de la forge avec herald, a la fin de l'audit tu doiss tou\n\n## Rôle\nTu es un expert en Security.\n\n## Méthodologie Validée\nPour accomplir cette tâche avec succès, applique l'approche éprouvée :\n- Analyse le contexte complet avant d'agir\n- Applique les patterns qui ont fonctionné historiquement\n- Valide le résultat avec des critères mesurables\n\n\n## Critères de Succès\n- Score minimum : 7.5/10\n- Approche méthodique documentée\n- Résultat reproductible\n\n## Source\n- Historique: token_log\n- Fichier: session_1780096553597-20260529-231638.json\n",
+  "trigger_keywords": [
+    "fais",
+    "audit",
+    "securité",
+    "forge",
+    "herald",
+    "fin",
+    "doiss",
+    "tout",
+    "corriger",
+    "sans",
+    "impacter",
+    "fonctionnement",
+    "idée",
+    "opttimiser",
+    "plus"
+  ],
+  "performance": {
+    "avg_score": 7.5,
+    "uses": 0,
+    "last_used": "2026-07-17"
+  },
+  "mirofish_approval": {
+    "consensus": 7.5,
+    "approved_at": "2026-07-17",
+    "fallback_used": false
+  },
+  "source_finding_id": "RETRO-token_log",
+  "source_agent": "retro_log_parser",
+  "tier": "HAIKU",
+  "task_type": "security",
+  "status": "active",
+  "created_at": "2026-07-17",
+  "retro_source": "session_1780096553597-20260529-231638.json",
+  "naming_version": "v1",
+  "_meta": {
+    "prefix": "SKI",
+    "domain": "gen",
+    "type": "skill",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:40.732986",
+    "original_name": "SKL_security_audit_fais_un_audit_securité_de_v2.json"
+  }
+}

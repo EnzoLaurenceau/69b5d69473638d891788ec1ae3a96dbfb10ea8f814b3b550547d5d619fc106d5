@@ -1,0 +1,21 @@
+{
+  "rounds_per_cycle": 3,
+  "consensus_min": 0.65,
+  "seed_max_tokens": 500,
+  "output_max_tokens": 300,
+  "scoring": {
+    "weighted_vote": true,
+    "min_votes_to_confirm": 3,
+    "abstain_counts_as": 0.5
+  },
+  "evolve": {
+    "emit_suggestions": true,
+    "suggestion_confidence_min": 0.7,
+    "max_suggestions_per_cycle": 3
+  },
+  "fallback": {
+    "if_mirofish_unavailable": "critic_double_pass",
+    "double_pass_perspectives": ["pour", "contre"]
+  },
+  "caveman_seed_format": "JURY SEED findings=[<ids>] task=<slug> cycle=<N>"
+}

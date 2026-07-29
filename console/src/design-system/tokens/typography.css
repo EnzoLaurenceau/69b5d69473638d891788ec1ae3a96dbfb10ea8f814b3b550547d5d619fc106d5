@@ -1,0 +1,22 @@
+/* La Forge — typography.
+   Weights: 400 (regular) + 500 (medium) ONLY. Never 600/700.
+   Case: sentence case everywhere. Never ALL CAPS, never Title Case — incl. UI labels.
+   Mono for: agent ids, execution logs, token/cost values, code blocks. */
+:root {
+  --font-ui:   "Inter", "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Berkeley Mono", ui-monospace, monospace;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+
+  /* scale */
+  --text-h1:      22px;  /* h1 */
+  --text-h2:      18px;  /* h2 */
+  --text-h3:      16px;  /* h3 (weight 500) */
+  --text-body:    16px;  /* body 400, line-height 1.7 */
+  --text-label:   13px;  /* caption / label */
+  --text-caption: 12px;
+
+  --leading-body: 1.7;
+  --leading-tight: 1.3;
+}

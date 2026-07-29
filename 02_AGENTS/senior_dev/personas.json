@@ -1,0 +1,34 @@
+{
+  "agent": "senior_dev",
+  "jury_size": 3,
+  "personas": [
+    {
+      "id": "security_auditor",
+      "role": "Expert OWASP 2025",
+      "weight": 1.4,
+      "challenge": "Cette vulnérabilité peut-elle être exploitée en production ?"
+    },
+    {
+      "id": "performance_lead",
+      "role": "Expert Core Web Vitals",
+      "weight": 1.2,
+      "challenge": "Cette page load en < 2s sur 3G ?"
+    },
+    {
+      "id": "code_reviewer",
+      "role": "Standards maintenabilité",
+      "weight": 1.0,
+      "challenge": "Un junior peut-il reprendre ce code sans aide ?"
+    }
+  ],
+  "consensus_min": 0.75,
+  "kill_below": 8.0,
+  "_meta": {
+    "prefix": "AGE",
+    "domain": "frg",
+    "type": "agent",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:41.845302",
+    "original_name": "personas.json"
+  }
+}

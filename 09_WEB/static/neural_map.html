@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 3D Neural Atlas Map — Full-Screen</title>
+<!-- TailwindCSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Font import -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- 3D Force Graph Library -->
+<script src="https://unpkg.com/3d-force-graph@1/dist/3d-force-graph.min.js"></script>
+<!-- SpriteText for link labels -->
+<script src="https://unpkg.com/three-spritetext@1/dist/three-spritetext.min.js"></script>
+
+<style>
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #040408;
+    color: #e2e8f0;
+  }
+  .jetbrains {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .glass {
+    background: rgba(10, 10, 20, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+</style>
+</head>
+<body class="h-screen w-screen overflow-hidden relative">
+
+  <!-- Full-Screen Graph Container -->
+  <div id="3d-graph" class="w-full h-full absolute inset-0 z-0"></div>
+
+  <!-- TOP OVERLAY: Header & Controls -->
+  <div class="absolute top-4 left-4 right-4 z-10 flex justify-between items-start pointer-events-none">
+    
+    <!-- Left: Title and Return button -->
+    <div class="flex flex-col gap-2 pointer-events-auto">
+      <div class="glass px-4 py-3 rounded-xl flex items-center gap-3">
+        <a href="/" class="px-2.5 py-1.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs transition duration-200 shadow shadow-orange-500/20 uppercase tracking-wider jetbrains">◀ Retour à l'OS</a>
+        <div class="h-6 w-px bg-white/10"></div>
+        <div>
+          <h1 class="text-sm font-bold tracking-wider uppercase bg-gradient-to-r from-orange-400 to-purple-500 bg-clip-text text-transparent jetbrains">3D Neural Atlas Map</h1>
+          <p class="text-[9px] text-gray-500 jetbrains">Visualisation unifiée des clusters cognitifs & chronologiques</p>
+        </div>
+        <div class="h-6 w-px bg-white/10"></div>
+        <button onclick="recenterMap()" title="Recentrer / cadrer tout" class="px-2.5 py-1.5 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 text-purple-300 font-bold text-xs transition jetbrains uppercase tracking-wider">⊹ Recentrer</button>
+      </div>
+
+      <!-- Live Search Overlay -->
+      <div class="glass p-3 rounded-xl flex gap-2 items-center w-80 shadow-lg">
+        <input id="nmSearchInput" type="text" placeholder="Rechercher un concept, agent ou tâche..." oninput="onSearch()"
+               class="flex-1 bg-black/40 border border-white/10 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-orange-500 jetbrains placeholder-gray-600">
+        <select id="nmSearchMode" onchange="onSearch()"
+                class="bg-black/60 border border-white/10 rounded px-1.5 py-1.5 text-[10px] text-gray-400 jetbrains focus:outline-none cursor-pointer">
+          <option value="filter">Filtrer</option>
+          <option value="locate">Localiser</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Right: Filter Panel + Legend -->
+    <div class="glass p-4 rounded-xl flex flex-col gap-2 pointer-events-auto shadow-lg text-[10px] jetbrains w-52">
+      <div class="text-gray-400 uppercase font-bold tracking-wider mb-1">Filtres Dynamiques</div>
+      <div class="flex flex-col gap-1.5">
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-graph" checked onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+          <span>LangGraph Flow</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-agent" checked onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+          <span>Specialist Agents</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-memory" checked onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+          <span>Memory Layers</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-tool" checked onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <span>Tools</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-experience" checked onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+          <span>Experiences</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-skill" checked onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+          <span>Skills KB</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-finding" onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+          <span>Findings & Vulns</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-file" onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+          <span>Source Files</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-module" checked onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+          <span>Modules / Packages</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="f-datascience" checked onchange="applyFilters()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-pink-400"></span>
+          <span>Data Scientist</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer hover:text-white transition">
+          <input type="checkbox" id="opt-scope-full" onchange="applyScope()" class="accent-orange-500">
+          <span class="w-2.5 h-2.5 rounded-full bg-white/40"></span>
+          <span>Inclure dépôts vendorés</span>
+        </label>
+      </div>
+
+      <!-- SECTEURS CLIQUEABLES STYLES JEU VIDÉO -->
+      <div class="h-px bg-white/10 my-2"></div>
+      <div class="text-orange-400 uppercase font-bold tracking-wider text-[9px] mb-1.5 flex justify-between items-center">
+        <span>🎮 Secteurs Tactiques</span>
+        <button onclick="selectSector('all')" class="text-gray-400 hover:text-white text-[8px] underline">Tous</button>
+      </div>
+      <div class="grid grid-cols-2 gap-1.5 text-[9px]">
+        <button onclick="selectSector('core')" class="px-2 py-1.5 rounded bg-orange-500/10 hover:bg-orange-500/30 border border-orange-500/30 text-orange-300 font-bold text-left transition truncate">🔥 Core Flow</button>
+        <button onclick="selectSector('agents')" class="px-2 py-1.5 rounded bg-amber-500/10 hover:bg-amber-500/30 border border-amber-500/30 text-amber-300 font-bold text-left transition truncate">🤖 Agents</button>
+        <button onclick="selectSector('memory')" class="px-2 py-1.5 rounded bg-blue-500/10 hover:bg-blue-500/30 border border-blue-500/30 text-blue-300 font-bold text-left transition truncate">💾 Mémoire</button>
+        <button onclick="selectSector('tools')" class="px-2 py-1.5 rounded bg-emerald-500/10 hover:bg-emerald-500/30 border border-emerald-500/30 text-emerald-300 font-bold text-left transition truncate">🛠️ Outils</button>
+        <button onclick="selectSector('code')" class="px-2 py-1.5 rounded bg-cyan-500/10 hover:bg-cyan-500/30 border border-cyan-500/30 text-cyan-300 font-bold text-left transition truncate">📦 Code Tree</button>
+        <button onclick="selectSector('security')" class="px-2 py-1.5 rounded bg-red-500/10 hover:bg-red-500/30 border border-red-500/30 text-red-300 font-bold text-left transition truncate">🛡️ Sécurité</button>
+      </div>
+      <div class="h-px bg-white/5 my-1"></div>
+      <div class="flex justify-between text-[9px] text-gray-500">
+        <span id="node-count-display">Nodes: —</span>
+        <span id="link-count-display">Links: —</span>
+      </div>
+      <div class="text-[9px] text-gray-600" id="hidden-count-display"></div>
+      <div class="text-gray-500 italic text-[9px] leading-relaxed">Fais tourner le graphe, clique sur un nœud pour l'inspecter.</div>
+    </div>
+
+    <!-- LATENCY HEATMAP LEGEND -->
+    <div class="glass p-3 rounded-xl pointer-events-auto shadow-lg text-[9px] jetbrains w-52 mt-2">
+      <div class="text-gray-400 uppercase font-bold tracking-wider mb-2">Latence Heatmap</div>
+      <div class="flex flex-col gap-1">
+        <div class="flex items-center gap-2"><span class="w-3 h-1 rounded bg-emerald-500"></span><span class="text-emerald-400">< 500ms</span><span class="text-gray-600">— rapide</span></div>
+        <div class="flex items-center gap-2"><span class="w-3 h-1 rounded bg-yellow-500"></span><span class="text-yellow-400">500ms–1.5s</span><span class="text-gray-600">— normal</span></div>
+        <div class="flex items-center gap-2"><span class="w-3 h-1 rounded bg-orange-500"></span><span class="text-orange-400">1.5s–3s</span><span class="text-gray-600">— lent</span></div>
+        <div class="flex items-center gap-2"><span class="w-3 h-1 rounded bg-red-500"></span><span class="text-red-400">> 3s</span><span class="text-gray-600">— critique ⚠</span></div>
+        <div class="flex items-center gap-2"><span class="w-3 h-1 rounded bg-slate-500"></span><span class="text-slate-400">pas de data</span></div>
+      </div>
+      <div class="h-px bg-white/5 my-2"></div>
+      <div class="flex justify-between text-[8px] text-gray-500">
+        <span>Liens lents = glow pulsé</span>
+        <span id="latency-avg-display" class="text-orange-400">avg: —</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT OVERLAY: Side Inspector Panel (collapsible) -->
+  <div id="inspector-panel" class="absolute top-4 right-4 bottom-4 w-96 z-10 glass rounded-xl flex flex-col overflow-hidden pointer-events-auto translate-x-[420px] transition-transform duration-300 shadow-2xl">
+    
+    <!-- Header -->
+    <div class="p-4 border-b border-white/10 flex justify-between items-center shrink-0 bg-black/40">
+      <div class="flex items-center gap-2">
+        <span id="inspector-node-type" class="px-2 py-0.5 rounded text-[8px] bg-orange-500/10 text-orange-400 font-bold jetbrains uppercase">NODE</span>
+        <span id="inspector-node-title" class="text-xs font-bold text-gray-200 jetbrains truncate w-56">Sélectionner un nœud</span>
+      </div>
+      <button onclick="closeInspector()" class="text-gray-500 hover:text-white text-xs jetbrains">✕ Fermer</button>
+    </div>
+
+    <!-- Contents (Scrollable) -->
+    <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs" id="inspector-body">
+      
+      <!-- Default View -->
+      <div id="inspector-default-view" class="text-center py-12 text-gray-600 italic">
+        Cliquez sur un nœud dans la Neural Map pour afficher ses connexions et métriques en temps réel.
+      </div>
+
+      <!-- Agent Details view -->
+      <div id="inspector-agent-view" class="hidden space-y-4">
+        <!-- Stats -->
+        <div class="grid grid-cols-2 gap-2 text-center text-[10px] jetbrains bg-black/30 p-2.5 rounded border border-white/5">
+          <div class="flex flex-col gap-1 border-r border-white/10">
+            <span class="text-gray-500 uppercase">Appels</span>
+            <span id="agent-calls" class="text-white font-bold text-sm">—</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="text-gray-500 uppercase">Qualité Moyenne</span>
+            <span id="agent-score" class="text-emerald-400 font-bold text-sm">—</span>
+          </div>
+        </div>
+
+        <!-- Prompt -->
+        <div class="space-y-1">
+          <div class="flex justify-between items-center cursor-pointer" onclick="togglePrompt()">
+            <span class="text-[10px] text-gray-500 uppercase font-bold jetbrains">System Prompt Template</span>
+            <span class="text-[10px] text-orange-400 hover:underline" id="prompt-toggle-btn">[Afficher]</span>
+          </div>
+          <textarea id="agent-prompt-area" rows="8" readonly class="w-full bg-[#08080c]/50 border border-white/10 rounded p-2 text-[10px] jetbrains text-gray-400 focus:outline-none"></textarea>
+        </div>
+
+        <!-- Boost Timeline -->
+        <div class="space-y-2 border-t border-white/5 pt-3">
+          <div class="text-[10px] text-purple-400 font-bold uppercase jetbrains">📈 Boost Timeline (Chronological)</div>
+          <div id="agent-boost-timeline" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
+        </div>
+
+        <!-- Associated Experiences -->
+        <div class="space-y-2 border-t border-white/5 pt-3">
+          <div class="text-[10px] text-blue-400 font-bold uppercase jetbrains">🔮 Linked Experiences</div>
+          <div id="agent-associated-experiences" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+
+      <!-- Node Editable Config View -->
+      <div id="inspector-edit-view" class="space-y-3 border-t border-white/10 pt-3">
+        <div class="flex justify-between items-center">
+          <span class="text-[10px] text-orange-400 font-bold uppercase jetbrains">⚙️ Éditer les valeurs du nœud</span>
+          <span id="node-edit-status" class="text-[9px] text-emerald-400 jetbrains hidden">✓ Sauvegardé</span>
+        </div>
+        <div class="space-y-2">
+          <div>
+            <label class="text-[9px] text-gray-500 uppercase font-bold jetbrains block mb-1">Rôle / Description (Details)</label>
+            <input id="node-edit-details" type="text" class="w-full bg-black/50 border border-white/10 rounded p-1.5 text-[10px] jetbrains text-white focus:outline-none focus:border-orange-500">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-[9px] text-gray-500 uppercase font-bold jetbrains block mb-1">Score / Poids</label>
+              <input id="node-edit-score" type="number" step="0.1" class="w-full bg-black/50 border border-white/10 rounded p-1.5 text-[10px] jetbrains text-white focus:outline-none focus:border-orange-500">
+            </div>
+            <div>
+              <label class="text-[9px] text-gray-500 uppercase font-bold jetbrains block mb-1">Statut</label>
+              <select id="node-edit-status-select" class="w-full bg-black/50 border border-white/10 rounded p-1.5 text-[10px] jetbrains text-white focus:outline-none focus:border-orange-500">
+                <option value="active">Active</option>
+                <option value="running">Running (prio)</option>
+                <option value="disabled">Disabled</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="text-[9px] text-gray-500 uppercase font-bold jetbrains block mb-1">Prompt / Configuration Textuelle</label>
+            <textarea id="node-edit-prompt" rows="5" class="w-full bg-black/50 border border-white/10 rounded p-2 text-[10px] jetbrains text-gray-200 focus:outline-none focus:border-orange-500" placeholder="Insérer le prompt ou la config du nœud..."></textarea>
+          </div>
+          <button onclick="saveNodeConfig()" class="w-full py-1.5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs rounded jetbrains transition shadow">💾 Enregistrer la modification</button>
+        </div>
+      </div>
+
+      <!-- Default Data view (JSON) -->
+      <div id="inspector-data-view" class="hidden space-y-2">
+        <div class="text-[10px] text-gray-500 uppercase font-bold jetbrains">Payload JSON</div>
+        <pre id="inspector-json-pre" class="p-3 bg-[#08080c]/80 border border-white/10 rounded-lg text-[10px] jetbrains text-gray-300 overflow-x-auto whitespace-pre-wrap leading-relaxed"></pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM OVERLAY: Memory Status & Quick repos lookup for Enzo -->
+  <div class="absolute bottom-4 left-4 z-10 flex flex-col gap-3 pointer-events-none">
+    
+    <!-- Memory Layers Status -->
+    <div class="glass p-3 rounded-xl w-80 shadow-lg pointer-events-auto flex flex-col gap-2">
+      <div class="text-[10px] text-gray-400 uppercase font-bold tracking-wider jetbrains flex justify-between items-center">
+        <span>💾 Memory Layers Status</span>
+        <span class="text-[9px] text-orange-400 cursor-pointer hover:underline animate-pulse" onclick="loadMemoryExplorer()">↻ Refresh</span>
+      </div>
+      <div class="grid grid-cols-2 gap-1.5 text-[8px] jetbrains">
+        <div class="flex justify-between items-center bg-black/30 px-2 py-1 rounded border border-white/5">
+          <span class="text-gray-500">L0 HOT</span>
+          <span id="mem-status-l0" class="font-bold text-red-400">OFFLINE</span>
+        </div>
+        <div class="flex justify-between items-center bg-black/30 px-2 py-1 rounded border border-white/5">
+          <span class="text-gray-500">L2 DEEP</span>
+          <span id="mem-status-l2" class="font-bold text-red-400">OFFLINE</span>
+        </div>
+        <div class="flex justify-between items-center bg-black/30 px-2 py-1 rounded border border-white/5">
+          <span class="text-gray-500">L3 RAG</span>
+          <span id="mem-status-l3" class="font-bold text-red-400">OFFLINE</span>
+        </div>
+        <div class="flex justify-between items-center bg-black/30 px-2 py-1 rounded border border-white/5">
+          <span class="text-gray-500">L4 CODE</span>
+          <span id="mem-status-l4" class="font-bold text-red-400">OFFLINE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Telemetry Live Panel -->
+    <div class="glass p-3 rounded-xl w-80 shadow-lg pointer-events-auto flex flex-col gap-2">
+      <div class="text-[10px] text-gray-400 uppercase font-bold tracking-wider jetbrains flex justify-between items-center">
+        <span>📡 Telemetry</span>
+        <span id="telemetry-status" class="text-gray-500 text-xs">○ OFFLINE</span>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5 text-[8px] jetbrains">
+        <div class="flex flex-col items-center bg-black/30 px-2 py-1 rounded border border-white/5">
+          <span class="text-gray-500">COST</span>
+          <span id="tel-cost" class="font-bold text-orange-400">$0.0000</span>
+        </div>
+        <div class="flex flex-col items-center bg-black/30 px-2 py-1 rounded border border-white/5">
+          <span class="text-gray-500">TOKENS</span>
+          <span id="tel-tokens" class="font-bold text-cyan-400">0</span>
+        </div>
+        <div class="flex flex-col items-center bg-black/30 px-2 py-1 rounded border border-white/5">
+          <span class="text-gray-500">LATENCY</span>
+          <span id="tel-latency" class="font-bold text-emerald-400">-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- GitHub Repos Lookup -->
+    <div class="glass p-3 rounded-xl w-80 shadow-lg pointer-events-auto flex flex-col gap-2">
+      <div class="text-[10px] text-gray-400 uppercase font-bold tracking-wider jetbrains flex justify-between items-center">
+        <span>🐙 GitHub Repos index</span>
+        <span class="text-[9px] text-blue-400 cursor-pointer hover:underline" onclick="loadReposList()">↻ Charger</span>
+      </div>
+      <div id="quick-repos-list" class="space-y-1.5 max-h-28 overflow-y-auto pr-1">
+        <div class="text-[9px] text-gray-600 italic">Cliquez sur Charger pour lister les dépôts GitHub</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const API_BASE = `${location.protocol}//${location.host}`;
+    const TOKEN = localStorage.getItem('forge_token') || '';
+
+    // Latence helpers
+    function formatLatency(ms) {
+      if (!ms || ms <= 0) return '';
+      if (ms < 1000) return `${Math.round(ms)}ms`;
+      return `${(ms / 1000).toFixed(1)}s`;
+    }
+    function latencyColor(ms) {
+      if (!ms || ms <= 0) return '#64748b';
+      if (ms < 500) return '#10b981';   // vert < 500ms
+      if (ms < 1500) return '#eab308';  // jaune < 1.5s
+      if (ms < 3000) return '#f97316';  // orange < 3s
+      return '#ef4444';                 // rouge > 3s
+    }
+
+    let graph3D = null;
+    let selectedNodeId = null;
+    let _fullGraphData = null; // cached full data for client-side filtering
+
+    const TYPE_COLORS = {
+      'graph':      '#f97316',  // Orange
+      'agent':      '#fbbf24',  // Amber
+      'memory':     '#3b82f6',  // Blue
+      'tool':       '#10b981',  // Emerald
+      'experience': '#a855f7',  // Purple
+      'skill':      '#eab308',  // Yellow
+      'finding':    '#ef4444',  // Red
+      'file':       '#94a3b8',  // Slate
+      'module':     '#22d3ee',  // Cyan — packages / dossiers de code
+      'datascience':'#f472b6',  // Pink — santé, anomalies, recos, scorecards
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initGraph();
+      loadReposList();
+      loadMemoryExplorer();
+      startLivePoll();
+      // Initial data fetch for filter cache — applique aussi les filtres tout de
+      // suite, sinon le compteur affiche le total brut et le graphe autre chose.
+      fetch(getGraphUrl(), { headers: {'X-Forge-Token': TOKEN} })
+        .then(r => r.json())
+        .then(d => {
+          _fullGraphData = d;
+          _lastVersion = d.version || '';
+          applyFilters();
+          updateLatencyAvg(d);
+        })
+        .catch(() => {});
+    });
+
+    function initGraph() {
+      const container = document.getElementById('3d-graph');
+      
+      // Initialize full-screen graph
+      // Pas de .jsonUrl() : il chargeait le graphe NON filtré en parallèle de
+      // notre fetch et écrasait le résultat filtré selon l'ordre d'arrivée.
+      // Une seule source de vérité désormais : le fetch de DOMContentLoaded.
+      graph3D = ForceGraph3D()(container)
+        .nodeLabel(node => `${node.type.toUpperCase()}: ${node.label}`)
+        .nodeColor(node => {
+          if (node.id === selectedNodeId) return '#ffffff';
+          if (node.matched) return '#eab308';
+          return TYPE_COLORS[node.type] || '#64748b';
+        })
+        .nodeVal(node => {
+          const sizes = {'graph': 4, 'agent': 5, 'memory': 4, 'tool': 2.5, 'experience': 2, 'skill': 2.5, 'finding': 3, 'file': 1.5, 'module': 3.5, 'datascience': 3};
+          return sizes[node.type] || 2;
+        })
+        .nodeResolution(12)  // Lower for perf with 150+ nodes
+        .linkOpacity(0.35)
+        .linkColor(link => {
+          // Latence : dégradé vert→rouge si données disponibles
+          if (link.avg_latency_ms || link.latency_ms) {
+            return latencyColor(link.avg_latency_ms || link.latency_ms);
+          }
+          if (link.backbone) return '#8b5cf6';
+          if (link.hub || link.agent_bridge) return '#f97316';
+          if (link.memory_bridge) return '#3b82f6';
+          if (link.skill_bridge) return '#eab308';
+          if (link.finding_bridge) return '#ef4444';
+          if (link.file_bridge) return '#64748b';
+          if (link.tool_bridge) return '#10b981';
+          if (link.history_bridge) return '#a855f7';
+          return '#38bdf8';
+        })
+        .linkWidth(link => {
+          const latMs = link.avg_latency_ms || link.latency_ms || 0;
+          // Thicker = slower
+          if (latMs > 3000) return 3;
+          if (latMs > 1500) return 2;
+          if (latMs > 500) return 1.5;
+          return (link.backbone || link.hub || link.agent_bridge) ? 1.2 : 0.5;
+        })
+        // FLUX : particules directionnelles qui circulent le long des liens =
+        // visualisation des appels agent→module→orch. backbone (axe temps) = pas de flux.
+        .linkDirectionalParticles(link => link.backbone ? 0 : 2)
+        .linkDirectionalParticleWidth(1.6)
+        .linkDirectionalParticleSpeed(0.009)
+        .linkDirectionalParticleColor(link => link.hub ? '#fb923c' : '#7dd3fc')
+        // Latence : sprite texte au milieu de CHAQUE lien (toujours visible)
+        .linkThreeObject(link => {
+          const latMs = link.avg_latency_ms || link.latency_ms || 0;
+          const hasData = latMs > 0;
+          // Label: real latency or link type indicator
+          let label = '';
+          let color = '#64748b';
+          if (hasData) {
+            label = link.latency_label || formatLatency(latMs);
+            color = latencyColor(latMs);
+          } else {
+            // Show link type as subtle label
+            if (link.agent_bridge) { label = 'agent'; color = '#f97316'; }
+            else if (link.memory_bridge) { label = 'mem'; color = '#3b82f6'; }
+            else if (link.tool_bridge) { label = 'tool'; color = '#10b981'; }
+            else if (link.flow) { label = 'flow'; color = '#38bdf8'; }
+            else { return false; }
+          }
+          const sprite = new SpriteText(label, 6, color);
+          sprite.textHeight = hasData ? 3 : 2;
+          sprite.centerOffset = { x: 0, y: 0, z: 0 };
+          // Store ref for pulsing
+          if (latMs > 3000) sprite.__slowPulse = true;
+          return sprite;
+        })
+        .linkPositionUpdate((sprite, { start, end }) => {
+          if (!sprite) return;
+          const midPos = {
+            x: start.x + (end.x - start.x) / 2,
+            y: start.y + (end.y - start.y) / 2,
+            z: start.z + (end.z - start.z) / 2,
+          };
+          Object.assign(sprite.position, midPos);
+        })
+        .backgroundColor('#040408')
+        .width(window.innerWidth)
+        .height(window.innerHeight)
+        .onNodeClick(node => {
+          selectedNodeId = node.id;
+          graph3D.nodeColor(graph3D.nodeColor()); // Force node colors refresh
+          flyTo(node);                            // caméra vole vers le nœud (nav fluide)
+          inspectNode(node);
+        });
+
+      // Forces ajustées pour 150+ nœuds — espacement des sous-clusters
+      setTimeout(() => {
+        if (graph3D) {
+          graph3D.d3Force('charge').strength(-120); // Plus de répulsion pour espacer
+          graph3D.d3Force('link').distance(40);      // Liens plus longs
+        }
+      }, 500);
+
+      window.addEventListener('resize', () => {
+        if (graph3D) graph3D.width(window.innerWidth).height(window.innerHeight);
+      });
+    }
+
+    // Caméra vole vers un nœud (nav fluide, 1s d'anim)
+    function flyTo(node) {
+      if (!graph3D || node.x === undefined) return;
+      const d = 40, ratio = 1 + d / Math.hypot(node.x, node.y, node.z || 1);
+      graph3D.cameraPosition(
+        { x: node.x * ratio, y: node.y * ratio, z: node.z * ratio }, node, 1000);
+    }
+
+    // Recentre / cadre tout le graphe (bouton ⊹ Recentrer)
+    function recenterMap() {
+      if (graph3D) graph3D.zoomToFit(800, 60);
+    }
+
+    // Live poll : re-fetch /api/graph et applique dès que le CONTENU change.
+    //
+    // Bug corrigé : l'ancienne version ne comparait que `nodes.length:links.length`.
+    // Un nœud dont le statut passait à "running", dont le score, le nombre
+    // d'appels ou la latence changeait n'était donc JAMAIS re-rendu — le graphe
+    // paraissait figé. Pire, un ajout + une suppression au même tick laissaient
+    // le compte identique et l'update était perdu.
+    //
+    // Maintenant : le serveur renvoie `version` (sha1 du contenu). On patche les
+    // nœuds EN PLACE (label/score/status/details/size) pour ne pas resetter la
+    // simulation physique, et on ne rebuild le graphe que si la topologie
+    // (ensemble des ids / des liens) a réellement changé.
+    let _lastVersion = '';
+    let _lastTopology = '';
+
+    function topologySig(d) {
+      const n = d.nodes.map(x => x.id).sort().join('|');
+      const l = d.links.map(x => `${x.source}>${x.target}`).sort().join('|');
+      return `${n}::${l}`;
+    }
+
+    // Patch en place : conserve les positions x/y/z calculées par la simulation.
+    function patchInPlace(fresh) {
+      if (!graph3D) return false;
+      const live = graph3D.graphData();
+      const byId = new Map(live.nodes.map(n => [n.id, n]));
+      let touched = 0;
+      for (const f of fresh.nodes) {
+        const cur = byId.get(f.id);
+        if (!cur) return false;   // topologie changée → rebuild complet
+        for (const k of ['label', 'score', 'status', 'details', 'size', 'matched']) {
+          if (cur[k] !== f[k]) { cur[k] = f[k]; touched++; }
+        }
+      }
+      const linkById = new Map(live.links.map(l => [
+        `${l.source.id ?? l.source}>${l.target.id ?? l.target}`, l]));
+      for (const f of fresh.links) {
+        const cur = linkById.get(`${f.source}>${f.target}`);
+        if (!cur) continue;
+        for (const k of ['avg_latency_ms', 'avg_latency_sec']) {
+          if (cur[k] !== f[k]) { cur[k] = f[k]; touched++; }
+        }
+      }
+      if (touched) {
+        // refresh visuel sans relancer la physique
+        graph3D.nodeColor(graph3D.nodeColor());
+        graph3D.linkColor(graph3D.linkColor());
+      }
+      return true;
+    }
+
+    function startLivePoll() {
+      setInterval(async () => {
+        try {
+          const r = await fetch(getGraphUrl(), { headers: {'X-Forge-Token': TOKEN} });
+          if (!r.ok) return;
+          const d = await r.json();
+          const version = d.version || JSON.stringify(d.counts);
+          if (version === _lastVersion) return;     // rien n'a bougé
+          _lastVersion = version;
+          _fullGraphData = d;
+
+          const filtered = filterGraphData(d);
+          const topo = topologySig(filtered);
+          if (topo !== _lastTopology) {
+            _lastTopology = topo;
+            if (graph3D) graph3D.graphData(filtered);   // rebuild : ids changés
+          } else if (!patchInPlace(filtered)) {
+            if (graph3D) graph3D.graphData(filtered);   // secours
+          }
+          updateCounts(filtered);
+          updateLatencyAvg(d);
+        } catch (e) { /* silencieux — le poll reprend au tick suivant */ }
+      }, 8000);
+    }
+
+    // Client-side filter: masque/affiche les nœuds par type sans recharger l'API.
+    // FAIL-OPEN : un type sans case à cocher est VISIBLE. Avant, tout nouveau
+    // type renvoyé par l'API (module, datascience…) disparaissait silencieusement
+    // du graphe — ce qui donnait l'impression d'une Forge minuscule.
+    function filterGraphData(data) {
+      const known = new Set(), visibleTypes = new Set();
+      document.querySelectorAll('[id^="f-"]').forEach(cb => {
+        const t = cb.id.replace('f-', '');
+        known.add(t);
+        if (cb.checked) visibleTypes.add(t);
+      });
+      const visibleNodes = data.nodes.filter(n => !known.has(n.type) || visibleTypes.has(n.type));
+      const visibleIds = new Set(visibleNodes.map(n => n.id));
+      const visibleLinks = data.links.filter(l =>
+        visibleIds.has(l.source?.id ?? l.source) && visibleIds.has(l.target?.id ?? l.target));
+      return { nodes: visibleNodes, links: visibleLinks,
+               total: data.nodes.length,
+               counts: { nodes: visibleNodes.length, links: visibleLinks.length }};
+    }
+
+    function selectSector(sector) {
+      const presets = {
+        'all': ['graph', 'agent', 'memory', 'tool', 'experience', 'skill', 'finding', 'file', 'module', 'datascience'],
+        'core': ['graph', 'datascience'],
+        'agents': ['agent'],
+        'memory': ['memory', 'experience', 'skill'],
+        'tools': ['tool'],
+        'code': ['module', 'file'],
+        'security': ['finding']
+      };
+
+      const targetTypes = new Set(presets[sector] || presets['all']);
+      document.querySelectorAll('[id^="f-"]').forEach(cb => {
+        const t = cb.id.replace('f-', '');
+        cb.checked = targetTypes.has(t);
+      });
+
+      applyFilters();
+      
+      // Auto-recenter map on sector change
+      if (graph3D) {
+        setTimeout(() => graph3D.zoomToFit(800, 50), 200);
+      }
+    }
+
+    function applyFilters() {
+      if (!_fullGraphData) return;
+      const filtered = filterGraphData(_fullGraphData);
+      _lastTopology = topologySig(filtered);
+      if (graph3D) graph3D.graphData(filtered);
+      updateCounts(filtered);
+    }
+
+    // Bascule core ⇄ full (dépôts vendorés). Force un rebuild au prochain poll.
+    function applyScope() {
+      _lastVersion = ''; _lastTopology = '';
+      fetch(getGraphUrl(), { headers: {'X-Forge-Token': TOKEN} })
+        .then(r => r.json())
+        .then(d => { _fullGraphData = d; applyFilters(); updateLatencyAvg(d); })
+        .catch(() => {});
+    }
+
+    function updateCounts(data) {
+      const nc = document.getElementById('node-count-display');
+      const lc = document.getElementById('link-count-display');
+      const hc = document.getElementById('hidden-count-display');
+      const shown = data.nodes?.length || 0;
+      const total = data.total ?? (_fullGraphData?.nodes?.length ?? shown);
+      if (nc) nc.textContent = `Nodes: ${shown} / ${total}`;
+      if (lc) lc.textContent = `Links: ${data.links?.length || 0}`;
+      // Explicite ce qui est masqué : sinon on croit que la Forge est petite.
+      if (hc) {
+        const hidden = total - shown;
+        const byType = {};
+        (_fullGraphData?.nodes || []).forEach(n => { byType[n.type] = (byType[n.type] || 0) + 1; });
+        hc.textContent = hidden > 0
+          ? `${hidden} masqués par les filtres — ${Object.entries(byType)
+              .map(([k, v]) => `${k}:${v}`).join(' ')}`
+          : Object.entries(byType).map(([k, v]) => `${k}:${v}`).join(' ');
+      }
+    }
+
+    function updateLatencyAvg(data) {
+      const links = data.links || [];
+      const latencies = links.map(l => l.avg_latency_ms || l.latency_ms || 0).filter(v => v > 0);
+      const el = document.getElementById('latency-avg-display');
+      if (!el) return;
+      if (latencies.length === 0) {
+        el.textContent = 'avg: —';
+        el.className = 'text-slate-400';
+      } else {
+        const avg = latencies.reduce((a, b) => a + b, 0) / latencies.length;
+        el.textContent = `avg: ${formatLatency(avg)}`;
+        el.className = avg > 3000 ? 'text-red-400' : avg > 1500 ? 'text-orange-400' : avg > 500 ? 'text-yellow-400' : 'text-emerald-400';
+      }
+    }
+
+    function getGraphUrl() {
+      const q = document.getElementById('nmSearchInput').value.trim();
+      const mode = document.getElementById('nmSearchMode').value;
+      const scopeEl = document.getElementById('opt-scope-full');
+      const scope = (scopeEl && scopeEl.checked) ? 'full' : 'core';
+      if (q && mode === 'filter') {
+        return `/api/graph?scope=${scope}&q=${encodeURIComponent(q)}`;
+      }
+      return `/api/graph?scope=${scope}`;
+    }
+
+    function onSearch() {
+      const query = document.getElementById('nmSearchInput').value.trim();
+      const mode = document.getElementById('nmSearchMode').value;
+      
+      if (!graph3D) return;
+
+      if (mode === 'filter' && query) {
+        // Filtre serveur — via applyScope() et non .jsonUrl(), pour que le
+        // résultat passe aussi par les filtres de type et mette à jour les
+        // compteurs. .jsonUrl() court-circuitait les deux.
+        applyScope();
+      } else if (mode === 'locate' && query) {
+        const graphData = graph3D.graphData();
+        const found = graphData.nodes.find(n => 
+          n.label.toLowerCase().includes(query.toLowerCase()) || 
+          n.id.toLowerCase().includes(query.toLowerCase())
+        );
+        if (found) {
+          const distance = 40;
+          const distRatio = 1 + distance/Math.hypot(found.x, found.y, found.z);
+          graph3D.cameraPosition(
+            { x: found.x * distRatio, y: found.y * distRatio, z: found.z * distRatio },
+            found,
+            1200
+          );
+        }
+      } else if (!query && _fullGraphData) {
+        // No query — apply client-side type filters
+        applyFilters();
+      }
+    }
+
+    // Node Inspector Panel Logic
+    async function inspectNode(node) {
+      const panel = document.getElementById('inspector-panel');
+      const title = document.getElementById('inspector-node-title');
+      const typeBadge = document.getElementById('inspector-node-type');
+      
+      title.textContent = node.label || node.id;
+      typeBadge.textContent = node.type;
+      
+      // Update badge coloring
+      const badgeColors = {
+        'agent': 'bg-amber-500/10 text-amber-400',
+        'experience': 'bg-purple-500/10 text-purple-400',
+        'module': 'bg-emerald-500/10 text-emerald-400',
+        'graph': 'bg-orange-500/10 text-orange-400',
+        'memory': 'bg-blue-500/10 text-blue-400',
+        'tool': 'bg-emerald-500/10 text-emerald-400',
+        'skill': 'bg-yellow-500/10 text-yellow-400',
+        'finding': 'bg-red-500/10 text-red-400',
+        'file': 'bg-slate-500/10 text-slate-400',
+      };
+      typeBadge.className = `px-2 py-0.5 rounded text-[8px] font-bold jetbrains uppercase ${badgeColors[node.type] || 'bg-blue-500/10 text-blue-400'}`;
+
+      // Hide views
+      document.getElementById('inspector-default-view').classList.add('hidden');
+      document.getElementById('inspector-agent-view').classList.add('hidden');
+      document.getElementById('inspector-data-view').classList.add('hidden');
+
+      if (node.type === 'agent') {
+        const agentName = node.label || node.id.replace('agent:', '');
+        await loadAgentDetails(agentName);
+      } else {
+        // Show raw JSON view for modules, experiences and memory nodes
+        document.getElementById('inspector-json-pre').textContent = JSON.stringify(node, null, 2);
+        document.getElementById('inspector-data-view').classList.remove('hidden');
+      }
+
+      // Populate edit fields
+      document.getElementById('node-edit-details').value = node.details || '';
+      document.getElementById('node-edit-score').value = node.score !== null && node.score !== undefined ? node.score : '';
+      document.getElementById('node-edit-status-select').value = node.status || 'active';
+      document.getElementById('node-edit-prompt').value = node.prompt || node.details || '';
+
+      // Show panel
+      panel.style.transform = "translateX(0px)";
+    }
+
+    async function saveNodeConfig() {
+      if (!selectedNodeId || !_fullGraphData) return;
+      const node = _fullGraphData.nodes.find(n => n.id === selectedNodeId);
+      if (!node) return;
+
+      const newDetails = document.getElementById('node-edit-details').value;
+      const newScore = parseFloat(document.getElementById('node-edit-score').value);
+      const newStatus = document.getElementById('node-edit-status-select').value;
+      const newPrompt = document.getElementById('node-edit-prompt').value;
+
+      node.details = newDetails;
+      node.score = isNaN(newScore) ? null : newScore;
+      node.status = newStatus;
+      node.prompt = newPrompt;
+
+      // Update backend via node update API
+      try {
+        await fetch(`/api/node/${encodeURIComponent(selectedNodeId)}/update`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Forge-Token': TOKEN },
+          body: JSON.stringify({ prompt: newPrompt, details: newDetails, score: newScore, status: newStatus })
+        });
+      } catch (e) { console.warn('Backend node update warning:', e); }
+
+      const statusEl = document.getElementById('node-edit-status');
+      statusEl.classList.remove('hidden');
+      setTimeout(() => statusEl.classList.add('hidden'), 2500);
+
+      applyFilters();
+    }
+
+    async function loadAgentDetails(agentName) {
+      try {
+        const r = await fetch(`${API_BASE}/api/agents/${agentName}`, { headers: {'X-Forge-Token': TOKEN} });
+        if (!r.ok) return;
+        const d = await r.json();
+        
+        document.getElementById('agent-calls').textContent = d.state?.calls || d.history?.length || 0;
+        document.getElementById('agent-score').textContent = d.state?.quality_history ? (d.state.quality_history.reduce((a,b)=>a+b,0)/d.state.quality_history.length).toFixed(1)+'/10' : '—';
+        document.getElementById('agent-prompt-area').value = d.prompt || '';
+        document.getElementById('agent-prompt-area').style.display = 'none'; // hidden by default
+        document.getElementById('prompt-toggle-btn').textContent = '[Afficher]';
+
+        // Timelines
+        const timelineEl = document.getElementById('agent-boost-timeline');
+        if (d.history && d.history.length) {
+          timelineEl.innerHTML = d.history.map(h => `
+            <div class="p-2 bg-black/40 border border-white/5 rounded text-[10px] jetbrains space-y-1">
+              <div class="flex justify-between text-gray-500">
+                <span>Boost #${h.id}</span>
+                <span class="text-emerald-400">Score: ${h.score !== null ? h.score : '—'}</span>
+              </div>
+              <div class="text-gray-300 font-sans leading-relaxed">${escHtml(h.text)}</div>
+            </div>
+          `).join('');
+        } else {
+          timelineEl.innerHTML = '<div class="text-[10px] text-gray-600 italic">No boosts recorded yet</div>';
+        }
+
+        // Experiences
+        const expEl = document.getElementById('agent-associated-experiences');
+        if (d.experiences && d.experiences.length) {
+          expEl.innerHTML = d.experiences.map(x => `
+            <div class="p-2 bg-black/40 border border-white/5 rounded text-[10px] jetbrains space-y-1">
+              <div class="flex justify-between text-gray-500">
+                <span>Task ID: ${x.id || '—'}</span>
+                <span class="text-emerald-400">Score: ${x.quality_score !== undefined ? x.quality_score : '—'}</span>
+              </div>
+              <div class="text-gray-300 font-sans leading-normal truncate" title="${escHtml(x.task)}">${escHtml(x.task)}</div>
+            </div>
+          `).join('');
+        } else {
+          expEl.innerHTML = '<div class="text-[10px] text-gray-600 italic">No experiences associated</div>';
+        }
+
+        document.getElementById('inspector-agent-view').classList.remove('hidden');
+      } catch(e) {
+        console.error('Agent detail load error', e);
+      }
+    }
+
+    function togglePrompt() {
+      const area = document.getElementById('agent-prompt-area');
+      const btn = document.getElementById('prompt-toggle-btn');
+      if (area.style.display === 'none') {
+        area.style.display = 'block';
+        btn.textContent = '[Masquer]';
+      } else {
+        area.style.display = 'none';
+        btn.textContent = '[Afficher]';
+      }
+    }
+
+    function closeInspector() {
+      document.getElementById('inspector-panel').style.transform = "translateX(420px)";
+      selectedNodeId = null;
+      if (graph3D) graph3D.nodeColor(graph3D.nodeColor());
+    }
+
+    // Repos index loader for Enzo
+    async function loadReposList() {
+      const container = document.getElementById('quick-repos-list');
+      container.innerHTML = '<div class="text-[9px] text-gray-500 italic animate-pulse">Chargement...</div>';
+      try {
+        const r = await fetch(`${API_BASE}/api/kb/repos`, { headers: {'X-Forge-Token': TOKEN} });
+        if (!r.ok) return;
+        const d = await r.json();
+        const resources = d.resources || [];
+        
+        if (!resources.length) {
+          container.innerHTML = '<div class="text-[9px] text-gray-600 italic">Aucun dépôt GitHub configuré</div>';
+          return;
+        }
+
+        container.innerHTML = resources.map(resStr => {
+          const parts = resStr.split('|');
+          if (parts.length < 5) return '';
+          const resId = parts[1];
+          const type = parts[2];
+          const purpose = parts[4];
+          
+          // Generate a mockup or real Github URL if detectable or standard
+          let githubUrl = "https://github.com";
+          if (resId === 'RES-LMCACHE') githubUrl = "https://github.com/LMCache/LMCache";
+          else if (resId === 'RES-REPOWISE') githubUrl = "https://github.com/mpoon/repowise";
+          else if (resId === 'RES-SUPERPOWERS') githubUrl = "https://github.com/spences10/claude-code-toolkit";
+          else if (resId === 'RES-OMNIROUTE') githubUrl = "https://github.com/rtk-ai/rtk";
+          
+          return `
+            <div class="flex justify-between items-center text-[9px] jetbrains bg-white/5 border border-white/5 px-2 py-1 rounded hover:border-blue-500/20 transition">
+              <span class="text-gray-300 font-semibold truncate w-32" title="${escHtml(purpose)}">${escHtml(resId)}</span>
+              <a href="${githubUrl}" target="_blank" class="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 font-bold hover:bg-blue-500/20 transition text-[8px] uppercase">GITHUB</a>
+            </div>
+          `;
+        }).join('');
+      } catch(e) {
+        container.innerHTML = '<div class="text-[9px] text-red-400 italic">Erreur de chargement</div>';
+      }
+    }
+
+    // --- Memory Status Loader ---
+    async function loadMemoryExplorer() {
+      try {
+        const r = await fetch(`${API_BASE}/api/memory/status`, { headers: {'X-Forge-Token': TOKEN} });
+        if (!r.ok) return;
+        const d = await r.json();
+        
+        const l0Ok = d.l0_redis?.status === 'up';
+        const l2Status = d.l2_postgres?.status;
+        const l3Available = d.l3_semantic?.available;
+        const l3Engine = d.l3_semantic?.engine;
+        const l4Ok = d.l4_gitnexus?.indexed;
+
+        const setStatusEl = (id, label, styleClass) => {
+          const el = document.getElementById(id);
+          el.className = `font-bold ${styleClass}`;
+          el.textContent = label;
+        };
+
+        // L0
+        setStatusEl('mem-status-l0', l0Ok ? 'ONLINE (REDIS)' : 'OFFLINE', l0Ok ? 'text-emerald-400' : 'text-red-400');
+        
+        // L2
+        if (l2Status === 'up') {
+          setStatusEl('mem-status-l2', 'ONLINE (PG)', 'text-emerald-400');
+        } else if (l2Status === 'fallback_sqlite') {
+          setStatusEl('mem-status-l2', 'FALLBACK (SQLITE)', 'text-yellow-400');
+        } else {
+          setStatusEl('mem-status-l2', 'OFFLINE', 'text-red-400');
+        }
+
+        // L3
+        if (l3Available && l3Engine === 'pgvector') {
+          setStatusEl('mem-status-l3', 'ONLINE (PGV)', 'text-emerald-400');
+        } else if (l3Available && l3Engine === 'simhash_fallback') {
+          setStatusEl('mem-status-l3', 'ACTIVE (SIMHASH)', 'text-yellow-400');
+        } else {
+          setStatusEl('mem-status-l3', 'OFFLINE', 'text-red-400');
+        }
+
+        // L4
+        setStatusEl('mem-status-l4', l4Ok ? 'ONLINE (NEXUS)' : 'INACTIVE', l4Ok ? 'text-emerald-400' : 'text-red-400');
+      } catch(e) {
+        console.error('Memory explorer status load failed:', e);
+      }
+    }
+
+    function escHtml(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    // ── WebSocket Telemetry (CLI → Dashboard real-time) ───────────────
+    (function initTelemetry() {
+      const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsUrl = `${proto}//${location.host}/ws/telemetry`;
+      let ws = null;
+      let reconnectTimer = null;
+
+      function connect() {
+        ws = new WebSocket(wsUrl);
+        ws.onopen = () => {
+          console.log('[Telemetry] Connected to forge_events');
+          // Show connection indicator
+          const el = document.getElementById('telemetry-status');
+          if (el) { el.textContent = '● LIVE'; el.className = 'text-emerald-400 text-xs'; }
+        };
+        ws.onmessage = (evt) => {
+          try {
+            const event = JSON.parse(evt.data);
+            handleForgeEvent(event);
+          } catch(e) { /* ignore parse errors */ }
+        };
+        ws.onclose = () => {
+          const el = document.getElementById('telemetry-status');
+          if (el) { el.textContent = '○ OFFLINE'; el.className = 'text-gray-500 text-xs'; }
+          reconnectTimer = setTimeout(connect, 3000);
+        };
+        ws.onerror = () => ws.close();
+      }
+
+      function handleForgeEvent(event) {
+        const type = event.type || '';
+        const source = event.source || '';
+        const data = event.data || {};
+
+        // Node glow effect on NODE_EXECUTED
+        if (type === 'NODE_EXECUTED' && graph3D) {
+          glowNode(source, '#00ff88', 2000);
+          updateTelemetryCounters(data);
+        }
+        // Red flash on NODE_FAILED
+        if (type === 'NODE_FAILED' && graph3D) {
+          glowNode(source, '#ff3333', 3000);
+        }
+        // Hallucination alert
+        if (type === 'HALLUCINATION_DETECTED') {
+          glowNode(source, '#ff0000', 4000);
+          showNotification(`⚠ Hallucination on ${source}`, 'red');
+        }
+        // MCP cache events
+        if (type === 'MCP_CACHE_HIT') {
+          showNotification(`✓ Cache hit: ${data.tool || '?'} (${data.tokens_saved || 0} tok saved)`, 'green');
+        }
+      }
+
+      function glowNode(nodeId, color, durationMs) {
+        if (!graph3D) return;
+        // Find node by id or name
+        const nodeData = graph3D.graphData().nodes.find(
+          n => n.id === nodeId || n.name === nodeId || n.label === nodeId
+        );
+        if (!nodeData) return;
+
+        // Store original color
+        const origColor = nodeData.__origColor || nodeData.color || '#888';
+        nodeData.__origColor = origColor;
+
+        // Apply glow
+        nodeData.color = color;
+        nodeData.__glowing = true;
+
+        // Force graph refresh
+        graph3D.nodeColor(graph3D.nodeColor());
+
+        // Reset after duration
+        setTimeout(() => {
+          nodeData.color = origColor;
+          nodeData.__glowing = false;
+          graph3D.nodeColor(graph3D.nodeColor());
+        }, durationMs);
+      }
+
+      function updateTelemetryCounters(data) {
+        const costEl = document.getElementById('tel-cost');
+        const tokEl = document.getElementById('tel-tokens');
+        const latEl = document.getElementById('tel-latency');
+        if (costEl && data.cost != null) costEl.textContent = `$${(parseFloat(costEl.textContent.slice(1)) + data.cost).toFixed(4)}`;
+        if (tokEl && data.tokens) tokEl.textContent = parseInt(tokEl.textContent || '0') + data.tokens;
+        if (latEl && data.latency) latEl.textContent = `${(data.latency * 1000).toFixed(0)}ms`;
+      }
+
+      function showNotification(msg, color) {
+        const div = document.createElement('div');
+        div.className = `fixed top-4 right-4 z-50 px-4 py-2 rounded-lg text-sm font-mono shadow-lg transition-all duration-300`;
+        div.style.background = color === 'red' ? 'rgba(239,68,68,0.9)' : 'rgba(16,185,129,0.9)';
+        div.style.color = '#fff';
+        div.textContent = msg;
+        document.body.appendChild(div);
+        setTimeout(() => { div.style.opacity = '0'; setTimeout(() => div.remove(), 300); }, 3000);
+      }
+
+      connect();
+    })();
+  </script>
+</body>
+</html>

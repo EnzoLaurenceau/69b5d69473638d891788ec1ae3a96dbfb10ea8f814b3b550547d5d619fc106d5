@@ -1,0 +1,120 @@
+# docker-compose.prod.yml — plateforme d'inférence en PRODUCTION (Phase 4, cible Coolify).
+#
+# Doctrine microservices : 4 services découplés (api, console, postgres, redis) + 1
+# observabilité (prometheus). Chaque service est dockerisé et déployable/observable.
+# Reproductible depuis zéro :   git clone → cp .env.example .env (renseigner) → up.
+#
+#   docker compose -f docker-compose.prod.yml up -d --build
+#   docker compose -f docker-compose.prod.yml down
+#
+# Différences avec docker-compose.local.yml :
+#   - images de PROD figées (pas de bind-mount du code) → rollback = image précédente ;
+#   - VRAI multi-tenant : PAS de FORGE_SINGLE_TENANT, auth Bearer réelle (Phase 3) ;
+#   - FORGE_ADMIN_TOKEN (rôle opérateur) et FORGE_CORS_ORIGINS OBLIGATOIRES via .env ;
+#   - console servie par nginx, proxifiant /v1 vers l'API sur le réseau interne.
+#
+# Secrets attendus dans .env (jamais commités) :
+#   POSTGRES_PASSWORD, WEB_SECRET, FORGE_ADMIN_TOKEN, FORGE_CORS_ORIGINS,
+#   et les clés LLM FREE (MiMo/Gemini/Groq/Cerebras) si génération automatisée.
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: forge_postgres_prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: forge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD requis dans .env}
+      POSTGRES_DB: forge
+    volumes:
+      - forge_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U forge -d forge"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    # Pas de `ports:` → PG n'est joignable que sur le réseau interne du compose.
+    networks: [forge_net]
+
+  redis:
+    image: redis:7-alpine
+    container_name: forge_redis_prod
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - forge_redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    networks: [forge_net]
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.prod.Dockerfile
+    image: forge-api:prod
+    container_name: forge_api_prod
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      WEB_PORT: "7777"
+      DATABASE_URL: "postgresql://forge:${POSTGRES_PASSWORD}@postgres:5432/forge"
+      REDIS_URL: "redis://redis:6379"
+      # VRAI multi-tenant : surtout PAS de FORGE_SINGLE_TENANT ni FORGE_WEB_ALLOW_INSECURE ici.
+      FORGE_ADMIN_TOKEN: ${FORGE_ADMIN_TOKEN:?FORGE_ADMIN_TOKEN requis (rôle opérateur)}
+      FORGE_CORS_ORIGINS: ${FORGE_CORS_ORIGINS:?FORGE_CORS_ORIGINS requis (origines console)}
+      # FORGE_TENANT_STRICT retiré : incompatible avec les singletons module-level
+      # qui appellent state_path() au import. La sécurité est assurée par le middleware
+      # tenant qui force le contexte sur chaque requête API.
+    volumes:
+      # Seul l'état runtime est persistant ; le code est figé dans l'image.
+      - forge_state:/app/05_STATE
+      - forge_logs:/app/08_LOGS
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis:    { condition: service_healthy }
+    networks: [forge_net]
+    # Exposé au reverse-proxy Coolify (Traefik) qui gère TLS + edge rate-limit.
+    ports:
+      - "7777:7777"
+
+  console:
+    build:
+      context: ./console
+      dockerfile: Dockerfile
+    image: forge-console:prod
+    container_name: forge_console_prod
+    restart: unless-stopped
+    depends_on:
+      api: { condition: service_started }
+    networks: [forge_net]
+    ports:
+      - "8080:80"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: forge_prometheus_prod
+    restart: unless-stopped
+    volumes:
+      - ./docker/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - forge_promdata:/prometheus
+    depends_on:
+      api: { condition: service_started }
+    networks: [forge_net]
+    # Interne par défaut ; décommenter pour un accès opérateur direct (sinon via Grafana).
+    # ports:
+    #   - "9090:9090"
+
+volumes:
+  forge_pgdata:
+  forge_redisdata:
+  forge_state:
+  forge_logs:
+  forge_promdata:
+
+networks:
+  forge_net:
+    driver: bridge

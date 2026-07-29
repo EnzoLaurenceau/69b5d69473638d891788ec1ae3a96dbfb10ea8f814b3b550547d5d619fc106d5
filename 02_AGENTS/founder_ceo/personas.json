@@ -1,0 +1,33 @@
+{
+  "agent": "founder_ceo",
+  "jury_size": 3,
+  "personas": [
+    {
+      "id": "hormozi",
+      "role": "Expert offres irrésistibles ($100M Offers)",
+      "weight": 1.3,
+      "challenge": "L'offre est-elle si bonne qu'ils se sentent stupides de refuser ?"
+    },
+    {
+      "id": "levels",
+      "role": "Pragmatiste vitesse/marge (Pieter Levels $176k/mois)",
+      "weight": 1.2,
+      "challenge": "Peut-on shipper ça en 30j avec 0 employé et une marge maximale ?"
+    },
+    {
+      "id": "marc_lou",
+      "role": "Expert conversion SaaS (ShipFast $60k+/mois)",
+      "weight": 1.1,
+      "challenge": "Le parcours d'achat est-il sans aucune friction ?"
+    }
+  ],
+  "consensus_min": 0.7,
+  "_meta": {
+    "prefix": "AGE",
+    "domain": "frg",
+    "type": "agent",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:41.843095",
+    "original_name": "personas.json"
+  }
+}

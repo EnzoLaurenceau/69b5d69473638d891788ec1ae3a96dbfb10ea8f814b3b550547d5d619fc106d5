@@ -1,0 +1,21 @@
+{
+  "kill_threshold": 5.0,
+  "scoring_criteria": [
+    "source_quality",
+    "recency",
+    "relevance",
+    "contradictions",
+    "actionability"
+  ],
+  "score_range": "0-10",
+  "caveman_output_max": 200,
+  "index_killed": false,
+  "_meta": {
+    "prefix": "AGE",
+    "domain": "frg",
+    "type": "agent",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:41.842713",
+    "original_name": "config.json"
+  }
+}

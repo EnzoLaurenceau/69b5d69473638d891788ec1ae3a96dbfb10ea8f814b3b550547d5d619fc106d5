@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "description": "Playbook prospection B2B — PromptFlow + Agent Workflow System",
+    "date": "2026-05-28",
+    "targets": [
+      "agences marketing",
+      "coachs formateurs",
+      "freelances",
+      "créateurs avec audience",
+      "TPE marketing"
+    ]
+  },
+  "sources_gratuites": {
+    "tier_1_immediat": [
+      {
+        "outil": "Apollo.io",
+        "url": "https://app.apollo.io",
+        "gratuit": "50 emails vérifiés/mois + 10 exports",
+        "usage": "Cherche par titre (Social Media Manager, Content Creator, Marketing Manager) + pays France",
+        "qualite": "⭐⭐⭐⭐⭐"
+      },
+      {
+        "outil": "annuaire-entreprises.data.gouv.fr",
+        "url": "https://annuaire-entreprises.data.gouv.fr",
+        "gratuit": "100% gratuit — base officielle française SIRET",
+        "usage": "Filtre par code NAF : 7311Z (pub), 7312Z (media), 7022Z (conseil), 6201Z (dev)",
+        "qualite": "⭐⭐⭐⭐"
+      },
+      {
+        "outil": "Pappers.fr",
+        "url": "https://www.pappers.fr",
+        "gratuit": "Gratuit — données entreprises FR + dirigeants",
+        "usage": "Nom du dirigeant → cherche email sur LinkedIn ou Hunter",
+        "qualite": "⭐⭐⭐⭐"
+      },
+      {
+        "outil": "Hunter.io",
+        "url": "https://hunter.io",
+        "gratuit": "25 recherches/mois + 50 vérifications",
+        "usage": "Domain Search : entre le domaine d'une agence → récupère tous les emails",
+        "qualite": "⭐⭐⭐⭐⭐"
+      }
+    ],
+    "tier_2_scraping": [
+      {
+        "outil": "LinkedIn (organique)",
+        "url": "https://linkedin.com",
+        "gratuit": "Oui — recherche avancée sans Sales Nav",
+        "usage": "Recherche : 'Agence marketing digitale France' ou 'Coach business en ligne' → 100 profils/jour",
+        "firecrawl": "firecrawl scrape linkedin.com/search/... —format markdown",
+        "qualite": "⭐⭐⭐⭐⭐"
+      },
+      {
+        "outil": "Google Maps + Firecrawl",
+        "url": "maps.google.com",
+        "gratuit": "Oui",
+        "usage": "Scrape 'agence marketing Paris', 'agence content Lyon' → nom + site + téléphone",
+        "firecrawl": "firecrawl scrape 'https://maps.google.com/?q=agence+marketing+paris' --format markdown",
+        "qualite": "⭐⭐⭐"
+      },
+      {
+        "outil": "Malt.fr",
+        "url": "https://www.malt.fr",
+        "gratuit": "Oui",
+        "usage": "Scrape profils freelances : copywriters, social media managers, consultants IA",
+        "firecrawl": "firecrawl scrape 'https://www.malt.fr/s?q=consultant+intelligence+artificielle'",
+        "qualite": "⭐⭐⭐⭐"
+      },
+      {
+        "outil": "Crunchbase (free)",
+        "url": "https://www.crunchbase.com",
+        "gratuit": "Tier gratuit limité",
+        "usage": "Startups françaises levée <2M — fondateurs qui ont besoin d'IA pour scale",
+        "qualite": "⭐⭐⭐"
+      }
+    ],
+    "tier_3_communautés": [
+      {
+        "outil": "IndieHackers",
+        "usage": "Fondateurs de side-projects → audience parfaite pour Agent Workflow System 297€"
+      },
+      {
+        "outil": "ProductHunt",
+        "usage": "Makers actifs → très réceptifs aux outils IA"
+      },
+      {
+        "outil": "Reddit r/webentrepreneurs + r/Entrepreneur_France",
+        "usage": "Communautés actives — DM après engagement"
+      }
+    ]
+  },
+  "mcp_pour_campagnes": {
+    "gmail_mcp": {
+      "status": "CONNECTÉ ✓",
+      "compte": "enzolaurenceaulh@gmail.com",
+      "outils": [
+        "create_draft",
+        "search_threads",
+        "list_drafts",
+        "label_thread"
+      ],
+      "usage": "Créer drafts en masse → envoyer manuellement ou via script"
+    },
+    "limitation": "Gmail MCP crée des DRAFTS — tu envoies toi-même (anti-spam best practice)",
+    "volume_safe": "20-30 emails/jour max depuis Gmail perso pour éviter bannissement"
+  },
+  "id": "FND_unknown_b2b_prospection_playbook",
+  "naming_version": "v1"
+}

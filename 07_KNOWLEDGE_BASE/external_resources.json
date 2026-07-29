@@ -1,0 +1,42 @@
+{
+  "version": "2.0",
+  "last_updated": "2026-06-16T12:00:00Z",
+  "format": "NMP — RES|id|type|priority|purpose|module|tags  →  parse: tools/__init__.py parse_resources()",
+  "resources": [
+    "RES|RES-LMCACHE|infrastructure|CRITICAL|GPU KV cache LLM persistent+shareable prefix/non-prefix/RAG vLLM SGLang Apache-2.0|forge_agents/lmcache_integration.py|llm_optimization,kv_cache,inference",
+    "RES|RES-AGENT-SKILLS|architecture_patterns|HIGH|SDLC gates 6-stages prod-grade Define→Ship anti-rationalization MIT|forge_agents/agent_skills_patterns.py|agent_design,sdlc,governance,quality_gates",
+    "RES|RES-SVGDOODLES|design_assets|MEDIUM|200+ SVG hand-drawn colorisables <3KB inline-ready free commercial|forge_agents/design_assets.py|ui_design,svg_assets,frontend",
+    "RES|RES-FOOTER-DESIGN|design_reference|MEDIUM|1000+ footer designs curés filtrable par style/industrie HTML+CSS ready|forge_agents/design_assets.py|ui_design,footer_patterns,ux_reference",
+    "RES|RES-FONTSHARE|design_assets|MEDIUM|Fonts pro free (Indian Type Foundry) CDN API — Satoshi General-Sans etc.|forge_agents/design_assets.py|typography,webfonts,styling",
+    "RES|RES-PARK-UI|design_assets|HIGH|Composants Ark UI + Panda/Tailwind CSS clean bold|forge_agents/design_assets.py|ui_components,styling,design_system",
+    "RES|RES-UI-COLORS|design_reference|MEDIUM|Générateur palette Tailwind cohérente 50-950 depuis 1 hex|forge_agents/design_assets.py|design_system,color_palette,tailwind",
+    "RES|RES-HARNESS|architecture_patterns|HIGH|Framework orchestration équipes agents spécialisés Pipeline/Expert/Voting|forge_agents/agent_topology.py|agent_teams,orchestration,multi_agent",
+    "RES|RES-AUTORESEARCH|infrastructure|CRITICAL|Boucle ML research autonome metrics-driven + ratchet optimizer|forge_agents/ratchet_optimizer.py|autonomous_research,tuning_loops,benchmarking",
+    "RES|RES-GEO-SEO|marketing_assets|HIGH|GEO-first SEO — maximiser citation dans Generative AI Search Perplexity/SGE|forge_agents/geo_seo.py|seo,generative_engine_optimization,crawling",
+    "RES|RES-SNAP-SCRAPER|design_assets|MEDIUM|Extract snap handles/subscriber metadata pour lead lists marketing|forge_agents/snapchat_marketing.py|scraping,lead_generation,marketing",
+    "RES|RES-SNAP-MAKE|infrastructure|HIGH|Sync Snapchat Promote leads → CRM via Make automation|forge_agents/snapchat_marketing.py|crm_sync,make_integration,automation",
+    "RES|RES-AGENCY-AGENTS|architecture_patterns|HIGH|Personas agents rôles professionnels agence multi-division|forge_agents/agency_personas.py|agent_personas,role_definitions",
+    "RES|RES-ANTV-INFOGRAPHIC|design_assets|HIGH|Moteur rendu infographies SVG déclaratif éditables propres|forge_agents/infographic_builder.py|data_visualization,infographics,svg_rendering",
+    "RES|RES-OMNIROUTE|infrastructure|CRITICAL|Gateway API unifiée OpenAI-compatible 60+ providers load-balancer proxy|forge_agents/forge_llm.py|llm_gateway,proxy,load_balancer,api_gateway",
+    "RES|RES-THE-ALGORITHMS|architecture_patterns|HIGH|Implémentations optimisées algos/structures données open-source|forge_agents/algorithm_helper.py|algorithms,data_structures,coding_patterns",
+    "RES|RES-UI-UX-PRO-MAX|design_assets|HIGH|DB intelligence design UI styles palettes UX guidelines front-end|tools/dev/openhands.py|ui_ux,design_systems,front_end",
+    "RES|RES-SUPERPOWERS|architecture_patterns|HIGH|Framework skills agents TDD + discipline codage structurée step-by-step|tools/dev/openhands.py|development_discipline,tdd,workflow_governance",
+    "RES|RES-OPEN-GEN-AI|generative_media|HIGH|Studio self-host 200+ modèles image+vidéo Flux/Kling/Sora/Veo MIT|tools/product_bricks/generative_media/open_gen_ai.py|image_generation,video_generation,self_hosted",
+    "RES|RES-OPENCUT|generative_media|MEDIUM|Éditeur vidéo web alt-CapCut montage auto browser_use MIT|tools/product_bricks/generative_media/opencut.py|video_editing,self_hosted",
+    "RES|RES-APPTENSION-SAAS|scaffold|HIGH|SaaS boilerplate React+Django+AWS auth Stripe multi-tenant vérifier licence|tools/product_bricks/saas_starters/apptension.py|saas,boilerplate,react,django",
+    "RES|RES-OSS-SAAS|template_catalog|MEDIUM|101 SaaS OSS vérifiés à cloner/adapter vérifier licence par SaaS|tools/catalog/oss_saas.py|saas,catalog,open_source",
+    "RES|RES-FOUNDERS-KIT|knowledge_index|MEDIUM|611 playbooks founders build/launch/scale/pricing/GTM turbovec agent=FOUNDER|tools/research/founders_kit.py|founders,gtm,pricing,launch",
+    "RES|RES-METORIAL|mcp_gateway|HIGH|Hub 1200+ intégrations MCP/CLI/API ordre: registry→metorial→mcpify|tools/mcp/metorial.py|mcp,integrations,gateway",
+    "RES|RES-REPOWISE|code_intelligence|MEDIUM|Gap-only ADR auto-gen + git analytics churn/velocity Herald+GN couvrent le reste|tools/mcp/repowise.py|adr,git_analytics,code_intelligence",
+    "RES|RES-DESIGN-KB|design_knowledge_base|HIGH|Sources UI interrogeables + brand_kit(hex) marque shadcn/21st/refero/footer/svg|tools/product_bricks/ui/design_kb.py|ui_design,brand_personality,knowledge_base"
+  ],
+  "integration_matrix": {
+    "security": ["lmcache_isolation","agent_skills_security_review","zsl_cyber_integration"],
+    "performance": ["lmcache_kv_caching","agent_skills_optimization","tiered_storage","autoresearch_ratchet_tuning","omniroute_load_balancing","thealgorithms_optimized_logic"],
+    "design": ["svgdoodles_assets","footer_design_patterns","fontshare_typography","park_ui_components","uicolors_palette_generator","antv_infographic_visuals","ui_ux_pro_max_templates","design_kb_brand_personality"],
+    "governance": ["agent_skills_quality_gates","jury_alignment","anti_hallucination_sync","harness_team_topology","agency_agents_roles","superpowers_tdd_discipline"],
+    "product_shipping": ["open_gen_ai_media","opencut_video","apptension_saas_scaffold","oss_saas_catalog","design_kb_brand_ui"],
+    "go_to_market": ["founders_kit_playbooks","geo_seo_citability"],
+    "mcp_integrations": ["metorial_hub_1200","mcpify_generation","repowise_adr_git_analytics"]
+  }
+}

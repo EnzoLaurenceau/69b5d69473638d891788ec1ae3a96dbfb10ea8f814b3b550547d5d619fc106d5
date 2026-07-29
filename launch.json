@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "le-taj",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "mvp_output/le-taj"],
+      "port": 8765
+    },
+    {
+      "name": "plasma-wars",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8766", "--directory", "mvp_output"],
+      "port": 8766
+    }
+  ]
+}

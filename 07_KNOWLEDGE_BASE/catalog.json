@@ -1,0 +1,158 @@
+{
+  "generated": "2026-07-17",
+  "datasets": [
+    {
+      "name": "claude_mythos_25k",
+      "path": "datasets/claude_mythos_25k",
+      "rows": 25000,
+      "size_mb": 207.7,
+      "formats": [
+        "alpaca",
+        "chatml",
+        "raw",
+        "sharegpt"
+      ]
+    },
+    {
+      "name": "devops_cloud_instruction_dataset",
+      "path": "datasets/devops_cloud_instruction_dataset",
+      "rows": 112,
+      "size_mb": 0.3,
+      "formats": [
+        "alpaca",
+        "chatml",
+        "raw",
+        "sharegpt"
+      ]
+    },
+    {
+      "name": "forge_experience",
+      "path": "datasets/forge_experience",
+      "rows": null,
+      "size_mb": 0.0,
+      "formats": [
+        "forge_experience"
+      ]
+    },
+    {
+      "name": "lex_glue_ledgar",
+      "path": "datasets/lex_glue_ledgar",
+      "rows": 60000,
+      "size_mb": 216.1,
+      "formats": [
+        "alpaca",
+        "chatml",
+        "raw",
+        "sharegpt"
+      ]
+    },
+    {
+      "name": "malicious_website_features_2.4m",
+      "path": "datasets/malicious_website_features_2.4m",
+      "rows": 2787159,
+      "size_mb": 2104.5,
+      "formats": [
+        "alpaca",
+        "chatml",
+        "raw",
+        "sharegpt"
+      ]
+    },
+    {
+      "name": "marketing_conversations",
+      "path": "datasets/marketing_conversations",
+      "rows": 2001,
+      "size_mb": 21.4,
+      "formats": [
+        "alpaca",
+        "chatml",
+        "raw",
+        "sharegpt"
+      ]
+    },
+    {
+      "name": "metacognition_bench",
+      "path": "datasets/metacognition_bench",
+      "rows": 300,
+      "size_mb": 1.5,
+      "formats": [
+        "alpaca",
+        "chatml",
+        "raw",
+        "sharegpt"
+      ]
+    },
+    {
+      "name": "vectorstore_general_health",
+      "path": "datasets/vectorstore_general_health",
+      "rows": 6902,
+      "size_mb": 89.8,
+      "formats": [
+        "alpaca",
+        "chatml",
+        "raw",
+        "sharegpt"
+      ]
+    },
+    {
+      "name": "vibe_coding_instruct",
+      "path": "datasets/vibe_coding_instruct",
+      "rows": 1100000,
+      "size_mb": 1197.4,
+      "formats": [
+        "alpaca",
+        "chatml",
+        "raw",
+        "sharegpt"
+      ]
+    }
+  ],
+  "empty_stubs": [
+    "datasets/legal_eval_classification",
+    "datasets/lex_glue",
+    "datasets/lextreme",
+    "datasets/vibe_coded_web_apps"
+  ],
+  "finetune_ready": [
+    {
+      "file": "forge_ft_chatml_20260703_054537.jsonl",
+      "rows": 1,
+      "size_mb": 0.0
+    },
+    {
+      "file": "forge_ft_chatml_20260703_054626.jsonl",
+      "rows": 5316,
+      "size_mb": 10.7
+    },
+    {
+      "file": "forge_ft_chatml_20260703_055226.jsonl",
+      "rows": 1105616,
+      "size_mb": 273.0
+    },
+    {
+      "file": "forge_ft_chatml_20260703_060220.jsonl",
+      "rows": 1107617,
+      "size_mb": 278.8
+    },
+    {
+      "file": "forge_ft_chatml_20260703_060505.jsonl",
+      "rows": 1114474,
+      "size_mb": 285.7
+    },
+    {
+      "file": "forge_ft_chatml_20260703_061009.jsonl",
+      "rows": 1114584,
+      "size_mb": 285.8
+    },
+    {
+      "file": "forge_ft_chatml_20260703_061229.jsonl",
+      "rows": 1174584,
+      "size_mb": 346.2
+    },
+    {
+      "file": "forge_ft_chatml_20260703_062924.jsonl",
+      "rows": 1199584,
+      "size_mb": 362.1
+    }
+  ]
+}

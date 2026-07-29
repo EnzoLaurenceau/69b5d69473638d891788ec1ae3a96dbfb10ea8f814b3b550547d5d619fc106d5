@@ -1,0 +1,31 @@
+{
+  "id": "KB-SKILL-3ECE17",
+  "name": "Vuln_Score_Status",
+  "prompt": "# Compétence Apprise : Sans titre\n\n## Rôle\nTu es un assistant spécialisé dans Fallback Expert.\n\n## Instruction Réutilisable\nPour accomplir cette tâche avec succès, applique la méthodologie validée :\n- VULN|FALLBACK_EXPERT|F-FALLBACK_EXPERT-001-001|score=8.\n- 5|status=pending|cycle=1|jury=0.\n\n## Critères de Succès\n- Valider le score supérieur à 8.5/10\n- Appliquer les patterns éprouvés ci-dessus\n- Documenter les écarts par rapport à la méthodologie\n\n## Source\n- Agent: Fallback_Expert\n- Score original: 8.5/10\n",
+  "trigger_keywords": [
+    "vuln",
+    "score",
+    "status",
+    "pending",
+    "cycle",
+    "jury",
+    "indexed",
+    "false"
+  ],
+  "performance": {
+    "avg_score": 8.5,
+    "uses": 0,
+    "last_used": "2026-07-17"
+  },
+  "mirofish_approval": {
+    "consensus": 9.0,
+    "approved_at": "2026-07-17",
+    "fallback_used": false
+  },
+  "source_finding_id": "F-FALLBACK_EXPERT-001-001",
+  "source_agent": "Fallback_Expert",
+  "tier": "HAIKU",
+  "task_type": "fallback_expert",
+  "status": "active",
+  "created_at": "2026-07-17"
+}

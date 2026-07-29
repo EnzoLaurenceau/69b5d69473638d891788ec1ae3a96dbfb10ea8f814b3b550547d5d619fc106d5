@@ -1,0 +1,62 @@
+{
+  "title": "Forge AAOS",
+  "uid": "forge-aaos",
+  "schemaVersion": 39,
+  "time": { "from": "now-6h", "to": "now" },
+  "refresh": "15s",
+  "panels": [
+    {
+      "id": 1, "type": "stat", "title": "Tokens économisés (cache estimate)",
+      "gridPos": { "h": 5, "w": 6, "x": 0, "y": 0 },
+      "fieldConfig": { "defaults": { "color": { "mode": "thresholds" }, "unit": "short" } },
+      "targets": [ { "expr": "forge_cache_tokens_saved_estimate", "refId": "A" } ]
+    },
+    {
+      "id": 2, "type": "stat", "title": "Appels LLM évités (session)",
+      "gridPos": { "h": 5, "w": 6, "x": 6, "y": 0 },
+      "targets": [ { "expr": "forge_session_calls_avoided", "refId": "A" } ]
+    },
+    {
+      "id": 3, "type": "stat", "title": "$ économisés (session)",
+      "gridPos": { "h": 5, "w": 6, "x": 12, "y": 0 },
+      "fieldConfig": { "defaults": { "unit": "currencyUSD", "decimals": 4 } },
+      "targets": [ { "expr": "forge_session_money_saved_usd", "refId": "A" } ]
+    },
+    {
+      "id": 4, "type": "stat", "title": "Cache hits (total)",
+      "gridPos": { "h": 5, "w": 6, "x": 18, "y": 0 },
+      "targets": [ { "expr": "forge_cache_hits_total", "refId": "A" } ]
+    },
+    {
+      "id": 5, "type": "timeseries", "title": "Cache hits & tokens économisés",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 5 },
+      "targets": [
+        { "expr": "forge_cache_hits_total", "refId": "A", "legendFormat": "cache hits" },
+        { "expr": "forge_cache_tokens_saved_estimate", "refId": "B", "legendFormat": "tokens saved" }
+      ]
+    },
+    {
+      "id": 6, "type": "timeseries", "title": "CPU / RAM (%)",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 5 },
+      "fieldConfig": { "defaults": { "unit": "percent", "max": 100, "min": 0 } },
+      "targets": [
+        { "expr": "forge_cpu_percent", "refId": "A", "legendFormat": "CPU" },
+        { "expr": "forge_ram_percent", "refId": "B", "legendFormat": "RAM" }
+      ]
+    },
+    {
+      "id": 7, "type": "timeseries", "title": "Entrées cache & candidats répétitifs",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 13 },
+      "targets": [
+        { "expr": "forge_cache_entries", "refId": "A", "legendFormat": "cache entries" },
+        { "expr": "forge_repetitive_candidates", "refId": "B", "legendFormat": "repetitive (→script)" }
+      ]
+    },
+    {
+      "id": 8, "type": "stat", "title": "Knowledge gaps en attente",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 13 },
+      "fieldConfig": { "defaults": { "color": { "mode": "thresholds" }, "thresholds": { "steps": [ { "color": "green", "value": null }, { "color": "orange", "value": 1 } ] } } },
+      "targets": [ { "expr": "forge_knowledge_gaps", "refId": "A" } ]
+    }
+  ]
+}

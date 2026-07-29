@@ -1,0 +1,24 @@
+{
+  "_comment": "DS2API config — remplir accounts avec credentials DeepSeek web",
+  "keys": [
+    "forge-local-key"
+  ],
+  "api_keys": [
+    {
+      "key": "forge-local-key",
+      "name": "Forge Local",
+      "remark": "Usage interne Forge uniquement"
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Enzo Laurenceau",
+      "email": "laurenceaulhenzo.2@gmail.com",
+      "password": "Grandmere2026!"
+    }
+  ],
+  "model_aliases": {},
+  "responses": {
+    "store_ttl_seconds": 300
+  }
+}

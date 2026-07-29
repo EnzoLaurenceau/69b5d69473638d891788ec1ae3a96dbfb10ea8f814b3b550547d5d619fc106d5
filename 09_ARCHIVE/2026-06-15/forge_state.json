@@ -1,0 +1,20 @@
+{
+  "next_id": 3,
+  "session_tokens": 11,
+  "meta": {
+    "1": {
+      "text": "test task market scan IA",
+      "agent": "ORCH",
+      "score": 8.0,
+      "cycle": 0,
+      "tok_est": 6
+    },
+    "2": {
+      "text": "market scan niche IA",
+      "agent": "ORCH",
+      "score": 8.5,
+      "cycle": 0,
+      "tok_est": 5
+    }
+  }
+}

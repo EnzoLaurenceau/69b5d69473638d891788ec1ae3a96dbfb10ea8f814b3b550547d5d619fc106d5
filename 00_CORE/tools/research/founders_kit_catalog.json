@@ -1,0 +1,3057 @@
+[
+  {
+    "title": "Paul Graham's Essays",
+    "url": "https://paulgraham.com/",
+    "category": "Essential Reading"
+  },
+  {
+    "title": "Sam Altman's Blog",
+    "url": "https://blog.samaltman.com/",
+    "category": "Essential Reading"
+  },
+  {
+    "title": "Startup Library",
+    "url": "https://www.startuplibrary.io/",
+    "category": "Essential Reading"
+  },
+  {
+    "title": "Founder Resources",
+    "url": "https://www.founderresources.com/",
+    "category": "Essential Reading"
+  },
+  {
+    "title": "Startup Handbook",
+    "url": "https://www.startuphandbook.co/",
+    "category": "Essential Reading"
+  },
+  {
+    "title": "The Founder Library - NFX",
+    "url": "https://www.nfx.com/founder-library",
+    "category": "Essential Reading"
+  },
+  {
+    "title": "Startup Notes",
+    "url": "http://startupnotes.org/#page/1",
+    "category": "Essential Reading"
+  },
+  {
+    "title": "The Four Steps to the Epiphany - Steve Blank",
+    "url": "https://amzn.to/46n8bP3",
+    "category": "Books"
+  },
+  {
+    "title": "The Startup Owner's Manual - Steve Blank",
+    "url": "https://amzn.to/4rzkEaX",
+    "category": "Books"
+  },
+  {
+    "title": "Running Lean - Ash Maurya",
+    "url": "https://amzn.to/4kPgZTB",
+    "category": "Books"
+  },
+  {
+    "title": "The Lean Startup - Eric Ries",
+    "url": "https://amzn.to/4rwpzcI",
+    "category": "Books"
+  },
+  {
+    "title": "Zero to One - Peter Thiel",
+    "url": "https://amzn.to/3ZMyWc3",
+    "category": "Books"
+  },
+  {
+    "title": "The Hard Thing About Hard Things - Ben Horowitz",
+    "url": "https://amzn.to/4tFyBFA",
+    "category": "Books"
+  },
+  {
+    "title": "Founders At Work - Jessica Livingston",
+    "url": "https://amzn.to/3OqEfvi",
+    "category": "Books"
+  },
+  {
+    "title": "Hooked: How to Build Habit-Forming Products",
+    "url": "https://www.hookedbook.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Inspired: How to Create Tech Products Customers Love - Marty Cagan",
+    "url": "https://www.inspiredbook.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Empowered: Ordinary People, Extraordinary Products - Marty Cagan",
+    "url": "https://www.empoweredbook.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Traction: A Startup Guide to Getting Customers",
+    "url": "https://www.tractionbook.com/",
+    "category": "Books"
+  },
+  {
+    "title": "The Cold Start Problem",
+    "url": "https://www.coldstartproblem.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Make - Bootstrapper's Handbook",
+    "url": "https://www.makebootstrapper.com/",
+    "category": "Books"
+  },
+  {
+    "title": "The Founder's Dilemmas - Noam Wasserman",
+    "url": "https://www.foundersdilemmas.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Business Model Generation - Alexander Osterwalder",
+    "url": "https://www.strategyzer.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Hello, Startup",
+    "url": "https://www.hello-startup.net/",
+    "category": "Books"
+  },
+  {
+    "title": "Venture Deals - Brad Feld and Jason Mendelson",
+    "url": "https://venturedeals.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Venture Capitalists at Work - Tarang Shah and Sheetal Shah",
+    "url": "https://www.venturecapitalistsatwork.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Atomic Habits - James Clear",
+    "url": "https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299",
+    "category": "Books"
+  },
+  {
+    "title": "Thinking, Fast and Slow - Daniel Kahneman",
+    "url": "https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555",
+    "category": "Books"
+  },
+  {
+    "title": "The 7 Habits of Highly Effective People - Stephen Covey",
+    "url": "https://www.amazon.com/Habits-Highly-Effective-People-Powerful/dp/0743269519",
+    "category": "Books"
+  },
+  {
+    "title": "First Things First - Stephen Covey",
+    "url": "https://www.amazon.com/First-Things-Stephen-R-Covey/dp/0684802031",
+    "category": "Books"
+  },
+  {
+    "title": "The Mom Test - Rob Fitzpatrick",
+    "url": "https://www.momtestbook.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Disciplined Entrepreneurship: 24 Steps to a Successful Startup - Bill Aulet",
+    "url": "https://www.amazon.com/Disciplined-Entrepreneurship-Steps-Successful-Startup/dp/1118692284",
+    "category": "Books"
+  },
+  {
+    "title": "Mochary Method Curriculum - Matt Mochary",
+    "url": "https://www.mocharymethod.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Think Like a Founder",
+    "url": "https://www.manning.com/books/think-like-a-founder",
+    "category": "Books"
+  },
+  {
+    "title": "Think Like a CTO",
+    "url": "https://www.manning.com/books/think-like-a-cto",
+    "category": "Books"
+  },
+  {
+    "title": "The Balanced Scorecard: Translating Strategy into Action",
+    "url": "https://www.amazon.com/Balanced-Scorecard-Translating-Strategy-Action/dp/0875846513",
+    "category": "Books"
+  },
+  {
+    "title": "Good to Great - Jim Collins",
+    "url": "https://www.amazon.com/Good-Great-Some-Companies-Others/dp/0066620996",
+    "category": "Books"
+  },
+  {
+    "title": "The Innovator's Solution",
+    "url": "https://www.amazon.com/Innovators-Solution-Creating-Sustaining-Successful/dp/1422196577",
+    "category": "Books"
+  },
+  {
+    "title": "Built to Last",
+    "url": "https://www.amazon.com/Built-Last-Successful-Visionary-Essentials/dp/0060516402",
+    "category": "Books"
+  },
+  {
+    "title": "Tribes: We Need You to Lead Us",
+    "url": "https://www.amazon.com/Tribes-We-Need-You-Lead-ebook/dp/B001FA0LAI/",
+    "category": "Books"
+  },
+  {
+    "title": "Rise of the Revenue Marketer",
+    "url": "https://www.amazon.com/Rise-Revenue-Marketer-Debbie-Qaqish/dp/1610054075/",
+    "category": "Books"
+  },
+  {
+    "title": "Change the Culture, Change the Game",
+    "url": "https://www.amazon.com/Change-Culture-Game-Breakthrough-Organization/dp/1591845394",
+    "category": "Books"
+  },
+  {
+    "title": "Quotes / Lessons / Videos for Entrepreneurs",
+    "url": "http://www.blockshelf.com/",
+    "category": "Books"
+  },
+  {
+    "title": "Power Books for Entrepreneurs",
+    "url": "http://powerbooks.strikingly.com/",
+    "category": "Books"
+  },
+  {
+    "title": "How to Start a Startup",
+    "url": "https://startupclass.co/course/how-to-start-a-startup",
+    "category": "Online Courses"
+  },
+  {
+    "title": "Startup School 2018 - Y Combinator",
+    "url": "https://www.ycombinator.com/startupschool/2018",
+    "category": "Online Courses"
+  },
+  {
+    "title": "Startup School 2019 - Y Combinator",
+    "url": "https://www.ycombinator.com/startupschool/2019",
+    "category": "Online Courses"
+  },
+  {
+    "title": "The Lean Launchpad - Steve Blank (Udacity)",
+    "url": "https://www.udacity.com/course/ep245",
+    "category": "Online Courses"
+  },
+  {
+    "title": "Startup Engineering (Coursera)",
+    "url": "https://www.coursera.org/course/startup",
+    "category": "Online Courses"
+  },
+  {
+    "title": "Developing Innovative Ideas for New Companies (Coursera)",
+    "url": "https://www.coursera.org/course/innovativeideas",
+    "category": "Online Courses"
+  },
+  {
+    "title": "Startup Class - Sam Altman",
+    "url": "https://startupclass.samaltman.com",
+    "category": "Online Courses"
+  },
+  {
+    "title": "Mind The Product",
+    "url": "https://www.mindtheproduct.com/",
+    "category": "Video Resources"
+  },
+  {
+    "title": "DevTube",
+    "url": "https://www.devtube.com/",
+    "category": "Video Resources"
+  },
+  {
+    "title": "PMFlix",
+    "url": "https://www.pmflix.com/",
+    "category": "Video Resources"
+  },
+  {
+    "title": "Startup Talks",
+    "url": "http://startuptalks.tv/",
+    "category": "Video Resources"
+  },
+  {
+    "title": "Startup Movies",
+    "url": "http://startupmovies.be-genius.com/",
+    "category": "Video Resources"
+  },
+  {
+    "title": "Google Talks",
+    "url": "https://www.youtube.com/user/AtGoogleTalks/videos",
+    "category": "Video Resources"
+  },
+  {
+    "title": "500 Startups #500distro Conference Videos",
+    "url": "https://www.youtube.com/playlist?list=PLOStnEM8wBOZMOr_jwoK4-EtPuX5fJrzK",
+    "category": "Video Resources"
+  },
+  {
+    "title": "Steve Jobs' Vision of the World",
+    "url": "https://www.youtube.com/watch?v=UvEiSa6_EPA",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "This Startup Founder Filmed Her Struggles",
+    "url": "https://giveit100.com/@100/9b924t",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "Authors@Google: Eric Ries \"The Lean Startup\"",
+    "url": "https://www.youtube.com/watch?v=fEvKo90qBns",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "Marc Andreessen & Dave McClure: The Future of Startups",
+    "url": "https://www.youtube.com/watch?v=pLNQZegq7KA&app=desktop",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "Foundation 37 // David Byttow",
+    "url": "https://www.youtube.com/watch?feature=player_embedded&v=7PmBk7hgUqg",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "PandoMonthly: Fireside Chat With Airbnb CEO Brian Chesky",
+    "url": "https://www.youtube.com/watch?v=6yPfxcqEXhE",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "Startup Grind Feat Scott Heiferman",
+    "url": "https://www.youtube.com/watch?v=LQI7o3eNx_8&feature=youtu.be&t=25m33s",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "Vinod Khosla at Startup Grind Silicon Valley",
+    "url": "https://www.youtube.com/watch?v=U5J7bd7nzmw",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "UX Design & Marketing Tactics - Shopify",
+    "url": "https://www.youtube.com/watch?v=sBDOq5B4nTo",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "Managing Growth & Delivering Magic",
+    "url": "https://www.youtube.com/watch?v=s7O3_tRB5t4",
+    "category": "Must-Watch Videos"
+  },
+  {
+    "title": "Acquired",
+    "url": "https://www.acquired.fm/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "A16z",
+    "url": "https://a16z.com/podcasts/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Masters of Scale",
+    "url": "https://mastersofscale.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Inside Intercom",
+    "url": "https://www.intercom.com/blog/podcasts/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "This is Product Management",
+    "url": "https://www.thisisproductmanagement.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Product Led Podcast",
+    "url": "https://www.productledpodcast.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "FYI - For Your Innovation",
+    "url": "https://www.fyiforyourinnovation.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Produto pelo Mundo",
+    "url": "https://www.produtopelomundo.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Mulheres de Produto",
+    "url": "https://www.mulheresdeproduto.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Storicast",
+    "url": "https://www.storicast.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Retention",
+    "url": "https://www.retentionpodcast.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Product Gurus",
+    "url": "https://www.productgurus.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Product Backstage",
+    "url": "https://www.productbackstage.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "PM3 Talks",
+    "url": "https://www.pm3talks.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Movimento UX",
+    "url": "https://www.movimentoux.com/",
+    "category": "Podcasts"
+  },
+  {
+    "title": "Product Hunt",
+    "url": "https://www.producthunt.com/",
+    "category": "Product Discovery"
+  },
+  {
+    "title": "Hacker News",
+    "url": "https://news.ycombinator.com/",
+    "category": "Product Discovery"
+  },
+  {
+    "title": "Crunchbase",
+    "url": "https://www.crunchbase.com/",
+    "category": "Product Discovery"
+  },
+  {
+    "title": "BetaPage",
+    "url": "https://www.betapage.co/",
+    "category": "Product Discovery"
+  },
+  {
+    "title": "Betalist",
+    "url": "https://betalist.com/",
+    "category": "Product Discovery"
+  },
+  {
+    "title": "SaaS Pages",
+    "url": "https://www.saaspages.com/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "SaaS Frame",
+    "url": "https://www.saasframe.com/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "Mobbin",
+    "url": "https://www.mobbin.com/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "Page Flows",
+    "url": "https://pageflows.com/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "Page Collective",
+    "url": "https://pagecollective.com/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "Admire the Web",
+    "url": "https://www.admiretheweb.com/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "Hoverstat.es",
+    "url": "https://www.hoverstat.es/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "UX Archive",
+    "url": "https://uxarchive.com/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "UI-Cloud",
+    "url": "https://www.ui-cloud.com/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "Pttrns",
+    "url": "https://pttrns.com/",
+    "category": "Design Inspiration"
+  },
+  {
+    "title": "Start Story",
+    "url": "https://www.startstory.io/",
+    "category": "Startup Ideas & Stories"
+  },
+  {
+    "title": "Test Your Startup Idea",
+    "url": "https://www.testyourstartupidea.com/",
+    "category": "Startup Ideas & Stories"
+  },
+  {
+    "title": "How to Find the Right Startup Idea",
+    "url": "https://www.howtofindtherightstartupidea.com/",
+    "category": "Startup Ideas & Stories"
+  },
+  {
+    "title": "The Artist and the Innovator",
+    "url": "https://www.theartistandtheinnovator.com/",
+    "category": "Startup Ideas & Stories"
+  },
+  {
+    "title": "Don't Start with an MVP",
+    "url": "https://www.dontstartwithanmvp.com/",
+    "category": "Startup Ideas & Stories"
+  },
+  {
+    "title": "Software Alternatives and Reviews",
+    "url": "https://www.softwarealternativesandreviews.com/",
+    "category": "Startup Ideas & Stories"
+  },
+  {
+    "title": "Product Checklist",
+    "url": "https://www.productchecklist.com/",
+    "category": "Startup Ideas & Stories"
+  },
+  {
+    "title": "WSGR Startup Basics: How to Name Your Startup",
+    "url": "https://www.wsgr.com/en/insights/startup-basics-how-to-name-your-startup.html",
+    "category": "Naming"
+  },
+  {
+    "title": "Panabee",
+    "url": "https://panabee.com/",
+    "category": "Naming"
+  },
+  {
+    "title": "NameMesh",
+    "url": "https://www.namemesh.com/",
+    "category": "Naming"
+  },
+  {
+    "title": "Naminum",
+    "url": "https://www.naminum.com/",
+    "category": "Naming"
+  },
+  {
+    "title": "Namechk",
+    "url": "https://namechk.com/",
+    "category": "Naming"
+  },
+  {
+    "title": "BrandBucket",
+    "url": "https://www.brandbucket.com/",
+    "category": "Naming"
+  },
+  {
+    "title": "Squadhelp",
+    "url": "https://www.squadhelp.com/",
+    "category": "Naming"
+  },
+  {
+    "title": "Founders and Co-founders by Startups.com",
+    "url": "https://www.startups.com/",
+    "category": "Co-founders"
+  },
+  {
+    "title": "How to Find a Co-Founder",
+    "url": "https://www.howtofindacofounder.com/",
+    "category": "Co-founders"
+  },
+  {
+    "title": "How to Split Equity Among Co-founders",
+    "url": "https://www.howtosplitco-founderequity.com/",
+    "category": "Co-founders"
+  },
+  {
+    "title": "Curated KPIs and OKRs List",
+    "url": "https://www.kpisandokrs.com/",
+    "category": "KPIs and OKRs"
+  },
+  {
+    "title": "Growthhacklist",
+    "url": "https://www.growthhacklist.com/",
+    "category": "Growth Resources"
+  },
+  {
+    "title": "Beginners Guide to SEO",
+    "url": "https://www.beginnersguideto.seo/",
+    "category": "Growth Resources"
+  },
+  {
+    "title": "100+ Growth Tactics",
+    "url": "https://www.100growthtactics.com/",
+    "category": "Growth Resources"
+  },
+  {
+    "title": "Where Does Growth Come From?",
+    "url": "https://www.wheredoesgrowthcomefrom.com/",
+    "category": "Growth Resources"
+  },
+  {
+    "title": "Founder Library About Hiring",
+    "url": "https://www.founderlibrary.com/hiring",
+    "category": "Hiring Resources"
+  },
+  {
+    "title": "Job Interviews Don't Work",
+    "url": "https://fs.blog/2020/07/job-interviews/",
+    "category": "Hiring Resources"
+  },
+  {
+    "title": "Curated List of Customer Development Resources",
+    "url": "https://www.customerdevelopmentresources.com/",
+    "category": "Resources"
+  },
+  {
+    "title": "Customer Forces Canvas",
+    "url": "https://www.customerforcescanvas.com/",
+    "category": "Resources"
+  },
+  {
+    "title": "The Mom Test",
+    "url": "https://www.themomtest.com/",
+    "category": "Customer Discovery"
+  },
+  {
+    "title": "Empathy Map",
+    "url": "https://www.empathymap.com/",
+    "category": "Customer Discovery"
+  },
+  {
+    "title": "Fundamentals of Product-Market Fit",
+    "url": "https://www.fundamentalsofproductmarketfit.com/",
+    "category": "Product-Market Fit"
+  },
+  {
+    "title": "Superhuman Article on PMF",
+    "url": "https://www.superhuman.com/article/",
+    "category": "Product-Market Fit"
+  },
+  {
+    "title": "Y Combinator",
+    "url": "https://www.ycombinator.com/",
+    "category": "Incubators & Accelerators"
+  },
+  {
+    "title": "500 Startups",
+    "url": "https://www.500startups.com/",
+    "category": "Incubators & Accelerators"
+  },
+  {
+    "title": "Plug and Play",
+    "url": "https://www.plugandplaytechcenter.com/",
+    "category": "Incubators & Accelerators"
+  },
+  {
+    "title": "r/Entrepreneur",
+    "url": "https://www.reddit.com/r/Entrepreneur/",
+    "category": "Online Communities"
+  },
+  {
+    "title": "r/startups",
+    "url": "https://www.reddit.com/r/startups/",
+    "category": "Online Communities"
+  },
+  {
+    "title": "r/SaaS",
+    "url": "https://www.reddit.com/r/SaaS/",
+    "category": "Online Communities"
+  },
+  {
+    "title": "Indie Hackers",
+    "url": "https://www.indiehackers.com/",
+    "category": "Online Communities"
+  },
+  {
+    "title": "AngelList",
+    "url": "https://www.angellist.com/",
+    "category": "Online Communities"
+  },
+  {
+    "title": "The Hive List",
+    "url": "https://www.thehivelist.com/",
+    "category": "Online Communities"
+  },
+  {
+    "title": "Curated List",
+    "url": "https://www.placestopostyourstartup.com/",
+    "category": "Places to Post Your Startup"
+  },
+  {
+    "title": "A Guide to Seed Fundraising - Y Combinator",
+    "url": "https://www.ycombinator.com/library/4A-a-guide-to-seed-fundraising",
+    "category": "Guides & Resources"
+  },
+  {
+    "title": "Investopedia Article",
+    "url": "https://www.investopedia.com/",
+    "category": "Guides & Resources"
+  },
+  {
+    "title": "Chagency Get Startup Funding",
+    "url": "https://www.chagency.co.uk/getstartupfunding/",
+    "category": "Guides & Resources"
+  },
+  {
+    "title": "How to Raise Money",
+    "url": "https://www.howtoraise.money/",
+    "category": "Guides & Resources"
+  },
+  {
+    "title": "Bridge Rounds vs Series Rounds",
+    "url": "https://www.bridgeroundsvsseriesrounds.com/",
+    "category": "Guides & Resources"
+  },
+  {
+    "title": "How Startup Funding Works - Paul Graham",
+    "url": "https://www.paulgraham.com/funding.html",
+    "category": "Guides & Resources"
+  },
+  {
+    "title": "IPOs and Beyond - a16z",
+    "url": "https://a16z.com/ipos-and-beyond-a-guide-to-exit-options-for-companies",
+    "category": "Guides & Resources"
+  },
+  {
+    "title": "Options vs Cash - Dan Luu",
+    "url": "https://danluu.com/options-vs-cash",
+    "category": "Guides & Resources"
+  },
+  {
+    "title": "How To Invest In Startups - Sam Altman",
+    "url": "https://blog.samaltman.com/how-to-invest-in-startups",
+    "category": "Guides & Resources"
+  },
+  {
+    "title": "Startup Financing Calculator",
+    "url": "https://www.startupfinancingcalculator.com/",
+    "category": "Tools"
+  },
+  {
+    "title": "First Round Capital",
+    "url": "https://firstround.com/",
+    "category": "Angel Directories"
+  },
+  {
+    "title": "NFX List",
+    "url": "https://www.nfx.com/",
+    "category": "Angel Directories"
+  },
+  {
+    "title": "Cirrus Insight Deck",
+    "url": "https://www.cirrusinsight.com/",
+    "category": "Pitch Decks"
+  },
+  {
+    "title": "Chagency Deck",
+    "url": "https://www.chagency.co.uk/",
+    "category": "Pitch Decks"
+  },
+  {
+    "title": "OpenDeck",
+    "url": "https://www.opendeck.co/",
+    "category": "Pitch Decks"
+  },
+  {
+    "title": "30 Legendary Startup Pitch Decks",
+    "url": "https://slidebean.com/blog/30-legendary-startup-pitch-decks",
+    "category": "Pitch Decks"
+  },
+  {
+    "title": "Unicorn Platform",
+    "url": "https://unicornplatform.com/",
+    "category": "Website Builders"
+  },
+  {
+    "title": "ProductHunt Ship",
+    "url": "https://www.producthunt.com/ship",
+    "category": "Website Builders"
+  },
+  {
+    "title": "Shopify",
+    "url": "https://www.shopify.com/",
+    "category": "Website Builders"
+  },
+  {
+    "title": "Webflow",
+    "url": "https://webflow.com/",
+    "category": "Website Builders"
+  },
+  {
+    "title": "Weblium",
+    "url": "https://weblium.com/",
+    "category": "Website Builders"
+  },
+  {
+    "title": "Landen",
+    "url": "https://landen.co/",
+    "category": "Website Builders"
+  },
+  {
+    "title": "Tilda",
+    "url": "https://tilda.cc/",
+    "category": "Website Builders"
+  },
+  {
+    "title": "Carrd",
+    "url": "https://carrd.co/",
+    "category": "Website Builders"
+  },
+  {
+    "title": "Strikingly",
+    "url": "https://www.strikingly.com/",
+    "category": "Website Builders"
+  },
+  {
+    "title": "Framer",
+    "url": "https://www.framer.com/",
+    "category": "Website Builders"
+  },
+  {
+    "title": "Frontnd",
+    "url": "http://frontnd.io/",
+    "category": "Static Generators"
+  },
+  {
+    "title": "Jekyll",
+    "url": "https://jekyllrb.com/",
+    "category": "Static Generators"
+  },
+  {
+    "title": "Designmodo Startup",
+    "url": "http://designmodo.com/startup",
+    "category": "Static Generators"
+  },
+  {
+    "title": "Hugo",
+    "url": "https://gohugo.io/",
+    "category": "Static Generators"
+  },
+  {
+    "title": "Gatsby",
+    "url": "https://www.gatsbyjs.org/",
+    "category": "Static Generators"
+  },
+  {
+    "title": "GoDaddy",
+    "url": "https://www.godaddy.com/",
+    "category": "Domains & Hosting"
+  },
+  {
+    "title": "Google Cloud",
+    "url": "https://cloud.google.com/",
+    "category": "Domains & Hosting"
+  },
+  {
+    "title": "Azure",
+    "url": "https://azure.microsoft.com/",
+    "category": "Domains & Hosting"
+  },
+  {
+    "title": "Digital Ocean",
+    "url": "https://www.digitalocean.com/",
+    "category": "Domains & Hosting"
+  },
+  {
+    "title": "Heroku",
+    "url": "https://www.heroku.com/",
+    "category": "Domains & Hosting"
+  },
+  {
+    "title": "Amazon AWS",
+    "url": "https://aws.amazon.com/",
+    "category": "Domains & Hosting"
+  },
+  {
+    "title": "Proof",
+    "url": "https://useproof.com/",
+    "category": "Lead Generation"
+  },
+  {
+    "title": "TrustPulse",
+    "url": "https://trustpulse.com/",
+    "category": "Lead Generation"
+  },
+  {
+    "title": "Kickofflabs",
+    "url": "https://kickofflabs.com/",
+    "category": "Lead Generation"
+  },
+  {
+    "title": "Memberstack",
+    "url": "https://www.memberstack.com/",
+    "category": "Memberships"
+  },
+  {
+    "title": "Sketch",
+    "url": "https://www.sketch.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Figma",
+    "url": "https://www.figma.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Adobe XD",
+    "url": "https://www.adobe.com/products/xd.html",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Flinto",
+    "url": "https://www.flinto.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Invision",
+    "url": "https://www.invisionapp.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Marvel",
+    "url": "https://marvelapp.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Proto",
+    "url": "https://proto.io/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Axure",
+    "url": "https://www.axure.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Mockflow",
+    "url": "https://www.mockflow.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Whimsical",
+    "url": "https://whimsical.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Overflow",
+    "url": "https://overflow.io/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Origami",
+    "url": "https://origami.design/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Balsamiq",
+    "url": "https://balsamiq.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Flowmapp",
+    "url": "https://flowmapp.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Gloomaps",
+    "url": "https://www.gloomaps.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Moqups",
+    "url": "https://moqups.com/",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "FigJam",
+    "url": "https://www.figma.com/figjam",
+    "category": "Prototypes & Wireframes"
+  },
+  {
+    "title": "Brandcrowd Maker",
+    "url": "https://www.brandcrowd.com/maker",
+    "category": "Logo & Branding"
+  },
+  {
+    "title": "Looka",
+    "url": "https://looka.com/",
+    "category": "Logo & Branding"
+  },
+  {
+    "title": "Logopony",
+    "url": "https://www.logopony.com/",
+    "category": "Logo & Branding"
+  },
+  {
+    "title": "Tailorbrands",
+    "url": "https://www.tailorbrands.com/",
+    "category": "Logo & Branding"
+  },
+  {
+    "title": "Graphic Springs",
+    "url": "https://www.graphicsprings.com/",
+    "category": "Logo & Branding"
+  },
+  {
+    "title": "Brandbuilder",
+    "url": "https://brandbuilder.ai/",
+    "category": "Logo & Branding"
+  },
+  {
+    "title": "Hatchful by Shopify",
+    "url": "https://hatchful.shopify.com/",
+    "category": "Logo & Branding"
+  },
+  {
+    "title": "Canva",
+    "url": "https://canva.com/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "Pablo by Buffer",
+    "url": "https://pablo.buffer.com/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "Designbold",
+    "url": "https://www.designbold.com/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "Pixteller",
+    "url": "https://pixteller.com/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "Stencil",
+    "url": "https://getstencil.com/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "Snappa",
+    "url": "https://snappa.com/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "RemoveBg",
+    "url": "https://remove.bg/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "EzGIF",
+    "url": "https://ezgif.com/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "BannerSnack",
+    "url": "https://www.bannersnack.com/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "Screely",
+    "url": "https://screely.com/",
+    "category": "Graphics & Visual Content"
+  },
+  {
+    "title": "Ant.design",
+    "url": "https://ant.design/",
+    "category": "UI Libraries"
+  },
+  {
+    "title": "Bulma",
+    "url": "https://bulma.io/",
+    "category": "UI Libraries"
+  },
+  {
+    "title": "Bootstrap",
+    "url": "https://getbootstrap.com/",
+    "category": "UI Libraries"
+  },
+  {
+    "title": "Miro",
+    "url": "https://miro.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Mindmeister",
+    "url": "https://www.mindmeister.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Gliffy",
+    "url": "https://www.gliffy.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Lucidchart",
+    "url": "https://www.lucidchart.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Visme",
+    "url": "https://www.visme.co/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Infogram",
+    "url": "https://infogram.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Xara",
+    "url": "https://www.xara.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Google Data Studio",
+    "url": "https://datastudio.google.com/u/0/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Witeboard",
+    "url": "https://witeboard.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Easel.ly",
+    "url": "https://www.easel.ly/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Beautiful.ai",
+    "url": "https://www.beautiful.ai/",
+    "category": "Presentations"
+  },
+  {
+    "title": "Shower",
+    "url": "https://github.com/shower/shower",
+    "category": "Presentations"
+  },
+  {
+    "title": "Slidecamp",
+    "url": "https://www.slidecamp.io/",
+    "category": "Presentations"
+  },
+  {
+    "title": "Haikudeck",
+    "url": "https://www.haikudeck.com/",
+    "category": "Presentations"
+  },
+  {
+    "title": "Undesign",
+    "url": "https://undesign.io/",
+    "category": "Design Resources"
+  },
+  {
+    "title": "Dribbble",
+    "url": "https://dribbble.com/",
+    "category": "Design Resources"
+  },
+  {
+    "title": "Evernote Design",
+    "url": "https://www.evernote.design/",
+    "category": "Design Resources"
+  },
+  {
+    "title": "Unsplash",
+    "url": "https://unsplash.com/",
+    "category": "Image Stocks"
+  },
+  {
+    "title": "Pexels",
+    "url": "https://www.pexels.com/",
+    "category": "Image Stocks"
+  },
+  {
+    "title": "Everypixel",
+    "url": "https://www.everypixel.com/",
+    "category": "Image Stocks"
+  },
+  {
+    "title": "Pixabay",
+    "url": "https://pixabay.com/",
+    "category": "Image Stocks"
+  },
+  {
+    "title": "StockSnap",
+    "url": "https://stocksnap.io/",
+    "category": "Image Stocks"
+  },
+  {
+    "title": "Burst by Shopify",
+    "url": "https://burst.shopify.com/",
+    "category": "Image Stocks"
+  },
+  {
+    "title": "StickPNG",
+    "url": "http://www.stickpng.com/",
+    "category": "Image Stocks"
+  },
+  {
+    "title": "Foter",
+    "url": "https://foter.com/",
+    "category": "Image Stocks"
+  },
+  {
+    "title": "IsoRepublic",
+    "url": "https://isorepublic.com/",
+    "category": "Image Stocks"
+  },
+  {
+    "title": "Flaticon",
+    "url": "https://flaticon.com/",
+    "category": "Icon Stocks"
+  },
+  {
+    "title": "Icons8",
+    "url": "https://icons8.com/",
+    "category": "Icon Stocks"
+  },
+  {
+    "title": "Linea.io",
+    "url": "http://www.linea.io/",
+    "category": "Icon Stocks"
+  },
+  {
+    "title": "Nucleo App",
+    "url": "https://www.nucleoapp.com/",
+    "category": "Icon Stocks"
+  },
+  {
+    "title": "TheNounProject",
+    "url": "https://thenounproject.com/",
+    "category": "Icon Stocks"
+  },
+  {
+    "title": "Glaze",
+    "url": "https://www.glaze.com/",
+    "category": "Illustrations & Animations"
+  },
+  {
+    "title": "Control",
+    "url": "https://www.control.com/",
+    "category": "Illustrations & Animations"
+  },
+  {
+    "title": "Undraw",
+    "url": "https://undraw.co/",
+    "category": "Illustrations & Animations"
+  },
+  {
+    "title": "Blush",
+    "url": "https://blush.design/",
+    "category": "Illustrations & Animations"
+  },
+  {
+    "title": "Lottie",
+    "url": "https://lottiefiles.com/",
+    "category": "Illustrations & Animations"
+  },
+  {
+    "title": "Rive",
+    "url": "https://rive.app/",
+    "category": "Illustrations & Animations"
+  },
+  {
+    "title": "ChatGPT",
+    "url": "https://chat.openai.com/",
+    "category": "AI Tools"
+  },
+  {
+    "title": "Rows",
+    "url": "https://rows.com/",
+    "category": "AI Tools"
+  },
+  {
+    "title": "Copy.ai",
+    "url": "https://www.copy.ai/",
+    "category": "AI Tools"
+  },
+  {
+    "title": "Jasper",
+    "url": "https://www.jasper.ai/",
+    "category": "AI Tools"
+  },
+  {
+    "title": "Lumen5",
+    "url": "https://lumen5.com/",
+    "category": "AI Tools"
+  },
+  {
+    "title": "Captions",
+    "url": "https://www.captions.ai/",
+    "category": "AI Tools"
+  },
+  {
+    "title": "Netlify CMS",
+    "url": "https://www.netlifycms.org/",
+    "category": "Content Management"
+  },
+  {
+    "title": "Strapi",
+    "url": "https://strapi.io/",
+    "category": "Content Management"
+  },
+  {
+    "title": "Prismic",
+    "url": "https://prismic.io/",
+    "category": "Content Management"
+  },
+  {
+    "title": "Contentful",
+    "url": "https://www.contentful.com/",
+    "category": "Content Management"
+  },
+  {
+    "title": "Ahrefs",
+    "url": "https://ahrefs.com/",
+    "category": "SEO Tools"
+  },
+  {
+    "title": "Spyfu",
+    "url": "https://www.spyfu.com/",
+    "category": "SEO Tools"
+  },
+  {
+    "title": "Metatags",
+    "url": "https://metatags.io/",
+    "category": "SEO Tools"
+  },
+  {
+    "title": "Formspree",
+    "url": "https://formspree.io/",
+    "category": "Forms"
+  },
+  {
+    "title": "Zapier",
+    "url": "https://zapier.com/",
+    "category": "Automation"
+  },
+  {
+    "title": "Make",
+    "url": "https://www.make.com/",
+    "category": "Automation"
+  },
+  {
+    "title": "IFTTT",
+    "url": "https://ifttt.com/",
+    "category": "Automation"
+  },
+  {
+    "title": "N8N",
+    "url": "https://n8n.io/",
+    "category": "Automation"
+  },
+  {
+    "title": "Airtable",
+    "url": "https://airtable.com/",
+    "category": "Backend Services"
+  },
+  {
+    "title": "Firebase",
+    "url": "https://firebase.google.com/",
+    "category": "Backend Services"
+  },
+  {
+    "title": "Supabase",
+    "url": "https://supabase.com/",
+    "category": "Backend Services"
+  },
+  {
+    "title": "Dodo payments",
+    "url": "https://app.dodopayments.com/partners/sYbKltTo3h/signup",
+    "category": "Payments"
+  },
+  {
+    "title": "Stripe",
+    "url": "https://stripe.com/",
+    "category": "Payments"
+  },
+  {
+    "title": "PayPal",
+    "url": "https://www.paypal.com/",
+    "category": "Payments"
+  },
+  {
+    "title": "Adyen",
+    "url": "https://www.adyen.com/",
+    "category": "Payments"
+  },
+  {
+    "title": "PagarMe",
+    "url": "https://pagarme.com/",
+    "category": "Payments"
+  },
+  {
+    "title": "Square",
+    "url": "https://squareup.com/",
+    "category": "Payments"
+  },
+  {
+    "title": "Bolt",
+    "url": "https://www.bolt.com/",
+    "category": "Payments"
+  },
+  {
+    "title": "Paymob",
+    "url": "https://www.paymob.com/",
+    "category": "Payments"
+  },
+  {
+    "title": "Paytabs",
+    "url": "https://www.paytabs.com/",
+    "category": "Payments"
+  },
+  {
+    "title": "Docusaurus",
+    "url": "https://docusaurus.io/",
+    "category": "Documentation"
+  },
+  {
+    "title": "Readme",
+    "url": "https://readme.com/",
+    "category": "Documentation"
+  },
+  {
+    "title": "Swagger",
+    "url": "https://swagger.io/",
+    "category": "Documentation"
+  },
+  {
+    "title": "Gitbook",
+    "url": "https://www.gitbook.com/",
+    "category": "Documentation"
+  },
+  {
+    "title": "Scribe",
+    "url": "https://scribehow.com/",
+    "category": "Documentation"
+  },
+  {
+    "title": "Notion",
+    "url": "https://www.notion.so/",
+    "category": "Documentation"
+  },
+  {
+    "title": "Read the Docs",
+    "url": "https://readthedocs.org/",
+    "category": "Documentation"
+  },
+  {
+    "title": "UserGuiding",
+    "url": "https://userguiding.com/",
+    "category": "Documentation"
+  },
+  {
+    "title": "MailChimp",
+    "url": "https://mailchimp.com/",
+    "category": "Email Services"
+  },
+  {
+    "title": "Mandrillapp",
+    "url": "https://mandrillapp.com/",
+    "category": "Email Services"
+  },
+  {
+    "title": "Postmark",
+    "url": "https://postmarkapp.com/",
+    "category": "Email Services"
+  },
+  {
+    "title": "Mailjet",
+    "url": "https://www.mailjet.com/",
+    "category": "Email Services"
+  },
+  {
+    "title": "ConvertKit",
+    "url": "https://convertkit.com/",
+    "category": "Email Services"
+  },
+  {
+    "title": "Mailerlite",
+    "url": "https://www.mailerlite.com/",
+    "category": "Email Services"
+  },
+  {
+    "title": "Klaviyo",
+    "url": "https://www.klaviyo.com/",
+    "category": "Email Services"
+  },
+  {
+    "title": "Buttondown",
+    "url": "https://buttondown.email/",
+    "category": "Newsletter Platforms"
+  },
+  {
+    "title": "Substack",
+    "url": "https://substack.com/",
+    "category": "Newsletter Platforms"
+  },
+  {
+    "title": "Revue",
+    "url": "https://www.revue.co/",
+    "category": "Newsletter Platforms"
+  },
+  {
+    "title": "Parcel",
+    "url": "https://useparcel.com/",
+    "category": "Email Design"
+  },
+  {
+    "title": "Really Good Emails",
+    "url": "https://www.reallygoodemails.com/",
+    "category": "Email Design"
+  },
+  {
+    "title": "Email Copy from Great Companies",
+    "url": "https://www.emailcopyfromgreatcompanies.com/",
+    "category": "Email Design"
+  },
+  {
+    "title": "Hashnode",
+    "url": "https://hashnode.com/",
+    "category": "Blogging"
+  },
+  {
+    "title": "Odoo",
+    "url": "https://www.odoo.com/",
+    "category": "CRM & Support"
+  },
+  {
+    "title": "HubSpot",
+    "url": "https://www.hubspot.com/",
+    "category": "CRM & Support"
+  },
+  {
+    "title": "Zendesk",
+    "url": "https://www.zendesk.com/",
+    "category": "CRM & Support"
+  },
+  {
+    "title": "Intercom",
+    "url": "https://www.intercom.com/",
+    "category": "CRM & Support"
+  },
+  {
+    "title": "Crisp",
+    "url": "https://crisp.chat/",
+    "category": "CRM & Support"
+  },
+  {
+    "title": "Groove",
+    "url": "https://www.groovehq.com/",
+    "category": "CRM & Support"
+  },
+  {
+    "title": "Segment",
+    "url": "https://segment.com/",
+    "category": "Product Analytics"
+  },
+  {
+    "title": "Amplitude",
+    "url": "https://amplitude.com/",
+    "category": "Product Analytics"
+  },
+  {
+    "title": "Mixpanel",
+    "url": "https://mixpanel.com/",
+    "category": "Product Analytics"
+  },
+  {
+    "title": "PostHog",
+    "url": "https://posthog.com/",
+    "category": "Product Analytics"
+  },
+  {
+    "title": "June",
+    "url": "https://june.so/",
+    "category": "Product Analytics"
+  },
+  {
+    "title": "Google Analytics",
+    "url": "https://analytics.google.com/",
+    "category": "Product Analytics"
+  },
+  {
+    "title": "Simple Analytics",
+    "url": "https://simpleanalytics.com/",
+    "category": "Product Analytics"
+  },
+  {
+    "title": "Pirsch",
+    "url": "https://pirsch.io/",
+    "category": "Product Analytics"
+  },
+  {
+    "title": "Heap",
+    "url": "https://heap.io/",
+    "category": "Product Analytics"
+  },
+  {
+    "title": "Hotjar",
+    "url": "https://www.hotjar.com/",
+    "category": "Behavior Analytics"
+  },
+  {
+    "title": "Smartlook",
+    "url": "https://www.smartlook.com/",
+    "category": "Behavior Analytics"
+  },
+  {
+    "title": "Microsoft Clarity",
+    "url": "https://clarity.microsoft.com/",
+    "category": "Behavior Analytics"
+  },
+  {
+    "title": "ChartMogul",
+    "url": "https://chartmogul.com/",
+    "category": "Business Analytics"
+  },
+  {
+    "title": "Baremetrics",
+    "url": "https://baremetrics.com/",
+    "category": "Business Analytics"
+  },
+  {
+    "title": "Cube",
+    "url": "https://cube.dev/",
+    "category": "Data Infrastructure"
+  },
+  {
+    "title": "Airbyte",
+    "url": "https://airbyte.com/",
+    "category": "Data Infrastructure"
+  },
+  {
+    "title": "Ideals",
+    "url": "https://www.idealsvdr.com/",
+    "category": "Data Infrastructure"
+  },
+  {
+    "title": "Metabase",
+    "url": "https://www.metabase.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Flourish",
+    "url": "https://flourish.studio/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Tableau",
+    "url": "https://www.tableau.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Databox",
+    "url": "https://databox.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Klipfolio",
+    "url": "https://www.klipfolio.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Geckoboard",
+    "url": "https://www.geckoboard.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Google Looker Studio",
+    "url": "https://lookerstudio.google.com/",
+    "category": "Data Visualization"
+  },
+  {
+    "title": "Buffer",
+    "url": "https://buffer.com/",
+    "category": "Social Media"
+  },
+  {
+    "title": "BuzzSumo",
+    "url": "https://buzzsumo.com/",
+    "category": "Social Media"
+  },
+  {
+    "title": "QuickTwit",
+    "url": "https://www.quicktwit.com/",
+    "category": "Social Media"
+  },
+  {
+    "title": "SocialBlade",
+    "url": "https://socialblade.com/",
+    "category": "Social Media"
+  },
+  {
+    "title": "Tubebuddy",
+    "url": "https://www.tubebuddy.com/",
+    "category": "Social Media"
+  },
+  {
+    "title": "HubSpot for Startups",
+    "url": "https://www.hubspot.com/startups",
+    "category": "Marketing Automation"
+  },
+  {
+    "title": "Sumo",
+    "url": "https://sumo.com/",
+    "category": "Marketing Automation"
+  },
+  {
+    "title": "Viral Loops",
+    "url": "https://www.viralloops.com/",
+    "category": "Marketing Automation"
+  },
+  {
+    "title": "Customer.io",
+    "url": "https://customer.io/",
+    "category": "Marketing Automation"
+  },
+  {
+    "title": "150 Marketing Tools",
+    "url": "https://www.150marketingtools.com/",
+    "category": "Marketing Resources"
+  },
+  {
+    "title": "Feedback Lane",
+    "url": "https://feedbacklane.io/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Upvoty",
+    "url": "https://upvoty.com/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Headway",
+    "url": "https://headwayapp.co/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Feedbear",
+    "url": "https://feedbear.com/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Canny",
+    "url": "https://canny.io/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "LaunchNotes",
+    "url": "https://www.launchnotes.com/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Sleekplan",
+    "url": "https://sleekplan.com/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Qualtrics",
+    "url": "https://www.qualtrics.com/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Mopinion",
+    "url": "https://mopinion.com/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Productlane",
+    "url": "https://productlane.com/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Testimonial",
+    "url": "https://testimonial.to/",
+    "category": "User Feedback"
+  },
+  {
+    "title": "Braze",
+    "url": "https://www.braze.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "Adjust",
+    "url": "https://www.adjust.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "Moengage",
+    "url": "https://www.moengage.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "Iterable",
+    "url": "https://iterable.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "OneSignal",
+    "url": "https://onesignal.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "InMoment",
+    "url": "https://inmoment.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "Optinmonster",
+    "url": "https://optinmonster.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "PopupSmart",
+    "url": "https://popupsmart.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "Landbot",
+    "url": "https://landbot.io/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "Discourse",
+    "url": "https://www.discourse.org/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "Twilio",
+    "url": "https://www.twilio.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "Phaxio",
+    "url": "https://www.phaxio.com/",
+    "category": "User Engagement"
+  },
+  {
+    "title": "Branch",
+    "url": "https://branch.io/",
+    "category": "Attribution"
+  },
+  {
+    "title": "Appsflyer",
+    "url": "https://www.appsflyer.com/",
+    "category": "Attribution"
+  },
+  {
+    "title": "Talevideo",
+    "url": "https://www.talevideo.com/",
+    "category": "Media & Video"
+  },
+  {
+    "title": "Uppbeat",
+    "url": "https://uppbeat.io/",
+    "category": "Media & Video"
+  },
+  {
+    "title": "Trakstar",
+    "url": "https://www.trakstar.com/",
+    "category": "Team Management"
+  },
+  {
+    "title": "Slack",
+    "url": "https://slack.com/",
+    "category": "Team Management"
+  },
+  {
+    "title": "ClickUp",
+    "url": "https://clickup.com/",
+    "category": "Team Management"
+  },
+  {
+    "title": "Linear",
+    "url": "https://linear.app/",
+    "category": "Team Management"
+  },
+  {
+    "title": "Breezy",
+    "url": "https://breezy.hr/",
+    "category": "Team Management"
+  },
+  {
+    "title": "OysterHR",
+    "url": "https://www.oysterhr.com/",
+    "category": "Team Management"
+  },
+  {
+    "title": "Calendly",
+    "url": "https://calendly.com/",
+    "category": "Team Management"
+  },
+  {
+    "title": "Loom",
+    "url": "https://www.loom.com/",
+    "category": "Team Management"
+  },
+  {
+    "title": "Markup",
+    "url": "https://www.getmarkup.com/",
+    "category": "Team Management"
+  },
+  {
+    "title": "Todoist",
+    "url": "https://todoist.com/",
+    "category": "Project Management"
+  },
+  {
+    "title": "Asana",
+    "url": "https://asana.com/",
+    "category": "Project Management"
+  },
+  {
+    "title": "Trello",
+    "url": "https://trello.com/",
+    "category": "Project Management"
+  },
+  {
+    "title": "Basecamp",
+    "url": "https://basecamp.com/",
+    "category": "Project Management"
+  },
+  {
+    "title": "Jira",
+    "url": "https://www.atlassian.com/software/jira",
+    "category": "Project Management"
+  },
+  {
+    "title": "Monday",
+    "url": "https://monday.com/",
+    "category": "Project Management"
+  },
+  {
+    "title": "Taskade",
+    "url": "https://taskade.com/",
+    "category": "Project Management"
+  },
+  {
+    "title": "Sendtask",
+    "url": "https://sendtask.com/",
+    "category": "Project Management"
+  },
+  {
+    "title": "Blossom",
+    "url": "https://blossom.io/",
+    "category": "Project Management"
+  },
+  {
+    "title": "Super",
+    "url": "https://super.so/",
+    "category": "No-Code Tools"
+  },
+  {
+    "title": "Bubble",
+    "url": "https://bubble.io/",
+    "category": "No-Code Tools"
+  },
+  {
+    "title": "Bravo Studio",
+    "url": "https://www.bravostudio.app/",
+    "category": "No-Code Tools"
+  },
+  {
+    "title": "Retool",
+    "url": "https://retool.com/",
+    "category": "No-Code Tools"
+  },
+  {
+    "title": "Idevaffiliate",
+    "url": "https://www.idevaffiliate.com/",
+    "category": "Affiliates & Referrals"
+  },
+  {
+    "title": "Impact",
+    "url": "https://impact.com/",
+    "category": "Affiliates & Referrals"
+  },
+  {
+    "title": "Partnerstack",
+    "url": "https://partnerstack.com/",
+    "category": "Affiliates & Referrals"
+  },
+  {
+    "title": "Friendbuy",
+    "url": "https://www.friendbuy.com/",
+    "category": "Affiliates & Referrals"
+  },
+  {
+    "title": "Sentry",
+    "url": "https://sentry.io/",
+    "category": "Monitoring & Logging"
+  },
+  {
+    "title": "Instabug",
+    "url": "https://instabug.com/",
+    "category": "Monitoring & Logging"
+  },
+  {
+    "title": "Crashlytics",
+    "url": "https://firebase.google.com/products/crashlytics",
+    "category": "Monitoring & Logging"
+  },
+  {
+    "title": "UptimeRobot",
+    "url": "https://uptimerobot.com/",
+    "category": "Monitoring & Logging"
+  },
+  {
+    "title": "Datadog",
+    "url": "https://www.datadoghq.com/",
+    "category": "Monitoring & Logging"
+  },
+  {
+    "title": "Wisestamp",
+    "url": "https://www.wisestamp.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Uploadcare",
+    "url": "https://uploadcare.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Brightback",
+    "url": "https://www.brightback.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Navattic",
+    "url": "https://www.navattic.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Teachable",
+    "url": "https://teachable.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Linktree",
+    "url": "https://linktr.ee/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Znaplink",
+    "url": "https://znaplink.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Gumroad",
+    "url": "https://gumroad.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Sellfy",
+    "url": "https://sellfy.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Bitly",
+    "url": "https://bitly.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "Survey Monkey",
+    "url": "https://www.surveymonkey.com/",
+    "category": "Miscellaneous Tools"
+  },
+  {
+    "title": "GutCheck",
+    "url": "https://www.gutcheck.com/",
+    "category": "Market Research"
+  },
+  {
+    "title": "Statista",
+    "url": "https://www.statista.com/",
+    "category": "Market Research"
+  },
+  {
+    "title": "Google Trends",
+    "url": "https://trends.google.com/",
+    "category": "Market Research"
+  },
+  {
+    "title": "Aytm",
+    "url": "https://www.aytm.com/",
+    "category": "Market Research"
+  },
+  {
+    "title": "Similar Web",
+    "url": "https://www.similarweb.com/",
+    "category": "Market Research"
+  },
+  {
+    "title": "Compass",
+    "url": "https://www.compass.com/",
+    "category": "Market Research"
+  },
+  {
+    "title": "The Ultimate SaaS Tech Stack Database",
+    "url": "https://www.theimpossiblequiz.com/",
+    "category": "Tech Stack"
+  },
+  {
+    "title": "An MVP is Not a Cheaper Product - Steve Blank",
+    "url": "https://www.steveblank.com/",
+    "category": "MVP Tools"
+  },
+  {
+    "title": "AWS Activate",
+    "url": "https://aws.amazon.com/activate/",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "Google Cloud for Startups",
+    "url": "https://cloud.google.com/developers/startups/",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "Microsoft for Startups",
+    "url": "https://startups.microsoft.com/en-us/",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "Hatch by DigitalOcean",
+    "url": "https://www.digitalocean.com/hatch/",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "Startup with IBM",
+    "url": "https://developer.ibm.com/startups/",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "Oracle for Startups",
+    "url": "https://www.oracle.com/startup/",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "Create@Alibaba Cloud",
+    "url": "https://www.alibabacloud.com/startup",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "Clever Bootstrap Program",
+    "url": "https://www.clever-cloud.com/en/early-stage",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "Heroku for Startups",
+    "url": "https://www.heroku.com/accelerate",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "Scaleway Startup Program",
+    "url": "https://www.scaleway.com/en/startup-program/",
+    "category": "Cloud Computing"
+  },
+  {
+    "title": "MongoDB for Startups",
+    "url": "https://www.mongodb.com/startups",
+    "category": "Cloud Database"
+  },
+  {
+    "title": "ScaleGrid Startup Program",
+    "url": "https://scalegrid.io/pricing/offers/startup-program.html",
+    "category": "Cloud Database"
+  },
+  {
+    "title": "Mixpanel for Startups",
+    "url": "https://mixpanel.com/startups/",
+    "category": "Analytics"
+  },
+  {
+    "title": "Segment Startup Program",
+    "url": "https://segment.com/industry/startups/",
+    "category": "Analytics"
+  },
+  {
+    "title": "Amplitude Startup Scholarship",
+    "url": "https://amplitude.com/startups",
+    "category": "Analytics"
+  },
+  {
+    "title": "Zoho One for Startups",
+    "url": "https://www.zoho.com/one/startups/",
+    "category": "Business Suites"
+  },
+  {
+    "title": "Freshworks for Startups",
+    "url": "https://www.freshworks.com/company/partners/startup-program/",
+    "category": "Business Suites"
+  },
+  {
+    "title": "DeepSource Startup Program",
+    "url": "https://deepsource.io/startup-program/",
+    "category": "Business Suites"
+  },
+  {
+    "title": "Intercom Early Stage Program",
+    "url": "https://www.intercom.com/early-stage",
+    "category": "Customer Engagement"
+  },
+  {
+    "title": "GoSquared Early Stage Plan",
+    "url": "https://www.gosquared.com/early-stage/",
+    "category": "Customer Engagement"
+  },
+  {
+    "title": "Zendesk for Startups",
+    "url": "https://www.zendesk.com/startups/",
+    "category": "Customer Engagement"
+  },
+  {
+    "title": "Help Scout for Startups",
+    "url": "https://www.helpscout.com/startups/",
+    "category": "Customer Engagement"
+  },
+  {
+    "title": "Drift for Early Stage Startups",
+    "url": "https://www.drift.com/startups/",
+    "category": "Customer Engagement"
+  },
+  {
+    "title": "Crisp Startup Program",
+    "url": "https://help.crisp.chat/en/article/how-to-apply-to-startup-program-lyfxt4/",
+    "category": "Customer Engagement"
+  },
+  {
+    "title": "Postmark",
+    "url": "https://postmarkapp.com/for/bootstrapped-startups#pricing",
+    "category": "Email Delivery"
+  },
+  {
+    "title": "SendGrid Accelerate",
+    "url": "https://sendgrid.com/accelerate/",
+    "category": "Email Delivery"
+  },
+  {
+    "title": "Knowlarity for Startups",
+    "url": "https://www.knowlarity.com/startups/",
+    "category": "Cloud Telephony"
+  },
+  {
+    "title": "Twilio Startups Program",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSfcc7bGIqosjJ-vWdSi4iFW2oQ_lcCQh9JXNpREXPCkFBssRw/viewform",
+    "category": "Cloud Telephony"
+  },
+  {
+    "title": "Dialpad for Startups",
+    "url": "https://www.dialpad.com/startups/",
+    "category": "Cloud Telephony"
+  },
+  {
+    "title": "Agora for Startups",
+    "url": "https://www.agora.io/en/agora-for-startups/",
+    "category": "Cloud Telephony"
+  },
+  {
+    "title": "Chargebee Launch Programme",
+    "url": "https://www.chargebee.com/launch/",
+    "category": "Payments"
+  },
+  {
+    "title": "Instabug for Startups",
+    "url": "https://instabug.com/startups",
+    "category": "Bug Tracking"
+  },
+  {
+    "title": "StackPath Propel Startup Program",
+    "url": "https://www.stackpath.com/resources/propel-startup-program/",
+    "category": "Edge Computing"
+  },
+  {
+    "title": "Zenduty Early Stage Startup Program",
+    "url": "https://www.zenduty.com/early-stage-startup-program/",
+    "category": "Incident Management"
+  },
+  {
+    "title": "Gumlet",
+    "url": "https://www.gumlet.com/startups/",
+    "category": "Video"
+  },
+  {
+    "title": "Shotstack Startup Program",
+    "url": "https://shotstack.io/solutions/startups/",
+    "category": "Video"
+  },
+  {
+    "title": "SOLIDWORKS for Startups",
+    "url": "https://www.solidworks.com/solution/organization-type/entrepreneurs-startups",
+    "category": "Hardware"
+  },
+  {
+    "title": "Autodesk Fusion 360 for Startups",
+    "url": "https://www.autodesk.in/products/fusion-360/startups",
+    "category": "Hardware"
+  },
+  {
+    "title": "Snap Accelerate",
+    "url": "https://developers.snapchat.com/accelerate/",
+    "category": "Advertising"
+  },
+  {
+    "title": "Esri Startup Program",
+    "url": "https://www.esri.com/en-us/about/esri-partner-network/our-partners/esri-startup-program",
+    "category": "Miscellaneous Programs"
+  },
+  {
+    "title": "MATLAB and Simulink for Startups",
+    "url": "https://mathworks.com/products/startups.html",
+    "category": "Miscellaneous Programs"
+  },
+  {
+    "title": "FeedBear",
+    "url": "https://www.feedbear.com/early-stage",
+    "category": "Miscellaneous Programs"
+  },
+  {
+    "title": "Remote for Startups",
+    "url": "https://remote.com/startups",
+    "category": "Miscellaneous Programs"
+  },
+  {
+    "title": "Pareto Security",
+    "url": "https://paretosecurity.com/pricing",
+    "category": "Miscellaneous Programs"
+  },
+  {
+    "title": "Reddit",
+    "url": "https://www.reddit.com/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "Lobsters",
+    "url": "https://lobste.rs/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "Facebook",
+    "url": "https://facebook.com/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "Twitter (X)",
+    "url": "https://twitter.com/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "Slashdot",
+    "url": "https://slashdot.org/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "Raddle",
+    "url": "https://raddle.me/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "Designer News",
+    "url": "https://www.designernews.co/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "DataTau",
+    "url": "https://datatau.net/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "devRant",
+    "url": "https://devrant.com/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "Sidebar",
+    "url": "https://sidebar.io/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "Changelog",
+    "url": "https://changelog.com/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "UX Design Weekly",
+    "url": "https://uxdesignweekly.com/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "CSS Weekly",
+    "url": "https://css-weekly.com/",
+    "category": "News & Discussion"
+  },
+  {
+    "title": "SaaSHub",
+    "url": "https://www.saashub.com/",
+    "category": "Product Pages"
+  },
+  {
+    "title": "AngelList",
+    "url": "https://angel.co/",
+    "category": "Product Pages"
+  },
+  {
+    "title": "AlternativeTo",
+    "url": "https://alternativeto.net/",
+    "category": "Product Pages"
+  },
+  {
+    "title": "Gaëtan Pautler's Blog",
+    "url": "https://blog.gaetanpautler.com/",
+    "category": "Product Pages"
+  },
+  {
+    "title": "Fuse",
+    "url": "https://www.fuse.kiwi/",
+    "category": "Product Pages"
+  },
+  {
+    "title": "read.cv",
+    "url": "https://read.cv/",
+    "category": "Product Pages"
+  },
+  {
+    "title": "Alternative.me",
+    "url": "https://alternative.me/",
+    "category": "Product Pages"
+  },
+  {
+    "title": "Medium",
+    "url": "https://medium.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "LinkedIn",
+    "url": "https://linkedin.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "DEV Community",
+    "url": "https://dev.to/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "DZone",
+    "url": "https://dzone.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Scotch.io",
+    "url": "https://scotch.io/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Hashnode",
+    "url": "http://hashnode.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "DOU.ua",
+    "url": "https://dou.ua/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Muck Rack",
+    "url": "https://muckrack.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "TechHype",
+    "url": "https://techhype.io/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Towards Data Science",
+    "url": "https://towardsdatascience.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Python LibHunt",
+    "url": "https://python.libhunt.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "CodeMentor Community",
+    "url": "https://www.codementor.io/community/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "KDnuggets",
+    "url": "https://www.kdnuggets.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Morioh",
+    "url": "https://morioh.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Hacker Noon",
+    "url": "https://hackernoon.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Blogger",
+    "url": "https://www.blogger.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Hackr.io",
+    "url": "https://hackr.io/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "JavaScript Kicks",
+    "url": "https://javascriptkicks.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "Smashing Magazine",
+    "url": "https://www.smashingmagazine.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "freeCodeCamp Forum",
+    "url": "https://forum.freecodecamp.org/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "CodeProject",
+    "url": "https://www.codeproject.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "DevDojo",
+    "url": "https://devdojo.com/",
+    "category": "Blog & Article Platforms"
+  },
+  {
+    "title": "GeeksforGeeks",
+    "url": "https://www.geeksforgeeks.org/",
+    "category": "Niche Platforms"
+  },
+  {
+    "title": "Codeforces",
+    "url": "http://codeforces.com/",
+    "category": "Niche Platforms"
+  },
+  {
+    "title": "Kaggle",
+    "url": "https://www.kaggle.com/",
+    "category": "Niche Platforms"
+  },
+  {
+    "title": "DailyJS",
+    "url": "https://medium.com/dailyjs",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "ITNext",
+    "url": "https://itnext.io/",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "A List Apart",
+    "url": "http://alistapart.com/about/contribute",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "The Next Web",
+    "url": "https://thenextweb.com/about/#contact",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "Developer Tech",
+    "url": "https://www.developer-tech.com/write-for-us",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "ProgrammableWeb",
+    "url": "https://www.programmableweb.com/faq#Write_For_PW",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "Hakin9",
+    "url": "https://hakin9.org/blog",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "DataCamp Community",
+    "url": "https://www.datacamp.com/community",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "EchoJS",
+    "url": "http://www.echojs.com/",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "CSS-Tricks",
+    "url": "https://css-tricks.com/",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "daily.dev Blog",
+    "url": "https://daily.dev/blog",
+    "category": "News Blogs (Write For)"
+  },
+  {
+    "title": "Stack Overflow",
+    "url": "https://stackoverflow.com/",
+    "category": "Q&A Platforms"
+  },
+  {
+    "title": "Quora",
+    "url": "https://www.quora.com/",
+    "category": "Q&A Platforms"
+  },
+  {
+    "title": "TechRepublic Forums",
+    "url": "https://www.techrepublic.com/forums/",
+    "category": "Forums"
+  },
+  {
+    "title": "SitePoint Community",
+    "url": "https://www.sitepoint.com/community/",
+    "category": "Forums"
+  },
+  {
+    "title": "Feedly",
+    "url": "https://feedly.com/",
+    "category": "RSS Aggregators"
+  },
+  {
+    "title": "Gitter",
+    "url": "https://gitter.im/",
+    "category": "Chat Communities"
+  },
+  {
+    "title": "YouTube",
+    "url": "https://www.youtube.com/",
+    "category": "Video"
+  },
+  {
+    "title": "Awesome Awesomeness",
+    "url": "https://github.com/bayandin/awesome-awesomeness",
+    "category": "Awesome Lists"
+  },
+  {
+    "title": "Awesome CTO",
+    "url": "https://github.com/kuchin/awesome-cto",
+    "category": "Awesome Lists"
+  },
+  {
+    "title": "Awesome TPM",
+    "url": "https://github.com/kuchin/awesome-tpm",
+    "category": "Awesome Lists"
+  },
+  {
+    "title": "StartupTabs",
+    "url": "http://www.startuptabs.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "GeekWire Submit Startup",
+    "url": "https://www.geekwire.com/submit-startup",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "F6S",
+    "url": "https://www.f6s.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "KillerStartups",
+    "url": "http://www.killerstartups.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Startup Buffer",
+    "url": "https://startupbuffer.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "AllStartups.info",
+    "url": "http://www.allstartups.info/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "BetaPage",
+    "url": "https://betapage.co/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Index.co",
+    "url": "https://index.co/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Gust",
+    "url": "https://gust.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Startup Project",
+    "url": "http://www.startupproject.org/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Springwise",
+    "url": "https://www.springwise.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Launch Lister",
+    "url": "https://launchlister.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Vator.tv",
+    "url": "http://vator.tv/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "NextBigWhat",
+    "url": "https://www.nextbigwhat.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "iamWire",
+    "url": "http://www.iamwire.com/startups/user/register",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "SnapMunk",
+    "url": "https://www.snapmunk.com/submit-your-startup",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "MicroStartups",
+    "url": "https://www.microstartups.co/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Nibletz",
+    "url": "http://www.nibletz.com/submit-startup",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Startup Stash",
+    "url": "http://startupstash.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "AllTopStartups",
+    "url": "https://alltopstartups.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Startup Dope",
+    "url": "http://startupdope.com/submit-news",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "TechPluto",
+    "url": "https://www.techpluto.com/submit-a-startup",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "The Startup Pitch",
+    "url": "https://thestartuppitch.com/post-a-beta-pitch",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "SideProjectors",
+    "url": "https://www.sideprojectors.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Launching Next",
+    "url": "https://www.launchingnext.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "Startup Ranking",
+    "url": "https://www.startupranking.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "AwesomeIndie",
+    "url": "https://awesomeindie.com/",
+    "category": "Startup Directories"
+  },
+  {
+    "title": "r/coding",
+    "url": "https://www.reddit.com/r/coding/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/computerscience",
+    "url": "https://www.reddit.com/r/computerscience/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/compsci",
+    "url": "https://www.reddit.com/r/compsci/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/technology",
+    "url": "https://www.reddit.com/r/technology/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/algorithms",
+    "url": "https://www.reddit.com/r/algorithms/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/javascript",
+    "url": "https://www.reddit.com/r/javascript/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/learnjavascript",
+    "url": "https://www.reddit.com/r/learnjavascript/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/reactjs",
+    "url": "https://www.reddit.com/r/reactjs/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/programming",
+    "url": "https://www.reddit.com/r/programming/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/learnprogramming",
+    "url": "https://www.reddit.com/r/learnprogramming/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/webdev",
+    "url": "https://www.reddit.com/r/webdev/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/datascience",
+    "url": "https://www.reddit.com/r/datascience/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/Python",
+    "url": "https://www.reddit.com/r/Python/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/pythontips",
+    "url": "https://www.reddit.com/r/pythontips/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/ArtificialInteligence",
+    "url": "https://www.reddit.com/r/ArtificialInteligence/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/learnmachinelearning",
+    "url": "https://www.reddit.com/r/learnmachinelearning/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/MachinesLearn",
+    "url": "https://www.reddit.com/r/MachinesLearn/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/MLQuestions",
+    "url": "https://www.reddit.com/r/MLQuestions/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/tensorflow",
+    "url": "https://www.reddit.com/r/tensorflow/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/pythoncoding",
+    "url": "https://www.reddit.com/r/pythoncoding/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/alphaandbetausers",
+    "url": "https://www.reddit.com/r/alphaandbetausers/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/IMadeThis",
+    "url": "https://www.reddit.com/r/IMadeThis/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/InternetIsBeautiful",
+    "url": "https://www.reddit.com/r/InternetIsBeautiful/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/SideProject",
+    "url": "https://www.reddit.com/r/SideProject/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "r/indiehackers",
+    "url": "https://www.reddit.com/r/indiehackers/",
+    "category": "Relevant Subreddits"
+  },
+  {
+    "title": "Paul Graham's Articles",
+    "url": "http://www.paulgraham.com/articles.html",
+    "category": "Paul Graham's Essays"
+  },
+  {
+    "title": "How to Get Startup Ideas",
+    "url": "http://www.paulgraham.com/startupideas.html",
+    "category": "Paul Graham's Essays"
+  },
+  {
+    "title": "Do Things That Don't Scale",
+    "url": "http://paulgraham.com/ds.html",
+    "category": "Paul Graham's Essays"
+  },
+  {
+    "title": "18 Mistakes That Kill Startups",
+    "url": "http://www.paulgraham.com/startupmistakes.html",
+    "category": "Paul Graham's Essays"
+  },
+  {
+    "title": "How to Raise Money",
+    "url": "http://www.paulgraham.com/fr.html",
+    "category": "Paul Graham's Essays"
+  },
+  {
+    "title": "Maker's Schedule, Manager's Schedule",
+    "url": "http://www.paulgraham.com/makersschedule.html",
+    "category": "Paul Graham's Essays"
+  },
+  {
+    "title": "Startup Advice, Briefly",
+    "url": "http://blog.samaltman.com/startup-advice-briefly",
+    "category": "Sam Altman"
+  },
+  {
+    "title": "Startup Playbook",
+    "url": "https://blog.samaltman.com/startup-playbook",
+    "category": "Sam Altman"
+  },
+  {
+    "title": "Retention is King",
+    "url": "http://andrewchen.co/retention-is-king/",
+    "category": "Product"
+  },
+  {
+    "title": "What Product Features Should I Focus On?",
+    "url": "http://calacanis.com/2015/02/02/what-product-features-should-i-focus-on/",
+    "category": "Product"
+  },
+  {
+    "title": "How This Founder Turned Slow Burn Rate into a Big Exit",
+    "url": "http://firstround.com/review/This-Founder-Turned-a-Slow-Burn-Rate-into-a-Big-Exit/",
+    "category": "Product"
+  },
+  {
+    "title": "The Illusion of Product/Market Fit for SaaS Companies",
+    "url": "http://feld.com/archives/2015/01/illusion-product-market-fit-saas-companies.html",
+    "category": "Product"
+  },
+  {
+    "title": "12 Things About Product-Market Fit - a16z",
+    "url": "https://a16z.com/12-things-about-product-market-fit",
+    "category": "Product"
+  },
+  {
+    "title": "\"No Marketing\" Isn't as Impressive as You Think",
+    "url": "http://www.instigatorblog.com/no-marketing-isnt-as-impressive/2015/01/26/",
+    "category": "Growth & Marketing"
+  },
+  {
+    "title": "Growth is Optional",
+    "url": "http://www.coelevate.com/essays/growth-is-optional",
+    "category": "Growth & Marketing"
+  },
+  {
+    "title": "The Hacker's Guide to User Acquisition",
+    "url": "http://www.austenallred.com/the-hackers-guide-to-user-acquisition/",
+    "category": "Growth & Marketing"
+  },
+  {
+    "title": "How to Solve the Cold-Start Problem for Social Products",
+    "url": "http://andrewchen.co/2014/03/27/how-to-solve-the-cold-start-problem-for-social-products/",
+    "category": "Growth & Marketing"
+  },
+  {
+    "title": "The Complete Guide to Product Qualified Leads",
+    "url": "https://get.hull.io/complete-guide-pqls/chapter1/",
+    "category": "Growth & Marketing"
+  },
+  {
+    "title": "Finding Sales Triggers - DigitalOcean",
+    "url": "https://clearbit.com/books/data-driven-sales/sales-triggers",
+    "category": "Growth & Marketing"
+  },
+  {
+    "title": "When Should You Turn on Revenue?",
+    "url": "http://calacanis.com/2015/02/07/when-should-you-turn-on-revenue-with-your-startup/",
+    "category": "Monetization"
+  },
+  {
+    "title": "Focus on Building 10x Teams",
+    "url": "https://avichal.wordpress.com/2011/12/16/focus-on-building-10x-teams-not-on-hiring-10x-developers/",
+    "category": "Hiring"
+  },
+  {
+    "title": "#define CTO",
+    "url": "https://blog.gregbrockman.com/figuring-out-the-cto-role-at-stripe",
+    "category": "Hiring"
+  },
+  {
+    "title": "Gene Pool Engineering - Vinod Khosla",
+    "url": "http://www.khoslaventures.com/wp-content/uploads/Gene_Pool_Engineering.pdf",
+    "category": "Hiring"
+  },
+  {
+    "title": "Avoiding Burnout - HN Discussion",
+    "url": "https://news.ycombinator.com/item?id=5630445",
+    "category": "Mental Health"
+  },
+  {
+    "title": "I Am Burned Out While Still in Learning Phase",
+    "url": "https://news.ycombinator.com/item?id=7435601",
+    "category": "Mental Health"
+  },
+  {
+    "title": "Individuals Matter - Dan Luu",
+    "url": "https://danluu.com/individuals-matter",
+    "category": "Miscellaneous"
+  },
+  {
+    "title": "Avinash Singh",
+    "url": "https://x.com/AvinashSingh_20",
+    "category": "Sponsorship"
+  },
+  {
+    "title": "Issues",
+    "url": "https://github.com/avinash201199/founders-kit/issues",
+    "category": "💬 Community & Support"
+  }
+]

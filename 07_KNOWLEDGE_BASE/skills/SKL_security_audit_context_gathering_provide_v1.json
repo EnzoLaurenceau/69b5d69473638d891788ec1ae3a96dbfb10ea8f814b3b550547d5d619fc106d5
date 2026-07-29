@@ -1,0 +1,42 @@
+{
+  "id": "SKL_security_audit_context_gathering_provide_v1",
+  "name": "Context_Gathering_Provided",
+  "prompt": "**Context Gathering**\nThe provided logs, cycle reports, and metadata reveal the following components, data flows, external APIs, and integration points:\n\n* Agents:\n\t+ `FALLBACK_EXPERT`\n\t+ `MARKET`\n\t+ `SECURITYAUDITOR`\n\t+ `SECURITEEXPERT`\n\t+ `SECURITY_AUDIT_EXPERT`\n* Tasks:\n\t+ `Test des fallback gratuits (Groq/Cerebras)`\n\t+ `market_scan`\n\t+ `fais un audit securit� de la forge avec herald`\n* External APIs:\n\t+ Groq\n\t+ Cerebras\n* Integration points:\n\t+ Herald framework\n\t+ Forge system\n\n**Threat Mode",
+  "trigger_keywords": [
+    "external",
+    "apis",
+    "integration",
+    "points",
+    "groq",
+    "cerebras",
+    "forge",
+    "herald",
+    "context",
+    "gathering"
+  ],
+  "performance": {
+    "avg_score": 8.0,
+    "uses": 0,
+    "last_used": "2026-05-30"
+  },
+  "mirofish_approval": {
+    "consensus": 8.55,
+    "approved_at": "2026-05-30",
+    "fallback_used": false
+  },
+  "source_finding_id": "F-SECURITY_AUDIT_EXPERT_WITH_HERALD-001-001",
+  "source_agent": "Security_Audit_Expert_With_Herald",
+  "tier": "HAIKU",
+  "task_type": "security_audit_expert_with_herald",
+  "status": "active",
+  "created_at": "2026-05-30",
+  "naming_version": "v1",
+  "_meta": {
+    "prefix": "SKI",
+    "domain": "gen",
+    "type": "skill",
+    "source": "migration",
+    "tagged_at": "2026-07-17T05:13:40.731837",
+    "original_name": "SKL_security_audit_context_gathering_provide_v1.json"
+  }
+}

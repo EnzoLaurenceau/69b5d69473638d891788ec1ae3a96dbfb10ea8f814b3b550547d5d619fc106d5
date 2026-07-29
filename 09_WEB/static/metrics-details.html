@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Forge — Métriques Détaillées</title>
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: radial-gradient(circle at top right, #1c110d 0%, #0a0705 60%);
+      font-family: 'Inter', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(12px);
+      border: 1px rgba(255, 255, 255, 0.05) solid;
+    }
+  </style>
+</head>
+<body class="text-gray-100 min-h-screen p-6 md:p-12">
+
+  <div class="max-w-7xl mx-auto space-y-8">
+    
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-6">
+      <div>
+        <h1 class="text-3xl font-extrabold font-outfit text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500">
+          Tableau des Métriques de La Forge
+        </h1>
+        <p class="text-sm text-gray-400 mt-1">Analyse détaillée de l'efficacité, des gains financiers et des performances sémantiques.</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="/" class="px-4 py-2 bg-white/5 border border-white/10 hover:border-orange-500/20 text-gray-300 rounded-lg text-sm font-semibold transition flex items-center gap-2">
+          ← Retour au Dashboard
+        </a>
+        <button onclick="exportCSV()" class="px-4 py-2 bg-orange-500/10 border border-orange-500/20 hover:bg-orange-500/20 text-orange-400 rounded-lg text-sm font-semibold transition">
+          Exporter en CSV
+        </button>
+      </div>
+    </header>
+
+    <!-- Stats Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Card 1 -->
+      <div class="glass p-6 rounded-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-full filter blur-xl"></div>
+        <span class="text-xs text-gray-400 font-semibold uppercase tracking-wider">Tokens Économisés</span>
+        <h3 id="stat-tokens" class="text-4xl font-black font-outfit text-orange-400 mt-2">0</h3>
+        <p class="text-xs text-gray-500 mt-1">Évités via cache & scripts locaux</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="glass p-6 rounded-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-full filter blur-xl"></div>
+        <span class="text-xs text-gray-400 font-semibold uppercase tracking-wider">Budget Épargné</span>
+        <h3 id="stat-money" class="text-4xl font-black font-outfit text-amber-400 mt-2">$0.00</h3>
+        <p class="text-xs text-gray-500 mt-1">Économies nettes estimées</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="glass p-6 rounded-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full filter blur-xl"></div>
+        <span class="text-xs text-gray-400 font-semibold uppercase tracking-wider font-sans">Appels Évités</span>
+        <h3 id="stat-calls" class="text-4xl font-black font-outfit text-emerald-400 mt-2">0</h3>
+        <p class="text-xs text-gray-500 mt-1">Requêtes bloquées en amont</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="glass p-6 rounded-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 rounded-full filter blur-xl"></div>
+        <span class="text-xs text-gray-400 font-semibold uppercase tracking-wider">Temps Latence Gagné</span>
+        <h3 id="stat-latency" class="text-4xl font-black font-outfit text-purple-400 mt-2">0s</h3>
+        <p class="text-xs text-gray-500 mt-1">Grâce aux réponses instantanées</p>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <div class="glass p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-center justify-between">
+      <div class="relative w-full sm:w-72">
+        <input type="text" id="search-task" oninput="filterTable()" placeholder="Rechercher par tâche..." class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-orange-500/50">
+      </div>
+      <div class="flex gap-4 w-full sm:w-auto">
+        <select id="filter-model" onchange="filterTable()" class="bg-white/5 border border-white/10 text-sm text-gray-300 rounded-lg p-2 focus:outline-none focus:border-orange-500/50">
+          <option value="">Tous les modèles</option>
+          <option value="gemini">Gemini</option>
+          <option value="claude">Claude</option>
+          <option value="groq">Groq</option>
+          <option value="cerebras">Cerebras</option>
+        </select>
+        <select id="filter-variance" onchange="filterTable()" class="bg-white/5 border border-white/10 text-sm text-gray-300 rounded-lg p-2 focus:outline-none focus:border-orange-500/50">
+          <option value="">Toutes les variances</option>
+          <option value="positive">Variance Positive (Surcoût)</option>
+          <option value="negative">Variance Négative (Gains)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Metrics Table -->
+    <div class="glass rounded-2xl overflow-hidden border border-white/10">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-white/5 border-b border-white/10 text-xs text-gray-400 font-semibold uppercase tracking-wider font-mono">
+              <th class="p-4">Sprint ID</th>
+              <th class="p-4">Tâche</th>
+              <th class="p-4">Modèle</th>
+              <th class="p-4 text-right">Tokens Est.</th>
+              <th class="p-4 text-right">Tokens Réels</th>
+              <th class="p-4 text-right">Coût Est.</th>
+              <th class="p-4 text-right">Coût Réel</th>
+              <th class="p-4 text-right">Variance %</th>
+              <th class="p-4 text-right">Latence</th>
+            </tr>
+          </thead>
+          <tbody id="metrics-body" class="divide-y divide-white/5 text-sm">
+            <tr>
+              <td colspan="9" class="p-8 text-center text-gray-500 italic">Chargement des données...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let sprints = [];
+
+    async function loadData() {
+      try {
+        const token = localStorage.getItem('forge_token') || '';
+        
+        // 1. Charger les métriques globales
+        const mRes = await fetch('/api/aaos_metrics', { headers: { 'X-Forge-Token': token } });
+        if (mRes.ok) {
+          const data = await mRes.json();
+          const savings = data.session_savings || {};
+          document.getElementById('stat-tokens').textContent = Number(savings.tokens_saved || 0).toLocaleString();
+          document.getElementById('stat-money').textContent = '$' + Number(savings.money_saved || 0.0).toFixed(4);
+          document.getElementById('stat-calls').textContent = Number(savings.calls_avoided || 0).toLocaleString();
+          
+          const latSec = Math.round((savings.latency_saved_ms || 0) / 1000);
+          document.getElementById('stat-latency').textContent = latSec >= 60 ? `${Math.floor(latSec/60)}m ${latSec%60}s` : `${latSec}s`;
+        }
+
+        // 2. Charger les lignes de sprint
+        const sRes = await fetch('/api/token_sprints', { headers: { 'X-Forge-Token': token } });
+        if (sRes.ok) {
+          const data = await sRes.json();
+          sprints = data.sprints || [];
+          renderTable(sprints);
+        }
+      } catch (err) {
+        console.error('Failed to load metrics:', err);
+      }
+    }
+
+    function renderTable(dataList) {
+      const tbody = document.getElementById('metrics-body');
+      if (!dataList.length) {
+        tbody.innerHTML = '<tr><td colspan="9" class="p-8 text-center text-gray-500 italic">Aucun sprint enregistré.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = dataList.map(s => {
+        const varianceVal = Number(s.variance_pct || 0.0);
+        let varClass = 'text-gray-400';
+        if (varianceVal > 15) varClass = 'text-red-400 font-bold';
+        else if (varianceVal < -15) varClass = 'text-emerald-400 font-bold';
+
+        // tokens_estimated_in/out are omitted (not fabricated as 0) by
+        // sources that never produce an estimate — render '—' rather than
+        // NaN when either half is missing.
+        const estTotal = (s.tokens_estimated_in != null && s.tokens_estimated_out != null)
+          ? Number(s.tokens_estimated_in + s.tokens_estimated_out).toLocaleString()
+          : '—';
+
+        // latency_ms is omitted (not fabricated as 0) by sources that never
+        // measure latency — render '—' rather than "0.00s".
+        const latencyLabel = s.latency_ms != null ? `${Number(s.latency_ms / 1000).toFixed(2)}s` : '—';
+
+        return `
+          <tr class="hover:bg-white/[0.02] transition">
+            <td class="p-4 font-mono text-xs text-orange-400">${s.sprint_id || '—'}</td>
+            <td class="p-4 font-semibold text-gray-200 truncate max-w-xs">${s.task_id || '—'}</td>
+            <td class="p-4 font-mono text-xs text-purple-400 uppercase">${s.model || '—'}</td>
+            <td class="p-4 text-right font-mono text-xs">${estTotal}</td>
+            <td class="p-4 text-right font-mono text-xs">${Number(s.tokens_actual_in + s.tokens_actual_out).toLocaleString()}</td>
+            <td class="p-4 text-right font-mono text-xs">$${Number(s.cost_estimated_usd || 0.0).toFixed(4)}</td>
+            <td class="p-4 text-right font-mono text-xs">$${Number(s.cost_actual_usd || 0.0).toFixed(4)}</td>
+            <td class="p-4 text-right font-mono text-xs ${varClass}">${varianceVal > 0 ? '+' : ''}${varianceVal.toFixed(1)}%</td>
+            <td class="p-4 text-right font-mono text-xs">${latencyLabel}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterTable() {
+      const q = document.getElementById('search-task').value.toLowerCase().trim();
+      const mod = document.getElementById('filter-model').value.toLowerCase();
+      const varType = document.getElementById('filter-variance').value;
+
+      const filtered = sprints.filter(s => {
+        const matchesQuery = !q || (s.task_id || '').toLowerCase().includes(q) || (s.sprint_id || '').toLowerCase().includes(q);
+        const matchesModel = !mod || (s.model || '').toLowerCase().includes(mod);
+        
+        let matchesVariance = true;
+        const varianceVal = Number(s.variance_pct || 0.0);
+        if (varType === 'positive') matchesVariance = varianceVal > 0;
+        else if (varType === 'negative') matchesVariance = varianceVal <= 0;
+
+        return matchesQuery && matchesModel && matchesVariance;
+      });
+
+      renderTable(filtered);
+    }
+
+    function exportCSV() {
+      if (!sprints.length) return;
+      const headers = ['Sprint ID', 'Task ID', 'Model', 'Tokens Est. In', 'Tokens Est. Out', 'Tokens Act. In', 'Tokens Act. Out', 'Cost Est.', 'Cost Act.', 'Variance %', 'Latency ms'];
+      const csvRows = [headers.join(',')];
+      
+      for (const s of sprints) {
+        csvRows.push([
+          s.sprint_id || '',
+          `"${(s.task_id || '').replace(/"/g, '""')}"`,
+          s.model || '',
+          s.tokens_estimated_in ?? '',
+          s.tokens_estimated_out ?? '',
+          s.tokens_actual_in || 0,
+          s.tokens_actual_out || 0,
+          s.cost_estimated_usd ?? '',
+          s.cost_actual_usd || 0.0,
+          s.variance_pct || 0.0,
+          s.latency_ms ?? ''
+        ].join(','));
+      }
+
+      const csvContent = "data:text/csv;charset=utf-8," + csvRows.join("\n");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `sprints_metrics_export_${Date.now()}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    document.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>

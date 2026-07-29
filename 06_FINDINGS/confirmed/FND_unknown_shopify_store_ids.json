@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "description": "IDs Shopify de la forge PromptFlow — Niche IA Créateurs",
+    "date": "2026-05-28",
+    "status": "ACTIVE",
+    "brand": "PromptFlow",
+    "target_revenue": "600€/mois",
+    "aov_target": "42€"
+  },
+  "collections": {
+    "prompt_packs": "gid://shopify/Collection/661240316228",
+    "notion_templates": "gid://shopify/Collection/661240348996",
+    "guides_ia": "gid://shopify/Collection/661240381764",
+    "bundles": "gid://shopify/Collection/661240414532"
+  },
+  "products": {
+    "P01_500_prompts_createurs": {
+      "id": "gid://shopify/Product/15562804527428",
+      "price": 27,
+      "sku": "PF-P01",
+      "collection": "prompt_packs"
+    },
+    "P02_pack_prompts_business": {
+      "id": "gid://shopify/Product/15562804560196",
+      "price": 37,
+      "sku": "PF-P02",
+      "collection": "prompt_packs"
+    },
+    "P03_mega_pack_1000_prompts": {
+      "id": "gid://shopify/Product/15562804658500",
+      "price": 47,
+      "sku": "PF-P03",
+      "collection": "prompt_packs"
+    },
+    "P04_notion_os_createur": {
+      "id": "gid://shopify/Product/15562805051716",
+      "price": 37,
+      "sku": "PF-P04",
+      "collection": "notion_templates"
+    },
+    "P05_notion_machine_contenu": {
+      "id": "gid://shopify/Product/15562805412164",
+      "price": 27,
+      "sku": "PF-P05",
+      "collection": "notion_templates"
+    },
+    "P06_dashboard_freelance": {
+      "id": "gid://shopify/Product/15562805739844",
+      "price": 29,
+      "sku": "PF-P06",
+      "collection": "notion_templates"
+    },
+    "P07_guide_1000_euros": {
+      "id": "gid://shopify/Product/15562806264132",
+      "price": 17,
+      "sku": "PF-P07",
+      "collection": "guides_ia"
+    },
+    "P08_maitrise_chatgpt": {
+      "id": "gid://shopify/Product/15562806329668",
+      "price": 19,
+      "sku": "PF-P08",
+      "collection": "guides_ia"
+    },
+    "P09_ia_pour_nuls": {
+      "id": "gid://shopify/Product/15562806395204",
+      "price": 14,
+      "sku": "PF-P09",
+      "collection": "guides_ia"
+    },
+    "P10_scripts_tiktok_reels": {
+      "id": "gid://shopify/Product/15562806493508",
+      "price": 22,
+      "sku": "PF-P10",
+      "collection": "guides_ia"
+    },
+    "B01_bundle_createur": {
+      "id": "gid://shopify/Product/15562806919492",
+      "price": 67,
+      "sku": "PF-B01",
+      "collection": "bundles"
+    },
+    "B02_bundle_entrepreneur": {
+      "id": "gid://shopify/Product/15562807017796",
+      "price": 97,
+      "sku": "PF-B02",
+      "collection": "bundles"
+    }
+  },
+  "discounts": {
+    "BIENVENUE20": {
+      "id": "gid://shopify/DiscountCodeNode/1880988287300",
+      "percent": 20,
+      "target": "all_products",
+      "use": "Popup nouveaux visiteurs — 30 secondes"
+    }
+  },
+  "revenue_math": {
+    "break_even_monthly": {
+      "via_entry_14e": "43 ventes",
+      "via_core_27e": "23 ventes",
+      "via_bundle_97e": "7 ventes",
+      "via_mix_aov42": "~15 ventes"
+    },
+    "upsell_flow": "Guide 14€ → Prompt Pack 27€ → Bundle Créateur 67€ → Bundle Entrepreneur 97€"
+  },
+  "id": "FND_unknown_shopify_store_ids",
+  "naming_version": "v1"
+}

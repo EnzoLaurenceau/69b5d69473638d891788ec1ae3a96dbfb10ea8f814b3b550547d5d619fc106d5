@@ -1,0 +1,68 @@
+{
+  "session_id": "forge_langgraph_integration",
+  "saved_at": "2026-05-29",
+  "level": "L2",
+  "cycle": 0,
+  "current_task": "LangGraph integration complete",
+  "current_task_desc": "Tous les agents, MiroFish subgraph, Graphify bridge, auto-complexification intégrés dans un StateGraph LangGraph compilable.",
+  "current_agent": "ORCHESTRATOR",
+  "task_complete": true,
+  "findings": [
+    {
+      "id": "shopify_store",
+      "title": "Shopify PromptFlow  12 produits digitaux live",
+      "agent": "BUILDER",
+      "status": "confirmed",
+      "score": 8.5,
+      "graphify_indexed": false
+    },
+    {
+      "id": "b2b_prospection",
+      "title": "Séquence cold email 5 mails + playbook B2B gratuit",
+      "agent": "CLOSER",
+      "status": "confirmed",
+      "score": 8.0,
+      "graphify_indexed": false
+    },
+    {
+      "id": "landing_page",
+      "title": "Landing page PromptFlow  dark theme 453 lignes",
+      "agent": "BUILDER",
+      "status": "confirmed",
+      "score": 9.0,
+      "graphify_indexed": false
+    },
+    {
+      "id": "langgraph_forge",
+      "title": "LangGraph StateGraph  8 nodes + MiroFish + auto-complexification",
+      "agent": "BUILDER",
+      "status": "confirmed",
+      "score": 9.2,
+      "graphify_indexed": false
+    },
+    {
+      "id": "ph_ih_kit",
+      "title": "Kit lancement ProductHunt + IndieHackers complet",
+      "agent": "MARKETING",
+      "status": "confirmed",
+      "score": 7.5,
+      "graphify_indexed": false
+    }
+  ],
+  "quality_history": [
+    7.5,
+    8.0,
+    8.5,
+    9.0,
+    9.2
+  ],
+  "current_level": "L1",
+  "cycle_count": 0,
+  "last_task": "",
+  "last_task_slug": "",
+  "total_findings_confirmed": 0,
+  "graphify_nodes_added_session": 0,
+  "_meta": {
+    "last_updated": "2026-05-29"
+  }
+}

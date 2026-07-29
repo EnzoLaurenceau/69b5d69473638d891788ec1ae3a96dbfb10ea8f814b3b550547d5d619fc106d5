@@ -1,0 +1,31 @@
+{
+  "_template": true,
+  "id": "f-XXX",
+  "title": "",
+  "cycle": 0,
+  "status": "pending|confirmed|killed",
+  "scores": {
+    "critic": 0.0,
+    "jury": null,
+    "source_quality": 0,
+    "recency": 0,
+    "relevance": 0,
+    "contradictions": 0,
+    "actionability": 0
+  },
+  "source": {
+    "url": "",
+    "domain": "",
+    "date": "",
+    "type": ""
+  },
+  "content": {
+    "evidence": "",
+    "summary": "",
+    "tags": []
+  },
+  "graph_node_id": null,
+  "jury_verdict": null,
+  "kill_reason": null,
+  "indexed_in_graphify": false
+}
