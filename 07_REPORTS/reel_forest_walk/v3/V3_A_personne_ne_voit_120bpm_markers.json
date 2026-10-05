@@ -1,0 +1,198 @@
+{
+ "duration": 16.0,
+ "bpm": 120,
+ "loop": "seamless",
+ "lufs": -16,
+ "beats": [
+  0.0,
+  0.5,
+  1.0,
+  1.5,
+  2.0,
+  2.5,
+  3.0,
+  3.5,
+  4.0,
+  4.5,
+  5.0,
+  5.5,
+  6.0,
+  6.5,
+  7.0,
+  7.5,
+  8.0,
+  8.5,
+  9.0,
+  9.5,
+  10.0,
+  10.5,
+  11.0,
+  11.5,
+  12.0,
+  12.5,
+  13.0,
+  13.5,
+  14.0,
+  14.5,
+  15.0,
+  15.5,
+  16.0
+ ],
+ "cuts": [
+  0.0,
+  2.0,
+  2.8,
+  3.0,
+  4.3,
+  4.5,
+  5.8,
+  6.0,
+  7.5,
+  10.0,
+  10.5,
+  11.0,
+  11.5,
+  12.0,
+  14.5,
+  14.8,
+  15.0
+ ],
+ "segments": [
+  {
+   "out": 0.0,
+   "src": [
+    3.2,
+    3.95
+   ],
+   "label": "hook: push-in sur la grotte (myst\u00e8re)"
+  },
+  {
+   "out": 2.0,
+   "src": [
+    3.95,
+    4.36
+   ],
+   "label": "ami qui arrive (slow-mo ramp)"
+  },
+  {
+   "out": 2.8,
+   "src": [
+    4.36,
+    4.56
+   ],
+   "label": "whip gauche"
+  },
+  {
+   "out": 3.0,
+   "src": [
+    1.06,
+    1.84
+   ],
+   "label": "sourire slow-mo"
+  },
+  {
+   "out": 4.3,
+   "src": [
+    5.84,
+    6.14
+   ],
+   "label": "whip droite"
+  },
+  {
+   "out": 4.5,
+   "src": [
+    6.16,
+    7.46
+   ],
+   "label": "pote signe OK"
+  },
+  {
+   "out": 5.8,
+   "src": [
+    7.55,
+    7.98
+   ],
+   "label": "whip retour"
+  },
+  {
+   "out": 6.0,
+   "src": [
+    9.2,
+    9.88
+   ],
+   "label": "regard vers l'avant (slow-mo)"
+  },
+  {
+   "out": 7.5,
+   "src": [
+    10.3,
+    10.95
+   ],
+   "label": "trois-quarts (slow-mo, respiration)"
+  },
+  {
+   "out": 10.0,
+   "src": [
+    7.99,
+    8.3
+   ],
+   "label": "mont\u00e9e: rire"
+  },
+  {
+   "out": 10.5,
+   "src": [
+    3.5,
+    3.95
+   ],
+   "label": "mont\u00e9e: grotte"
+  },
+  {
+   "out": 11.0,
+   "src": [
+    5.45,
+    5.85
+   ],
+   "label": "mont\u00e9e: selfie \u00e9nergie"
+  },
+  {
+   "out": 11.5,
+   "src": [
+    4.0,
+    4.3
+   ],
+   "label": "mont\u00e9e: ami"
+  },
+  {
+   "out": 12.0,
+   "src": [
+    13.34,
+    14.42
+   ],
+   "label": "r\u00e9v\u00e9lation: toi + pote (slow-mo) \u2014 coup de cam\u00e9ra source 13.77 cal\u00e9 sur le temps"
+  },
+  {
+   "out": 14.5,
+   "src": [
+    14.42,
+    15.04
+   ],
+   "label": "whip out \u2192 boucle"
+  },
+  {
+   "out": 14.8,
+   "src": [
+    2.62,
+    2.85
+   ],
+   "label": "whip in"
+  },
+  {
+   "out": 15.0,
+   "src": [
+    2.85,
+    3.2
+   ],
+   "label": "chemin tilt-up \u2192 reboucle sur la grotte"
+  }
+ ]
+}

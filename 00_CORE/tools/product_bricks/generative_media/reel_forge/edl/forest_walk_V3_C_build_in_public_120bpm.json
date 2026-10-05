@@ -1,0 +1,328 @@
+{
+ "bpm": 120,
+ "look": "dark",
+ "vignette": 0.55,
+ "name": "V3_C_build_in_public_120bpm",
+ "cover": 1.6,
+ "audio": {
+  "natural_db": -80,
+  "wind_db": -30,
+  "lufs": -16,
+  "caption_sfx": "tick"
+ },
+ "segments": [
+  {
+   "label": "hook visage: rire (slow-mo)",
+   "src": [
+    7.99,
+    8.47
+   ],
+   "dur": 1.0,
+   "zoom": [
+    1.03,
+    1.06
+   ],
+   "center": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "label": "sourire",
+   "src": [
+    1.25,
+    1.84
+   ],
+   "dur": 1.3,
+   "zoom": [
+    1.02,
+    1.05
+   ],
+   "center": [
+    0.5,
+    0.35
+   ]
+  },
+  {
+   "label": "whip droite",
+   "src": [
+    2.3,
+    2.62
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "le chemin, la grotte",
+   "src": [
+    2.9,
+    3.95
+   ],
+   "dur": 1.5,
+   "zoom": [
+    1.02,
+    1.07
+   ],
+   "center": [
+    0.6,
+    0.3
+   ]
+  },
+  {
+   "label": "ami qui arrive (ramp)",
+   "src": [
+    3.95,
+    4.36
+   ],
+   "dur": 0.8,
+   "ease": "ramp_up",
+   "zoom": [
+    1.05,
+    1.07
+   ]
+  },
+  {
+   "label": "whip gauche",
+   "src": [
+    4.36,
+    4.56
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "pote signe OK",
+   "src": [
+    6.16,
+    7.46
+   ],
+   "dur": 1.3,
+   "zoom": [
+    1.0,
+    1.04
+   ]
+  },
+  {
+   "label": "whip retour",
+   "src": [
+    7.55,
+    7.98
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "selfie énergie (slow-mo)",
+   "src": [
+    5.3,
+    5.85
+   ],
+   "dur": 1.5,
+   "zoom": [
+    1.02,
+    1.05
+   ]
+  },
+  {
+   "label": "regard vers l'avant",
+   "src": [
+    9.2,
+    9.88
+   ],
+   "dur": 2.0,
+   "zoom": [
+    1.03,
+    1.06
+   ]
+  },
+  {
+   "label": "toi + pote (slow-mo) — coup de caméra source 13.77 calé sur le temps",
+   "src": [
+    13.34,
+    14.42
+   ],
+   "dur": 2.5,
+   "zoom": [
+    1.03,
+    1.09
+   ],
+   "center": [
+    0.55,
+    0.35
+   ]
+  },
+  {
+   "label": "whip out",
+   "src": [
+    14.42,
+    15.04
+   ],
+   "dur": 0.3,
+   "ease": "ramp_up"
+  },
+  {
+   "label": "whip in",
+   "src": [
+    2.62,
+    2.85
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "écran final: chemin → grotte",
+   "src": [
+    2.85,
+    3.95
+   ],
+   "dur": 3.0,
+   "zoom": [
+    1.02,
+    1.1
+   ],
+   "center": [
+    0.6,
+    0.3
+   ]
+  }
+ ],
+ "fx": [
+  {
+   "type": "whoosh",
+   "t": 2.5,
+   "dur": 0.35,
+   "dir": "R"
+  },
+  {
+   "type": "leaves",
+   "t": 2.5,
+   "dur": 1.6
+  },
+  {
+   "type": "whoosh",
+   "t": 5.0,
+   "dur": 0.35,
+   "dir": "L"
+  },
+  {
+   "type": "whoosh",
+   "t": 6.5,
+   "dur": 0.35,
+   "dir": "L"
+  },
+  {
+   "type": "riser",
+   "t": 10.0,
+   "dur": 2.0,
+   "gain_db": -22
+  },
+  {
+   "type": "hit",
+   "t": 10.0,
+   "gain_db": -11
+  },
+  {
+   "type": "flash",
+   "t": 10.0,
+   "dur": 0.12,
+   "strength": 0.07
+  },
+  {
+   "type": "whoosh",
+   "t": 12.8,
+   "dur": 0.4,
+   "dir": "R"
+  },
+  {
+   "type": "leaves",
+   "t": 13.0,
+   "dur": 3.0
+  },
+  {
+   "type": "dim",
+   "t": 13.0,
+   "dur": 3.0,
+   "level": 0.25,
+   "ramp": 0.8
+  }
+ ],
+ "text": [
+  {
+   "text": "J'ai décidé de construire",
+   "style": "Box",
+   "start": 0.1,
+   "end": 1.0,
+   "y": 1170,
+   "hl_ms": 380
+  },
+  {
+   "text": "une vraie\\N[[entreprise d'IA.]]",
+   "style": "Box",
+   "start": 1.0,
+   "end": 2.3,
+   "y": 1100,
+   "hl_ms": 250
+  },
+  {
+   "text": "Pas dans un bureau\\Nde [[milliardaire.]]",
+   "style": "Box",
+   "start": 2.5,
+   "end": 4.0,
+   "y": 1010,
+   "hl_ms": 450
+  },
+  {
+   "text": "Juste en avançant,",
+   "style": "Box",
+   "start": 4.0,
+   "end": 5.0,
+   "y": 1020,
+   "hl_ms": 380
+  },
+  {
+   "text": "une journée\\N[[après l'autre.]]",
+   "style": "Box",
+   "start": 5.0,
+   "end": 6.4,
+   "y": 1080,
+   "hl_ms": 350
+  },
+  {
+   "text": "Encore [[étudiant.]]",
+   "style": "Box",
+   "start": 6.5,
+   "end": 8.0,
+   "y": 1170,
+   "hl_ms": 300
+  },
+  {
+   "text": "Déjà [[fondateur.]]",
+   "style": "Box",
+   "start": 8.0,
+   "end": 10.0,
+   "y": 1170,
+   "hl_ms": 300
+  },
+  {
+   "text": "Je construis [[Venkai.]]",
+   "style": "Box",
+   "start": 10.0,
+   "end": 12.5,
+   "y": 1160,
+   "hl_ms": 300
+  },
+  {
+   "text": "Suivez la [[construction.]]",
+   "style": "Box",
+   "start": 13.0,
+   "end": 16.0,
+   "y": 1060,
+   "hl_ms": 500,
+   "fade_out": 200
+  },
+  {
+   "text": "VENKAI",
+   "style": "Mark",
+   "start": 13.7,
+   "end": 16.0,
+   "y": 1218
+  }
+ ],
+ "loop": "none"
+}

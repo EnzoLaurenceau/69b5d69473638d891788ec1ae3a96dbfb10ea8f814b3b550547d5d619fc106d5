@@ -1,0 +1,124 @@
+{
+ "name": "V3_A_personne_ne_voit_120bpm",
+ "probe": {
+  "w": 1080,
+  "h": 1920,
+  "fps": "30/1",
+  "vcodec": "h264",
+  "profile": "High",
+  "pix_fmt": "yuv420p",
+  "color": "bt709",
+  "acodec": "aac",
+  "sr": 48000,
+  "ch": 2,
+  "duration": 16.0,
+  "mbps": 19.0,
+  "size_mb": 38.0
+ },
+ "audio": {
+  "lufs_i": -16.4,
+  "true_peak_dbtp": -1.9,
+  "sample_peak_db": -1.93353
+ },
+ "black_frames": 0,
+ "min_luma": 44.4,
+ "loop_seam_diff": 16.54,
+ "median_frame_diff": 9.03,
+ "p90_frame_diff": 20.19,
+ "first_cut_s": 2.0,
+ "loop": "seamless",
+ "cuts_per_s": 1.0,
+ "text": [
+  {
+   "start": 0.25,
+   "end": 2.9,
+   "bbox": [
+    178,
+    925,
+    903,
+    1092
+   ],
+   "in_safe_zone": true
+  },
+  {
+   "start": 3.0,
+   "end": 4.4,
+   "bbox": [
+    232,
+    1127,
+    846,
+    1174
+   ],
+   "in_safe_zone": true
+  },
+  {
+   "start": 4.5,
+   "end": 5.9,
+   "bbox": [
+    251,
+    996,
+    828,
+    1146
+   ],
+   "in_safe_zone": true
+  },
+  {
+   "start": 6.0,
+   "end": 7.5,
+   "bbox": [
+    241,
+    1137,
+    839,
+    1184
+   ],
+   "in_safe_zone": true
+  },
+  {
+   "start": 7.5,
+   "end": 10.0,
+   "bbox": [
+    335,
+    1135,
+    743,
+    1184
+   ],
+   "in_safe_zone": true
+  },
+  {
+   "start": 12.4,
+   "end": 14.7,
+   "bbox": [
+    218,
+    1135,
+    860,
+    1224
+   ],
+   "in_safe_zone": true
+  },
+  {
+   "start": 13.0,
+   "end": 14.7,
+   "bbox": [
+    218,
+    1135,
+    860,
+    1224
+   ],
+   "in_safe_zone": true
+  }
+ ],
+ "checks": {
+  "vertical_1080x1920": true,
+  "fps_30": true,
+  "h264_high_yuv420p": true,
+  "bt709": true,
+  "aac_48k_stereo": true,
+  "no_black_frames": true,
+  "loudness_target_lufs": true,
+  "true_peak_le_-1": true,
+  "no_clipping": true,
+  "hook_lt_1s": true,
+  "loop_seam_smooth": true,
+  "text_in_safe_zone": true
+ }
+}

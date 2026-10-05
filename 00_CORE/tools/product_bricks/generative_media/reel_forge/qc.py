@@ -86,7 +86,7 @@ def main() -> None:
         ass, fonts = sys.argv[sys.argv.index("--ass") + 1], sys.argv[sys.argv.index("--fonts") + 1]
         for m in re.finditer(r"Dialogue: 1,(\S+?),(\S+?),", Path(ass).read_text()):
             s, e = (sum(float(x) * k for x, k in zip(v.split(":"), (3600, 60, 1))) for v in m.groups())
-            bb = text_bbox(ass, fonts, (s + e) / 2 + 0.4)
+            bb = text_bbox(ass, fonts, min((s + e) / 2 + 0.4, e - 0.2))  # hors fondu de sortie
             ok = bb is not None and bb[0] >= SAFE["x0"] and bb[2] <= SAFE["x1"] and bb[1] >= SAFE["y0"] and bb[3] <= SAFE["y1"]
             res["text"].append({"start": s, "end": e, "bbox": bb, "in_safe_zone": ok})
         t = res["text"][0]["start"] + 1.0 if res["text"] else 1.0
@@ -101,7 +101,7 @@ def main() -> None:
         "vertical_1080x1920": pr["w"] == W and pr["h"] == H, "fps_30": pr["fps"] == "30/1",
         "h264_high_yuv420p": pr["vcodec"] == "h264" and pr["profile"] == "High" and pr["pix_fmt"] == "yuv420p",
         "bt709": pr["color"] == "bt709", "aac_48k_stereo": pr["acodec"] == "aac" and pr["sr"] == 48000 and pr["ch"] == 2,
-        "no_black_frames": res["black_frames"] == 0, "loudness_-14_lufs": abs(a["lufs_i"] + 14) <= 1.0,
+        "no_black_frames": res["black_frames"] == 0, "loudness_target_lufs": abs(a["lufs_i"] - markers.get("lufs", -14.0)) <= 1.0,
         "true_peak_le_-1": a["true_peak_dbtp"] <= -0.9, "no_clipping": a["sample_peak_db"] < -0.5,
         "hook_lt_1s": (res["first_cut_s"] is not None and res["first_cut_s"] <= 1.0)
                       or (bool(res["text"]) and min(x["start"] for x in res["text"]) <= 0.5),

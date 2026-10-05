@@ -1,6 +1,8 @@
 # Venkai × Forest walk : 3 Reels, 3 angles psychologiques
 > 2026-10-05 · Même footage (`IMG_0011.mp4`), 3 narrations radicalement différentes · Faits : uniquement `BRIEF_VENKAI_CANON.md`
 > Fichiers : `V2_A_personne_ne_voit.mp4` · `V2_B_promesse_tech.mp4` · `V2_C_build_in_public.mp4`
+> **Mise à jour V3** : mêmes montages recalés sur 120 BPM (Timeless), 16,0 s, sans voix d'origine (prêts voix off + musique Instagram). Voir `MUSIQUE_ET_VOIX_OFF.md`.
+> Correction : en V2, seules les coupes de B étaient majoritairement sur la grille 120 BPM ; c'est désormais le cas des 3 versions.
 
 ## Ce qui est commun (pour que le test A/B/C mesure la narration, pas l'habillage)
 - **Sous-titres** : écriture blanche sur fond noir (boîte opaque par ligne), Poppins ExtraBold 104 px (environ 37 pt sur smartphone), **mot-clé qui passe au jaune** pendant la lecture, apparition en « pop » (86 → 100 % en 140 ms).

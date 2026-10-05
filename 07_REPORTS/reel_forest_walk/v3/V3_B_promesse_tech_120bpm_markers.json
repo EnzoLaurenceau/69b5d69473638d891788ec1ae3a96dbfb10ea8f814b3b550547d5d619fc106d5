@@ -1,0 +1,207 @@
+{
+ "duration": 16.0,
+ "bpm": 120,
+ "loop": "rhyme",
+ "beats": [
+  0.0,
+  0.5,
+  1.0,
+  1.5,
+  2.0,
+  2.5,
+  3.0,
+  3.5,
+  4.0,
+  4.5,
+  5.0,
+  5.5,
+  6.0,
+  6.5,
+  7.0,
+  7.5,
+  8.0,
+  8.5,
+  9.0,
+  9.5,
+  10.0,
+  10.5,
+  11.0,
+  11.5,
+  12.0,
+  12.5,
+  13.0,
+  13.5,
+  14.0,
+  14.5,
+  15.0,
+  15.5,
+  16.0
+ ],
+ "cuts": [
+  0.0,
+  1.5,
+  2.3,
+  2.5,
+  3.5,
+  4.3,
+  4.5,
+  5.8,
+  6.0,
+  7.5,
+  8.0,
+  8.5,
+  9.0,
+  9.5,
+  10.0,
+  12.0,
+  12.3,
+  12.5
+ ],
+ "segments": [
+  {
+   "out": 0.0,
+   "src": [
+    2.9,
+    3.95
+   ],
+   "label": "hook: chemin \u2192 r\u00e9v\u00e9lation grotte"
+  },
+  {
+   "out": 1.5,
+   "src": [
+    3.95,
+    4.36
+   ],
+   "label": "ami qui arrive (ramp)"
+  },
+  {
+   "out": 2.3,
+   "src": [
+    4.36,
+    4.56
+   ],
+   "label": "whip gauche"
+  },
+  {
+   "out": 2.5,
+   "src": [
+    9.28,
+    9.88
+   ],
+   "label": "regard vers l'avant"
+  },
+  {
+   "out": 3.5,
+   "src": [
+    10.35,
+    10.95
+   ],
+   "label": "trois-quarts"
+  },
+  {
+   "out": 4.3,
+   "src": [
+    5.84,
+    6.14
+   ],
+   "label": "whip droite"
+  },
+  {
+   "out": 4.5,
+   "src": [
+    6.16,
+    7.46
+   ],
+   "label": "pote signe OK"
+  },
+  {
+   "out": 5.8,
+   "src": [
+    7.55,
+    7.98
+   ],
+   "label": "whip retour"
+  },
+  {
+   "out": 6.0,
+   "src": [
+    1.2,
+    1.84
+   ],
+   "label": "sourire slow-mo"
+  },
+  {
+   "out": 7.5,
+   "src": [
+    12.98,
+    13.48
+   ],
+   "label": "face cam\u00e9ra"
+  },
+  {
+   "out": 8.0,
+   "src": [
+    3.5,
+    3.95
+   ],
+   "label": "cut beat: grotte"
+  },
+  {
+   "out": 8.5,
+   "src": [
+    5.45,
+    5.85
+   ],
+   "label": "cut beat: selfie"
+  },
+  {
+   "out": 9.0,
+   "src": [
+    4.0,
+    4.3
+   ],
+   "label": "cut beat: ami"
+  },
+  {
+   "out": 9.5,
+   "src": [
+    7.99,
+    8.4
+   ],
+   "label": "cut beat: rire"
+  },
+  {
+   "out": 10.0,
+   "src": [
+    13.74,
+    14.42
+   ],
+   "label": "payoff: toi + pote (slow-mo)"
+  },
+  {
+   "out": 12.0,
+   "src": [
+    14.42,
+    15.04
+   ],
+   "label": "whip out"
+  },
+  {
+   "out": 12.3,
+   "src": [
+    2.62,
+    2.85
+   ],
+   "label": "whip in"
+  },
+  {
+   "out": 12.5,
+   "src": [
+    2.85,
+    3.95
+   ],
+   "label": "\u00e9cran final: chemin \u2192 grotte, assombri"
+  }
+ ],
+ "lufs": -16.0
+}

@@ -363,6 +363,7 @@ def render(edl_path: str, src_path: str, out_dir: str, fonts: str) -> Path:
         acc += round(seg["dur"] * FPS)
     (out / f"{name}_markers.json").write_text(json.dumps({
         "duration": total, "bpm": edl.get("bpm", 120), "loop": edl.get("loop", "seamless"),
+        "lufs": edl.get("audio", {}).get("lufs", -14.0),
         "beats": [round(i * beats, 3) for i in range(int(total / beats) + 1)],
         "cuts": cuts, "segments": [{"out": c, "src": s["src"], "label": s.get("label", "")}
                                    for c, s in zip(cuts, edl["segments"])]}, indent=1))
