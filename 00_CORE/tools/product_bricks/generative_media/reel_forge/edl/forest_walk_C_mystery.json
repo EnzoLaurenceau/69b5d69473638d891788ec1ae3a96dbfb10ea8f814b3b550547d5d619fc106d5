@@ -1,0 +1,188 @@
+{
+ "name": "C_mystery",
+ "bpm": 120,
+ "cover": 1.0,
+ "audio": {
+  "natural_db": -10,
+  "wind_db": -29,
+  "lufs": -14
+ },
+ "segments": [
+  {
+   "label": "slow push-in to the cave",
+   "src": [
+    3.2,
+    3.95
+   ],
+   "dur": 2.0,
+   "zoom": [
+    1.03,
+    1.18
+   ],
+   "center": [
+    0.62,
+    0.22
+   ]
+  },
+  {
+   "label": "friend walks in (slow-mo ramp)",
+   "src": [
+    3.95,
+    4.36
+   ],
+   "dur": 0.8,
+   "ease": "ramp_up",
+   "zoom": [
+    1.05,
+    1.07
+   ]
+  },
+  {
+   "label": "whip left",
+   "src": [
+    4.36,
+    4.56
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "looking ahead (vision)",
+   "src": [
+    9.28,
+    9.88
+   ],
+   "dur": 1.0,
+   "zoom": [
+    1.03,
+    1.06
+   ]
+  },
+  {
+   "label": "friend OK sign",
+   "src": [
+    6.5,
+    7.3
+   ],
+   "dur": 0.8,
+   "zoom": [
+    1.02,
+    1.04
+   ]
+  },
+  {
+   "label": "whip back",
+   "src": [
+    7.55,
+    7.98
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "laugh (slow-mo, impact)",
+   "src": [
+    7.99,
+    8.47
+   ],
+   "dur": 1.0,
+   "zoom": [
+    1.03,
+    1.07
+   ],
+   "center": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "label": "hero: squad (slow-mo)",
+   "src": [
+    13.74,
+    14.4
+   ],
+   "dur": 1.5,
+   "zoom": [
+    1.04,
+    1.09
+   ],
+   "center": [
+    0.55,
+    0.35
+   ]
+  },
+  {
+   "label": "whip out -> loops to ground/path",
+   "src": [
+    14.42,
+    15.04
+   ],
+   "dur": 0.5,
+   "ease": "ramp_up"
+  }
+ ],
+ "fx": [
+  {
+   "type": "leaves",
+   "t": 0.0,
+   "dur": 2.0
+  },
+  {
+   "type": "riser",
+   "t": 3.0,
+   "dur": 2.4,
+   "gain_db": -21
+  },
+  {
+   "type": "whoosh",
+   "t": 3.0,
+   "dur": 0.4,
+   "dir": "L"
+  },
+  {
+   "type": "hit",
+   "t": 3.0,
+   "gain_db": -10
+  },
+  {
+   "type": "whoosh",
+   "t": 5.0,
+   "dur": 0.4,
+   "dir": "L"
+  },
+  {
+   "type": "hit",
+   "t": 5.0
+  },
+  {
+   "type": "shake",
+   "t": 5.0,
+   "dur": 0.3,
+   "amp": 10
+  },
+  {
+   "type": "flash",
+   "t": 5.0,
+   "dur": 0.15,
+   "strength": 0.1
+  },
+  {
+   "type": "leak",
+   "t": 5.9,
+   "dur": 0.9,
+   "strength": 0.22
+  },
+  {
+   "type": "whoosh",
+   "t": 8.0,
+   "dur": 0.55,
+   "dir": "R"
+  }
+ ],
+ "text": [
+  {
+   "text": "POV: you're building something\\Nnobody understands yet.",
+   "start": 0.4,
+   "end": 4.6,
+   "size": 70
+  }
+ ]
+}
