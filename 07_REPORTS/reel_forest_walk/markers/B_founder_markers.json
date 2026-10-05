@@ -1,0 +1,177 @@
+{
+ "duration": 11.0,
+ "bpm": 120,
+ "beats": [
+  0.0,
+  0.5,
+  1.0,
+  1.5,
+  2.0,
+  2.5,
+  3.0,
+  3.5,
+  4.0,
+  4.5,
+  5.0,
+  5.5,
+  6.0,
+  6.5,
+  7.0,
+  7.5,
+  8.0,
+  8.5,
+  9.0,
+  9.5,
+  10.0,
+  10.5,
+  11.0
+ ],
+ "cuts": [
+  0.0,
+  0.8,
+  1.0,
+  2.0,
+  2.8,
+  3.0,
+  4.0,
+  4.3,
+  4.5,
+  5.8,
+  6.0,
+  7.0,
+  8.0,
+  8.5,
+  10.2,
+  10.7
+ ],
+ "segments": [
+  {
+   "out": 0.0,
+   "src": [
+    1.3,
+    1.8
+   ],
+   "label": "hook: smile (pull-out)"
+  },
+  {
+   "out": 0.8,
+   "src": [
+    2.3,
+    2.62
+   ],
+   "label": "whip right"
+  },
+  {
+   "out": 1.0,
+   "src": [
+    2.95,
+    3.95
+   ],
+   "label": "path -> cave"
+  },
+  {
+   "out": 2.0,
+   "src": [
+    3.95,
+    4.36
+   ],
+   "label": "friend walks in (slow-mo ramp)"
+  },
+  {
+   "out": 2.8,
+   "src": [
+    4.36,
+    4.56
+   ],
+   "label": "whip left"
+  },
+  {
+   "out": 3.0,
+   "src": [
+    7.99,
+    8.47
+   ],
+   "label": "laugh (slow-mo, impact)"
+  },
+  {
+   "out": 4.0,
+   "src": [
+    5.5,
+    5.8
+   ],
+   "label": "selfie energy"
+  },
+  {
+   "out": 4.3,
+   "src": [
+    5.84,
+    6.14
+   ],
+   "label": "whip right"
+  },
+  {
+   "out": 4.5,
+   "src": [
+    6.16,
+    7.46
+   ],
+   "label": "friend OK sign"
+  },
+  {
+   "out": 5.8,
+   "src": [
+    7.55,
+    7.98
+   ],
+   "label": "whip back"
+  },
+  {
+   "out": 6.0,
+   "src": [
+    9.28,
+    9.88
+   ],
+   "label": "looking ahead (vision)"
+  },
+  {
+   "out": 7.0,
+   "src": [
+    10.35,
+    10.95
+   ],
+   "label": "three-quarter forward"
+  },
+  {
+   "out": 8.0,
+   "src": [
+    12.98,
+    13.48
+   ],
+   "label": "micro-cut: to camera"
+  },
+  {
+   "out": 8.5,
+   "src": [
+    13.74,
+    14.4
+   ],
+   "label": "hero: squad (slow-mo)"
+  },
+  {
+   "out": 10.2,
+   "src": [
+    14.42,
+    15.04
+   ],
+   "label": "whip out (to ground)"
+  },
+  {
+   "out": 10.7,
+   "src": [
+    0.0,
+    0.3
+   ],
+   "label": "phone flip ground -> face (loops into smile hook)"
+  }
+ ]
+}

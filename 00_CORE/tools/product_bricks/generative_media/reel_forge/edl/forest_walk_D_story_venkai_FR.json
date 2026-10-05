@@ -1,0 +1,330 @@
+{
+ "name": "D_story_venkai_FR",
+ "bpm": 120,
+ "cover": 1.3,
+ "audio": {
+  "natural_db": -12,
+  "wind_db": -31,
+  "lufs": -14
+ },
+ "segments": [
+  {
+   "label": "cold open: friend walks in (slow-mo ramp)",
+   "src": [
+    4.0,
+    4.36
+   ],
+   "dur": 0.8,
+   "ease": "ramp_up",
+   "zoom": [
+    1.05,
+    1.07
+   ]
+  },
+  {
+   "label": "whip left",
+   "src": [
+    4.36,
+    4.56
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "laugh (slow-mo, impact)",
+   "src": [
+    7.99,
+    8.47
+   ],
+   "dur": 1.0,
+   "zoom": [
+    1.03,
+    1.07
+   ],
+   "center": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "label": "selfie energy",
+   "src": [
+    5.5,
+    5.8
+   ],
+   "dur": 0.3
+  },
+  {
+   "label": "whip right",
+   "src": [
+    5.84,
+    6.14
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "friend OK sign",
+   "src": [
+    6.16,
+    7.46
+   ],
+   "dur": 1.3,
+   "zoom": [
+    1.0,
+    1.04
+   ]
+  },
+  {
+   "label": "whip back",
+   "src": [
+    7.55,
+    7.98
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "smile (slow-mo, light leak)",
+   "src": [
+    1.1,
+    1.84
+   ],
+   "dur": 1.5,
+   "zoom": [
+    1.02,
+    1.06
+   ],
+   "center": [
+    0.5,
+    0.35
+   ]
+  },
+  {
+   "label": "looking ahead (vision)",
+   "src": [
+    9.28,
+    9.88
+   ],
+   "dur": 1.0,
+   "zoom": [
+    1.03,
+    1.06
+   ]
+  },
+  {
+   "label": "micro-cut: to camera",
+   "src": [
+    12.98,
+    13.48
+   ],
+   "dur": 0.5,
+   "zoom": [
+    1.03,
+    1.03
+   ]
+  },
+  {
+   "label": "micro-cut: three-quarter",
+   "src": [
+    10.4,
+    10.9
+   ],
+   "dur": 0.5,
+   "zoom": [
+    1.04,
+    1.04
+   ]
+  },
+  {
+   "label": "hero: squad (slow-mo)",
+   "src": [
+    13.74,
+    14.4
+   ],
+   "dur": 2.0,
+   "zoom": [
+    1.04,
+    1.1
+   ],
+   "center": [
+    0.55,
+    0.35
+   ]
+  },
+  {
+   "label": "whip out",
+   "src": [
+    14.42,
+    15.04
+   ],
+   "dur": 0.5,
+   "ease": "ramp_up"
+  },
+  {
+   "label": "whip in",
+   "src": [
+    2.62,
+    2.85
+   ],
+   "dur": 0.2,
+   "zoom": [
+    1.03,
+    1.03
+   ]
+  },
+  {
+   "label": "path -> cave reveal (loops into cold open)",
+   "src": [
+    2.85,
+    3.95
+   ],
+   "dur": 1.8,
+   "zoom": [
+    1.02,
+    1.05
+   ],
+   "center": [
+    0.6,
+    0.3
+   ]
+  }
+ ],
+ "fx": [
+  {
+   "type": "whoosh",
+   "t": 1.0,
+   "dur": 0.4,
+   "dir": "L"
+  },
+  {
+   "type": "hit",
+   "t": 1.0
+  },
+  {
+   "type": "shake",
+   "t": 1.0,
+   "dur": 0.3,
+   "amp": 10
+  },
+  {
+   "type": "flash",
+   "t": 1.0,
+   "dur": 0.15,
+   "strength": 0.1
+  },
+  {
+   "type": "whoosh",
+   "t": 2.5,
+   "dur": 0.35,
+   "dir": "R"
+  },
+  {
+   "type": "whoosh",
+   "t": 4.0,
+   "dur": 0.4,
+   "dir": "L"
+  },
+  {
+   "type": "leak",
+   "t": 3.9,
+   "dur": 1.0,
+   "strength": 0.28
+  },
+  {
+   "type": "riser",
+   "t": 7.5,
+   "dur": 1.5
+  },
+  {
+   "type": "hit",
+   "t": 6.5,
+   "gain_db": -19
+  },
+  {
+   "type": "hit",
+   "t": 7.0,
+   "gain_db": -17
+  },
+  {
+   "type": "hit",
+   "t": 7.5,
+   "gain_db": -8
+  },
+  {
+   "type": "flash",
+   "t": 7.5,
+   "dur": 0.15,
+   "strength": 0.12
+  },
+  {
+   "type": "shake",
+   "t": 7.5,
+   "dur": 0.25,
+   "amp": 6
+  },
+  {
+   "type": "leaves",
+   "t": 7.6,
+   "dur": 1.8
+  },
+  {
+   "type": "whoosh",
+   "t": 10.0,
+   "dur": 0.5,
+   "dir": "R"
+  },
+  {
+   "type": "leaves",
+   "t": 10.1,
+   "dur": 2.4
+  }
+ ],
+ "text": [
+  {
+   "text": "Ce que vous voyez :\\Nune balade entre potes.",
+   "start": 0.15,
+   "end": 2.4,
+   "reveal": "words",
+   "word_ms": 100,
+   "fade_out": 200
+  },
+  {
+   "text": "Ce que vous ne voyez pas…",
+   "start": 2.5,
+   "end": 3.9,
+   "reveal": "words",
+   "word_ms": 100,
+   "fade_out": 200
+  },
+  {
+   "text": "les heures à construire\\N{\\i1}Venkai.{\\i0}",
+   "start": 4.0,
+   "end": 5.5,
+   "reveal": "words",
+   "word_ms": 100,
+   "fade_out": 200
+  },
+  {
+   "text": "Personne ne comprend\\Nencore ce qu'on bâtit.",
+   "start": 5.6,
+   "end": 7.45,
+   "reveal": "words",
+   "word_ms": 100,
+   "fade_out": 200
+  },
+  {
+   "text": "Mais je ne construis\\Npas seul.",
+   "start": 7.6,
+   "end": 9.45,
+   "reveal": "words",
+   "word_ms": 100,
+   "fade_out": 200
+  },
+  {
+   "text": "Dans un an, cette vidéo\\Naura du sens.",
+   "start": 10.0,
+   "end": 11.95,
+   "reveal": "words",
+   "word_ms": 100,
+   "fade_out": 200
+  }
+ ]
+}

@@ -1,0 +1,126 @@
+{
+ "duration": 8.0,
+ "bpm": 120,
+ "beats": [
+  0.0,
+  0.5,
+  1.0,
+  1.5,
+  2.0,
+  2.5,
+  3.0,
+  3.5,
+  4.0,
+  4.5,
+  5.0,
+  5.5,
+  6.0,
+  6.5,
+  7.0,
+  7.5,
+  8.0
+ ],
+ "cuts": [
+  0.0,
+  1.0,
+  1.8,
+  2.0,
+  3.0,
+  3.8,
+  4.0,
+  5.0,
+  6.2,
+  6.7,
+  6.9
+ ],
+ "segments": [
+  {
+   "out": 0.0,
+   "src": [
+    3.45,
+    3.95
+   ],
+   "label": "hook: push-in to the cave"
+  },
+  {
+   "out": 1.0,
+   "src": [
+    3.95,
+    4.36
+   ],
+   "label": "friend walks in (slow-mo ramp)"
+  },
+  {
+   "out": 1.8,
+   "src": [
+    4.36,
+    4.56
+   ],
+   "label": "whip left"
+  },
+  {
+   "out": 2.0,
+   "src": [
+    9.28,
+    9.88
+   ],
+   "label": "looking ahead (vision)"
+  },
+  {
+   "out": 3.0,
+   "src": [
+    6.5,
+    7.3
+   ],
+   "label": "friend OK sign"
+  },
+  {
+   "out": 3.8,
+   "src": [
+    7.55,
+    7.98
+   ],
+   "label": "whip back"
+  },
+  {
+   "out": 4.0,
+   "src": [
+    7.99,
+    8.47
+   ],
+   "label": "laugh (slow-mo, impact)"
+  },
+  {
+   "out": 5.0,
+   "src": [
+    13.8,
+    14.4
+   ],
+   "label": "hero: squad (slow-mo)"
+  },
+  {
+   "out": 6.2,
+   "src": [
+    14.42,
+    15.04
+   ],
+   "label": "whip out"
+  },
+  {
+   "out": 6.7,
+   "src": [
+    2.62,
+    2.85
+   ],
+   "label": "whip in"
+  },
+  {
+   "out": 6.9,
+   "src": [
+    2.85,
+    3.45
+   ],
+   "label": "path tilt-up (loops into cave push-in)"
+  }
+ ]
+}

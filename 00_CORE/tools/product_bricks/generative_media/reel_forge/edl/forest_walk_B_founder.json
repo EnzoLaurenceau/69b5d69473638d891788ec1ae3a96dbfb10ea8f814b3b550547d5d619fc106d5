@@ -3,7 +3,7 @@
  "bpm": 120,
  "cover": 3.3,
  "audio": {
-  "natural_db": -9,
+  "natural_db": -11,
   "wind_db": -31,
   "lufs": -14
  },
@@ -163,7 +163,7 @@
     13.74,
     14.4
    ],
-   "dur": 2.0,
+   "dur": 1.7,
    "zoom": [
     1.04,
     1.1
@@ -174,13 +174,21 @@
    ]
   },
   {
-   "label": "whip out -> loop",
+   "label": "whip out (to ground)",
    "src": [
     14.42,
     15.04
    ],
    "dur": 0.5,
    "ease": "ramp_up"
+  },
+  {
+   "label": "phone flip ground -> face (loops into smile hook)",
+   "src": [
+    0.0,
+    0.3
+   ],
+   "dur": 0.3
   }
  ],
  "fx": [
@@ -269,9 +277,16 @@
   },
   {
    "type": "whoosh",
-   "t": 11.0,
+   "t": 10.7,
    "dur": 0.5,
    "dir": "R"
+  },
+  {
+   "type": "whoosh",
+   "t": 11.0,
+   "dur": 0.35,
+   "dir": "L",
+   "gain_db": -16
   }
  ],
  "text": [
@@ -281,16 +296,15 @@
    "end": 3.0
   },
   {
-   "text": "before going back to {\\i1}building.{\\i0}",
+   "text": "before going back\\Nto {\\i1}building.{\\i0}",
    "start": 3.1,
-   "end": 6.4,
-   "size": 80
+   "end": 6.4
   },
   {
    "text": "building venkai",
    "style": "Sig",
    "start": 8.8,
-   "end": 11.0,
+   "end": 10.6,
    "y": 1190,
    "fade_out": 250
   }

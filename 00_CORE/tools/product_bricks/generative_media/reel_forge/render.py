@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -160,12 +161,26 @@ def frame(src: Source, fr: dict, edl: dict) -> np.ndarray:
 
 
 # ---------------------------------------------------------------- texte
+def reveal(x: dict, tag: str, target: str) -> str:
+    """Sous-titres mot par mot (karaoké doux) si x["reveal"] == "words"."""
+    if x.get("reveal") != "words":
+        return x["text"]
+    step, out, i = x.get("word_ms", 110), [], 0
+    for tok in re.split(r"( |\\N)", x["text"]):
+        if tok in ("", " ", "\\N"):
+            out.append(tok)
+            continue
+        out.append(f"{{{tag}&HFF&\\t({i * step},{i * step + 160},{tag}&H{target}&)}}{tok}")
+        i += 1
+    return "".join(out)
+
+
 def ass_file(edl: dict, path: Path) -> list[float]:
     head = ("[Script Info]\nScriptType: v4.00+\nPlayResX: 1080\nPlayResY: 1920\nWrapStyle: 2\n"
             "ScaledBorderAndShadow: yes\n\n[V4+ Styles]\nFormat: Name, Fontname, Fontsize, PrimaryColour, "
             "SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, "
             "Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
-            "Style: Serif,Instrument Serif,86,&H00F4F4F4,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,1,0,1,0,0,5,70,70,0,1\n"
+            "Style: Serif,DM Serif Display,84,&H00F4F4F4,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,1,0,1,0,0,5,70,70,0,1\n"
             "Style: Sig,Inter,30,&H30F4F4F4,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,9,0,1,0,0,5,70,70,0,1\n\n"
             "[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n")
 
@@ -175,14 +190,17 @@ def ass_file(edl: dict, path: Path) -> list[float]:
     lines, ticks = [], []
     for x in edl.get("text", []):
         y, st = x.get("y", 1130), x.get("style", "Serif")
-        sp0, sp1 = (14, 9) if st == "Sig" else (9, 1)
-        fs = f"\\fs{x['size']}" if "size" in x else ""
+        sp0, sp1 = (14, 9) if st == "Sig" else (4, 0)
+        longest = max(len(re.sub(r"{[^}]*}", "", ln)) for ln in x["text"].split("\\N"))
+        size = x.get("size", min(84, int(1800 / max(longest, 1))) if st == "Serif" else None)
+        fs = f"\\fs{size}" if size else ""
         anim = (f"{fs}\\an5\\move(540,{y + 14},540,{y},0,900)\\fad(280,{x.get('fade_out', 320)})"
                 f"\\fsp{sp0}\\t(0,900,0.5,\\fsp{sp1})")
+        shadow_txt, main_txt = reveal(x, "\\alpha", "48"), reveal(x, "\\alpha", "00")
         lines.append(f"Dialogue: 0,{ts(x['start'])},{ts(x['end'])},{st},,0,0,0,,"
-                     f"{{{anim}\\1c&H000000&\\1a&H8C&\\blur16}}{x['text']}")
+                     f"{{{anim}\\1c&H000000&\\3c&H000000&\\bord5\\alpha&H48&\\blur14}}{shadow_txt}")
         lines.append(f"Dialogue: 1,{ts(x['start'])},{ts(x['end'])},{st},,0,0,0,,"
-                     f"{{{anim}\\blur7\\t(0,420,\\blur0.6)}}{x['text']}")
+                     f"{{{anim}\\blur7\\t(0,420,\\blur0.6)}}{main_txt}")
         ticks.append(x["start"])
     path.write_text(head + "\n".join(lines) + "\n", encoding="utf-8")
     return ticks
@@ -229,11 +247,15 @@ def place(buf: np.ndarray, x: np.ndarray, start: float, gain_db: float) -> None:
     np.add.at(buf, idx, x * 10 ** (gain_db / 20))
 
 
-def limiter(x: np.ndarray, ceil_db: float = -1.2) -> np.ndarray:
-    from scipy.ndimage import minimum_filter1d
+def limiter(x: np.ndarray, ceil_db: float = -2.0) -> np.ndarray:
+    """Limiteur true-peak : détection suréchantillonnée x4, lookahead lissé (pas de saut de gain)."""
+    from scipy.ndimage import minimum_filter1d, uniform_filter1d
+    from scipy.signal import resample_poly
     c = 10 ** (ceil_db / 20)
-    g = np.minimum(1.0, c / np.maximum(np.abs(x).max(1), 1e-9))
-    g = minimum_filter1d(g, int(0.004 * SR) + 1)
+    tp = np.abs(resample_poly(x, 4, 1, axis=0)).max(1)[: len(x) * 4].reshape(-1, 4).max(1)
+    g = np.minimum(1.0, c / np.maximum(tp, 1e-9))
+    la = int(0.003 * SR)
+    g = uniform_filter1d(minimum_filter1d(g, 2 * la + 1), la + 1)
     rel = math.exp(-1 / (0.08 * SR))
     for i in range(1, len(g)):
         g[i] = min(g[i], 1 - (1 - g[i - 1]) * rel)
@@ -292,7 +314,7 @@ def render(edl_path: str, src_path: str, out_dir: str, fonts: str) -> Path:
           f"subtitles=filename={ass}:fontsdir={fonts}")
     cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}", "-r", str(FPS),
            "-i", "-", "-i", str(wav), "-vf", vf, "-map", "0:v", "-map", "1:a",
-           "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-profile:v", "high", "-level", "4.2",
+           "-c:v", "libx264", "-preset", "slow", "-crf", "17", "-maxrate", "20M", "-bufsize", "40M", "-profile:v", "high", "-level", "4.2",
            "-pix_fmt", "yuv420p", "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
            "-color_range", "tv", "-x264-params", "keyint=60:min-keyint=30", "-c:a", "aac", "-b:a", "320k",
            "-ar", "48000", "-movflags", "+faststart", "-shortest", str(mp4)]
