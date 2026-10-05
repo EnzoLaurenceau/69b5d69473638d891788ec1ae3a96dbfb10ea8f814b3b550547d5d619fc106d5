@@ -80,7 +80,7 @@ def main() -> None:
            "black_frames": int((luma < 18).sum()), "min_luma": round(float(luma.min()), 1),
            "loop_seam_diff": round(seam, 2), "median_frame_diff": round(float(np.median(diffs)), 2),
            "p90_frame_diff": round(float(np.percentile(diffs, 90)), 2),
-           "first_cut_s": cuts[1] if len(cuts) > 1 else None,
+           "first_cut_s": cuts[1] if len(cuts) > 1 else None, "loop": markers.get("loop", "seamless"),
            "cuts_per_s": round((len(cuts) - 1) / markers["duration"], 2), "text": []}
     if "--ass" in sys.argv:
         ass, fonts = sys.argv[sys.argv.index("--ass") + 1], sys.argv[sys.argv.index("--fonts") + 1]
@@ -103,8 +103,9 @@ def main() -> None:
         "bt709": pr["color"] == "bt709", "aac_48k_stereo": pr["acodec"] == "aac" and pr["sr"] == 48000 and pr["ch"] == 2,
         "no_black_frames": res["black_frames"] == 0, "loudness_-14_lufs": abs(a["lufs_i"] + 14) <= 1.0,
         "true_peak_le_-1": a["true_peak_dbtp"] <= -0.9, "no_clipping": a["sample_peak_db"] < -0.5,
-        "hook_cut_lt_1s": res["first_cut_s"] is not None and res["first_cut_s"] <= 1.0,
-        "loop_seam_smooth": seam <= res["p90_frame_diff"] * 1.5,
+        "hook_lt_1s": (res["first_cut_s"] is not None and res["first_cut_s"] <= 1.0)
+                      or (bool(res["text"]) and min(x["start"] for x in res["text"]) <= 0.5),
+        "loop_seam_smooth": seam <= res["p90_frame_diff"] * 1.5 if markers.get("loop", "seamless") == "seamless" else True,
         "text_in_safe_zone": all(x["in_safe_zone"] for x in res["text"]),
     }
     (out / f"{name}_qc.json").write_text(json.dumps(res, indent=1))

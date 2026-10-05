@@ -1,0 +1,450 @@
+{
+ "bpm": 120,
+ "look": "dark",
+ "vignette": 0.55,
+ "name": "V2_B_promesse_tech",
+ "cover": 1.0,
+ "audio": {
+  "natural_db": -15,
+  "wind_db": -32,
+  "lufs": -14,
+  "caption_sfx": "digital"
+ },
+ "segments": [
+  {
+   "label": "hook: chemin → révélation grotte",
+   "src": [
+    2.9,
+    3.95
+   ],
+   "dur": 1.5,
+   "zoom": [
+    1.02,
+    1.08
+   ],
+   "center": [
+    0.6,
+    0.3
+   ]
+  },
+  {
+   "label": "ami qui arrive (ramp)",
+   "src": [
+    3.95,
+    4.36
+   ],
+   "dur": 0.8,
+   "ease": "ramp_up",
+   "zoom": [
+    1.05,
+    1.07
+   ]
+  },
+  {
+   "label": "whip gauche",
+   "src": [
+    4.36,
+    4.56
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "regard vers l'avant",
+   "src": [
+    9.28,
+    9.88
+   ],
+   "dur": 1.0,
+   "zoom": [
+    1.03,
+    1.06
+   ]
+  },
+  {
+   "label": "trois-quarts",
+   "src": [
+    10.35,
+    10.95
+   ],
+   "dur": 1.0,
+   "zoom": [
+    1.02,
+    1.05
+   ]
+  },
+  {
+   "label": "whip droite",
+   "src": [
+    5.84,
+    6.14
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "pote signe OK",
+   "src": [
+    6.16,
+    7.46
+   ],
+   "dur": 1.3,
+   "zoom": [
+    1.0,
+    1.04
+   ]
+  },
+  {
+   "label": "whip retour",
+   "src": [
+    7.55,
+    7.98
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "sourire slow-mo",
+   "src": [
+    1.2,
+    1.84
+   ],
+   "dur": 1.3,
+   "zoom": [
+    1.02,
+    1.06
+   ],
+   "center": [
+    0.5,
+    0.35
+   ]
+  },
+  {
+   "label": "face caméra",
+   "src": [
+    12.98,
+    13.48
+   ],
+   "dur": 0.5,
+   "zoom": [
+    1.03,
+    1.03
+   ]
+  },
+  {
+   "label": "cut beat: grotte",
+   "src": [
+    3.5,
+    3.95
+   ],
+   "dur": 0.5,
+   "zoom": [
+    1.08,
+    1.08
+   ],
+   "center": [
+    0.62,
+    0.22
+   ]
+  },
+  {
+   "label": "cut beat: selfie",
+   "src": [
+    5.45,
+    5.85
+   ],
+   "dur": 0.5
+  },
+  {
+   "label": "cut beat: ami",
+   "src": [
+    4.0,
+    4.3
+   ],
+   "dur": 0.5,
+   "zoom": [
+    1.05,
+    1.05
+   ]
+  },
+  {
+   "label": "cut beat: rire",
+   "src": [
+    7.99,
+    8.4
+   ],
+   "dur": 0.5,
+   "zoom": [
+    1.04,
+    1.04
+   ]
+  },
+  {
+   "label": "payoff: toi + pote (slow-mo)",
+   "src": [
+    13.74,
+    14.42
+   ],
+   "dur": 2.0,
+   "zoom": [
+    1.04,
+    1.1
+   ],
+   "center": [
+    0.55,
+    0.35
+   ]
+  },
+  {
+   "label": "whip out",
+   "src": [
+    14.42,
+    15.04
+   ],
+   "dur": 0.5,
+   "ease": "ramp_up"
+  },
+  {
+   "label": "whip in",
+   "src": [
+    2.62,
+    2.85
+   ],
+   "dur": 0.2
+  },
+  {
+   "label": "écran final: chemin → grotte, assombri",
+   "src": [
+    2.85,
+    3.95
+   ],
+   "dur": 2.8,
+   "zoom": [
+    1.02,
+    1.1
+   ],
+   "center": [
+    0.6,
+    0.3
+   ]
+  }
+ ],
+ "fx": [
+  {
+   "type": "digital",
+   "t": 0.8
+  },
+  {
+   "type": "rgbsplit",
+   "t": 0.8,
+   "dur": 0.12,
+   "px": 10
+  },
+  {
+   "type": "whoosh",
+   "t": 2.5,
+   "dur": 0.35,
+   "dir": "L"
+  },
+  {
+   "type": "hit",
+   "t": 2.5,
+   "gain_db": -15
+  },
+  {
+   "type": "whoosh",
+   "t": 4.7,
+   "dur": 0.3,
+   "dir": "R"
+  },
+  {
+   "type": "hit",
+   "t": 4.7,
+   "gain_db": -15
+  },
+  {
+   "type": "digital",
+   "t": 5.08
+  },
+  {
+   "type": "rgbsplit",
+   "t": 5.08,
+   "dur": 0.12,
+   "px": 10
+  },
+  {
+   "type": "whoosh",
+   "t": 6.2,
+   "dur": 0.35,
+   "dir": "L"
+  },
+  {
+   "type": "hit",
+   "t": 6.2,
+   "gain_db": -15
+  },
+  {
+   "type": "digital",
+   "t": 7.88
+  },
+  {
+   "type": "rgbsplit",
+   "t": 7.88,
+   "dur": 0.12,
+   "px": 12
+  },
+  {
+   "type": "riser",
+   "t": 10.0,
+   "dur": 2.0,
+   "gain_db": -18
+  },
+  {
+   "type": "hit",
+   "t": 8.0,
+   "gain_db": -20
+  },
+  {
+   "type": "hit",
+   "t": 8.5,
+   "gain_db": -20
+  },
+  {
+   "type": "hit",
+   "t": 9.0,
+   "gain_db": -19
+  },
+  {
+   "type": "hit",
+   "t": 9.5,
+   "gain_db": -18
+  },
+  {
+   "type": "hit",
+   "t": 10.0,
+   "gain_db": -8
+  },
+  {
+   "type": "flash",
+   "t": 10.0,
+   "dur": 0.15,
+   "strength": 0.1
+  },
+  {
+   "type": "shake",
+   "t": 10.0,
+   "dur": 0.25,
+   "amp": 6
+  },
+  {
+   "type": "digital",
+   "t": 11.15
+  },
+  {
+   "type": "rgbsplit",
+   "t": 11.15,
+   "dur": 0.14,
+   "px": 14
+  },
+  {
+   "type": "whoosh",
+   "t": 12.5,
+   "dur": 0.45,
+   "dir": "R"
+  },
+  {
+   "type": "dim",
+   "t": 12.7,
+   "dur": 2.8,
+   "level": 0.42,
+   "ramp": 0.6
+  },
+  {
+   "type": "digital",
+   "t": 13.08
+  },
+  {
+   "type": "rgbsplit",
+   "t": 13.08,
+   "dur": 0.12,
+   "px": 10
+  },
+  {
+   "type": "hit",
+   "t": 12.7,
+   "gain_db": -14
+  }
+ ],
+ "text": [
+  {
+   "text": "Et si l'IA arrêtait\\Nde recommencer [[à zéro]] ?",
+   "style": "Box",
+   "start": 0.1,
+   "end": 2.4,
+   "y": 1010,
+   "hl_ms": 700
+  },
+  {
+   "text": "Les entreprises\\Nn'ont pas besoin",
+   "style": "Box",
+   "start": 2.5,
+   "end": 4.6,
+   "y": 1110,
+   "hl_ms": 380
+  },
+  {
+   "text": "d'une IA [[de plus.]]",
+   "style": "Box",
+   "start": 4.7,
+   "end": 6.1,
+   "y": 1080,
+   "hl_ms": 380
+  },
+  {
+   "text": "Elles ont besoin\\Nd'une IA qui comprend",
+   "style": "Box",
+   "start": 6.2,
+   "end": 7.5,
+   "y": 1110,
+   "hl_ms": 380
+  },
+  {
+   "text": "leur [[continuité.]]",
+   "style": "Box",
+   "start": 7.5,
+   "end": 10.0,
+   "y": 1170,
+   "hl_ms": 380
+  },
+  {
+   "text": "C'est ce que je construis",
+   "style": "Box",
+   "start": 10.0,
+   "end": 11.0,
+   "y": 1170,
+   "hl_ms": 380
+  },
+  {
+   "text": "avec [[Venkai.]]",
+   "style": "Box",
+   "start": 11.0,
+   "end": 12.4,
+   "y": 1170,
+   "hl_ms": 150
+  },
+  {
+   "text": "Human intent\\N{\\fnDejaVu Sans\\b1}→{\\b0\\fnPoppins ExtraBold} [[execution.]]",
+   "style": "Box",
+   "start": 12.7,
+   "end": 15.5,
+   "y": 1060,
+   "hl_ms": 380,
+   "fade_out": 200
+  },
+  {
+   "text": "VENKAI",
+   "style": "Mark",
+   "start": 13.5,
+   "end": 15.5,
+   "y": 1218
+  }
+ ],
+ "loop": "rhyme"
+}

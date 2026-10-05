@@ -154,6 +154,17 @@ def frame(src: Source, fr: dict, edl: dict) -> np.ndarray:
     for e, dt in fx_at(edl, "leak", fr["t"]):
         a = e.get("strength", 0.3) * math.sin(math.pi * dt / e.get("dur", 0.6)) ** 2
         img = 255 - (255 - img) * (1 - a * leak_map())
+    for e, dt in fx_at(edl, "dim", fr["t"]):
+        k = e.get("level", 0.45) * min(1.0, dt / max(e.get("ramp", 0.5), 1e-3))
+        if e.get("ramp_out"):
+            k *= min(1.0, (e.get("dur", 0.25) - dt) / e["ramp_out"])
+        img = img * (1 - k)
+    for e, dt in fx_at(edl, "rgbsplit", fr["t"]):
+        px = int(round(e.get("px", 10) * math.exp(-dt * 18)))
+        if px:
+            img = img.copy()
+            img[..., 2] = np.roll(img[..., 2], px, axis=1)
+            img[..., 0] = np.roll(img[..., 0], -px, axis=1)
     for e, dt in fx_at(edl, "flash", fr["t"]):
         k = e.get("strength", 0.15) * math.exp(-dt * 22)
         img = img + (255 - img) * k
@@ -181,6 +192,8 @@ def ass_file(edl: dict, path: Path) -> list[float]:
             "SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, "
             "Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
             "Style: Serif,DM Serif Display,84,&H00F4F4F4,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,1,0,1,0,0,5,70,70,0,1\n"
+            "Style: Box,Poppins ExtraBold,96,&H00FFFFFF,&H00FFFFFF,&H10000000,&H00000000,0,0,0,0,100,100,0,0,3,20,0,5,70,70,0,1\n"
+            "Style: Mark,Poppins SemiBold,50,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,16,0,1,0,0,5,70,70,0,1\n"
             "Style: Sig,Inter,30,&H30F4F4F4,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,9,0,1,0,0,5,70,70,0,1\n\n"
             "[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n")
 
@@ -190,6 +203,18 @@ def ass_file(edl: dict, path: Path) -> list[float]:
     lines, ticks = [], []
     for x in edl.get("text", []):
         y, st = x.get("y", 1130), x.get("style", "Serif")
+        if st in ("Box", "Mark"):
+            hl, yel = x.get("hl_ms", 380), "&H00D4FF&"  # jaune accent (#FFD400, BGR)
+            body = re.sub(r"\[\[(.+?)\]\]", lambda m: f"{{\\t({hl},{hl + 90},\\1c{yel})}}{m.group(1)}{{\\1c&HFFFFFF&}}", x["text"])
+            if st == "Box":
+                tags = f"\\an5\\pos(540,{y})\\fad(70,{x.get('fade_out', 110)})\\fscx86\\fscy86\\t(0,140,\\fscx100\\fscy100)"
+                longest = max(len(re.sub(r"{[^}]*}|\[\[|\]\]", "", ln)) for ln in x["text"].split("\\N"))
+                tags += f"\\fs{x.get('size', min(104, int(900 / (0.345 * max(longest, 1)))))}"
+            else:
+                tags = f"\\an5\\pos(540,{y})\\fad(300,200)\\fsp30\\t(0,900,0.5,\\fsp16)\\1a&H18&"
+            lines.append(f"Dialogue: 1,{ts(x['start'])},{ts(x['end'])},{st},,0,0,0,,{{{tags}}}{body}")
+            ticks.append(x["start"])
+            continue
         sp0, sp1 = (14, 9) if st == "Sig" else (4, 0)
         longest = max(len(re.sub(r"{[^}]*}", "", ln)) for ln in x["text"].split("\\N"))
         size = x.get("size", min(84, int(1800 / max(longest, 1))) if st == "Serif" else None)
@@ -280,10 +305,16 @@ def mix(edl: dict, src_audio: np.ndarray, total: float, ticks: list[float]) -> n
         elif k == "riser":
             d = e.get("dur", 2.0)
             place(bus, sfx.riser(d), e["t"] - d, g or -17)
+        elif k == "digital":
+            place(bus, sfx.digital(e.get("dur", 0.07)), e["t"], g or -24)
         elif k == "leaves":
             place(bus, sfx.leaves(e.get("dur", 1.0)), e["t"], g or -26)
+    cap = cfg.get("caption_sfx", "tick")
     for t in ticks:
-        place(bus, sfx.tick(), t, -30)
+        if cap == "tick":
+            place(bus, sfx.tick(), t, -30)
+        elif cap == "digital":
+            place(bus, sfx.digital(), t, -27)
     bus = sfx.highpass(bus, 28).astype(np.float32)
     meter = pyln.Meter(SR)
     for _ in range(3):
@@ -304,12 +335,12 @@ def render(edl_path: str, src_path: str, out_dir: str, fonts: str) -> Path:
     for x in edl.get("text", []):
         x["text"] = x["text"].replace("{DUR}", str(round(total)))
     cube, ass = out / "grade.cube", out / f"{name}.ass"
-    write_cube(str(cube))
+    write_cube(str(cube), look=edl.get("look", "natural"))
     ticks = ass_file(edl, ass)
     wav = out / f"{name}.wav"
     sf.write(wav, mix(edl, load_audio(src_path), total, ticks), SR, subtype="PCM_24")
     mp4 = out / f"{name}.mp4"
-    vf = (f"lut3d=file={cube}:interp=tetrahedral,vignette=angle=0.45,"
+    vf = (f"lut3d=file={cube}:interp=tetrahedral,vignette=angle={edl.get('vignette', 0.45)},"
           f"scale=out_color_matrix=bt709:out_range=tv,format=yuv420p,noise=c0s=5:c0f=t+u,"
           f"subtitles=filename={ass}:fontsdir={fonts}")
     cmd = ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}", "-r", str(FPS),
@@ -331,7 +362,7 @@ def render(edl_path: str, src_path: str, out_dir: str, fonts: str) -> Path:
         cuts.append(round(acc / FPS, 3))
         acc += round(seg["dur"] * FPS)
     (out / f"{name}_markers.json").write_text(json.dumps({
-        "duration": total, "bpm": edl.get("bpm", 120),
+        "duration": total, "bpm": edl.get("bpm", 120), "loop": edl.get("loop", "seamless"),
         "beats": [round(i * beats, 3) for i in range(int(total / beats) + 1)],
         "cuts": cuts, "segments": [{"out": c, "src": s["src"], "label": s.get("label", "")}
                                    for c, s in zip(cuts, edl["segments"])]}, indent=1))

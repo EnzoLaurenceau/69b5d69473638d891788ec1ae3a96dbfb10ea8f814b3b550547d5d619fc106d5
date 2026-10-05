@@ -90,6 +90,18 @@ def tick() -> np.ndarray:
     return _pan(y * 0.6, 0.0)
 
 
+def digital(dur: float = 0.07) -> np.ndarray:
+    """Micro texture numérique : blip carré bit-crushé (accent mot-clé / glitch)."""
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    sq = np.sign(np.sin(2 * np.pi * (1800 - 900 * t / dur) * t))
+    crushed = np.round((sq * 0.6 + _rng.standard_normal(n) * 0.25) * 6) / 6
+    y = crushed * np.exp(-t * 45)
+    st = _pan(y, 0.0)
+    st[:, 1] = np.roll(st[:, 1], int(0.004 * SR))
+    return st
+
+
 def leaves(dur: float) -> np.ndarray:
     n = int(dur * SR)
     y = np.zeros(n)

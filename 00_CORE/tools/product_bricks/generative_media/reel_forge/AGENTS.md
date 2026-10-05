@@ -19,10 +19,13 @@ Brique `product_bricks/generative_media`. Aucun appel LLM, aucune clé API : 100
 - `qc.py out/NAME.mp4 --ass out/NAME.ass --fonts dir/` → `NAME_qc.json` + `NAME_safezone.jpg`.
 - `grade.py out.cube` → LUT 3D « cinematic natural » (verts contrôlés, peau protégée).
 - EDL (`edl/*.json`) : `segments[{label, src:[in,out], dur, ease: linear|ramp_up|ramp_down,
-  zoom:[z0,z1], center:[x,y]}]`, `fx[{type: whoosh|hit|riser|leaves|shake|leak|flash, t, dur, …}]`,
-  `text[{text, start, end, style: Serif|Sig, size?, y, reveal: words, word_ms}]` (`{DUR}` = durée arrondie ;
+  zoom:[z0,z1], center:[x,y]}]`, `fx[{type: whoosh|hit|riser|leaves|digital|shake|leak|flash|dim|rgbsplit, t, dur, …}]`,
+  `text[{text, start, end, style: Serif|Sig|Box|Mark, size?, y, reveal: words, word_ms, hl_ms}]` (`{DUR}` = durée arrondie ;
   taille Serif auto = min(84, 1800 / plus longue ligne) ; `reveal: words` = sous-titres mot par mot),
-  `audio{natural_db, wind_db, lufs}`, `bpm`, `cover`. Durées en multiples de 0,1 s (3 frames).
+  `audio{natural_db, wind_db, lufs, caption_sfx: tick|digital|none}`, `bpm`, `cover`, `look: natural|dark`,
+  `vignette`, `loop: seamless|rhyme|none` (QC ne contrôle la couture que pour `seamless`).
+- Style `Box` = sous-titre blanc Poppins ExtraBold sur fond noir (BorderStyle 3), taille auto ≤104 px,
+  `[[mot]]` passe au jaune `#FFD400` à `hl_ms` ; `Mark` = wordmark espacé (ex. `VENKAI`). Durées en multiples de 0,1 s (3 frames).
 - Les SFX se placent avec wrap circulaire : un son qui dépasse la fin reprend au début
   (boucle sonore sans couture).
 
@@ -31,7 +34,10 @@ Brique `product_bricks/generative_media`. Aucun appel LLM, aucune clé API : 100
 - Slow-mo ≥ 0,33x sur plans à mouvement modéré ; au-delà, artefacts de warping.
 - Texte : DM Serif Display (OFL, style `Serif`, halo flou) + Inter (OFL, style `Sig`) depuis
   google/fonts (`--fonts` doit contenir les .ttf) ; zone sûre = x 6–94 %, y 14–65 %.
-- Limiteur à -2 dBFS : l'encodage AAC ajoute ~1 dB de true peak.
+- Limiteur true-peak (x4) à -2 dBTP : l'encodage AAC ajoute ~1 dB.
+- Contenu Venkai : faits UNIQUEMENT depuis `07_REPORTS/reel_forest_walk/BRIEF_VENKAI_CANON.md`.
+- Polices : Poppins ExtraBold/SemiBold (OFL) ; « → » absent de Poppins → `{\fnDejaVu Sans\b1}→`.
+- Plans selfie serrés : sous-titre au plus bas de la zone sûre (y ≤ 1170 pour 1 ligne, ≤ 1100 pour 2).
 - Dépendances : `pip install "opencv-python-headless<5" scenedetect librosa soundfile pyloudnorm`
   (OpenCV 5 a retiré les cascades Haar du module principal).
 
